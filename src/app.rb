@@ -54,7 +54,7 @@ module Colin
     # Development-specific configuration settings
     configure :development do
       # Test database
-      set :database, adapter: 'sqlite3', database: 'data/test.sqlite3'
+      set :database, adapter: 'sqlite3', database: 'tmp/development.sqlite3'
     end
 
     # Single-page front-end web app
