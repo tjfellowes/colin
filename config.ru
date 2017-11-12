@@ -1,2 +1,4 @@
 require './src/app.rb'
-run Colin.new
+
+# Run, CoLIN, run!
+run Colin.run

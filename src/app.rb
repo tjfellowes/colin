@@ -1,26 +1,70 @@
 require 'sinatra'
+require 'sinatra/activerecord'
 
 #
-# The primary web application, COLIN.
+# CoLIN, the COmprehensive Labortory Information Nexus.
+# The base module for CoLIN includes all routes (endpoints)
+# and Models (data ORM).
 #
+module Colin
+  #
+  # Module that defines all routes (endpoints) under CoLIN. These are added
+  # under the `routes' directory.
+  #
+  module Routes; end
 
-set :public_folder, 'public'
+  #
+  # Module that defines all models (ORM) under CoLIN. These are added under
+  # the `models' directory.
+  #
+  module Models; end
 
-# Serve static
-get '/' do
-  redirect '/index.html'
+  #
+  # Runs CoLIN by importing all required routes, modules and Sinatra.
+  #
+  def run
+    # Require everything inside `src'.
+    require 'require_all'
+    require_all 'src'
+    # Create a new CoLIN application with all routes here.
+    Rack::Cascade.new [
+      Colin::BaseWebApp,
+      Colin::Routes::Chemical
+    ]
+  end
+
+  # Expose the run function as a module-level function for CoLIN (i.e., to
+  # call Colin.run).
+  module_function :run
+
+  #
+  # The primary web application, CoLIN.
+  #
+  class BaseWebApp < Sinatra::Base
+    # Configuration settings
+    configure do
+      # Enable logging
+      enable :logging
+      # Set the public folder to 'public'
+      set :public_folder, 'public'
+      # Enable ActiveRecord extension
+      register Sinatra::ActiveRecordExtension
+    end
+
+    # Development-specific configuration settings
+    configure :development do
+      # Test database
+      set :database, adapter: 'sqlite3', database: 'data/test.sqlite3'
+    end
+
+    # Single-page front-end web app
+    get '/' do
+      redirect '/index.html'
+    end
+
+    # Route for 404 not found
+    not_found do
+      redirect '/404.html'
+    end
+  end
 end
-
-# Route for not found
-not_found do
-  redirect '/404.html'
-end
-
-get '/inventory' do
-  # shows inventory table
-end
-
-get '/inventory/:chem_id' do
-  # shows table of instances of chem_id
-end
-
