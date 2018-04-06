@@ -29,7 +29,8 @@ module Colin
     # Create a new CoLIN application with all routes here.
     Rack::Cascade.new [
       Colin::BaseWebApp,
-      Colin::Routes::Chemical
+      Colin::Routes::Chemical,
+      Colin::Routes::Container
     ]
   end
 
@@ -63,8 +64,8 @@ module Colin
     end
 
     # Route for 404 not found
-    not_found do
-      redirect '/404.html'
-    end
+    #not_found do
+    #  redirect '/404.html'
+    #end
   end
 end

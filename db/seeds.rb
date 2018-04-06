@@ -66,7 +66,7 @@ def create_dg_classes
   create_dg_division(toxic, 2, 'Infectious Substances')
 
   # Radioactive
-  radioactive = DGClass.create!(number: 7, description: 'Radioactive Substances')
+  DGClass.create!(number: 7, description: 'Radioactive Substances')
 
   # Corrosives
   DGClass.create(number: 8, description: 'Corrosives')
@@ -75,6 +75,30 @@ def create_dg_classes
   DGClass.create(number: 9, description: 'Miscellaneous Goods')
 end
 
+def create_size_units
+  SizeUnit.create!(name: 'milligram', symbol: 'mg', multiplier: 0.001)
+  SizeUnit.create!(name: 'gram', symbol: 'g', multiplier: 1)
+  SizeUnit.create!(name: 'kilogram', symbol: 'kg', multiplier: 1000)
+  SizeUnit.create!(name: 'microlitre', symbol: 'uL', multiplier: 0.001)
+  SizeUnit.create!(name: 'millilitre', symbol: 'mL', multiplier: 1)
+  SizeUnit.create!(name: 'litre', symbol: 'L', multiplier: 1000)
+end
+
+def create_storage_classes
+  StorageClass.create!(name: 'Harmful')
+  StorageClass.create!(name: 'Toxic')
+  StorageClass.create!(name: 'Non-hazardous')
+  StorageClass.create!(name: 'Fridge')
+  StorageClass.create!(name: 'Freezer')
+  StorageClass.create!(name: 'Flammable liquid')
+  StorageClass.create!(name: 'Flammable solid')
+  StorageClass.create!(name: 'Dangerous when wet')
+  StorageClass.create!(name: 'Oxidant')
+  StorageClass.create!(name: 'Corrosive')
+end
+
 create_packing_groups
 create_dg_classes
 create_schedules
+create_size_units
+create_storage_classes

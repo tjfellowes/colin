@@ -17,11 +17,11 @@ class Colin::Routes::Chemical < Sinatra::Base
     page_size  = params.fetch(:size, 15)
     if page_size.zero? && page_start.zero?
       # Where 0 has been provided for both, use `Chemical.all'
-      Chemical.all
+      Colin::Models::Chemical.all
     else
       # Where a specified page size and page start have been provided, use
       # the limit and offset functions. See http://guides.rubyonrails.org/active_record_querying.html#limit-and-offset
-      Chemical.limit(page_size).offset(page_start)
+      Colin::Models::Chemical.limit(page_size).offset(page_start)
     end
   end
 
@@ -31,10 +31,15 @@ class Colin::Routes::Chemical < Sinatra::Base
   get '/api/chemical/:id' do
     # Must provide an integer ID. Otherwise respond with 422 (https://restpatterns.mindtouch.us/HTTP_Status_Codes/422_-_Unprocessable_Entity)
     # which means invalid data provided from user.
-    if params[:id].is_a?(Integer)
-      Chemical.find(params[:id])
-    else
+    if params[:id].nil?
       halt(422, 'Must provide an numerical ID for chemical.')
+    elsif Colin::Models::Chemical.exists?(params[:id])
+      Colin::Models::Chemical.find(params[:id]).to_json
+    else
+      halt(404, "Chemical with id #{params[:id]} not found.")
     end
+  end
+
+  post '/api/chemical/:id' do
   end
 end
