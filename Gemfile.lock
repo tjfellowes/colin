@@ -18,6 +18,7 @@ GEM
       concurrent-ruby (~> 1.0)
     minitest (5.10.3)
     mustermann (1.0.1)
+    mysql2 (0.5.2)
     rack (2.0.3)
     rack-protection (2.0.0)
       rack
@@ -41,7 +42,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  activemodel
+  mysql2 (= 0.5.2)
   rake (= 12.2.1)
   require_all (= 1.4.0)
   sinatra (= 2.0.0)
@@ -49,4 +50,4 @@ DEPENDENCIES
   sqlite3 (= 1.3.13)
 
 BUNDLED WITH
-   1.15.4
+   2.0.1
