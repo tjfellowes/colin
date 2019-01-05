@@ -64,6 +64,12 @@ module Colin
       set :database, adapter: 'sqlite3', database: 'tmp/development.sqlite3'
     end
 
+    configure :production do
+      set :database, {adapter: 'mysql',  encoding: 'unicode', host: 'localhost', port: '3306', database: 'colin', pool: 2, username: 'colin', password: 'FtXBppyZ7gCg3Fp5wNpVaDtfhPeUqwY6LUmsjLjb4S6peQ4xFaYcgaJxuzMAB5vB'}    
+    end
+
+    set :environment, :production
+
     # Single-page front-end web app
     get '/' do
       redirect '/index.html'
