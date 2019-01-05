@@ -28,9 +28,10 @@ class CreateTables < ActiveRecord::Migration[5.1]
 
       # Foreign keys with indexing enabled
       t.references :dg_class,       index: true, null: true
+      t.references :dg_class_2,     references: :dg_classes, index: true, null: true
+      t.references :dg_class_3,     references: :dg_classes, index: true, null: true
       t.references :schedule,       index: true, null: true
       t.references :packing_group,  index: true, null: true
-      t.references :subrisk, :dg_classes,        null: true
 
       # Adds created_at and updated_at fields.
       t.timestamps
@@ -39,7 +40,8 @@ class CreateTables < ActiveRecord::Migration[5.1]
     create_table :containers do |t|
       # Basic Fields
       t.string :serial_number,    null: false
-      t.float :container_size,    null: true # always in g or mL
+      t.float :container_size,    null: true
+      t.string :size_unit,        null: true
       t.datetime :date_purchased, null: false
       t.datetime :expiry_date,    null: true
       t.datetime :date_disposed,  null: true
@@ -49,29 +51,19 @@ class CreateTables < ActiveRecord::Migration[5.1]
       t.references :supplier,  index: true, null: true
     end
 
-    create_table :size_units do |t|
-      t.string :name,       null: false
-      t.string :symbol,     null: false
-      t.string :multiplier, null: false
-    end
-
-    create_table :supplier do |t|
+    create_table :suppliers do |t|
       t.string :name, null: false
     end
 
     create_table :container_locations do |t|
-      t.datetime   :time,          null: false
+      t.timestamps
       t.references :container,     index: true, null: false
-      t.references :storage_class, index: true, null: false
-      t.references :location,      index: true, null: false
-    end
-
-    create_table :storage_classes do |t|
-      t.string :name, null: false
+      t.references :location,      index: true, null: true
     end
 
     create_table :locations do |t|
       t.string :name, null: false
+      t.references :parent, references: :locations
     end
   end
 end

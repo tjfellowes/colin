@@ -22,7 +22,7 @@ def create_schedules
 end
 
 def create_dg_division(dg_class, number, description)
-  DGClass.create! do |d|
+  DgClass.create! do |d|
     d.number = number
     d.description = description
     d.superclass_id = dg_class.id
@@ -32,7 +32,7 @@ end
 def create_dg_classes
   # Refer to https://policies.anu.edu.au/ppl/download/ANUP_001154
   # Explosives
-  explosives = DGClass.create!(number: 1, description: 'Explosives')
+  explosives = DgClass.create!(number: 1, description: 'Explosives')
   create_dg_division(explosives, 1, 'Substances that have a mass explosion hazard')
   create_dg_division(explosives, 2, 'Substances and articles that have a projection hazard, but not a mass explosion hazard')
   create_dg_division(explosives, 3, 'Substances or articles that have a fire hazard and either a minor blast hazard or minor projection hazard, or both, but not a mass explosion hazard')
@@ -41,64 +41,171 @@ def create_dg_classes
   create_dg_division(explosives, 6, 'Extremely insensitive articles that do not have a mass explosion hazard')
 
   # Gases
-  gases = DGClass.create!(number: 2, description: 'Gases')
+  gases = DgClass.create!(number: 2, description: 'Gases')
   create_dg_division(gases, 1, 'Flammable gases')
   create_dg_division(gases, 2, 'Non-flammable, non-toxic gases')
   create_dg_division(gases, 3, 'Toxic gases')
 
   # Flammable Liquids
-  DGClass.create!(number: 3, description: 'Flammable Liquids')
+  DgClass.create!(number: 3, description: 'Flammable Liquids')
 
   # Flammable solids
-  flamsol = DGClass.create!(number: 4, description: 'Flammable Solids')
+  flamsol = DgClass.create!(number: 4, description: 'Flammable Solids')
   create_dg_division(flamsol, 1, 'Flammable solids')
   create_dg_division(flamsol, 2, 'Spontaneously combustible')
   create_dg_division(flamsol, 3, 'Dangerous when wet')
 
   # Oxidising
-  ox = DGClass.create!(number: 5, description: 'Oxidising Substances and Organic Peroxides')
+  ox = DgClass.create!(number: 5, description: 'Oxidising Substances and Organic Peroxides')
   create_dg_division(ox, 1, 'Oxidizing Substances')
   create_dg_division(ox, 1, 'Organic Peroxides')
 
   # Toxic
-  toxic = DGClass.create!(number: 6, description: 'Toxic and Infectious Substances')
+  toxic = DgClass.create!(number: 6, description: 'Toxic and Infectious Substances')
   create_dg_division(toxic, 1, 'Toxic Substances')
   create_dg_division(toxic, 2, 'Infectious Substances')
 
   # Radioactive
-  DGClass.create!(number: 7, description: 'Radioactive Substances')
+  DgClass.create!(number: 7, description: 'Radioactive Substances')
 
   # Corrosives
-  DGClass.create(number: 8, description: 'Corrosives')
+  DgClass.create(number: 8, description: 'Corrosives')
 
   # Misc
-  DGClass.create(number: 9, description: 'Miscellaneous Goods')
+  DgClass.create(number: 9, description: 'Miscellaneous Goods')
 end
 
-def create_size_units
-  SizeUnit.create!(name: 'milligram', symbol: 'mg', multiplier: 0.001)
-  SizeUnit.create!(name: 'gram', symbol: 'g', multiplier: 1)
-  SizeUnit.create!(name: 'kilogram', symbol: 'kg', multiplier: 1000)
-  SizeUnit.create!(name: 'microlitre', symbol: 'uL', multiplier: 0.001)
-  SizeUnit.create!(name: 'millilitre', symbol: 'mL', multiplier: 1)
-  SizeUnit.create!(name: 'litre', symbol: 'L', multiplier: 1000)
+def create_location_division(location, name)
+  Location.create! do |d|
+    d.name = name
+    d.parent_id = location.id
+  end
 end
 
-def create_storage_classes
-  StorageClass.create!(name: 'Harmful')
-  StorageClass.create!(name: 'Toxic')
-  StorageClass.create!(name: 'Non-hazardous')
-  StorageClass.create!(name: 'Fridge')
-  StorageClass.create!(name: 'Freezer')
-  StorageClass.create!(name: 'Flammable liquid')
-  StorageClass.create!(name: 'Flammable solid')
-  StorageClass.create!(name: 'Dangerous when wet')
-  StorageClass.create!(name: 'Oxidant')
-  StorageClass.create!(name: 'Corrosive')
+def create_locations
+  harmful = Location.create!(name: 'Harmful')
+  create_location_division(harmful, 'H1')
+  create_location_division(harmful, 'H2')
+  create_location_division(harmful, 'H3')
+  create_location_division(harmful, 'H4')
+  create_location_division(harmful, 'H5')
+  create_location_division(harmful, 'H6')
+  create_location_division(harmful, 'H7')
+  create_location_division(harmful, 'H8')
+  create_location_division(harmful, 'H9')
+  create_location_division(harmful, 'H10')
+  create_location_division(harmful, 'H11')
+  create_location_division(harmful, 'H12')
+  create_location_division(harmful, 'H13')
+  create_location_division(harmful, 'H14')
+  create_location_division(harmful, 'H15')
+  create_location_division(harmful, 'H16')
+  create_location_division(harmful, 'H17')
+  create_location_division(harmful, 'H18')
+  create_location_division(harmful, 'H19')
+  create_location_division(harmful, 'H20')
+  create_location_division(harmful, 'H21')
+  create_location_division(harmful, 'H22')
+  create_location_division(harmful, 'H23')
+  create_location_division(harmful, 'H24')
+  create_location_division(harmful, 'H25')
+  create_location_division(harmful, 'H26')
+  create_location_division(harmful, 'H27')
+  create_location_division(harmful, 'Dessicator')
+
+  toxic = Location.create!(name: 'Toxic')
+  create_location_division(toxic, 'TS1')
+  create_location_division(toxic, 'TS2')
+  create_location_division(toxic, 'TS3')
+  create_location_division(toxic, 'TM1')
+  create_location_division(toxic, 'TM2')
+  create_location_division(toxic, 'TM3')
+  create_location_division(toxic, 'TM4')
+  create_location_division(toxic, 'TM5')
+  create_location_division(toxic, 'TM6')
+  create_location_division(toxic, 'TL1')
+  create_location_division(toxic, 'TL2')
+  create_location_division(toxic, 'TL3')
+  create_location_division(toxic, 'TL4')
+  create_location_division(toxic, 'TXL')
+  create_location_division(toxic, 'Dessicator')
+
+  corrosive = Location.create!(name: 'Corrosive')
+  create_location_division(corrosive, 'Acid 1')
+  create_location_division(corrosive, 'Acid 2')
+  create_location_division(corrosive, 'Base 1')
+  create_location_division(corrosive, 'Base 2')
+  create_location_division(corrosive, 'Base 3')
+  create_location_division(corrosive, 'Base 4')
+  create_location_division(corrosive, 'Dessicator')
+
+  fridge = Location.create!(name: 'Fridge')
+  create_location_division(fridge, 'Bottom draw')
+  create_location_division(fridge, 'Door')
+  create_location_division(fridge, 'S1')
+  create_location_division(fridge, 'S1 B1')
+  create_location_division(fridge, 'S1 B3')
+  create_location_division(fridge, 'S2 B1')
+  create_location_division(fridge, 'S2 B2')
+  create_location_division(fridge, 'S3')
+  create_location_division(fridge, 'S3 B1')
+  create_location_division(fridge, 'S4')
+  create_location_division(fridge, 'S4 B1')
+
+  freezer =Location.create!(name: 'Freezer')
+  create_location_division(freezer, '1 S1')
+  create_location_division(freezer, '1 S1 B1')
+  create_location_division(freezer, '1 S2 B1')
+  create_location_division(freezer, '1 S2 B2')
+  create_location_division(freezer, '1 S2 B3')
+  create_location_division(freezer, '1 S3 B1')
+  create_location_division(freezer, '1 S4 B1')
+  create_location_division(freezer, '1 S4 B2')
+  create_location_division(freezer, '1 S5 B1')
+  create_location_division(freezer, '2')
+  create_location_division(freezer, '3')
+
+  flammable_liquid = Location.create!(name: 'Flammable liquid')
+  create_location_division(flammable_liquid, 'Large')
+  create_location_division(flammable_liquid, 'Small')
+
+  flammable_solid = Location.create!(name: 'Flammable solid')
+  create_location_division(flammable_solid, 'Dessicator 1')
+  create_location_division(flammable_solid, 'Dessicator 2')
+
+  poison = Location.create!(name: 'Posions')
+  create_location_division(poison, 'Draw 1')
+  create_location_division(poison, 'Draw 2')
+  create_location_division(poison, 'Draw 3')
+
+  bench = Location.create!(name: 'Benches')
+  create_location_division(bench, '1')
+  create_location_division(bench, '2')
+  create_location_division(bench, '3')
+  create_location_division(bench, '4')
+  create_location_division(bench, '5')
+  create_location_division(bench, '6')
+  create_location_division(bench, '7')
+  create_location_division(bench, '8')
+  create_location_division(bench, '9')
+  create_location_division(bench, '10')
+  create_location_division(bench, '11')
+  create_location_division(bench, '12')
+  create_location_division(bench, '13')
+  create_location_division(bench, '14')
+
+  Location.create!(name: 'Dangerous when wet')
+  Location.create!(name: 'Oxidants')
+  Location.create!(name: 'Non-hazardous')
+  Location.create!(name: 'Chromatography/filtration aids')
+  Location.create!(name: 'Deuterates dessicator')
+  Location.create!(name: 'Sieves/drying agents')
+  Location.create!(name: 'Non-flammable solvents')
+
 end
+
 
 create_packing_groups
 create_dg_classes
 create_schedules
-create_size_units
-create_storage_classes
+create_locations

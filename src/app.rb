@@ -1,5 +1,6 @@
 require 'sinatra'
 require 'sinatra/activerecord'
+require 'json'
 
 #
 # CoLIN, the COmprehensive Labortory Information Nexus.
@@ -50,6 +51,11 @@ module Colin
       set :public_folder, 'public'
       # Enable ActiveRecord extension
       register Sinatra::ActiveRecordExtension
+    end
+
+    # Make every request JSON
+    before do
+      content_type :json
     end
 
     # Development-specific configuration settings

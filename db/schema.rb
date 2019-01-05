@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180404001409) do
+ActiveRecord::Schema.define(version: 20181220203745) do
 
   create_table "chemicals", force: :cascade do |t|
     t.string "cas", null: false
@@ -20,39 +20,40 @@ ActiveRecord::Schema.define(version: 20180404001409) do
     t.string "sds_url"
     t.string "un_number"
     t.integer "dg_class_id"
+    t.integer "dg_class_2_id"
+    t.integer "dg_class_3_id"
     t.integer "schedule_id"
     t.integer "packing_group_id"
-    t.integer "subrisk_id"
-    t.integer "dg_classes_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name_fulltext", default: "", null: false
+    t.index ["dg_class_2_id"], name: "index_chemicals_on_dg_class_2_id"
+    t.index ["dg_class_3_id"], name: "index_chemicals_on_dg_class_3_id"
     t.index ["dg_class_id"], name: "index_chemicals_on_dg_class_id"
-    t.index ["dg_classes_id"], name: "index_chemicals_on_dg_classes_id"
     t.index ["packing_group_id"], name: "index_chemicals_on_packing_group_id"
     t.index ["schedule_id"], name: "index_chemicals_on_schedule_id"
-    t.index ["subrisk_id"], name: "index_chemicals_on_subrisk_id"
   end
 
   create_table "container_locations", force: :cascade do |t|
-    t.datetime "time", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer "container_id", null: false
-    t.integer "storage_class_id", null: false
-    t.integer "location_id", null: false
+    t.integer "location_id"
+    t.boolean "temp", default: false, null: false
     t.index ["container_id"], name: "index_container_locations_on_container_id"
     t.index ["location_id"], name: "index_container_locations_on_location_id"
-    t.index ["storage_class_id"], name: "index_container_locations_on_storage_class_id"
   end
 
   create_table "containers", force: :cascade do |t|
-    t.string "container_size"
+    t.string "serial_number", null: false
+    t.float "container_size"
+    t.string "size_unit"
     t.datetime "date_purchased", null: false
     t.datetime "expiry_date"
     t.datetime "date_disposed"
     t.integer "chemical_id", null: false
-    t.integer "size_unit_id"
     t.integer "supplier_id"
     t.index ["chemical_id"], name: "index_containers_on_chemical_id"
-    t.index ["size_unit_id"], name: "index_containers_on_size_unit_id"
     t.index ["supplier_id"], name: "index_containers_on_supplier_id"
   end
 
@@ -65,6 +66,8 @@ ActiveRecord::Schema.define(version: 20180404001409) do
 
   create_table "locations", force: :cascade do |t|
     t.string "name", null: false
+    t.integer "parent_id"
+    t.index ["parent_id"], name: "index_locations_on_parent_id"
   end
 
   create_table "packing_groups", force: :cascade do |t|
@@ -76,17 +79,7 @@ ActiveRecord::Schema.define(version: 20180404001409) do
     t.text "description"
   end
 
-  create_table "size_units", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "symbol", null: false
-    t.string "multiplier", null: false
-  end
-
-  create_table "storage_classes", force: :cascade do |t|
-    t.string "name", null: false
-  end
-
-  create_table "supplier", force: :cascade do |t|
+  create_table "suppliers", force: :cascade do |t|
     t.string "name", null: false
   end
 

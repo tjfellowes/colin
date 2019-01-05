@@ -41,6 +41,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activemodel
   rake (= 12.2.1)
   require_all (= 1.4.0)
   sinatra (= 2.0.0)
