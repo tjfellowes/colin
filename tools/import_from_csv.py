@@ -187,7 +187,7 @@ with open('inventory.csv') as csv_file:
       serial_number=str(row[0])
       cas=str(row[1])
       prefix=str(row[2])
-      name=str(urllib.quote_plus(row[3]))
+      name=str(urllib.parse.quote_plus(row[3]))
       supplier_id=str(0)
 
       try:
