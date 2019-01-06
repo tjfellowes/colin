@@ -65,10 +65,10 @@ module Colin
     end
 
     configure :production do
-      set :database, {adapter: 'mysql',  encoding: 'unicode', host: 'localhost', port: '3306', database: 'colin', pool: 2, username: 'colin', password: 'FtXBppyZ7gCg3Fp5wNpVaDtfhPeUqwY6LUmsjLjb4S6peQ4xFaYcgaJxuzMAB5vB'}    
+      set :database, {adapter: 'mysql',  encoding: 'unicode', host: 'localhost', port: '3306', database: 'colin', pool: 2, username: 'colin', password: 'FtXBppyZ7gCg3Fp5wNpVaDtfhPeUqwY6LUmsjLjb4S6peQ4xFaYcgaJxuzMAB5vB'}
     end
 
-    set :environment, :production
+    set :environment, :development
 
     # Single-page front-end web app
     get '/' do
