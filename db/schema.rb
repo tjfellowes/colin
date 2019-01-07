@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(version: 20181220203745) do
   end
 
   create_table "dg_classes", force: :cascade do |t|
-    t.integer "number", null: false
+    t.text "number", null: false
     t.text "description", null: false
     t.integer "superclass_id"
     t.index ["superclass_id"], name: "index_dg_classes_on_superclass_id"

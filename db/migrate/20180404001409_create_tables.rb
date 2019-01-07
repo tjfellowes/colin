@@ -3,7 +3,7 @@ class CreateTables < ActiveRecord::Migration[5.1]
     # Create dependent tables dg_classes, schedules and packing groups
     # The tables must be PLURALIZED... see https://en.wikibooks.org/wiki/Ruby_on_Rails/ActiveRecord/Naming#Tables
     create_table :dg_classes do |t|
-      t.integer     :number,      null: false
+      t.text     :number,      null: false
       t.text        :description, null: false
       t.references  :superclass,  references: :dg_classes
     end

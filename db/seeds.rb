@@ -32,47 +32,47 @@ end
 def create_dg_classes
   # Refer to https://policies.anu.edu.au/ppl/download/ANUP_001154
   # Explosives
-  explosives = DgClass.create!(number: 1, description: 'Explosives')
-  create_dg_division(explosives, 1, 'Substances that have a mass explosion hazard')
-  create_dg_division(explosives, 2, 'Substances and articles that have a projection hazard, but not a mass explosion hazard')
-  create_dg_division(explosives, 3, 'Substances or articles that have a fire hazard and either a minor blast hazard or minor projection hazard, or both, but not a mass explosion hazard')
-  create_dg_division(explosives, 4, 'Substances and articles that present no significant hazard. The effect would be confined to the package and no projection of fragments of size or range is expected')
-  create_dg_division(explosives, 5, 'Very insensitive substances that have a mass explosion hazard. These substances have a low probability of initiation or of transition from burning to detonation under normal conditions of transport')
-  create_dg_division(explosives, 6, 'Extremely insensitive articles that do not have a mass explosion hazard')
+  explosives = DgClass.create!(number: '1', description: 'Explosives')
+  create_dg_division(explosives, '1.1', 'Substances that have a mass explosion hazard')
+  create_dg_division(explosives, '1.2', 'Substances and articles that have a projection hazard, but not a mass explosion hazard')
+  create_dg_division(explosives, '1.3', 'Substances or articles that have a fire hazard and either a minor blast hazard or minor projection hazard, or both, but not a mass explosion hazard')
+  create_dg_division(explosives, '1.4', 'Substances and articles that present no significant hazard. The effect would be confined to the package and no projection of fragments of size or range is expected')
+  create_dg_division(explosives, '1.5', 'Very insensitive substances that have a mass explosion hazard. These substances have a low probability of initiation or of transition from burning to detonation under normal conditions of transport')
+  create_dg_division(explosives, '1.6', 'Extremely insensitive articles that do not have a mass explosion hazard')
 
   # Gases
-  gases = DgClass.create!(number: 2, description: 'Gases')
-  create_dg_division(gases, 1, 'Flammable gases')
-  create_dg_division(gases, 2, 'Non-flammable, non-toxic gases')
-  create_dg_division(gases, 3, 'Toxic gases')
+  gases = DgClass.create!(number: '2', description: 'Gases')
+  create_dg_division(gases, '2.1', 'Flammable gases')
+  create_dg_division(gases, '2.2', 'Non-flammable, non-toxic gases')
+  create_dg_division(gases, '2.3', 'Toxic gases')
 
   # Flammable Liquids
-  DgClass.create!(number: 3, description: 'Flammable Liquids')
+  DgClass.create!(number: '3', description: 'Flammable Liquids')
 
   # Flammable solids
-  flamsol = DgClass.create!(number: 4, description: 'Flammable Solids')
-  create_dg_division(flamsol, 1, 'Flammable solids')
-  create_dg_division(flamsol, 2, 'Spontaneously combustible')
-  create_dg_division(flamsol, 3, 'Dangerous when wet')
+  flamsol = DgClass.create!(number: '4', description: 'Flammable Solids')
+  create_dg_division(flamsol, '4.1', 'Flammable solids')
+  create_dg_division(flamsol, '4.2', 'Spontaneously combustible')
+  create_dg_division(flamsol, '4.3', 'Dangerous when wet')
 
   # Oxidising
-  ox = DgClass.create!(number: 5, description: 'Oxidising Substances and Organic Peroxides')
-  create_dg_division(ox, 1, 'Oxidizing Substances')
-  create_dg_division(ox, 1, 'Organic Peroxides')
+  ox = DgClass.create!(number: '5', description: 'Oxidising Substances and Organic Peroxides')
+  create_dg_division(ox, '5.1', 'Oxidizing Substances')
+  create_dg_division(ox, '5.2', 'Organic Peroxides')
 
   # Toxic
-  toxic = DgClass.create!(number: 6, description: 'Toxic and Infectious Substances')
-  create_dg_division(toxic, 1, 'Toxic Substances')
-  create_dg_division(toxic, 2, 'Infectious Substances')
+  toxic = DgClass.create!(number: '6', description: 'Toxic and Infectious Substances')
+  create_dg_division(toxic, '6.1', 'Toxic Substances')
+  create_dg_division(toxic, '6.2', 'Infectious Substances')
 
   # Radioactive
-  DgClass.create!(number: 7, description: 'Radioactive Substances')
+  DgClass.create!(number: '7', description: 'Radioactive Substances')
 
   # Corrosives
-  DgClass.create(number: 8, description: 'Corrosives')
+  DgClass.create(number: '8', description: 'Corrosives')
 
   # Misc
-  DgClass.create(number: 9, description: 'Miscellaneous Goods')
+  DgClass.create(number: '9', description: 'Miscellaneous Goods')
 end
 
 def create_location_division(location, name)

@@ -138,8 +138,6 @@ class Colin::Routes::Container < Sinatra::Base
 
   get '/api/container/location_id/:location_id' do
     content_type :json
-    # Must provide an integer ID. Otherwise respond with 422 (https://restpatterns.mindtouch.us/HTTP_Status_Codes/422_-_Unprocessable_Entity)
-    # which means invalid data provided from user.
     if params[:location_id] == '0'
       containers = Colin::Models::ContainerLocation.where(location_id: nil).pluck(:container_id)
       Colin::Models::Container.where(id: containers).includes(
