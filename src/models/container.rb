@@ -8,9 +8,14 @@ class Colin::Models::Container < ActiveRecord::Base
 
   validates_presence_of :chemical_id, :date_purchased
 
+  has_many :container_location, class_name: "ContainerLocation"
+  has_many :location, through: :container_location, class_name: "Location"
+
   # Foreign key relationships
   belongs_to :supplier
   belongs_to :chemical
+
+
 
 
   def current_location

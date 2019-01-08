@@ -21,16 +21,7 @@ class Colin::Routes::Container < Sinatra::Base
         }
       },
       supplier: {},
-      storage_location: {
-        include: {
-          location: { include: :parent }
-        }
-      }
-      # current_location: {
-      #   include: {
-      #     location: { include: :parent }
-      #   }
-      # }
+      location: { include: :parent }
     })
   end
 
@@ -53,16 +44,7 @@ class Colin::Routes::Container < Sinatra::Base
           }
         },
         supplier: {},
-        current_location: {
-          include: {
-            location: { include: :parent }
-          }
-        },
-        storage_location: {
-          include: {
-            location: { include: :parent }
-          }
-        }
+        container_location: {include: {location: { include: :parent }}}
       })
     else
       halt(404, "Container with serial number #{params[:serial_number]} not found.")
@@ -120,16 +102,7 @@ class Colin::Routes::Container < Sinatra::Base
           }
         },
         supplier: {},
-        current_location: {
-          include: {
-            location: { include: :parent }
-          }
-        },
-        storage_location: {
-          include: {
-            location: { include: :parent }
-          }
-        }
+        container_location: {include: {location: { include: :parent }}}
       })
     else
       halt(404, "Container with id #{params[:id]} not found.")
@@ -139,15 +112,17 @@ class Colin::Routes::Container < Sinatra::Base
   get '/api/container/location_id/:location_id' do
     content_type :json
     if params[:location_id] == '0'
-      containers = Colin::Models::ContainerLocation.where(location_id: nil).pluck(:container_id)
-      Colin::Models::Container.where(id: containers).includes(
+      #Colin::Models::Container.joins(:container_location).where(container_locations: {location_id: nil}).includes( working
+
+      Colin::Models::Container.joins('LEFT JOIN container_locations i ON i.container_id = containers.id AND i.id = (SELECT MAX(id) FROM container_locations WHERE container_locations.container_id = i.container_id)').where('i.location_id' => nil).includes(
         chemical: [
           {dg_class: :superclass},
           {dg_class_2: :superclass},
           {dg_class_3: :superclass},
           schedule: {},
           packing_group: {}],
-        supplier: {}
+        supplier: {},
+        container_location: {location: :parent}
       ).to_json(include: {
         chemical: {
           include: {
@@ -159,27 +134,18 @@ class Colin::Routes::Container < Sinatra::Base
           }
         },
         supplier: {},
-        current_location: {
-          include: {
-            location: { include: :parent }
-          }
-        },
-        storage_location: {
-          include: {
-            location: { include: :parent }
-          }
-        }
+        container_location: {include: {location: { include: :parent }}}
       })
     else
-      containers = Colin::Models::ContainerLocation.where(location_id: params[:location_id]).pluck(:container_id)
-      Colin::Models::Container.where(id: containers).includes(
+      Colin::Models::Container.joins('LEFT JOIN container_locations i ON i.container_id = containers.id AND i.id = (SELECT MAX(id) FROM container_locations WHERE container_locations.container_id = i.container_id)').where('i.location_id' => params[:location_id]).includes(
         chemical: [
           {dg_class: :superclass},
           {dg_class_2: :superclass},
           {dg_class_3: :superclass},
           schedule: {},
           packing_group: {}],
-        supplier: {}
+        supplier: {},
+        container_location: {location: :parent}
       ).to_json(include: {
         chemical: {
           include: {
@@ -191,16 +157,7 @@ class Colin::Routes::Container < Sinatra::Base
           }
         },
         supplier: {},
-        current_location: {
-          include: {
-            location: { include: :parent }
-          }
-        },
-        storage_location: {
-          include: {
-            location: { include: :parent }
-          }
-        }
+        container_location: {include: {location: { include: :parent }}}
       })
     end
   end
@@ -216,7 +173,8 @@ class Colin::Routes::Container < Sinatra::Base
           {dg_class_3: :superclass},
           schedule: {},
           packing_group: {}],
-        supplier: {}
+        supplier: {},
+        container_location: {location: :parent}
       ).to_json(include: {
         chemical: {
           include: {
@@ -224,7 +182,8 @@ class Colin::Routes::Container < Sinatra::Base
             packing_group: {},
             dg_class: {include: :superclass},
             dg_class_2: {include: :superclass},
-            dg_class_3: {include: :superclass}
+            dg_class_3: {include: :superclass},
+            container_location: {include: {location: { include: :parent }}}
           }
         }
       })
@@ -237,7 +196,8 @@ class Colin::Routes::Container < Sinatra::Base
           {dg_class_3: :superclass},
           schedule: {},
           packing_group: {}],
-        supplier: {}
+        supplier: {},
+        container_location: {location: :parent}
       ).to_json(include: {
         chemical: {
           include: {
@@ -249,11 +209,7 @@ class Colin::Routes::Container < Sinatra::Base
           }
         },
         supplier: {},
-        storage_location: {
-          include: {
-            location: { include: :parent }
-          }
-        }
+        container_location: {include: {location: { include: :parent }}}
       })
     end
   end

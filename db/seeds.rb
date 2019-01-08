@@ -173,7 +173,7 @@ def create_locations
   create_location_division(flammable_solid, 'Dessicator 1')
   create_location_division(flammable_solid, 'Dessicator 2')
 
-  poison = Location.create!(name: 'Posions')
+  poison = Location.create!(name: 'Poisons')
   create_location_division(poison, 'Draw 1')
   create_location_division(poison, 'Draw 2')
   create_location_division(poison, 'Draw 3')
