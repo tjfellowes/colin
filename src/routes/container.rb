@@ -10,7 +10,15 @@ class Colin::Routes::Container < Sinatra::Base
   # Gets the specified container with the given ID.
   #
   get '/api/container/all' do
-    Colin::Models::Container.limit(params[:limit]).offset(params[:offset]).includes(chemical: [{dg_class: :superclass}, {dg_class_2: :superclass}, {dg_class_3: :superclass}, schedule: {}, packing_group: {}], supplier: {}).to_json(include: {
+    Colin::Models::Container.limit(params[:limit]).offset(params[:offset]).includes(
+        chemical: [
+          {dg_class: :superclass},
+          {dg_class_2: :superclass},
+          {dg_class_3: :superclass},
+          schedule: {},
+          packing_group: {}],
+        supplier: {},
+        container_location: {location: :parent}).to_json(include: {
       chemical: {
         include: {
           schedule: {},
@@ -21,7 +29,7 @@ class Colin::Routes::Container < Sinatra::Base
         }
       },
       supplier: {},
-      location: { include: :parent }
+      container_location: {include: {location: { include: :parent }}}
     })
   end
 
@@ -112,8 +120,6 @@ class Colin::Routes::Container < Sinatra::Base
   get '/api/container/location_id/:location_id' do
     content_type :json
     if params[:location_id] == '0'
-      #Colin::Models::Container.joins(:container_location).where(container_locations: {location_id: nil}).includes( working
-
       Colin::Models::Container.joins('LEFT JOIN container_locations i ON i.container_id = containers.id AND i.id = (SELECT MAX(id) FROM container_locations WHERE container_locations.container_id = i.container_id)').where('i.location_id' => nil).includes(
         chemical: [
           {dg_class: :superclass},
@@ -164,9 +170,7 @@ class Colin::Routes::Container < Sinatra::Base
 
   get '/api/search/container/:query' do
     content_type :json
-    if params[:live] == 'true'
-      chemicals = Colin::Models::Chemical.where("name_fulltext LIKE :query", query: "%#{params[:query]}%").pluck(:id)
-      container = Colin::Models::Container.where(chemical_id: chemicals).or(Colin::Models::Container.where("serial_number LIKE :query", { query: "%#{params[:query]}%"})).includes(
+      Colin::Models::Container.joins('LEFT JOIN container_locations i ON i.container_id = containers.id AND i.id = (SELECT MAX(id) FROM container_locations WHERE container_locations.container_id = i.container_id) INNER JOIN chemicals ON containers.chemical_id = chemicals.id').where("chemicals.name_fulltext LIKE :query OR serial_number LIKE :query OR chemicals.cas LIKE :query", { query: "%#{params[:query]}%"}).includes(
         chemical: [
           {dg_class: :superclass},
           {dg_class_2: :superclass},
@@ -183,34 +187,10 @@ class Colin::Routes::Container < Sinatra::Base
             dg_class: {include: :superclass},
             dg_class_2: {include: :superclass},
             dg_class_3: {include: :superclass},
-            container_location: {include: {location: { include: :parent }}}
-          }
-        }
-      })
-    else
-      chemicals = Colin::Models::Chemical.where("name_fulltext LIKE :query", { query: "%#{params[:query]}%"}).pluck(:id)
-      container = Colin::Models::Container.where(chemical_id: chemicals).or(Colin::Models::Container.where("serial_number LIKE :query", { query: "%#{params[:query]}%"})).includes(
-        chemical: [
-          {dg_class: :superclass},
-          {dg_class_2: :superclass},
-          {dg_class_3: :superclass},
-          schedule: {},
-          packing_group: {}],
-        supplier: {},
-        container_location: {location: :parent}
-      ).to_json(include: {
-        chemical: {
-          include: {
-            schedule: {},
-            packing_group: {},
-            dg_class: {include: :superclass},
-            dg_class_2: {include: :superclass},
-            dg_class_3: {include: :superclass}
           }
         },
         supplier: {},
         container_location: {include: {location: { include: :parent }}}
       })
-    end
   end
 end

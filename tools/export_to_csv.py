@@ -21,20 +21,22 @@ with open('exported_inventory.csv', 'w+') as csv_file:
   t.field_names = ["Serial No.", "CAS No.", "Name", "DG Class", "Subrisk", "Schedule", "Packing Group", "UN No.", "Size", "Location"]
   t.align['Name'] = 'l'
   t.align['Location'] = 'l'
+  csv_writer.writerow(["Serial No.", "CAS No.", "Prefix", "Name", "Haz. sub.", "DG Class", "DG Subclass", "Schedule", "Packing group", "UN No.", "Size", "Size Unit", "Location"])
   for row in inventory:
     csv_writer.writerow([
     row['serial_number'],
     row['chemical']['cas'],
     row['chemical']['prefix'],
     row['chemical']['name'],
+    row['chemical']['haz_substance'],
     row['chemical'].get('dg_class', {}).get('number', ''),
     row['chemical'].get('dg_class_2', {}).get('number', ''),
     row['chemical'].get('schedule', {}).get('number', ''),
-    '{:~}'.format(ureg(str(row['container_size']) + ' ' + str(row['size_unit'])).to_compact()),
     row['chemical'].get('packing_group', {}).get('name', ''),
     row['chemical']['un_number'],
-    row['chemical']['haz_substance'],
-    str(row['storage_location'].get('location', {}).get('parent', {}).get('name', '')) + ' ' + str(row['storage_location'].get('location', {}).get('name',''))
+    str(row['container_size']),
+    str(row['size_unit']),
+    ' '.join([str(row['container_location'][-1].get('location', {}).get('parent', {}).get('name', '')), str(row['container_location'][-1].get('location', {}).get('name', ''))])
     ])
 
     t.add_row([
@@ -46,8 +48,10 @@ with open('exported_inventory.csv', 'w+') as csv_file:
     row['chemical'].get('schedule', {}).get('number', ''),
     row['chemical'].get('packing_group', {}).get('name', ''),
     row['chemical']['un_number'],
-    '{:~}'.format(ureg(str(row['container_size']) + ' ' + str(row['size_unit'])).to_compact()),
-    str(row['storage_location'].get('location', {}).get('parent', {}).get('name', '')) + ' ' + str(row['storage_location'].get('location', {}).get('name', ''))
+    "blep",
+    #'{:~}'.format(ureg(str(row['container_size']) + ' ' + str(row['size_unit'])).to_compact(),
+    ' '.join([str(row['container_location'][-1].get('location', {}).get('parent', {}).get('name', '')), str(row['container_location'][-1].get('location', {}).get('name', ''))])
+
     ])
 
 print(t)

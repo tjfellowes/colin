@@ -233,28 +233,28 @@ with open('inventory.csv') as csv_file:
       cas=str(row[1])
       prefix=str(row[2])
       name=str(urllib.quote_plus(row[3]))
-      supplier_id=str(0)
 
-      try:
-        container_size = str(ureg(row[7]).magnitude)
-        size_unit = str(ureg(row[7]).units)
-      except:
-       container_size = ''
-       size_unit = ''
-       pass
 
-      dg_class_id=str(dg[row[4]])
-      dg_class_2_id=str(dg[row[5]])
+      if row[4]=='Yes': haz_substance='true'
+      elif row[4]=='No': haz_substance='false'
+      else: haz_substance='true'
+
+      dg_class_id=str(dg[row[5]])
+      dg_class_2_id=str(dg[row[6]])
       dg_class_3_id=str('')
-      schedule_id=str(schedule[row[6]])
+      schedule_id=str(schedule[row[7]])
       pg_id=str(pg[row[8]])
-      location_id=str(loc[row[11]])
 
       if row[9]!='-': un_number=str(row[9])
       else: un_number=''
 
-      if row[10]=='Yes': haz_substance='true'
-      else: haz_substance='false'
+      container_size = str(row[10])
+      size_unit = str(row[11])
+
+      location_id=str(loc[row[12]])
+
+      supplier_id=str(0)
+
 
       #create container matching the chemical
       url = "http://localhost:9292/api/create/container?cas=" + cas + "&prefix=" + prefix + "&name=" + name + "&dg_class_id=" + dg_class_id + "&dg_class_2_id=" + dg_class_2_id + "dg_class_3_id=" + dg_class_3_id + "&schedule_id=" + schedule_id +  "&packing_group_id=" + pg_id +  "&un_number=" + un_number + "&haz_substance=" + haz_substance + "&serial_number=" + serial_number + "&container_size=" + container_size + "&size_unit=" + size_unit + "&supplier_id=" + supplier_id + "&location_id=" + location_id
