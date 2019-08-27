@@ -48,8 +48,8 @@ with open('exported_inventory.csv', 'w+') as csv_file:
     row['chemical'].get('schedule', {}).get('number', ''),
     row['chemical'].get('packing_group', {}).get('name', ''),
     row['chemical']['un_number'],
-    "blep",
-    #'{:~}'.format(ureg(str(row['container_size']) + ' ' + str(row['size_unit'])).to_compact(),
+    #"blep",
+    '{:~}'.format(ureg(str(row['container_size']) + ' ' + str(row['size_unit'])).to_compact()),
     ' '.join([str(row['container_location'][-1].get('location', {}).get('parent', {}).get('name', '')), str(row['container_location'][-1].get('location', {}).get('name', ''))])
 
     ])

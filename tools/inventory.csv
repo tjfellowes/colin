@@ -1,10 +1,10 @@
-Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing group,UN No.,Size,Size Unit,Location
+﻿Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing group,UN No.,Size,Size Unit,Location
 100010079600,82-86-0,,acenaphthenequinone,Yes,,,,,,25,gram,Harmful H1
 100010079700,122-85-0,4-,acetamidobenzaldehyde,No,,,,,,10,gram,Harmful H1
 100010079701,122-85-0,4-,acetamidobenzaldehyde,No,,,,,,10,gram,Harmful H1
 100010079702,122-85-0,4-,acetamidobenzaldehyde,No,,,,,,10,gram,Harmful H1
-100010013000,64-19-7,,acetic acid,Yes,8,3,,II,2789,2.5,liter,Corrosive Acid 1
-100010013001,64-19-7,,acetic acid,Yes,8,3,,II,2789,500,milliliter,Corrosive Acid 1
+100010013000,64-19-7,,acetic acid (glacial),Yes,8,3,,II,2789,2.5,liter,Corrosive Acid 1
+100010013001,64-19-7,,acetic acid (glacial),Yes,8,3,,II,2789,500,milliliter,Corrosive Acid 1
 100010001300,9004-35-7,,acetylated cellulose for TLC,No,,,,,,500,gram, Chromatography/filtration aids
 100010001301,9004-35-7,,acetylated cellulose for TLC,No,,,,,,500,gram, Chromatography/filtration aids
 100010001400,1344-28-1,,aluminium oxide (acidic),No,,,,,,450,gram, Chromatography/filtration aids
@@ -13,10 +13,10 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010001500,1344-28-1,,aluminium oxide (acidic),No,,,,,,1,kilogram, Chromatography/filtration aids
 100010001600,1344-28-1,,aluminium oxide (acidic),No,,,,,,500,gram, Chromatography/filtration aids
 100010079800,878-00-2,4-,acetoxybenzaldehyde,No,,,,,,1,gram,Harmful H1
-100010159600,878-00-2,4-,acetoxybenzaldehyde,No,,,,,,5,milliliter,Corrosive Acid 1
+100010159600,878-00-2,4-,acetoxybenzaldehyde,Yes,,,,,,5,milliliter,Corrosive Acid 1
 100010065800,75-36-5,,acetyl chloride,Yes,3,8,,II,1717,100,milliliter,Fridge S1 B1
 100010065801,75-36-5,,acetyl chloride,Yes,3,8,,II,1717,250,milliliter,Fridge S1 B1
-100010159700,42877-08-7,2-,acetyl-3-bromo thiophene,Yes,,,,,,5,gram,Freezer 1 S1
+100010159700,42877-08-7,2,acetyl-3-bromo thiophene,Yes,,,,,,5,gram,Freezer 1 S1
 100010068100,6607-96-1,N-(4-,acetyl-5-hydroxy-2-nitrophenyl)acetamide,Yes,,,,,,1,gram,Fridge S2 B1
 100010068200,616-91-1,N-,acetyl-L-cysteine,No,,,,,,10,gram,Fridge S2 B1
 100010001700,1344-28-1,,aluminium oxide (acidic),No,,,,,,1,kilogram, Chromatography/filtration aids
@@ -29,7 +29,6 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010013301,79-10-7,,acrylic acid,Yes,8,3,,II,2218,100,gram,Corrosive Acid 1
 100010080000,700-57-2,2-,adamantanol,Yes,,,,,,5,gram,Harmful H1
 100010119600,768-95-6,1-,adamantanol,No,,,,,,5,gram,Harmful H8
-100010081500,700-58-3,2-,adamantanone,Yes,,,,,,25,gram, 
 100010081501,700-58-3,2-,adamantanone,Yes,,,,,,100,gram,Harmful H10
 100010054500,58-61-7,,adenosine,No,,,,,,1,gram,Freezer 1 S2 B2
 100010013400,111-50-2,,adipoyl chloride,Yes,3,,,,,25,gram,Corrosive Acid 1
@@ -41,8 +40,7 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010061000,338-69-2,D-,alanine,No,,,,,,25,gram,Freezer 1 S4 B2
 100010119700,107-95-9,b-,alanine,Yes,,,,,,25,gram,Harmful H8
 100010119701,107-95-9,b-,alanine,Yes,,,,,,25,gram,Harmful H8
-100010059300,2127-03-09,,aldrithiol-2 98%,Yes,9,,,,3335,5,gram,Freezer 1 S4 B1
-100010003500,2244-11-3,,alloxan monohydrate,Yes,,,,,,10,gram, 
+100010059300,2127-03-09,,aldrithiol-2,Yes,9,,,,3335,5,gram,Freezer 1 S4 B1
 100010032600,106-95-6,,allyl bromide,Yes,3,,,I,1099,250,milliliter,Flammable liquid Small
 100010032700,35466-83-2,,allyl methyl carbonate,Yes,3,,,III,3272,50,milliliter,Flammable liquid Small
 100010032701,35466-83-2,,allyl methyl carbonate,Yes,3,,,III,3272,25,milliliter,Flammable liquid Small
@@ -74,7 +72,6 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010003600,2604-39-9,4-,amino-2-chloro-5-nitropyridine,No,,,,,,2,gram,Harmful H18
 100010147200,55338-73-3,5-,amino-2-cyanopyridine,Yes,6.1,,,,,25,gram,Toxic TS1
 100010147300,53312-81-5,5-,amino-2-fluorobenzonitrile,Yes,6.1,,,,,5,gram,Toxic TS1
-100010003700,50670-64-9,5-,amino-2-methylbenzonitrile,Yes,,,,,,5,gram, 
 100010080300,13269-19-7,3-,amino-2-nitropyridine,Yes,,,,,,5,gram,Harmful H1
 100010024000,36768-62-4,4-,"amino-2,2,6,6-tetramethylpiperidine",Yes,8,,,III,2735,5,gram,Corrosive Base 1
 100010063700,2897-43-0,4-,"amino-2,6-dichloro-3-nitropyridine",No,,,,,,5,gram,Fridge Door
@@ -102,23 +99,16 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010080519,6393-40-4,4-,amino-3-nitrobenzonitrile,Yes,,,,,,5,gram,Harmful H1
 100010080521,6393-40-4,4-,amino-3-nitrobenzonitrile,Yes,,,,,,5,gram,Harmful H1
 100010080522,6393-40-4,4-,amino-3-nitrobenzonitrile,Yes,,,,,,5,gram,Harmful H1
-100010003800,6393-40-4,4-,amino-3-nitrobenzonitrile,Yes,,,,,,None,, 
-100010003900,603-85-0,2-,amino-3-nitrophenol,Yes,,,,,,5,gram, 
-100010004000,833486-94-5,4-,amino-3-nitrophenylboronic acid pinacol ester,Yes,,,,,,2,gram, 
 100010147400,24241-18-7,2-,"amino-3,5-dibromopyrazine",Yes,6.1,,,III,2811,25,gram,Toxic TS1
 100010147401,24241-18-7,2-,"amino-3,5-dibromopyrazine",Yes,6.1,,,III,2811,25,gram,Toxic TS1
 100010147402,24241-18-7,2-,"amino-3,5-dibromopyrazine",Yes,6.1,,,III,2811,15,gram,Toxic TS1
 100010147403,24241-18-7,2-,"amino-3,5-dibromopyrazine",Yes,6.1,,,III,2811,17,gram,Toxic TS1
 100010080600,78473-00-4,4-,"amino-3,5-dichlorobenzonitrile",Yes,,,,,,25,gram,Harmful H1
-100010004100,859855-53-1,3-,amino-4-fluorobenzonitrile,Yes,,,,,,1,gram, 
 100010054600,99-57-0,2-,amino-4-nitrophenol,Yes,,,,,,25,gram,Freezer 1 S2 B2
-100010091200,6358-07-02,2-,amino-4-nitrophenol,Yes,,,,,,100,gram, 
 100010080700,101-59-7,4-,amino-4'-nitrodiphenyl sulfide,Yes,,,,,,5,gram,Harmful H1
-100010004200,1379351-37-7,(3-,amino-5-fluoro-2-nitrophenyl)methanol,No,,,,,,4,gram, 
 100010080800,121-88-0,2-,amino-5-nitrophenol,Yes,,,,,,25,gram,Harmful H1
 100010147500,1603-41-4,2-,amino-5-picoline,Yes,6.1,,,II,2811,50,gram,Toxic TS1
 100010080900,95-24-9,2-,amino-6-chlorobenzothiazole,No,,,,,,5,gram,Harmful H1
-100010004300,21901-29-1,2-,amino-6-methyl-3-nitropyridine,Yes,,,,,,1,gram, 
 100010141000,1824-81-3,2-,amino-6-picoline,Yes,6.1,,,,,100,gram,Toxic TM1
 100010119900,283160-20-3,5-,amino-n-valeric acid,Yes,,,,,,5,gram,Harmful H8
 100010063800,14691-88-4,4-,amino-TEMPO,No,,,,,,1,gram,Fridge Door
@@ -134,12 +124,10 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010081100,850568-55-7,4-(,aminomethyl)phenylboronic acid pinacol ester,No,,,,,,1,gram,Harmful H1
 100010024100,130290-79-8,4-,aminomethyltetrahydropyran,Yes,8,,,,,25,gram,Corrosive Base 1
 100010033000,4319-49-7,N-,aminomorpholine,Yes,3,,,III,1993,25,gram,Flammable liquid Small
-100010004400,280563-63-5,3-,aminophenylboronic acid,Yes,,,,,,5,gram, 
 100010081200,66472-86-4,3-,aminophenylboronic acid (sulfate salt),Yes,,,,,,5,gram,Harmful H1
 100010147700,70-69-9,p-,aminopropiophenone,Yes,6.1,,,,,100,gram,Toxic TS1
 100010147701,70-69-9,p-,aminopropiophenone,Yes,6.1,,,,,100,gram,Toxic TS1
 100010147702,70-69-9,p-,aminopropiophenone,Yes,6.1,,,,,25,gram,Toxic TS1
-100010004500,1291487-29-0,4-,aminopyridine-2-carboxylic acid hydrochloride,No,,,,,,5,gram, 
 100010004600,88675-24-5,3-,aminotetrahydrofuran,Yes,3,,,III,1993,5,gram,Flammable liquid Small
 100010068300,1193-02-08,4-,aminothiophenol,Yes,8,,,II,3263,25,gram,Fridge S2 B1
 100010081700,932-52-5,5-,aminouracil,No,,,,,,25,gram,Harmful H10
@@ -183,7 +171,6 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010136200,1076-43-3,d6-,benzene,Yes,3,,7,II,1114,None,,Poisons Draw 3
 100010160300,17697-12-0,,benzeneseleninic acid anhydride,Yes,6.1,,,III,3283,25,gram,Toxic TS2
 100010013600,98-09-9,,benzenesulfonyl chloride,Yes,8,,,III,2225,100,gram,Corrosive Acid 1
-100010004700,4331-29-7,1H-,benzimidazol-4-amine,Yes,,,,,,1,gram, 
 100010120100,29668-44-8,"1,4-",benzodioxan-6-carboxaldehyde,No,,,,,,5,gram,Harmful H8
 100010094300,98437-24-2,2-,benzofuranylboronic acid,No,,,,,,5,gram,Harmful H2
 100010098800,65-85-0,,benzoic acid,Yes,,,,,,500,gram,Harmful H22
@@ -194,7 +181,6 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010115700,98437-23-1,1-,benzothiophene-2-boronic acid,No,,,,,,5,gram,Harmful H7
 100010100900,95-14-7,,benzotriazole,Yes,,,,,,500,gram,Harmful H25
 100010147800,95-14-7,,benzotriazole,Yes,,,,,,25,gram,Toxic TS1
-100010004800,23814-12-2,,benzotriazole-5-carboxylic acid,Yes,,,,,,5,gram, 
 100010013700,98-88-5,,benzoyl chloride,Yes,8,,,II,1736,500,gram,Corrosive Acid 1
 100010049800,94-36-0,,benzoyl peroxide,Yes,5.2,,,,3104,100,gram,Freezer 1 S1 B1
 100010049801,94-36-0,,benzoyl peroxide,Yes,5.2,,,,3104,100,gram,Freezer 1 S1 B1
@@ -245,15 +231,13 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010057100,82436-77-9,,bis(sulfosuccinimidyl) suberate salt,Yes,,,,,,25,milligram,Freezer 1 S3 B1
 100010136300,813-19-4,,bis(tributyltin) see hexabutylditin,Yes,6.1,,7,III,2788,10,gram,Poisons Draw 3
 100010141900,328-74-5,"3,5-",bis(trifluoromethyl)aniline,Yes,6.1,,,,,100,milliliter,Toxic TM1
-100010095800,328-701,"3,5-",bis(trifluoromethyl)bromobenzene 99%,No,,,,,,100,gram,Harmful H2
+100010095800,328-701,"3,5-",bis(trifluoromethyl)bromobenzene,No,,,,,,100,gram,Harmful H2
 100010026700,14898-67-0,,rhodium (III) chloride hydrate,Yes,8,,,II,3260,5,gram,Corrosive Dessicator
 100010095900,13965-03-02,,bis(triphenylphosphine) palladium (II) dichloride,No,,,,,,1,gram,Harmful H2
 100010068400,2349-52-3,,bisbenzimide,Yes,,,,,,1,gram,Fridge S2 B1
 100010160700,56-35-9,,bistributyltin oxide,Yes,6.1,,,II,2788,100,milliliter,Toxic TM1
 100010096000,492-97-7,"2,2'-",bithiophene,No,,,,,,5,gram,Harmful H2
-100010004900,98977-36-7,1-,BOC-3-piperidone,No,,,,,,5,gram, 
 100010126400,134464-79-2,1-,BOC-4-mercaptopiperidine,No,,,,,,1,gram,Freezer 2
-100010005000,73874-95-0,4-(N-,BOC-amino)piperidine,Yes,,,,,,5,gram, 
 100010024400,51644-96-3,N-,BOC-cadaverine,Yes,8,,,III,2735,1,milliliter,Corrosive Base 1
 100010075400,2389-45-9,Ne-t-,BOC-Na-CBZ-L-Lysine,Yes,,,,,,1,gram,Fridge S4 B1
 100010075401,2389-45-9,Ne-t-,BOC-Na-CBZ-L-Lysine,Yes,,,,,,3,gram,Fridge S4 B1
@@ -286,12 +270,9 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010082300,577-19-5,1-,bromo-2-nitrobenzene,No,,,,,,100,gram,Harmful H10
 100010161300,577-19-5,1-,bromo-2-nitrobenzene,No,,,,,,100,gram,Harmful H10
 100010075600,34160-40-2,6-,bromo-2-pyridinecarboxaldehyde,Yes,,,,,,1,gram,Fridge S4 B1
-100010005200,175205-82-0,2-,bromo-3-(trifluoromethyl)pyridine,Yes,,,,,,5,gram, 
-100010005201,175205-82-0,2-,bromo-3-(trifluoromethyl)pyridine,Yes,,,,,,5,gram, 
 100010101000,109-76-8,1-,bromo-3-chloropropane,Yes,,,,,,1,kilogram,Harmful H25
 100010142100,109-70-6,1-,bromo-3-chloropropane,Yes,6.1,,,,,25,gram,Toxic TM1
 100010155500,133059-44-6,4-,bromo-3-fluorobenzonitrile,Yes,6.1,,,III,3439,25,gram,Toxic TS1
-100010161400,460-00-4,1-,bromo-4-fluorobenzene,No,,,,,,100,gram, 
 100010161500,2973-78-6,3-,bromo-4-hydroxybenzaldehyde,Yes,,,,,,5,gram,Harmful H2
 100010096300,71838-16-9,3-,bromo-4-iodotoluene,No,,,,,,25,gram,Harmful H2
 100010096400,3510-66-5,2-,bromo-5-methylpyridine,No,,,,,,25,gram,Harmful H2
@@ -305,9 +286,7 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010142200,591-19-5,3-,bromoaniline,Yes,6.1,,,III,2810,100,gram,Toxic TM1
 100010142300,106-40-1,4-,bromoaniline,Yes,6.1,,,II,2811,100,gram,Toxic TM1
 100010142301,106-40-1,4-,bromoaniline,Yes,6.1,,,II,2811,100,gram,Toxic TM1
-100010091600,578-57-4,o-,bromoanisole,Yes,9,,,,,100,gram, 
 100010091601,578-57-4,o-,bromoanisole,Yes,9,,,,,100,gram,Harmful H16
-100010161800,2398-37-0,3-,bromoanisole,Yes,,,,,,200,milliliter, 
 100010096700,6630-33-7,2-,bromobenzaldehyde,No,,,,,,25,gram,Harmful H2
 100010096701,6630-33-7,2-,bromobenzaldehyde,No,,,,,,25,gram,Harmful H2
 100010120500,3132-99-7,3-,bromobenzaldehyde,No,,,,,,25,milliliter,Harmful H8
@@ -317,8 +296,6 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010033600,108-86-1,,bromobenzene,Yes,3,,,III,2514,100,milliliter,Flammable liquid Small
 100010013900,98-58-8,4-,bromobenzenesulfonyl chloride,Yes,8,,,II,3261,10,gram,Corrosive Acid 1
 100010162000,106-53-6,4-,bromobenzenethiol,Yes,9,,,III,3335,25,gram,Harmful H2
-100010162100,88-65-3,2-,bromobenzoic acid,Yes,,,,,,100,gram, 
-100010005300,6952-59-6,3-,bromobenzonitrile,Yes,,,,,,10,gram, 
 100010162200,2042-37-7,2-,bromobenzonitrile,Yes,,,,,,10,gram,Harmful H2
 100010120600,6952-59-6,3-,bromobenzonitrile,Yes,,,,,,1,gram,Harmful H8
 100010148300,623-00-7,4-,bromobenzonitrile,Yes,6.1,,,,,10,gram,Toxic TS1
@@ -349,13 +326,12 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010120700,115-39-9,,bromophenol blue,Yes,,,,,,5,gram,Harmful H8
 100010162600,15115-58-9,3(2-,bromophenyl)propionic acid,Yes,,,,,,25,gram,Freezer 1 S1 B1
 100010033900,75-26-3,2-,bromopropane,Yes,,,,,,250,milliliter,Flammable liquid Small
-100010097700,5460-29-7,N-(3-,bromopropyl)phthalimide 98%,No,,,,,,25,gram,Harmful H2
+100010097700,5460-29-7,N-(3-,bromopropyl)phthalimide,No,,,,,,25,gram,Harmful H2
 100010034000,626-55-1,3-,bromopyridine,Yes,3,,,III,1993,5,gram,Flammable liquid Small
 100010148400,0109-04-06,2-,bromopyridine,Yes,6.1,,,II,2810,25,gram,Toxic TS1
 100010148401,0109-04-06,2-,bromopyridine,Yes,6.1,,,II,2810,25,gram,Toxic TS1
 100010162700,0109-04-06,2-,bromopyridine,Yes,6.1,,,II,2810,500,milliliter,Toxic TS1
 100010097800,19524-06-02,4-,bromopyridine hydrochloride,Yes,,,,,,5,gram,Harmful H2
-100010005400,30766-03-1,4-,bromopyridine-2-carboxylic acid,Yes,,,,,,1,gram, 
 100010162800,103-64-0,beta-,bromostyrene,Yes,,,,,,25,milliliter,Fridge S3 B1
 100010075700,2039-82-9,4-,bromostyrene,Yes,,,,,,10,gram,Fridge S4 B1
 100010014500,0128-08-05,N-,bromosuccinimide,Yes,8,,,II,3261,100,gram,Corrosive Acid 1
@@ -375,12 +351,12 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010075800,4272-71-3,Ne-t-,butoxycarbonyl-Na-carbobenzoxy-L-Lysine p-nitrophenyl ester,Yes,,,,,,25,gram,Fridge S4 B1
 100010148500,4530-20-5,N-(t-,butoxycarbonyl)glycine,Yes,6.1,,,III,2811,5,gram,Toxic TS1
 100010120800,27219-07-04,4-(t-,butoxycarbonylamino)butyric acid,No,,,,,,5,gram,Harmful H8
-100010120900,57294-38-9,5-(t-,butoxycarbonylamino)butyric acid,No,,,,,,5,gram,Harmful H8
+100010120900,57294-38-9,5-(t-,butoxycarbonylamino)valeric acid,No,,,,,,5,gram,Harmful H8
 100010055000,870-50-8,di-t-,butyl azodicarboxylate (DBAD),Yes,,,,,,5,gram,Freezer 1 S2 B2
 100010061300,24424-99-5,di-t-,butyl dicarbonate (BOC anhydride),Yes,6.1,3,,I,2929,25,gram,Freezer 1 S4 B2
 100010061301,24424-99-5,di-t-,butyl dicarbonate (BOC anhydride),Yes,6.1,3,,I,2929,25,gram,Freezer 1 S4 B2
 100010061302,24424-99-5,di-t-,butyl dicarbonate (BOC anhydride),Yes,6.1,3,,I,2929,25,gram,Freezer 1 S4 B2
-100010049900,75-91-2,t-,"butyl hydroperoxide, T-hydro solution",Yes,5.2,8,,,3109,100,milliliter,Freezer 1 S1 B1
+100010049900,75-91-2,t-,butyl hydroperoxide,Yes,5.2,8,,,3109,100,milliliter,Freezer 1 S1 B1
 100010055100,7188-38-7,t-,butyl isocyanide,Yes,3,,,II,1993,1,gram,Freezer 1 S2 B2
 100010055200,2769-64-4,,butyl isocyanide,Yes,3,,,II,1993,1,gram,Freezer 1 S2 B2
 100010067700,109-72-8,n-,butyl lithium,Yes,4.2,4.3,,I,3394,100,milliliter,Fridge S1 B1
@@ -394,7 +370,6 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010067802,109-72-8,n-,butyl lithium,Yes,4.2,4.3,,I,3394,100,milliliter,Fridge S1
 100010067803,109-72-8,n-,butyl lithium,Yes,4.2,4.3,,I,3394,100,milliliter,Fridge S1
 100010064000,677-22-5,t-,butyl magnesium chloride,Yes,4.3,3,,I,3399,100,milliliter,Fridge Door
-100010005500,541-16-2,di-t-,butyl malonate,No,,,,,,23,gram, 
 100010005600,1929606-71-2,di-t-,"butyl N-(4-bromo-2,6-dinitrophenyl)iminodicarbonate",No,,,,,,10,gram,Harmful H18
 100010098000,58885-58-8,t-,butyl N-3-(hydroxypropyl)carbamate,Yes,,,,,,10,milliliter,Harmful H2
 100010071100,540-80-7,t-,butyl nitrite,Yes,3,,,II,2351,25,milliliter,Fridge S2 B2
@@ -417,7 +392,6 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010066401,18162-48-6,t-,butyldimethylsilyl chloride,Yes,8,3,,II,2920,100,milliliter,Fridge S1 B1
 100010098300,16466-61-8,di-t-,butylhydrazodiformate,Yes,,,,,,10,gram,Harmful H2
 100010050000,614-45-9,t-,butylperoxybenzoate,Yes,5.2,,,,3103,500,gram,Freezer 1 S1 B1
-100010098400,5610-49-1,1-,butylpiperazine,Yes,,,,,,25,gram, 
 100010173200,10026-07-0,,tellurium (IV) chloride,Yes,8,,,II,3260,25,gram,Corrosive Dessicator
 100010027000,22206-57-1,,tetrabutylammonium fluoride hydrate,Yes,8,,,III,1759,10,gram,Corrosive Dessicator
 100010034300,927-74-2,3-,butyn-1-ol,Yes,3,6.1,,III,1986,5,gram,Flammable liquid Small
@@ -462,7 +436,6 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010102600,13590-82-4,,cerium (IV) sulphate,No,,,,,,100,gram,Harmful H3
 100010102601,13590-82-4,,cerium (IV) sulphate,No,,,,,,100,gram,Harmful H3
 100010104700,534-17-8,,cesium carbonate,Yes,,,,,,25,gram,Harmful H3
-100010104701,534-17-8,,cesium carbonate,Yes,,,,,,50,gram, 
 100010014800,13400-13-0,,cesium fluoride,Yes,8,6,,II,2923,25,gram,Corrosive Acid 1
 100010091800,57-09-0,,cetyltrimethylammonium bromide,No,9,,,,,100,gram,Harmful H16
 100010170000,7439-93-2,,lithium,Yes,4.3,,2,I,1409,25,gram, Dangerous when wet
@@ -470,8 +443,6 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010023300,7080-50-4,,chloramine T,Yes,8,,,III,3263,500,gram,Corrosive Base 2
 100010163800,2009-83-8,6-,chloro-1-hexanol,Yes,,,,,,25,gram,Harmful H3
 100010148700,627-30-5,3-,chloro-1-propanol,Yes,6.1,,,III,2849,25,gram,Toxic TS1
-100010005700,38180-46-0,3-,chloro-2-cyanopyridine,Yes,,,,,,1,gram, 
-100010005701,38180-46-0,3-,chloro-2-cyanopyridine,Yes,,,,,,1,gram, 
 100010102700,615-41-8,1-,chloro-2-iodobenzene,No,,,,,,25,gram,Harmful H3
 100010034500,507-20-0,2-,chloro-2-methylpropane,Yes,,,,,,500,milliliter,Flammable liquid Small
 100010148800,1635-61-6,5-,chloro-2-nitroaniline,Yes,6.1,,,III,2237,25,gram,Toxic TS1
@@ -480,8 +451,7 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010148803,1635-61-6,5-,chloro-2-nitroaniline,Yes,6.1,,,III,2237,25,gram,Toxic TS1
 100010148804,1635-61-6,5-,chloro-2-nitroaniline,Yes,6.1,,,III,2237,25,gram,Toxic TS1
 100010148805,1635-61-6,5-,chloro-2-nitroaniline,Yes,6.1,,,III,2237,25,gram,Toxic TS1
-100010005800,73033-58-6,5-,chloro-2-nitrobenzyl alcohol,No,,,,,,10,gram, 
-100010034600,5891-21-4,5-,chloro-2-pentanone,Yes,3,,,III,1224,25,gram,Flammable liquid Small
+100010034600,5891-21-4,5-,chloro-2-pentanone tech,Yes,3,,,III,1224,25,gram,Flammable liquid Small
 100010148900,19235-89-3,4-,chloro-2-pyridinecarbonitrile,Yes,6.1,,,III,2811,1,gram,Toxic TS1
 100010148901,19235-89-3,4-,chloro-2-pyridinecarbonitrile,Yes,6.1,,,III,2811,1,gram,Toxic TS1
 100010163900,89-60-1,4-,chloro-3-nitrotoluene,Yes,6.1,,,III,2433,25,gram,Toxic TS1
@@ -501,7 +471,6 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010142800,107-14-2,,chloroacetonitrile,Yes,6.1,3,,I,2668,5,gram,Toxic TM2
 100010050900,1207-69-8,9-,chloroacridine,Yes,,,,,,5,gram,Freezer 1 S2 B1
 100010091900,104-88-1,p-,chlorobenzaldehyde,No,9,,,,,100,gram,Harmful H16
-100010092000,937-14-4,m-,chlorobenzoic acid,No,,,,,,500,gram, 
 100010103100,535-80-8,3-,chlorobenzoic acid,Yes,,,,,,50,gram,Harmful H3
 100010121100,118-91-2,o-,chlorobenzoic acid,No,,,,,,25,gram,Harmful H8
 100010101400,74-11-3,4-,chlorobenzoic acid,Yes,,,,,,250,gram,Harmful H25
@@ -520,8 +489,8 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010149100,1558-25-4,(,chloromethyl)trichlorosilane,Yes,6.1,8,,I,3390,25,gram,Toxic TS1
 100010076100,2344-80-1,(,chloromethyl)trimethylsilane,Yes,3,,,II,1993,25,milliliter,Fridge S4 B1
 100010143200,100-00-5,1-,chloro-4-nitrobenzene,Yes,6.1,,,,,1,kilogram,Toxic TL1
-100010050100,937-14-4,m-,chlorobenzoic acid,No,,,,,,None,,Freezer 1 S1 B1
-100010050200,937-14-4,m-,chlorobenzoic acid,No,,,,,,25,gram,Freezer 1 S1 B1
+100010050100,937-14-4,m-,chlorobenzoic acid,Yes,,,,,,None,,Freezer 1 S1 B1
+100010050200,937-14-4,m-,chlorobenzoic acid,Yes,,,,,,25,gram,Freezer 1 S1 B1
 100010103200,7379-35-3,4-,chloropyridine hydrochloride,No,,,,,,25,gram,Harmful H3
 100010083400,0128-09-06,N-,chlorosuccinimide,Yes,,,,,,100,gram,Harmful H11
 100010062900,1189-71-5,,chlorosulfonyl isocyanate,Yes,8,,,II,3265,25,gram,Freezer 1 S5 B1
@@ -533,10 +502,8 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010028003,16853-85-3,,lithium aluminium hydride,Yes,4.3,,,,1410,100,gram, Dangerous when wet
 100010028004,16853-85-3,,lithium aluminium hydride,Yes,4.3,,,,1410,100,gram, Dangerous when wet
 100010066600,4392-24-9,,cinnamyl bromide,Yes,8,,,II,3261,100,gram,Fridge S1 B1
-100010083500,77-92-9,,citric acid,Yes,,,,,,500,gram, 
 100010142900,7791-13-1,,cobalt (II) chloride hexahydrate,Yes,9,6,,III,3288,500,gram,Toxic TM2
 100010082900,10026-24-1,,cobalt (II) sulphate heptahydrate,Yes,,,,,,500,gram,Harmful H10
-100010035000,108-75-8,,"collidine (see 2,4,6-trimethylpyridine)",Yes,,,,,,None,,Flammable liquid Small
 100010103300,7787-70-4,,copper (I) bromide,No,,,,,,100,gram,Harmful H3
 100010103301,7787-70-4,,copper (I) bromide,No,,,,,,100,gram,Harmful H3
 100010103302,7787-70-4,,copper (I) bromide,No,,,,,,50,gram,Harmful H3
@@ -565,10 +532,6 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010101200,98-82-8,,cumene,No,,,,,,1,liter,Harmful H25
 100010092100,6046-93-1,,cupric acetate,No,9,,,III,3077,500,gram,Harmful H16
 100010103800,24059-89-0,2-,cyano-3-methoxypyridine,Yes,,,,,,5,gram,Harmful H3
-100010005900,298709-29-2,2-,"cyano-3,5-difluoropyridine",Yes,,,,,,1,gram, 
-100010005901,298709-29-2,2-,"cyano-3,5-difluoropyridine",Yes,,,,,,1,gram, 
-100010006000,1620-75-3,2-,cyano-6-methylpyridine,No,,,,,,5,gram, 
-100010006001,1620-75-3,2-,cyano-6-methylpyridine,No,,,,,,5,gram, 
 100010015301,0372-09-08,,cyanoacetic acid,Yes,8,,,II,3261,25,gram,Corrosive Acid 1
 100010103900,0105-07-07,4-,cyanobenzaldehyde,No,,,,,,25,gram,Harmful H3
 100010103901,0105-07-07,4-,cyanobenzaldehyde,No,,,,,,25,gram,Harmful H3
@@ -579,8 +542,6 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010061500,108-77-0,,cyanuric chloride,Yes,8,,,II,2670,250,gram,Freezer 1 S4 B2
 100010149400,675-14-9,,cyanuric fluoride,Yes,6.1,8,,I,3389,10,gram,Toxic TS1
 100010028300,7693-26-7,,potassium hydride,Yes,,,,,,75,gram, Dangerous when wet
-100010104100,294-90-6,,cyclen,No,,,,,,250,milligram, 
-100010006100,10016-20-3,a-,cyclodextrin,No,,,,,,5,gram, 
 100010006200,7585-39-9,b-,cyclodextrin,No,,,,,,25,gram,Harmful H18
 100010066800,544-25-2,,cycloheptatriene,Yes,3,6.1,,II,2603,100,milliliter,Fridge S1 B1
 100010076200,1121-66-0,2-,cyclohepten-1-one,Yes,,,,III,1993,10,gram,Fridge S4 B1
@@ -619,14 +580,12 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010035703,765-30-0,,cyclopropylamine,Yes,3,8,,II,2733,25,gram,Flammable liquid Small
 100010035704,765-30-0,,cyclopropylamine,Yes,3,8,,II,2733,25,gram,Flammable liquid Small
 100010121300,1007-03-0,a-,cyclopropylbenzyl alcohol,No,,,,,,10,gram,Harmful H8
-100010006300,56-17-7,,cystamine dihydrochloride,Yes,,,,,,25,gram, 
 100010068700,156-57-0,,cysteamine hydrochloride,No,,,,,,25,gram,Fridge S2 B1
 100010072000,52-90-4,L-,cysteine,Yes,,,,,,25,gram,Fridge S3 B1
 100010104600,52-89-1,L-,cysteine hydrochloride,No,,,,,,25,gram,Harmful H3
 100010051000,74299-50-6,,"dATP, sodium salt",No,,,,,,25,microliter,Freezer 1 S2 B1
 100010076500,17702-41-9,,decaborane 10B enriched,Yes,4.1,6.1,,II,1868,3,gram,Fridge S4 B1
 100010149600,17702-41-9,,decaborane 10B enriched,Yes,4.1,6.1,,II,1868,5,gram,Toxic TS2
-100010121400,4832-16-0,1-,decalone,No,,,,,,1,gram, 
 100010121500,751-77-9,2-,decalone,No,,,,,,25,gram,Harmful H8
 100010121600,13019-22-2,9-,decen-1-ol,No,,,,,,5,gram,Harmful H8
 100010104900,764-93-2,1-,decyne,No,,,,,,25,gram,Harmful H4
@@ -644,8 +603,8 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010158301,29171-24-2,,deuterofluorosulfuric acid,Yes,8,,,I,1777,10,milliliter,Fridge S4 B1
 100010051300,13964-21-1,"1,2:5,6-",di-O-isopropylidene-3-O-p-toluenesulfonyl-a-D-allofuranose,Yes,,,,,,500,milligram,Freezer 1 S2 B1
 100010051301,13964-21-1,"1,2:5,6-",di-O-isopropylidene-3-O-p-toluenesulfonyl-a-D-allofuranose,Yes,,,,,,500,milligram,Freezer 1 S2 B1
-100010076600,2595-05-03,"1,2:5,6-",di-O-isopropylidene-D-allofuranose 98%,No,6.1,,,,,1,gram,Fridge S4 B1
-100010076601,2595-05-03,"1,2:5,6-",di-O-isopropylidene-D-allofuranose 98%,No,6.1,,,,,1,gram,Fridge S4 B1
+100010076600,2595-05-03,"1,2:5,6-",di-O-isopropylidene-D-allofuranose,No,6.1,,,,,1,gram,Fridge S4 B1
+100010076601,2595-05-03,"1,2:5,6-",di-O-isopropylidene-D-allofuranose,No,6.1,,,,,1,gram,Fridge S4 B1
 100010083600,616-29-5,"1,3-",diamino-2-hydroxypropane,No,,,,,,25,gram,Harmful H11
 100010092200,99-56-9,"1,2-",diamino-4-nitrobenzene,Yes,,,,,,100,gram,Harmful H16
 100010083700,0619-05-06,"3,4-",diaminobenzoic acid,Yes,,,,,,25,gram,Harmful H11
@@ -668,7 +627,6 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010121800,583-53-9,"1,2-",dibromobenzene,Yes,,,,,,25,gram,Harmful H8
 100010105200,108-36-1,"1,3-",dibromobenzene,No,,,,,,25,gram,Harmful H4
 100010105300,92-86-4,"4,4'-",dibromobiphenyl,Yes,,,,,,25,gram,Harmful H4
-100010105400,110-52-1,"1,4-",dibromobutane,Yes,,,,,,100,gram, 
 100010143300,110-52-1,"1,4-",dibromobutane,Yes,,,,,,100,gram,Toxic TM3
 100010136600,106-93-4,"1,2-",dibromoethane,Yes,6.1,,7,I,1605,500,milliliter,Poisons Draw 3
 100010139400,74-95-3,,dibromomethane,Yes,6.1,,,,2664,500,gram,Toxic TL2
@@ -679,13 +637,10 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010061900,0626-05-01,"2,6-",dibromopyridine,Yes,,,,,,100,gram,Freezer 1 S4 B2
 100010105500,3141-27-3,"2,5-",dibromothiophene,Yes,,,,,,25,gram,Harmful H4
 100010105600,3141-26-2,"3,4-",dibromothiophene,Yes,,,,,,5,gram,Harmful H4
-100010006400,28689-08-09,"1,5-","dichloro-2,3-dinitrobenzene",No,,,,,,5,gram, 
-100010006401,28689-08-09,"1,5-","dichloro-2,3-dinitrobenzene",No,,,,,,5,gram, 
 100010028402,865-47-4,,potassium t-butoxide,Yes,4.2,,,,3206,100,gram, Dangerous when wet
 100010150600,84-58-2,"2,3-","dichloro-5,6-dicyano-1,4-benzoquinone",Yes,6.1,,,II,3439,5,gram,Toxic TS2
 100010150601,84-58-2,"2,3-","dichloro-5,6-dicyano-1,4-benzoquinone",Yes,6.1,,,II,3439,10,gram,Fridge S2 B1
 100010150602,84-58-2,"2,3-","dichloro-5,6-dicyano-1,4-benzoquinone",Yes,6.1,,,II,3439,100,gram,Toxic TS2
-100010125800,623-25-6,"a,a'-","dichloro-p-xylene (1,4-bis(chloromethyl)benzene)",Yes,9,,,III,3077,25,gram, 
 100010063300,0534-07-06,"1,3-",dichloroacetone,Yes,6.1,,,II,2649,10,gram,Fridge Bottom draw
 100010063301,0534-07-06,"1,3-",dichloroacetone,Yes,6.1,,,II,2649,10,gram,Fridge Bottom draw
 100010015400,6287-38-3,"3,4-",dichlorobenzaldehyde,Yes,8,,,II,1759,5,gram,Corrosive Acid 1
@@ -694,7 +649,7 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010092600,1194-65-6,"2,6-",dichlorobenzonitrile,Yes,9,,,,,25,gram,Harmful H16
 100010028403,865-47-4,,potassium t-butoxide,Yes,4.2,,,,3206,100,gram, Dangerous when wet
 100010028404,865-47-4,,potassium t-butoxide,Yes,4.2,,,,3206,100,gram, Dangerous when wet
-100010165200,107-06-2,"1,2-",dichloroethane (ethylene dichloride),Yes,3,6.1,,II,1184,500,milliliter,Flammable liquid Small
+100010165200,107-06-2,"1,2-",dichloroethane,Yes,3,6.1,,II,1184,500,milliliter,Flammable liquid Small
 100010028500,60217-34-7,LS-,Selectride,Yes,4.3,,,,,100,milliliter, Dangerous when wet
 100010028600,7440-23-5,,sodium,Yes,,,,,,100,gram, Dangerous when wet
 100010076700,4885-02-03,,dichloromethyl methyl ether,Yes,3,8,,II,2924,25,milliliter,Fridge S4 B1
@@ -714,11 +669,7 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010144000,538-75-0,"1,3-",dicyclohexylcarbodiimide,Yes,6.1,,,,,100,gram,Toxic TM3
 100010144001,538-75-0,"1,3-",dicyclohexylcarbodiimide,Yes,6.1,,,,,25,gram,Toxic TS2
 100010144002,538-75-0,"1,3-",dicyclohexylcarbodiimide,Yes,6.1,,,,,25,gram,Toxic TS2
-100010006500,564483-18-7,2-,"dicyclohexylphosphino-2',4',6'-triisopropylbiphenyl (Xphos)",Yes,,,,,,5,gram, 
 100010036000,1121-37-5,,dicyclopropyl ketone,Yes,3,,,III,1224,25,gram,Flammable liquid Small
-100010006600,24454-82-8,"2,3-",diethoxybenzaldehyde,No,,,,,,1,gram, 
-100010006601,24454-82-8,"2,3-",diethoxybenzaldehyde,No,,,,,,1,gram, 
-100010006602,24454-82-8,"2,3-",diethoxybenzaldehyde,No,,,,,,1,gram, 
 100010062000,1972-28-7,,diethyl azodicarboxylate,Yes,,,,,,25,gram,Freezer 1 S4 B2
 100010156000,2942-58-7,,diethyl cyanophosphonate,Yes,8,6.1,,II,2922,None,,Corrosive Acid 1
 100010085200,141-05-9,,diethyl maleate,Yes,,,,,,250,milliliter,Harmful H23
@@ -732,9 +683,6 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010085400,111-46-6,,diethylene glycol (digol),Yes,,,,,,500,milliliter,Harmful H12
 100010101500,112-15-2,,diethylene glycol monoethyl ether,Yes,,,,,,1,liter,Harmful H26
 100010024800,111-40-0,,diethylenetriamine,Yes,8,,,II,2079,100,milliliter,Corrosive Base 1
-100010006700,152434-94-1,"3,5-",difluoro-2-methoxyphenol,No,,,,,,5,gram, 
-100010006800,361-72-8,"3,5-",difluoro-2-nitroaniline,No,,,,,,10,gram, 
-100010006900,151414-46-9,"3,5-",difluoro-2-nitrophenol,Yes,,,,,,5,gram, 
 100010072100,363-47-3,"3,5-",difluoro-4-methoxyaniline,Yes,6.1,,,III,2811,10,gram,Fridge S3 B1
 100010143400,372-39-4,"3,5-",difluoroaniline,Yes,6.1,,,III,2811,100,gram,Toxic TM3
 100010043700,1550-35-2,"2,4-",difluorobenzaldehyde,Yes,3,,,III,1983,5,gram,Flammable liquid Small
@@ -748,23 +696,18 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010143500,446-35-5,"2,4-",difluoronitrobenzene,Yes,6.1,,,III,2810,100,gram,Toxic TM3
 100010143600,2713-34-0,"3,5-",difluorophenol,Yes,6.1,4.1,,II,1325,25,gram,Toxic TM3
 100010143601,2713-34-0,"3,5-",difluorophenol,Yes,6.1,4.1,,II,1325,25,gram,Toxic TM3
-100010007000,745784-04-7,"3,5-",difluoropyridine-2-carboxylic acid,No,,,,,,1,gram, 
 100010106200,24677-78-9,"2,3-",dihydoxybenzaldehyde,Yes,,,,,,5,gram,Harmful H4
 100010122000,529-34-0,"3,4-",dihydro-1(2H)-naphthalenone,No,,,,,,25,gram,Harmful H8
-100010007100,2003-79-4,"1,2-",dihydro-2-oxoquinoline-3-carboxylic acid,Yes,,,,,,1,gram, 
 100010036100,110-87-2,"3,4-",dihydro-2H-pyran,No,6.1,,,,,500,milliliter,Flammable liquid Small
 100010036101,110-87-2,"3,4-",dihydro-2H-pyran,No,6.1,,,,,100,milliliter,Flammable liquid Small
 100010036102,110-87-2,"3,4-",dihydro-2H-pyran,No,6.1,,,,,100,milliliter,Flammable liquid Small
 100010084100,117-10-2,"1,8-",dihydroxy-anthraquinone,Yes,,,,,,100,gram,Harmful H11
-100010106300,1194-98-5,"2,5-",dihydroxybenzaldehyde,No,,,,,,5,gram, 
-100010106301,1194-98-5,"2,5-",dihydroxybenzaldehyde,No,,,,,,5,gram, 
 100010106302,1194-98-5,"2,5-",dihydroxybenzaldehyde,No,,,,,,5,gram,Harmful H4
 100010122100,95-01-2,"2,4-",dihydroxybenzaldehyde,No,,,,,,10,gram,Harmful H8
 100010084200,139-85-5,"3,4-",dihydroxybenzaldehyde,Yes,,,,,,100,gram,Harmful H11
 100010106400,626-00-6,"1,3-",diiodobenzene,Yes,,,,,,5,gram,Harmful H4
 100010106401,626-00-6,"1,3-",diiodobenzene,Yes,,,,,,25,gram,Harmful H4
 100010106500,624-38-4,"1,4-",diiodobenzene,Yes,,,,,,50,gram,Harmful H4
-100010106600,628-21-7,"1,4-",diiodobutane,Yes,,,,,,1,gram, 
 100010106601,628-21-7,"1,4-",diiodobutane,Yes,,,,,,5,gram,Harmful H4
 100010126600,624-73-7,"1,2-",diiodoethane,Yes,,,,,,25,gram,Freezer 2
 100010106700,629-69-4,"1,6-",diiodohexane,No,,,,,,5,gram,Harmful H4
@@ -786,7 +729,6 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010084401,120-14-9,"3,4-",dimethoxybenzaldehyde,No,,,,,,100,gram,Harmful H11
 100010106800,613-45-6,"2,4-",dimethoxybenzaldehyde,Yes,,,,,,25,gram,Harmful H4
 100010124300,7311-34-4,"3,5-",dimethoxybenzaldehyde,Yes,,,,,,10,gram,Harmful H9
-100010124301,7311-34-4,"3,5-",dimethoxybenzaldehyde,Yes,,,,,,10,gram, 
 100010124302,7311-34-4,"3,5-",dimethoxybenzaldehyde,Yes,,,,,,10,gram,Harmful H9
 100010166000,120-14-9,"3,4-",dimethoxybenzaldehyde,No,,,,,,100,gram,Harmful H11
 100010084500,150-78-7,"1,4-",dimethoxybenzene,Yes,,,,,,100,gram,Harmful H11
@@ -814,10 +756,7 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010107401,86-56-6,"N,N-",dimethyl-1-naphthylamine,Yes,,,,,,25,milliliter,Harmful H4
 100010068900,14347-78-5,"(R)-(-)-2,2-","dimethyl-1,3-dioxolane-4-methanol",No,,,,,,5,gram,Fridge S2 B1
 100010101300,126-30-7,"2,2-","dimethyl-1,3-propanediol",Yes,,,,,,500,gram,Harmful H25
-100010107500,1134-35-6,"4,4'-","dimethyl-2,2'-dipyridyl",No,,,,,,5,gram, 
 100010092700,7226-23-5,"1,3-","dimethyl-3,4,5,6-tetrahydro-2(1H)-pyrimidinone (DMPU)",Yes,,,,,,500,gram,Harmful H23
-100010092701,7226-23-5,"1,3-","dimethyl-3,4,5,6-tetrahydro-2(1H)-pyrimidinone (DMPU)",Yes,,,,,,500,gram, 
-100010092702,7226-23-5,"1,3-","dimethyl-3,4,5,6-tetrahydro-2(1H)-pyrimidinone (DMPU)",Yes,,,,,,500,gram, 
 100010092703,7226-23-5,"1,3-","dimethyl-3,4,5,6-tetrahydro-2(1H)-pyrimidinone (DMPU)",Yes,,,,,,100,milliliter,Harmful H16
 100010099700,7226-23-5,"1,3-","dimethyl-3,4,5,6-tetrahydro-2(1H)-pyrimidinone (DMPU)",Yes,,,,,,500,gram,Harmful H26
 100010099701,7226-23-5,"1,3-","dimethyl-3,4,5,6-tetrahydro-2(1H)-pyrimidinone (DMPU)",Yes,,,,,,500,gram,Harmful H26
@@ -842,7 +781,6 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010124100,0100-10-7,4-,dimethylaminobenzaldehyde,No,,,,III,,25,gram,Harmful H8
 100010124101,0100-10-7,4-,dimethylaminobenzaldehyde,No,,,,III,,25,gram,Harmful H8
 100010124102,0100-10-7,4-,dimethylaminobenzaldehyde,No,,,,III,,100,gram,Harmful H16
-100010107900,100-10-7,4-,dimethylaminobenzaldehyde,Yes,,,,,,25,gram, 
 100010024900,108-01-0,2-,dimethylaminoethanol,Yes,8,3,,II,2051,100,milliliter,Corrosive Base 1
 100010108000,25952-53-8,1-(3-,dimethylaminopropyl)-3-ethylcarbodiimide hydrochloride,No,,,,,,10,gram,Harmful H4
 100010144200,1122-58-3,4-,dimethylaminopyridine (DMAP),Yes,6.1,,,III,2811,100,gram,Toxic TM3
@@ -857,7 +795,6 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010166400,2944-49-2,"2,3-",dimethylanisole,Yes,,,,,,25,gram,Harmful H4
 100010122200,5973-71-7,"3,4-",dimethylbenzaldehyde,Yes,,,,,,1,gram,Harmful H8
 100010122300,5779-95-3,"3,5-",dimethylbenzaldehyde,No,,,,,,5,gram,Harmful H8
-100010122301,5779-95-3,"3,5-",dimethylbenzaldehyde,No,,,,,,10,gram, 
 100010122400,15764-16-6,"2,4-",dimethylbenzaldehyde,No,,,,,,5,gram,Harmful H8
 100010015600,1070-83-3,"3,3-",dimethylbutyric acid,Yes,8,,,II,3265,25,gram,Corrosive Acid 1
 100010025000,110-70-3,"N,N'-",dimethylethylenediamine,Yes,8,3,,,,5,gram,Corrosive Base 1
@@ -865,7 +802,6 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010025002,110-70-3,"N,N'-",dimethylethylenediamine,Yes,8,3,,,,5,gram,Corrosive Base 1
 100010025003,110-70-3,"N,N'-",dimethylethylenediamine,Yes,8,3,,,,25,gram,Corrosive Base 1
 100010036500,4637-24-5,"N,N-",dimethylformamide dimethyl acetal,Yes,,,,,,50,milliliter,Flammable liquid Small
-100010007300,1118-68-9,"N,N-",dimethylglycine,No,,,,,,5,gram, 
 100010072300,57-14-7,"N,N-",dimethylhydrazine,Yes,6.1,3,,I,1163,5,gram,Fridge S3 B1
 100010166600,1739-84-0,"1,2-",dimethylimidazole,Yes,,,,,,500,gram,Corrosive Base 3
 100010025100,6485-55-8,"cis-2,6-",dimethylmorpholine,Yes,8,,,II,2734,25,gram,Corrosive Base 1
@@ -880,11 +816,9 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010150300,610-41-3,"3,4-",dinitroaniline,Yes,6.1,,,II,1596,5,gram,Toxic TS2
 100010150301,610-41-3,"3,4-",dinitroaniline,Yes,6.1,,,II,1596,5,gram,Toxic TS2
 100010015700,99-34-3,"3,5-",dinitrobenzoic acid,No,,,,,,250,gram,Harmful H12
-100010084800,99-34-3,"3,5-",dinitrobenzoic acid,No,,,,,,250,gram,Harmful H11
-100010084801,99-34-3,"3,5-",dinitrobenzoic acid,No,,,,,,250,gram,Harmful H11
-100010084900,99-34-3,"3,5-",dinitrobenzoic acid,No,,,,,,250,gram, 
+100010084800,99-34-3,"3,5-",dinitrobenzoic acid,Yes,,,,,,250,gram,Harmful H11
+100010084801,99-34-3,"3,5-",dinitrobenzoic acid,Yes,,,,,,250,gram,Harmful H11
 100010108200,610-30-0,"2,4-",dinitrobenzoic acid,Yes,,,,,,25,gram,Harmful H4
-100010108201,610-30-0,"2,4-",dinitrobenzoic acid,Yes,,,,,,25,gram, 
 100010108900,528-45-0,"3,4-",dinitrobenzoic acid,Yes,,,,,,1,gram,Harmful H4
 100010108901,528-45-0,"3,4-",dinitrobenzoic acid,Yes,,,,,,1,gram,Harmful H4
 100010108902,528-45-0,"3,4-",dinitrobenzoic acid,Yes,,,,,,1,gram,Harmful H4
@@ -897,14 +831,8 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010150402,1666-13-3,,diphenyl diselenide,Yes,6.1,,,II,3283,25,gram,Toxic TS2
 100010166900,1666-13-3,,diphenyl diselenide,Yes,6.1,,,II,3283,30,gram,Toxic TS2
 100010167000,1666-13-3,,diphenyl diselenide,Yes,6.1,,,II,3283,25,gram,Toxic TS2
-100010085100,882-33-7,,diphenyl disulfide,Yes,,,,,,100,gram, 
-100010167100,882-33-7,,diphenyl disulfide,Yes,,,,,,50,gram, 
-100010108400,32294-60-3,,diphenyl ditelluride,Yes,,,,,,5,gram, 
-100010166800,947-91-1,,diphenylacetaldehyde,No,,,,,,5,gram, 
-100010167200,947-91-1,,diphenylacetaldehyde,No,,,,,,5,gram, 
 100010092900,117-34-0,,diphenylacetic acid,Yes,,,,,,100,gram,Harmful H16
 100010108500,0102-04-05,"1,3-",diphenylacetone,No,,,,,,25,gram,Harmful H4
-100010108600,19816-88-7,"1,3-",diphenylacetone p-tosylhydrazone,Yes,,,,,,10,gram, 
 100010108700,886-38-4,,diphenylcyclopropenone,Yes,,,,,,5,gram,Harmful H4
 100010077000,530-48-3,"1,1-",diphenylethylene,No,,,,,,10,gram,Fridge S4 B1
 100010077001,530-48-3,"1,1-",diphenylethylene,No,,,,,,25,gram,Fridge S4 B1
@@ -922,7 +850,6 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010077100,27565-41-9,,dithiothreitol,Yes,9,,,,3335,5,gram,Fridge S4 B1
 100010077101,27565-41-9,,dithiothreitol,Yes,9,,,,3335,5,gram,Fridge S4 B1
 100010029003,16940-66-2,,sodium borohydride,Yes,4.3,,,,,100,gram, Dangerous when wet
-100010156200,6217-54-5,"cis-4,7,10,13,16,19",docosahexaenoic acid (DHA),No,,,,,,1,gram, 
 100010025200,124-22-1,,dodecylamine,Yes,8,,,II,3259,5,milliliter,Corrosive Base 1
 100010029004,16940-66-2,,sodium borohydride,Yes,4.3,,,,,25,gram, Dangerous when wet
 100010052100,9015-85-4,,Escherichia coli D ligase (10mM solution),No,,,,,,25,microliter,Freezer 1 S2 B1
@@ -953,7 +880,6 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010072400,0420-12-2,,ethylene sulfide,Yes,3,6.1,,II,1992,25,gram,Fridge S3 B1
 100010029005,16940-66-2,,sodium borohydride,Yes,4.3,,,,,10,gram, Dangerous when wet
 100010077200,126213-50-1,"3,4-",ethylenedioxythiophene,Yes,6.1,,,III,2810,10,gram,Fridge S4 B1
-100010109200,6315-52-2,,ethyleneglycol-di-p-tosylate,Yes,,,,,,25,gram, 
 100010085900,50448-95-8,2-,ethylhexyl 3-mercaptoproprionate,Yes,9,,,,3334,500,milliliter,Harmful H12
 100010072500,18908-66-2,2-,ethylhexyl bromide,No,,,,,,500,gram,Fridge S3 B1
 100010072501,18908-66-2,2-,ethylhexyl bromide,No,,,,,,500,gram,Fridge S3 B1
@@ -970,7 +896,6 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010072600,2510-22-7,4-,ethynylpyridine,Yes,,,,,,5,gram,Fridge S3 B1
 100010077300,1945-84-2,2-,ethynylpyridine,Yes,,,,,,5,gram,Fridge S4 B1
 100010067500,766-47-2,2-,ethynyltoluene,Yes,3,,,III,3295,5,gram,Fridge S1 B1
-100010007600,52093-25-1,,europium (III) trifluoromethanesulfonate,Yes,,,,,,5,gram, 
 100010029101,7646-69-7,,sodium hydride,Yes,4.3,,,I,1427,100,gram, Dangerous when wet
 100010052400,13058-4-3,,farnesyl pyrophosphate ammonium salt,Yes,3,6.1,,II,1230,200,microgram,Freezer 1 S2 B1
 100010052401,13058-4-3,,farnesyl pyrophosphate ammonium salt,Yes,3,6.1,,II,1230,200,microgram,Freezer 1 S2 B1
@@ -983,7 +908,6 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010015900,7758-94-3,,ferrous chloride tetrahydrate,Yes,8,,,III,3260,500,gram,Corrosive Acid 1
 100010172800,7646-69-7,,sodium hydride,Yes,4.3,,,I,1427,100,gram, Dangerous when wet
 100010077400,24324-17-2,9-,fluorenemethanol,No,,,,,,10,gram,Fridge S4 B1
-100010168000,486-25-9,9-,Fluorenone,No,,,,,,25,gram, 
 100010122700,364-78-3,4-,fluoro-2-nitroaniline,Yes,,,,,,25,gram,Harmful H8
 100010144600,2369-11-1,5-,fluoro-2-nitroaniline,Yes,6.1,,,III,2811,50,gram,Toxic TM4
 100010168100,1493-27-2,1-,fluoro-2-nitrobenzene,Yes,,,,,,10,gram,Freezer 1 S2 B1
@@ -1019,13 +943,9 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010168400,57239-58-4,4-,fluorodibenzyl diselenide,Yes,6.1,,,,,10,gram,Toxic TS2
 100010069300,371-62-0,2-,fluoroethanol,Yes,6.1,3,,I,3383,25,gram,Fridge S2 B1
 100010069301,371-62-0,2-,fluoroethanol,Yes,6.1,3,,I,3383,5,gram,Fridge S2 B1
-100010109400,0460-08-02,2-,fluoroethylamine hydrochloride,No,,,,,,1,gram, 
 100010072800,399-52-0,5-,fluoroindole,No,,,,,,25,gram,Fridge S3 B1
 100010069400,39891-04-08,5-,fluoronicotinaldehyde,No,,,,,,1,gram,Fridge S2 B1
 100010126800,31224-43-8,3-,fluoropyridine-2-carbaldehyde (3-fluoro-2-formylpyridine),Yes,,,,,,5,gram,Freezer 2
-100010007800,327056-62-2,5-,fluoropyridine-2-carbonitrile,Yes,,,,,,1,gram, 
-100010007801,327056-62-2,5-,fluoropyridine-2-carbonitrile,Yes,,,,,,5,gram, 
-100010007802,327056-62-2,5-,fluoropyridine-2-carbonitrile,Yes,,,,,,5,gram, 
 100010077500,36404-90-7,2-,fluoropyridine-3-carbaldehyde,No,,,,,,5,gram,Fridge S4 B1
 100010077501,36404-90-7,2-,fluoropyridine-3-carbaldehyde,No,,,,,,5,gram,Fridge S4 B1
 100010168500,352-70-5,3-,fluorotoluene (m-fluorotoluene),Yes,3,,,II,2388,25,milliliter,Flammable liquid Small
@@ -1041,9 +961,9 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010060000,71989-33-8,,FMOC-L-Ser(tert-Bu)-OH,No,,,,,,5,gram,Freezer 1 S4 B1
 100010055800,82911-69-1,,FMOC-N-hydroxysuccinimide,No,,,,,,25,gram,Freezer 1 S2 B2
 100010055801,82911-69-1,,FMOC-N-hydroxysuccinimide,No,,,,,,100,gram,Freezer 1 S2 B2
-100010018500,50-00-0,,formaldehyde,Yes,8,,,III,2209,2.5,liter,Corrosive Acid 2
-100010018501,50-00-0,,formaldehyde,Yes,8,,,III,2209,500,milliliter,Corrosive Acid 2
-100010018502,50-00-0,,formaldehyde,Yes,8,,,III,2209,500,milliliter,Corrosive Acid 2
+100010018500,50-00-0,,formaldehyde solution,Yes,8,,,III,2209,2.5,liter,Corrosive Acid 2
+100010018501,50-00-0,,formaldehyde solution,Yes,8,,,III,2209,500,milliliter,Corrosive Acid 2
+100010018502,50-00-0,,formaldehyde solution,Yes,8,,,III,2209,500,milliliter,Corrosive Acid 2
 100010144900,75-12-7,,formamide,Yes,6.1,,,,,500,milliliter,Toxic TM4
 100010016600,64-18-6,,formic acid,Yes,8,,,II,1779,500,milliliter,Corrosive Acid 1
 100010016700,27329-70-0,5-,formyl-2-furanboronic acid,Yes,8,,,III,3261,1,gram,Corrosive Acid 1
@@ -1053,7 +973,6 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010016901,87199-16-4,3-,formylphenylboronic acid,Yes,8,,,III,3261,1,gram,Corrosive Acid 1
 100010016902,87199-16-4,3-,formylphenylboronic acid,Yes,8,,,III,3261,9,gram,Corrosive Acid 1
 100010017000,87199-17-5,4-,formylphenylboronic acid,Yes,8,,,,,5,gram,Corrosive Acid 1
-100010109500,128376-64-7,4-,formylphenylboronic acid pinacol ester,Yes,,,,,,5,gram, 
 100010109600,616-76-2,5-,formylsalicylic acid,No,,,,,,1,gram,Harmful H5
 100010007900,4347-33-5,5-,formylthiophene-2-boronic acid,Yes,,,,,,5,gram,Harmful H18
 100010007901,4347-33-5,5-,formylthiophene-2-boronic acid,Yes,,,,,,5,gram,Harmful H18
@@ -1064,7 +983,7 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010029301,7440-23-5,,sodium,Yes,,,,,,500,gram, Dangerous when wet
 100010029400,56553-60-7,,sodium triacetoxyborohydride,Yes,,,,,,25,gram, Dangerous when wet
 100010109900,1121-89-7,,glutanimide,No,,,,,,5,gram,Harmful H5
-100010029500,7440-66-6,,zinc powder,Yes,4.3,4.2,,II,1436,500,gram, Dangerous when wet
+100010029500,7440-66-6,,zinc,Yes,4.3,4.2,,II,1436,500,gram, Dangerous when wet
 100010052700,28319-77-9,L-a-,glycerophosphorylcholine,No,,,,,,100,milligram,Freezer 1 S2 B1
 100010052701,28319-77-9,L-a-,glycerophosphorylcholine,No,,,,,,100,milligram,Freezer 1 S2 B1
 100010052702,28319-77-9,L-a-,glycerophosphorylcholine,No,,,,,,100,milligram,Freezer 1 S2 B1
@@ -1076,18 +995,18 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010052708,28319-77-9,L-a-,glycerophosphorylcholine,No,,,,,,100,milligram,Freezer 1 S2 B1
 100010052709,28319-77-9,L-a-,glycerophosphorylcholine,No,,,,,,100,milligram,Freezer 1 S2 B1
 100010052710,28319-77-9,L-a-,glycerophosphorylcholine,No,,,,,,100,milligram,Freezer 1 S2 B1
-100010029501,7440-66-6,,zinc powder,Yes,4.3,4.2,,II,1436,500,gram, Dangerous when wet
+100010029501,7440-66-6,,zinc,Yes,4.3,4.2,,II,1436,500,gram, Dangerous when wet
 100010086000,623-33-6,,glycine ethyl ester hydrochloride,Yes,,,,,,100,gram,Harmful H12
-100010101700,623-33-6,,glycine ethyl ester hydrochloride,Yes,,,,,,1,kilogram,Harmful H26
-100010101701,623-33-6,,glycine ethyl ester hydrochloride,Yes,,,,,,100,gram,Harmful H26
-100010101702,623-33-6,,glycine ethyl ester hydrochloride,Yes,,,,,,100,gram,Harmful H26
+100010101700,623-33-6,,glycine ethyl ester hydrochloride,No,,,,,,1,kilogram,Harmful H26
+100010101701,623-33-6,,glycine ethyl ester hydrochloride,No,,,,,,100,gram,Harmful H26
+100010101702,623-33-6,,glycine ethyl ester hydrochloride,No,,,,,,100,gram,Harmful H26
 100010037500,3741-38-6,,glycol sulfite,Yes,,,,,,25,gram,Flammable liquid Small
 100010017100,78-14-1,,glycolic acid,Yes,8,,,II,3261,25,gram,Corrosive Acid 1
 100010017101,78-14-1,,glycolic acid,Yes,8,,,II,3261,100,gram,Corrosive Acid 1
 100010110000,301224-40-8,,Grubbs Catalyst-2nd Generation,Yes,,,,,,250,milligram,Harmful H5
 100010052900,486-84-0,,harmane,No,,,,,,1,gram,Freezer 1 S2 B1
 100010077600,2396-63-6,"1,6-",heptadiyne,Yes,3,,,II,3295,1,gram,Fridge S4 B1
-100010077700,813-19-4,,bis(tributyltin),Yes,6.1,,7,III,2788,25,gram,Fridge S4 B1
+100010077700,813-19-4,,bis(tributyltin) see hexabutylditin,Yes,6.1,,7,III,2788,25,gram,Fridge S4 B1
 100010145000,77-47-4,,hexachlorocyclopentadiene,Yes,6.1,,,I,2646,25,gram,Toxic TM4
 100010145001,77-47-4,,hexachlorocyclopentadiene,Yes,6.1,,,I,2646,25,gram,Toxic TM4
 100010145002,77-47-4,,hexachlorocyclopentadiene,Yes,6.1,,,I,2646,25,gram,Toxic TM4
@@ -1105,7 +1024,6 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010013100,1186-52-3,d3-,acetic acid-d,Yes,,,,,,500,microliter, Deuterates dessicator
 100010013101,1186-52-3,d3-,acetic acid-d,Yes,,,,,,500,microliter, Deuterates dessicator
 100010017200,142-61-0,,hexanoyl chloride,Yes,8,3,,II,2920,100,gram,Corrosive Acid 1
-100010110100,23978-09-08,"4,7,13,16,21, 24-","hexaoxa-1,10-diazobicyclo [8.8.8]-hexacosane",Yes,,,,,,1,gram, 
 100010110101,23978-09-08,"4,7,13,16,21, 24-","hexaoxa-1,10-diazobicyclo [8.8.8]-hexacosane",Yes,,,,,,1,gram,Harmful H5
 100010168800,821-41-0,5-,hexen-1-ol,Yes,3,,,III,1987,25,milliliter,Flammable liquid Small
 100010168801,821-41-0,5-,hexen-1-ol,Yes,3,,,III,1987,25,milliliter,Flammable liquid Small
@@ -1115,7 +1033,7 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010077900,13269-52-8,trans-3-,hexene,Yes,3,,,II,3295,5,gram,Fridge S4 B1
 100010110200,616880-14-9,5'-,"hexyl-2,2'-bithiophene-5-boronic acid pinacol ester",Yes,,,,,,5,gram,Harmful H5
 100010013102,1186-52-3,d3-,acetic acid-d,Yes,,,,,,500,microliter, Deuterates dessicator
-100010069500,23491-45-4,,Hoechst dye #33258,No,6.1,,,,,1,gram,Fridge S2 B1
+100010069500,23491-45-4,,Hoechst dye 33258,No,6.1,,,,,1,gram,Fridge S2 B1
 100010025400,505-66-8,,homopiperazine,Yes,8,,,II,3259,25,gram,Corrosive Base 1
 100010023500,0302-01-02,,hydrazine hydrate,Yes,8,6.1,,II,2030,100,milliliter,Corrosive Base 2
 100010023501,0302-01-02,,hydrazine hydrate,Yes,8,6.1,,II,2030,500,milliliter,Corrosive Base 2
@@ -1154,11 +1072,10 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010112600,90-01-7,2-,hydroxybenzyl alcohol,Yes,,,,,,25,gram,Harmful H5
 100010112601,90-01-7,2-,hydroxybenzyl alcohol,Yes,,,,,,100,gram,Harmful H12
 100010086100,103-76-4,1-(2-,hydroxyethyl)piperazine,Yes,,,,,,100,gram,Harmful H12
-100010069600,7803-49-8,,hydroxylamine,Yes,9,,,III,3082,250,milliliter,Fridge S2 B1
+100010069600,7803-49-8,,hydroxylamine solution,Yes,9,,,III,3082,250,milliliter,Fridge S2 B1
 100010017500,5470-11-01,,hydroxylammonium chloride,Yes,8,6.1,,III,2923,500,gram,Corrosive Acid 1
 100010055900,5470-11-1,,hydroxylammonium chloride,Yes,8,6.1,,III,2923,100,gram,Freezer 1 S2 B2
 100010017600,10039-54-0,,allylmagnesium chloride,Yes,4.3,3,,I,3399,100,gram,Corrosive Acid 1
-100010008000,29636-87-1,4-,hydroxymethyl-5-methylimidazole,Yes,,,,,,25,gram, 
 100010158800,38585-62-5,4-,hydroxymethyl-5-methylimidazole HCl,Yes,,,,,,25,gram,Harmful H18
 100010122900,4433-40-3,5-(,hydroxymethyl)uricil hydrate,Yes,,,,,,1,gram,Harmful H8
 100010123000,118-29-6,N-,hydroxymethylphthalimide,No,,,,,,25,gram,Harmful H8
@@ -1172,19 +1089,13 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010110900,109-78-4,3-,hydroxypropionitrile,No,,,,,,50,gram,Harmful H5
 100010012800,5317-32-8,1-(3-,hydroxypropyl)piperazine,Yes,,,,,,10,gram,Benches 14
 100010111000,626-64-2,4-,hydroxypyridine,No,,,,,,15,gram,Harmful H5
-100010008200,1849-55-4,3-,hydroxypyridine-2-carboxaldehyde,No,,,,,,1,gram, 
-100010093300,6066-82-6,N-,hydroxysuccinimide,Yes,,,,,,100,gram, 
-100010156700,116932-70-8,1-,hydroxytriazole,Yes,,,,,,None,, 
 100010111100,10040-98-9,4-(1H-,imidazol-1-yl)benzaldehyde,No,,,,,,5,gram,Harmful H5
 100010025500,288-32-4,,imidazole,Yes,8,,,,,100,gram,Toxic TL2
 100010169400,288-32-4,,imidazole,Yes,8,,,,,100,gram,Corrosive Base 1
-100010008300,10111-08-07,2-,imidazolecarboxaldehyde,Yes,,,,,,5,gram, 
 100010099300,142-73-4,,iminodiacetic acid,Yes,,,,,,500,gram,Harmful H23
 100010069800,615-13-4,2-,indanone,No,,,,,,50,gram,Fridge S2 B1
 100010086200,4498-67-3,,indazole-3-carboxylic acid,Yes,,,,,,10,gram,Harmful H12
 100010086300,482-89-3,,indigo (indigotin),Yes,,,,,,100,gram,Harmful H12
-100010086400,487-89-8,,indole-3-carboxaldehyde,No,,,,,,25,gram, 
-100010086401,487-89-8,,indole-3-carboxaldehyde,No,,,,,,25,gram, 
 100010111200,1196-69-6,,indole-5-carboxaldehyde,No,,,,,,5,gram,Harmful H5
 100010154400,666-52-4,d6-,acetone,Yes,3,,,II,1090,None,, Deuterates dessicator
 100010018800,7553-56-2,,iodine,Yes,8,6.1,,III,3495,500,gram,Corrosive Acid 2
@@ -1198,30 +1109,22 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010069900,54-42-2,5-,iodo-2'-deoxyuridine,Yes,6.1,,,,,25,gram,Fridge S2 B1
 100010025700,15813-07-07,5-,iodo-4-methylimidazole,Yes,8,,,,,5,gram,Corrosive Base 1
 100010070000,64-69-7,,iodoacetic acid,Yes,8,6.1,,I,2923,25,gram,Fridge S2 B1
-100010008400,540-37-4,4-,iodoaniline,Yes,,,,,,25,gram, 
 100010111400,615-43-0,2-,iodoaniline,No,,,,,,25,gram,Harmful H5
 100010169600,766-85-8,3-,iodoanisole,Yes,,,,,,5,gram,Harmful H5
 100010053100,15164-44-0,4-,iodobenzaldehyde,No,,,,,,5,gram,Freezer 1 S2 B1
 100010053101,15164-44-0,4-,iodobenzaldehyde,No,,,,,,5,gram,Freezer 1 S2 B1
 100010053102,15164-44-0,4-,iodobenzaldehyde,No,,,,,,5,gram,Freezer 1 S2 B1
-100010008500,591-50-4,,iodobenzene,Yes,,,,,,100,gram, 
-100010123200,3240-34-4,,iodobenzene diacetate,No,,,,,,5,gram, 
 100010123201,3240-34-4,,iodobenzene diacetate,No,,,,,,25,gram,Harmful H8
 100010123202,3240-34-4,,iodobenzene diacetate,No,,,,,,25,gram,Harmful H8
 100010093400,88-67-5,2-,iodobenzoic acid,Yes,,,,,,100,gram,Harmful H17
 100010123300,618-51-9,3-,iodobenzoic acid,Yes,,,,,,50,gram,Harmful H8
 100010111500,619-58-9,4-,iodobenzoic acid,Yes,,,,,,25,gram,Harmful H5
-100010008600,3058-39-7,4-,iodobenzonitrile,No,,,,,,1,gram, 
-100010008700,18282-51-4,4-,iodobenzyl alcohol,Yes,,,,,,5,gram, 
 100010086500,5149-41-1,2-,iodobenzyl alcohol,Yes,,,,,,50,gram,Harmful H12
-100010123400,57455-06-08,3-,iodobenzyl alcohol,Yes,,,,,,5,gram, 
 100010123401,57455-06-08,3-,iodobenzyl alcohol,Yes,,,,,,5,gram,Harmful H8
-100010123402,57455-06-08,3-,iodobenzyl alcohol,Yes,,,,,,5,gram, 
 100010018900,49617-83-6,3-,iodobenzyl bromide,Yes,8,,,II,3261,5,gram,Corrosive Acid 2
 100010073000,16004-15-2,4-,iodobenzyl bromide,Yes,8,,,II,3261,5,gram,Fridge S3 B1
 100010073001,16004-15-2,4-,iodobenzyl bromide,Yes,8,,,II,3261,5,gram,Fridge S3 B1
 100010139700,75-03-6,,iodoethane,Yes,6.1,,,,,500,gram,Toxic TL2
-100010008800,71759-89-2,4-,iodoimidazole,Yes,,,,,,5,gram, 
 100010136900,74-88-4,,iodomethane,Yes,6.1,,7,I,2644,500,milliliter,Fridge S3 B1
 100010169700,74-88-4,,iodomethane,Yes,6.1,,7,I,2644,25,milliliter,Fridge S3 B1
 100010169800,74-88-4,,iodomethane,Yes,6.1,,7,I,2644,100,milliliter,Fridge S3 B1
@@ -1229,17 +1132,14 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010078000,865-50-9,,iodomethane-d3,Yes,6.1,,,I,2644,50,gram,Fridge S4 B1
 100010064700,26272-85-5,3-,iodooxetane,Yes,,,,,,5,gram,Fridge Door
 100010123500,827-15-6,,iodopentafluorobenzene,Yes,,,,,,25,gram,Harmful H8
-100010008900,0626-02-08,3-,iodophenol,Yes,,,,,,25,gram, 
 100010111600,533-58-4,2-,iodophenol,Yes,,,,,,25,gram,Harmful H5
 100010037800,75-30-9,2-,iodopropane,Yes,3,,,III,2392,100,gram,Flammable liquid Small
 100010037801,75-30-9,2-,iodopropane,Yes,3,,,III,2392,100,gram,Flammable liquid Small
-100010009000,5029-67-4,2-,iodopyridine,Yes,,,,,,1,gram, 
-100010009001,5029-67-4,2-,iodopyridine,Yes,,,,,,1,gram, 
 100010111700,615-37-2,2-,iodotoluene,Yes,,,,,,25,gram,Harmful H5
 100010154500,2206-26-0,d3-,acetonitrile,Yes,3,,,II,1648,None,, Deuterates dessicator
 100010155200,1665-00-5,d2-,dichloromethane,Yes,6.1,,,III,1593,None,, Deuterates dessicator
-100010099400,7782-63-0,,iron (II) sulfate,Yes,,,,,,500,gram,Harmful H23
-100010086600,7782-63-0,,iron (II) sulfate,Yes,,,,,,500,gram,Harmful H12
+100010099400,7782-63-0,,iron (II) sulphate dried (LR),Yes,,,,,,500,gram,Harmful H23
+100010086600,7782-63-0,,iron (II) sulphate dried (LR),Yes,,,,,,500,gram,Harmful H12
 100010111800,14024-18-1,,iron (III) acetylacetonate,Yes,,,,,,25,gram,Harmful H5
 100010154800,2206-27-1,d6-,dimethylsulfoxide,Yes,,,,,,None,, Deuterates dessicator
 100010154900,811-98-3,d4-,methanol,Yes,3,6.1,,II,1230,None,, Deuterates dessicator
@@ -1258,28 +1158,21 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010038101,61676-62-8,2-,"isopropoxy-4,4,5,5-tetramethyl-1,3,2-dioxaborolane",Yes,3,,,III,1993,25,milliliter,Flammable liquid Small
 100010064800,108-23-6,,isopropyl chloroformate,Yes,3,8,,,,100,milliliter,Fridge Door
 100010086700,2210-25-5,N-,isopropylacreylamide,Yes,,,,,,50,gram,Harmful H12
-100010137400,2210-25-5,N-,isopropylacreylamide,Yes,,,,,,50,gram, 
 100010101900,643-28-7,2-,isopropylaniline,No,,,,,,500,milliliter,Harmful H26
 100010038200,99-88-7,4-,isopropylaniline,Yes,,,,III,1993,50,gram,Flammable liquid Small
 100010112200,0122-03-02,4-,isopropylbenzaldehyde,Yes,,,,,,5,gram,Harmful H5
 100010174000,2037-26-5,d8-,toluene,Yes,3,,,II,1294,10,gram, Deuterates dessicator
 100010086800,618-45-1,3-,isopropylphenol,Yes,,,,,,100,gram,Harmful H12
-100010009100,4318-42-7,1-,isopropylpiperazine,Yes,,,,,,5,gram, 
-100010009101,4318-42-7,1-,isopropylpiperazine,Yes,,,,,,1,gram, 
-100010009200,1198-30-7,1-,isoquinolinecarbonitrile,Yes,,,,,,5,gram, 
-100010009300,26947-41-1,3-,isoquinolinecarbonitrile,Yes,,,,,,1,gram, 
-100010009400,486-73-7,1-,isoquinolinecarboxylic acid,No,,,,,,5,gram, 
 100010123600,565-71-9,DL-,isoserine,No,,,,,,1,gram,Harmful H8
 100010019200,0108-12-3,,isovaleryl chloride,Yes,8,3,,II,2502,25,gram,Corrosive Acid 2
 100010135400,25389-94-0,,kanamycin (monosulfate),Yes,,,3,,,5,gram,Poisons Draw 2
 100010150700,20662-53-7,4-(2-,keto-1-benzimidazolinyl)piperidine,Yes,6.1,,,III,2811,5,gram,Toxic TS3
 100010169900,600-18-0,2-,ketobutyric acid,Yes,,,,,,5,gram,Fridge S1 B1
 100010112300,19172-47-5,,Lawesson's reagent,No,,,,,,25,gram,Harmful H5
-100010112301,19172-47-5,,Lawesson's reagent,No,,,,,,25,gram, 
 100010056000,546-67-8,,lead tetraacetate,Yes,8,6.1,,II,2923,100,gram,Freezer 1 S2 B2
 100010060100,123-76-2,,levulinic acid,Yes,,,,,,250,milliliter,Freezer 1 S4 B1
 100010044000,555-31-7,,aluminium isopropoxide,Yes,4.1,,,,,100,gram, Flammable solid
-100010044100,1344-28-1,,aluminium oxide (acidic),No,,,,,,500,gram, Flammable solid
+100010044100,1344-28-1,,aluminium oxide (acidic),Yes,,,,,,500,gram, Flammable solid
 100010044200,673-66-5,2-,azacyclooctanone,No,,,,,,25,gram, Flammable solid
 100010044300,18162-48-6,t-,butyldimethylsilyl chloride,Yes,8,3,,II,2920,500,gram, Flammable solid
 100010044301,18162-48-6,t-,butyldimethylsilyl chloride,Yes,8,3,,II,2920,25,gram, Flammable solid
@@ -1289,7 +1182,6 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010044600,119-26-6,"2,4-",dinitrophenylhydrazine,Yes,4.1,,,,,25,gram, Flammable solid
 100010167900,140-89-6,o-,"ethylxanthic acid, potassium salt",Yes,4.2,,,II,3342,100,gram, Flammable solid
 100010053200,7447-41-8,,lithium chloride,Yes,,,,,,100,gram,Freezer 1 S2 B1
-100010086900,7447-41-8,,lithium chloride,Yes,,,,,,100,gram, 
 100010071700,4111-54-0,,lithium diisopropylamide,Yes,4.3,3,,II,3399,100,milliliter,Fridge S3
 100010159500,1310-66-3,,Lithium hydroxide monohydrate,Yes,8,,,III,2680,50,gram,Corrosive Base 1
 100010044700,102-54-5,,ferrocene,Yes,4.1,,,II,1325,100,gram, Flammable solid
@@ -1316,11 +1208,11 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010087100,141-82-2,,malonic acid,Yes,,,,,,100,gram,Harmful H13
 100010145500,109-77-3,,malononitrile,No,6.1,,,,,100,gram,Toxic TM5
 100010078100,1663-67-8,,malonyl dichloride,Yes,8,3,,II,2920,5,gram,Fridge S4 B1
-100010045500,7439-95-4,,magnesium,Yes,4.3,,,,1869,100,gram, Flammable solid
+100010045500,7439-95-4,,magnesium metal powder,Yes,4.3,,,,1869,100,gram, Flammable solid
 100010087200,2143614,,manganese (II) chloride,Yes,,,,,,500,gram,Harmful H13
 100010087201,2143614,,manganese (II) chloride,Yes,,,,,,500,gram,Harmful H13
 100010087300,1313-13-9,,manganese (IV) oxide activated,Yes,,,,,,250,gram,Harmful H13
-100010045600,7439-95-4,,magnesium,Yes,4.3,,,,1869,100,gram, Flammable solid
+100010045600,7439-95-4,,magnesium metal powder,Yes,4.3,,,,1869,100,gram, Flammable solid
 100010087400,10034-96-5,,manganese sulphate monohydrate,No,,,,,,500,gram,Harmful H13
 100010112700,1074-36-8,4-,mercaptobenzoic acid,Yes,,,,,,5,gram,Harmful H6
 100010145600,149-30-4,2-,mercaptobenzothiazole,No,9,,,,,100,gram,Toxic TM5
@@ -1329,7 +1221,6 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010150800,21908-53-2,,mercury (II) oxide,Yes,6.1,,,,,100,gram,Toxic TS3
 100010150900,73491-34-6,,mercury (II) perchlorate trihydrate,Yes,6.1,5.1,,,,25,gram,Toxic TS3
 100010151000,13257-51-7,,mercury (ii) trifluoroacetate,Yes,6.1,,,II,2025,10,gram,Toxic TS3
-100010112800,487-68-3,,mesitaldehyde,Yes,,,,,,10,gram, 
 100010112900,3144-09-0,,methanesulfonamide,Yes,,,,,,50,gram,Harmful H6
 100010158900,75-75-2,,methanesulfonic acid,Yes,8,,,II,3265,100,milliliter,Corrosive Acid 2
 100010140100,124-63-0,,methanesulfonyl chloride,Yes,6.1,8,,I,3246,500,gram,Toxic TL3
@@ -1337,12 +1228,11 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010140102,124-63-0,,methanesulfonyl chloride,Yes,6.1,8,,I,3246,500,gram,Toxic TL1
 100010140103,124-63-0,,methanesulfonyl chloride,Yes,6.1,8,,I,3246,100,milliliter,Fridge S2 B1
 100010170300,124-63-0,,methanesulfonyl chloride,Yes,6.1,8,,I,3246,500,gram,Toxic TL3
-100010045601,7439-95-4,,magnesium metal powder,Yes,4.3,,,,1869,100,gram, Flammable solid
+100010045601,7439-95-4,,magnesium,Yes,4.3,,,,1869,100,gram, Flammable solid
 100010009600,89282-70-2,(2-,methoxy-2-methylpropyl)amine,No,,,,,,5,gram,Harmful H19
 100010113000,3453-33-6,6-,methoxy-2-naphthaldehyde,No,,,,,,5,gram,Harmful H6
 100010126900,54221-96-4,6-,methoxy-2-pyridinecarboxaldehyde,Yes,,,,,,1,gram,Freezer 2
 100010124200,3168-08-07,4-,methoxy-3-nitrobenzaldehyde,No,,,,,,5,gram,Harmful H8
-100010124201,3168-08-07,4-,methoxy-3-nitrobenzaldehyde,No,,,,,,25,gram, 
 100010175200,626-20-0,1-,methoxy-3-vinylbenzene,No,,,,,,5,gram,Fridge S1 B1
 100010064900,6258-60-2,4-,methoxy-a-toluenethiol,No,,,,,,5,gram,Fridge Door
 100010009700,103464-79-5,2-,methoxy-N-(4-methoxybenzyl)ethanamine,Yes,,,,,,10,gram,Harmful H19
@@ -1352,7 +1242,6 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010087500,105-13-5,4-,methoxybenzyl alcohol,Yes,,,,,,100,gram,Harmful H13
 100010070100,2746-25-0,4-,methoxybenzyl bromide,Yes,8,,,II,3265,5,gram,Fridge S2 B1
 100010070200,824-94-2,4-,methoxybenzyl chloride,Yes,,,,,,25,gram,Fridge S2 B1
-100010001100,171364-80-0,4-,methoxycarbonylphenylboronic acid pinacol ester,No,,,,,,25,gram, 
 100010057700,0362-07-02,2-,methoxyestradiol,Yes,9,,,III,3077,10,gram,Freezer 1 S3 B1
 100010057800,0362-08-03,2-,methoxyestrone,Yes,9,,,III,3077,9.2,gram,Freezer 1 S3 B1
 100010019400,16024-58-1,2-[2-(2-,methoxyethoxy)ethoxy]acetic acid,Yes,8,,,III,3265,250,milliliter,Corrosive Acid 2
@@ -1374,7 +1263,6 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010078901,79-22-1,,methyl chloroformate,Yes,6.1,3,,I,1238,100,milliliter,Fridge S4 B1
 100010060200,89-91-8,,methyl dimethoxyacetate,No,,,,,,25,gram,Freezer 1 S4 B1
 100010113500,96-35-5,,methyl glycolate,No,,,,,,5,gram,Harmful H6
-100010170600,4229-44-1,N-,methyl hydroxylamine hydrochloride,Yes,,,,,,10,gram, 
 100010019600,80-48-8,,methyl p-toluenesulfonate,Yes,8,,,II,3261,100,gram,Corrosive Acid 2
 100010019602,80-48-8,,methyl p-toluenesulfonate,Yes,8,,,II,3261,100,gram,Corrosive Acid 2
 100010057900,333-27-7,,methyl trifluoromethanesulfonate,Yes,8,3,,II,2920,10,gram,Freezer 1 S3 B1
@@ -1388,7 +1276,6 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010113700,108-27-0,5-,methyl-2-pyrrolidinone,Yes,,,,,,10,gram,Harmful H6
 100010170200,7439-95-4,,magnesium metal powder,Yes,4.3,,,,1869,250,gram, Flammable solid
 100010175100,119-32-4,4-,methyl-3-nitroaniline,Yes,6.1,,,III,2660,25,gram,Toxic TM5
-100010009900,939-79-7,4-,methyl-3-nitrobenzonitrile,Yes,,,,,,5,gram, 
 100010009901,939-79-7,4-,methyl-3-nitrobenzonitrile,Yes,,,,,,5,gram,Harmful H7
 100010053400,3143-02-0,3-,methyl-3-oxetanemethanol,Yes,,,,,,10,gram,Freezer 1 S2 B1
 100010113800,120122-47-6,N-,methyl-4-nitro-2-trichloroacetylpyrrole,Yes,,,,,,25,gram,Harmful H6
@@ -1397,13 +1284,13 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010062200,80-11-5,N-,methyl-N-nitroso-4-toluenesulphonamide (Diazald),No,4.1,,,,3234,100,gram,Freezer 1 S4 B2
 100010062201,80-11-5,N-,methyl-N-nitroso-4-toluenesulphonamide (Diazald),No,4.1,,,,3234,500,gram,Freezer 1 S4 B2
 100010087900,79-16-3,N-,methylacetamide,No,,,,,,100,gram,Harmful H13
-100010038800,74-85-9,,methylamine,Yes,3,8,,II,1235,500,milliliter,Flammable liquid Small
+100010038800,74-85-9,,methylamine solution,Yes,3,8,,II,1235,500,milliliter,Flammable liquid Small
 100010098500,593-56-6,,methoxylamine hydrochloride,No,,,,,,500,gram,Harmful H23
 100010038900,578-58-5,2-,methylanisole,Yes,3,,,III,1993,100,milliliter,Flammable liquid Small
 100010058000,104-81-4,4-,methylbenzyl bromide,Yes,6.1,,,II,3417,25,gram,Freezer 1 S3 B1
 100010170700,620-13-3,3-,methylbenzyl bromide,Yes,6.1,,,II,1701,5,gram,Toxic TS3
 100010078200,104-81-4,4-,methylbenzyl bromide,Yes,6.1,,,II,3417,25,gram,Fridge S4 B1
-100010078300,2627-86-3,(S)-(−)-α-,methylbenzylamine,Yes,8,6.1,,II,2922,5,gram,Fridge S4 B1
+100010078300,2627-86-3,(S)-(‚àí)-Œ±-,methylbenzylamine,Yes,8,6.1,,II,2922,5,gram,Fridge S4 B1
 100010039000,75-85-4,2-,methylbutan-2-ol (tert-amyl alcohol),Yes,3,,,II,1105,500,milliliter,Flammable liquid Small
 100010099500,105-34-0,,methylcyanoacetate,Yes,,,,,,500,gram,Harmful H23
 100010039100,583-60-8,2-,methylcyclohexanone,Yes,3,,,III,2297,250,milliliter,Flammable liquid Small
@@ -1421,15 +1308,14 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010088601,93-61-8,N-,methylformanilide,No,,,,,,100,gram,Harmful H13
 100010026000,4318-37-0,1-,methylhomopiperazine,Yes,8,3,,II,2920,5,milliliter,Corrosive Base 1
 100010088100,4229-44-1,N-,methyl hydroxylamine hydrochloride,Yes,,,,,,50,gram,Harmful H13
-100010170900,4229-44-1,N-,methyl hydroxylamine hydrochloride,Yes,,,,,,10,gram, 
 100010171000,693-98-1,2-,methylimidazole,Yes,8,,,II,3259,500,gram,Corrosive Base 2
-100010067900,917-54-4,,methyllithium,Yes,4.2,4.3,,I,3394,100,milliliter,Fridge S2 B1
-100010067901,917-54-4,,methyllithium,Yes,4.2,4.3,,I,3394,100,milliliter,Fridge S1
-100010067902,917-54-4,,methyllithium,Yes,4.2,4.3,,I,3394,100,milliliter,Fridge S1
-100010071600,75-16-1,,methylmagnesium bromide,Yes,4.3,3,,I,3399,100,milliliter,Fridge S2 B2
-100010071601,75-16-1,,methylmagnesium bromide,Yes,4.3,3,,I,3399,100,milliliter,Fridge S2 B2
-100010071602,75-16-1,,methylmagnesium bromide,Yes,4.3,3,,I,3399,100,milliliter,Fridge S3
-100010071800,75-16-1,,methylmagnesium bromide,Yes,4.3,3,,I,3399,100,milliliter,Fridge S3
+100010067900,917-54-4,,methyllithium (1.6M in diethyl ether),Yes,4.2,4.3,,I,3394,100,milliliter,Fridge S2 B1
+100010067901,917-54-4,,methyllithium (1.6M in diethyl ether),Yes,4.2,4.3,,I,3394,100,milliliter,Fridge S1
+100010067902,917-54-4,,methyllithium (1.6M in diethyl ether),Yes,4.2,4.3,,I,3394,100,milliliter,Fridge S1
+100010071600,75-16-1,,methylmagnesium bromide (1.4M in toluene/THF),Yes,4.3,3,,I,3399,100,milliliter,Fridge S2 B2
+100010071601,75-16-1,,methylmagnesium bromide (1.4M in toluene/THF),Yes,4.3,3,,I,3399,100,milliliter,Fridge S2 B2
+100010071602,75-16-1,,methylmagnesium bromide (1.4M in toluene/THF),Yes,4.3,3,,I,3399,100,milliliter,Fridge S3
+100010071800,75-16-1,,methylmagnesium bromide (1.4M in toluene/THF),Yes,4.3,3,,I,3399,100,milliliter,Fridge S3
 100010026100,930-88-1,N-,methylmaleimide,Yes,8,,,II,1759,5,gram,Corrosive Base 1
 100010026101,930-88-1,N-,methylmaleimide,Yes,8,,,II,1759,5,gram,Corrosive Base 1
 100010026102,930-88-1,N-,methylmaleimide,Yes,8,,,II,1759,25,gram,Corrosive Base 1
@@ -1438,7 +1324,6 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010039401,0109-02-04,N-,methylmorpholine (4-methylmorpholine),Yes,3,8,,II,2535,100,milliliter,Flammable liquid Small
 100010039402,0109-02-04,N-,methylmorpholine (4-methylmorpholine),Yes,3,8,,II,2535,100,milliliter,Flammable liquid Small
 100010039403,0109-02-04,N-,methylmorpholine (4-methylmorpholine),Yes,3,8,,II,2535,100,milliliter,Flammable liquid Small
-100010171100,91-57-6,2-,methylnaphthalene,Yes,9,,,III,3077,250,gram, 
 100010010000,4021-07-02,3-,methylpicolinic acid,Yes,,,,,,5,gram,Harmful H19
 100010010100,20970-75-6,3-,methylpicolinonitrile,Yes,,,,,,5,gram,Harmful H19
 100010010101,20970-75-6,3-,methylpicolinonitrile,Yes,,,,,,5,gram,Harmful H19
@@ -1483,7 +1368,7 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010145800,1313-27-5,,molybdenum (VI) oxide,No,6.1,,,,,500,gram,Toxic TM5
 100010145900,13939-06-05,,molybdenum hexacarbonyl,Yes,6.1,,,,2811,50,gram,Toxic TM5
 100010102100,1318-93-0,,montmorillonite,Yes,,,,,,1,kilogram,Harmful H27
-100010088200,1318-93-0,,montmorillonite,Yes,,,,,,100,gram,Harmful H13
+100010088200,1318-93-0,,montmorillonite,No,,,,,,100,gram,Harmful H13
 100010026200,110-91-8,,morpholine,Yes,8,3,,I,2054,100,milliliter,Corrosive Base 1
 100010026201,110-91-8,,morpholine,Yes,8,3,,I,2054,100,milliliter,Corrosive Base 1
 100010026202,110-91-8,,morpholine,Yes,8,3,,I,2054,100,milliliter,Corrosive Base 1
@@ -1505,10 +1390,7 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010093700,5307-14-2,2-,"nitro-1,4-phenylenediamine",No,,,,,,100,gram,Harmful H17
 100010114800,121-01-7,4-,nitro-2-(trifluoromethyl)aniline,Yes,,,,,,5,gram,Harmful H6
 100010126100,25084-14-4,5-,nitro-2-furoyl chloride,Yes,8,,,,,5,gram,Corrosive Acid 2
-100010114900,0393-11-03,4-,nitro-3-(trifluoromethyl)aniline,Yes,,,,,,500,milligram, 
 100010115000,400-98-6,2-,nitro-4-(trifluoromethyl)aniline,Yes,,,,,,25,gram,Harmful H6
-100010010600,0104-04-01,4-,nitroacetanilide,No,,,,,,5,gram, 
-100010010601,0104-04-01,4-,nitroacetanilide,No,,,,,,5,gram, 
 100010135500,88-74-4,2-,nitroaniline,Yes,6.1,,7,II,1661,100,gram,Poisons Draw 2
 100010135600,100-01-6,4-,nitroaniline,Yes,6.1,,7,II,1661,500,gram,Poisons Draw 2
 100010135601,100-01-6,4-,nitroaniline,Yes,6.1,,7,II,1661,100,gram,Poisons Draw 2
@@ -1525,7 +1407,6 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010088300,121-92-6,3-,nitrobenzoic acid,Yes,,,,,,250,gram,Harmful H13
 100010088301,121-92-6,3-,nitrobenzoic acid,Yes,,,,,,100,gram,Harmful H13
 100010088400,62-23-7,4-,nitrobenzoic acid,Yes,,,,,,100,gram,Harmful H13
-100010088401,62-23-7,4-,nitrobenzoic acid,Yes,,,,,,100,gram, 
 100010088402,62-23-7,4-,nitrobenzoic acid,Yes,,,,,,100,gram,Harmful H13
 100010115500,552-16-9,2-,nitrobenzoic acid,Yes,,,,,,250,gram,Harmful H23
 100010115501,552-16-9,2-,nitrobenzoic acid,Yes,,,,,,100,gram,Harmful H13
@@ -1536,8 +1417,6 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010020000,0122-04-03,4-,nitrobenzoyl chloride,Yes,8,,,II,3261,50,gram,Corrosive Acid 2
 100010115200,619-73-8,4-,nitrobenzyl alcohol,Yes,,,,,,25,gram,Harmful H6
 100010115600,2493-04-01,5-,nitrofurfuryl alcohol,Yes,,,,,,1,gram,Harmful H6
-100010115601,2493-04-01,5-,nitrofurfuryl alcohol,Yes,,,,,,1,gram, 
-100010115602,2493-04-01,5-,nitrofurfuryl alcohol,Yes,,,,,,1,gram, 
 100010159000,527-73-1,2-,nitroimidazole,Yes,6.1,,,III,2811,100,milligram,Toxic TS3
 100010012900,63480-10-4,4-,nitroisatoic anhydride,Yes,,,,,,5,gram,Benches 14
 100010050400,943-39-5,p-,nitroperoxybenzoic acid,Yes,,,,,,25,gram,Freezer 1 S1 B1
@@ -1547,15 +1426,13 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010060300,7693-46-1,4-,nitrophenyl chloroformate,Yes,8,,,II,3261,5,gram,Freezer 1 S4 B1
 100010056200,0830-03-05,4-,nitrophenylacetate,Yes,,,,,,5,gram,Freezer 1 S2 B2
 100010045800,100-16-3,4-,nitrophenylhydrazine,Yes,4.1,,,I,3376,25,gram, Flammable solid
-100010045900,80-11-5,N-,methyl-N-nitroso-4-toluenesulphonamide (Diazald),No,4.1,,,,3234,100,gram, Flammable solid
+100010045900,80-11-5,N-,methyl-N-nitroso-4-toluenesulphonamide (Diazald),Yes,4.1,,,,3234,100,gram, Flammable solid
 100010070400,586-96-9,,nitrosobenzene,Yes,6.1,,,III,2811,10,gram,Fridge S2 B1
 100010146300,99-08-1,m-,nitrotoluene,Yes,6.1,,,,,250,milliliter,Toxic TM6
 100010151500,99-99-0,4-,nitrotoluene,Yes,6.1,,,II,3446,100,gram,Toxic TS3
 100010088500,611-08-05,5-,nitrouracil,Yes,,,,,,100,gram,Harmful H13
 100010171400,502-56-7,,nonan-5-one,Yes,3,,,III,1224,100,gram,Flammable liquid Small
 100010078400,38651-65-9,(1R)-( )-,nopinone,Yes,,,,,,5,gram,Fridge S4 B1
-100010115300,497-36-9,(±)-endo-,norborneol,No,,,,,,10,gram, 
-100010115400,497-37-0,(±)-exo-,norborneol,No,,,,,,5,gram, 
 100010046000,498-66-8,,norbornylene,Yes,4.1,,,,,500,gram, Flammable solid
 100010100000,72-69-5,,octan-1-ol,Yes,,,,,,500,milliliter,Harmful H24
 100010040000,629-05-0,1-,octyne,Yes,3,,,,,100,gram,Flammable liquid Small
@@ -1572,7 +1449,7 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010046201,865-47-4,,potassium t-butoxide,Yes,4.2,,,,3206,100,gram, Flammable solid
 100010046202,865-47-4,,potassium t-butoxide,Yes,4.2,,,,3206,100,gram, Flammable solid
 100010046203,865-47-4,,potassium t-butoxide,Yes,4.2,,,,3206,100,gram, Flammable solid
-100010046300,7440-02-0,,Raney nickel,Yes,4.2,,,II,1378,100,gram, Flammable solid
+100010046300,7440-02-0,,Raney-Nickel (slurry in water),Yes,4.2,,,II,1378,100,gram, Flammable solid
 100010011800,140681-55-6,,selectfluor,Yes,4.2,,,,3088,25,gram, Flammable solid
 100010010800,7440-05-04,,palladium on activated carbon,No,,,,,,10,gram,Harmful H19
 100010046400,7782-92-5,,sodium amide,Yes,4.3,,,,,25,gram, Flammable solid
@@ -1583,7 +1460,6 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010046603,7775-14-6,,sodium dithionite,Yes,4.2,,,II,1384,500,gram, Flammable solid
 100010046700,7440-23-5,,sodium,Yes,,,,,,500,gram, Flammable solid
 100010046800,75965-35-4,,"tetraphenylboron lithium tris(1,2-dimethoxyethane)",Yes,4.1,,,,,5,gram, Flammable solid
-100010046900,13716-12-6,,tri-t-butylphosphine,Yes,4.2,,,I,2846,1,gram, Flammable solid
 100010047000,14694-95-2,,tris(triphenylphosphine)rhodium (I) chloride,No,,,,III,1993,5,gram, Flammable solid
 100010047001,14694-95-2,,tris(triphenylphosphine)rhodium (I) chloride,No,,,,III,1993,5,gram, Flammable solid
 100010047002,14694-95-2,,tris(triphenylphosphine)rhodium (I) chloride,No,,,,III,1993,1,gram, Flammable solid
@@ -1619,7 +1495,6 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010116400,2038-57-5,3-,phenyl-1-propylamine,No,,,,,,2,milliliter,Harmful H7
 100010116500,37595-74-7,N-,phenyl-bis-trifluoromethane sulfonimide,Yes,,,,,,5,gram,Harmful H7
 100010070600,122-78-1,,phenylacetaldehyde,Yes,,,,,,25,milliliter,Fridge S2 B1
-100010070700,536-74-3,,phenylacetylene,Yes,3,,,III,3295,25,milliliter,Fridge S2 B1
 100010116600,98-80-6,,phenylboronic acid,Yes,,,,,,10,gram,Harmful H7
 100010146400,95-54-5,"1,2-",phenylenediamine,Yes,6.1,,,,,100,gram,Toxic TM6
 100010146500,106-50-3,p-,phenylenediamine,Yes,6.1,,,III,1673,50,gram,Toxic TM6
@@ -1639,8 +1514,8 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010047401,18171-74-9,t-,butyltrichlorosilane,Yes,,,,,,10,gram,Flammable solid Dessicator 1
 100010116700,5535-48-8,,phenylvinylsulfone,No,,,,,,5,gram,Harmful H7
 100010116701,5535-48-8,,phenylvinylsulfone,No,,,,,,5,gram,Harmful H7
-100010065000,75-44-5,,phosgene,Yes,3,6.1,,,,100,milliliter,Fridge Door
-100010065100,75-44-5,,phosgene,Yes,3,6.1,,,,500,milliliter,Fridge Door
+100010065000,75-44-5,,phosgene in toluene,Yes,3,6.1,,,,100,milliliter,Fridge Door
+100010065100,75-44-5,,phosgene in toluene,Yes,3,6.1,,,,500,milliliter,Fridge Door
 100010053500,72556-74-2,,phosphocholine chloride calcium salt hydrate,No,,,,,,5,gram,Freezer 1 S2 B1
 100010047500,14694-95-2,,tris(triphenylphosphine)rhodium (I) chloride,No,,,,III,1993,1,gram,Flammable solid Dessicator 1
 100010040300,67-63-0,,phosphomolybdic acid solution,Yes,3,8,,II,2924,100,milliliter,Flammable liquid Small
@@ -1663,7 +1538,7 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010040603,108-89-4,4-,picoline,Yes,3,,,III,2313,500,milliliter,Flammable liquid Small
 100010088900,98-98-6,2-,picolinic acid,Yes,,,,,,100,gram,Harmful H14
 100010010900,824-40-8,,picolinic acid N-oxide,Yes,,,,,,5,gram,Harmful H19
-100010020600,88-89-1,,picric acid,Yes,,,,,,50,gram,Corrosive Acid 2
+100010020600,88-89-1,,picric acid (in ethanol),Yes,,,,,,50,gram,Corrosive Acid 2
 100010089000,76-09-5,,pinacol,Yes,,,,,,100,gram,Harmful H14
 100010023600,110-85-0,,piperazine,Yes,8,3,,,2579,500,gram,Corrosive Base 2
 100010136700,110-89-4,,piperidine,Yes,8,3,3,I,2401,100,milliliter,Poisons Draw 3
@@ -1700,13 +1575,13 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010138702,0584-08-07,,potassium carbonate,Yes,,,,,,500,gram, Sieves/drying agents
 100010089100,590-28-3,,potassium cyanate,No,,,,,,100,gram,Harmful H14
 100010134800,151-50-8,,potassium cyanide,Yes,6.1,,7,,1680,250,gram,Poisons Draw 1
-100010048200,7440-05-3,,palladium on activated carbon,Yes,,,,,,2,gram,Flammable solid Dessicator 2
+100010048200,7440-05-3,,palladium on activated carbon,No,,,,,,2,gram,Flammable solid Dessicator 2
 100010048300,7440-05-3,,palladium on activated carbon,Yes,,,,,,10,gram,Flammable solid Dessicator 2
 100010048301,7440-05-3,,palladium on activated carbon,Yes,,,,,,10,gram,Flammable solid Dessicator 2
 100010048302,7440-05-3,,palladium on activated carbon,Yes,,,,,,10,gram,Flammable solid Dessicator 2
-100010048400,7440-05-3,,palladium on activated carbon,Yes,,,,,,25,gram,Flammable solid Dessicator 2
+100010048400,7440-05-3,,palladium on activated carbon,No,,,,,,25,gram,Flammable solid Dessicator 2
 100010157300,17084-13-8,,potassium hexafluorophosphate,Yes,8,,,II,3260,None,,Corrosive Acid 2
-100010048500,7440-05-3,,palladium on activated carbon,Yes,,,,,,5,gram,Flammable solid Dessicator 2
+100010048500,7440-05-3,,palladium on activated carbon,No,,,,,,5,gram,Flammable solid Dessicator 2
 100010048600,7647-10-1,,palladium chloride,Yes,6.1,8,,II,3290,1,gram,Flammable solid Dessicator 2
 100010048601,7647-10-1,,palladium chloride,Yes,6.1,8,,II,3290,1,gram,Flammable solid Dessicator 2
 100010100300,298-14-6,,potassium hydrogen carbonate,No,,,,,,500,gram,Harmful H24
@@ -1728,19 +1603,16 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010049301,7440-16-6,,rhodium on alumina powder,No,,,,,,5,gram,Flammable solid Dessicator 2
 100010049302,7440-16-6,,rhodium on alumina powder,No,,,,,,5,gram,Flammable solid Dessicator 2
 100010049400,7440-18-8,,ruthenium on alumina powder,No,,,,,,10,gram,Flammable solid Dessicator 2
-100010049500,7440-18-8,,ruthenium on alumina powder,No,,,,,,5,gram,Flammable solid Dessicator 2
-100010049501,7440-18-8,,ruthenium on alumina powder,No,,,,,,25,gram,Flammable solid Dessicator 2
-100010049600,64536-78-3,,"tricyclohexylphosphine (1,5-cyclooctadiene) (pyridine)iridium (I) hexafluorophosphate 99%",No,,,,I,,250,milligram,Flammable solid Dessicator 2
-100010049601,64536-78-3,,"tricyclohexylphosphine (1,5-cyclooctadiene) (pyridine)iridium (I) hexafluorophosphate 99%",No,,,,I,,5,gram,Flammable solid Dessicator 2
+100010049500,7440-18-8,,ruthenium on alumina powder,Yes,,,,,,5,gram,Flammable solid Dessicator 2
+100010049501,7440-18-8,,ruthenium on alumina powder,Yes,,,,,,25,gram,Flammable solid Dessicator 2
+100010049600,64536-78-3,,"tricyclohexylphosphine (1,5-cyclooctadiene) (pyridine)iridium (I) hexafluorophosphate",No,,,,I,,250,milligram,Flammable solid Dessicator 2
+100010049601,64536-78-3,,"tricyclohexylphosphine (1,5-cyclooctadiene) (pyridine)iridium (I) hexafluorophosphate",No,,,,I,,5,gram,Flammable solid Dessicator 2
 100010079000,18618-55-8,,cerium (III) chloride heptahydrate,Yes,,,,,,100,gram,Harmful Dessicator
 100010079001,18618-55-8,,cerium (III) chloride heptahydrate,Yes,,,,,,500,gram,Harmful Dessicator
 100010079100,295-37-4,,cyclam,Yes,,,,,,20,gram,Harmful Dessicator
 100010079200,506-59-2,,dimethylamine hydrochloride,Yes,,,,,,25,gram,Harmful Dessicator
 100010079300,7786-30-3,,magnesium chloride,Yes,,,,,,100,gram,Harmful Dessicator
-100010011000,10387-40-3,,potassium thioacetate,Yes,9,,,III,3335,25,gram, 
-100010172300,10387-40-3,,potassium thioacetate,Yes,9,,,III,3335,25,gram, 
 100010172400,333-20-0,,potassium thiocyanate,Yes,,,,,,50,gram,Harmful H7
-100010124600,2926-27-4,,potassium trifluoromethanesulfonate,No,,,,,,5,gram, 
 100010079500,2923-28-6,,silver trifluoromethanesulfonate,Yes,,,,,,1,gram,Harmful Dessicator
 100010146700,1120-71-4,"1,3-",propane sultone,Yes,6.1,,,III,2811,100,gram,Toxic TM6
 100010146701,1120-71-4,"1,3-",propane sultone,Yes,6.1,,,III,2811,100,gram,Toxic TM6
@@ -1820,11 +1692,11 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010172600,3211-76-5,,selenomethionine,Yes,6.1,,,III,3283,250,milligram,Freezer 1 S2 B1
 100010146800,563-41-7,,semicarbazide hydrochloride,Yes,6.1,,,,2811,100,gram,Toxic TM6
 100010129200,471-34-1,,calcium carbonate,Yes,,,,,,500,gram, Non-hazardous
-100010163400,471-34-1,,calcium carbonate,Yes,,,,,,500,gram, Non-hazardous
+100010163400,471-34-1,,calcium carbonate,No,,,,,,500,gram, Non-hazardous
 100010129300,7789-77-7,,calcium hydrogen phosphate dihydrate,Yes,,,,,,1,kilogram, Non-hazardous
 100010163500,7778-18-9,,calcium sulfate,No,,,,,,500,gram, Non-hazardous
 100010129400,57-88-5,,cholesterol,No,,,,,,100,gram, Non-hazardous
-100010129500,7440-50-8,,copper,Yes,4.1,,,II,3089,10,gram, Non-hazardous
+100010129500,7440-50-8,,copper,No,4.1,,,II,3089,10,gram, Non-hazardous
 100010129600,533-67-5,2-,deoxy-D-ribose,No,,,,,,25,gram, Non-hazardous
 100010129601,533-67-5,2-,deoxy-D-ribose,No,,,,,,25,gram, Non-hazardous
 100010129700,6381-92-6,,ethylenediaminetetraacetic acid di-sodium salt,No,,,,,,500,gram, Non-hazardous
@@ -1833,14 +1705,14 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010130000,56-40-6,,glycine,No,,,,,,500,gram, Non-hazardous
 100010130100,657-27-2,L-( ),lysine monohydrate chloride,No,,,,,,100,gram, Non-hazardous
 100010130200,7791-18-6,,magnesium chloride hexahydrate,No,,,,,,100,gram, Non-hazardous
-100010138800,63231-67-4,,silica gel self-indicating (orange) 3-8 mesh,No,,,,,,500,gram, Sieves/drying agents
-100010138801,63231-67-4,,silica gel self-indicating (orange) 3-8 mesh,No,,,,,,500,gram, Sieves/drying agents
+100010138800,63231-67-4,,silica gel self-indicating (orange),No,,,,,,500,gram, Sieves/drying agents
+100010138801,63231-67-4,,silica gel self-indicating (orange),No,,,,,,500,gram, Sieves/drying agents
 100010011900,63148-62-9,,silicon oil,Yes,,,,,,1,liter,Harmful H19
 100010089800,534-16-7,,silver carbonate,Yes,,,,,,25,gram,Harmful H14
 100010089801,534-16-7,,silver carbonate,Yes,,,,,,25,gram,Harmful H14
 100010134900,506-64-9,,silver cyanide,Yes,6.1,,7,,1684,500,milligram,Poisons Draw 1
 100010130300,611-71-2,(R)-(-)-,mandelic acid,No,,,,,,25,gram, Non-hazardous
-100010130400,66-99-9,2-,napthaldehyde,Yes,,,,,,25,gram, Non-hazardous
+100010130400,66-99-9,2-,napthaldehyde,No,,,,,,25,gram, Non-hazardous
 100010130500,127-08-02,,potassium acetate,No,,,,,,500,gram, Non-hazardous
 100010130501,127-08-02,,potassium acetate,No,,,,,,500,gram, Non-hazardous
 100010130502,127-08-02,,potassium acetate,No,,,,,,500,gram, Non-hazardous
@@ -1852,7 +1724,6 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010119301,2966-50-9,,silver trifluoroacetate,Yes,,,,,,5,gram,Harmful H7
 100010130700,13746-66-2,,potassium ferricyanide,No,,,,,,500,gram, Non-hazardous
 100010130800,7758-11-4,di-,potassium hydrogen orthophosphate,No,,,,,,500,gram, Non-hazardous
-100010079502,2923-28-6,,silver trifluoromethanesulfonate,Yes,,,,,,10,gram, 
 100010023800,8006-28-8,,soda lime (self-indicating),Yes,8,,,III,1907,500,gram,Corrosive Base 2
 100010130900,16788-57-1,di-,potassium hydrogen orthophosphate trihydrate,No,,,,,,500,gram, Non-hazardous
 100010130801,7758-11-4,di-,potassium hydrogen orthophosphate,No,,,,,,500,gram, Non-hazardous
@@ -1976,19 +1847,13 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010074301,429-41-4,,tetrabutylammonium fluoride,Yes,3,8,,II,2924,500,milliliter,Fridge S3 B1
 100010074302,429-41-4,,tetrabutylammonium fluoride,Yes,3,8,,II,2924,500,milliliter,Fridge S3 B1
 100010172100,7722-64-7,,potassium permanganate,Yes,5.1,,,II,1490,100,gram, Oxidants
-100010126200,3109-63-5,,tetrabutylammonium hexafluorophosphate,Yes,,,,II,,25,gram, 
 100010119200,32503-27-8,,tetrabutylammonium hydrogen sulphate,Yes,,,,,,25,gram,Harmful H7
 100010119201,32503-27-8,,tetrabutylammonium hydrogen sulphate,Yes,,,,,,25,gram,Harmful H7
-100010119202,32503-27-8,,tetrabutylammonium hydrogen sulphate,Yes,,,,,,100,gram, 
-100010119203,32503-27-8,,tetrabutylammonium hydrogen sulphate,Yes,,,,,,100,gram, 
 100010157600,2052-49-5,,tetrabutylammonium hydroxide,Yes,8,,,II,3267,None,,Corrosive Base 1
-100010093900,311-28-4,,tetrabutylammonium iodide,Yes,,,,,,100,gram, 
 100010117500,1571-13-7,"3,4,5,6-",tetrachlorophthalimide,Yes,,,,,,5,gram,Harmful H7
 100010090400,118-75-2,,tetrachloroquinone (p-chloranil),Yes,9,,,III,3077,100,gram,Harmful H15
 100010090401,118-75-2,,tetrachloroquinone (p-chloranil),Yes,9,,,III,3077,25,gram,Harmful H15
 100010124900,632-56-4,,"tetraethyl-1,1,2,2-ethanetetracarboxylate",No,,,,,,25,gram,Harmful H9
-100010090500,1643-19-2,,tetraethylammonium bromide,Yes,,,,,,25,gram, 
-100010090501,1643-19-2,,tetraethylammonium bromide,Yes,,,,,,25,gram, 
 100010090502,1643-19-2,,tetraethylammonium bromide,Yes,,,,,,100,gram,Harmful H15
 100010041000,551-62-2,"1,2,3,4-",tetrafluorobenzene,Yes,3,,,II,1993,5,gram,Flammable liquid Small
 100010012100,314-41-0,"2,3,4,6-",tetrafluoronitrobenzene,Yes,,,,,,5,gram,Harmful H19
@@ -2018,7 +1883,6 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010152800,479-33-4,,tetraphenylcyclopentadienone,No,6.1,,,II,,5,gram,Toxic TS3
 100010117900,31366-25-3,,tetrathiafulvalene,No,,,,,,5,gram,Harmful H7
 100010117901,31366-25-3,,tetrathiafulvalene,No,,,,,,5,gram,Harmful H7
-100010117902,31366-25-3,,tetrathiafulvalene,No,,,,,,5,gram, 
 100010041400,288-94-8,,tetrazole solution,Yes,,,,,,100,milliliter,Flammable liquid Small
 100010090700,67-03-8,,thiamine hydrochloride,Yes,,,,,,25,gram,Harmful H15
 100010041500,504-78-9,,thiazolidine,Yes,3,,,III,1993,5,gram,Flammable liquid Small
@@ -2028,9 +1892,9 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010118000,942-91-6,S-(,thiobenzoyl)thioglycolic acid,Yes,9,,,,,10,gram,Harmful H7
 100010127500,2127-05-1,4-(2-,thioethy)lpyridine,Yes,,,,,,1,gram,Freezer 2
 100010127501,2127-05-1,4-(2-,thioethy)lpyridine,Yes,,,,,,1,gram,Freezer 2
-100010118100,93-42-5,,thionalide (α-mercapto-n-2-napthylacetamide),Yes,,,,,,1,gram,Harmful H7
-100010118101,93-42-5,,thionalide (α-mercapto-n-2-napthylacetamide),Yes,,,,,,1,gram,Harmful H7
-100010118102,93-42-5,,thionalide (α-mercapto-n-2-napthylacetamide),Yes,,,,,,1,gram,Harmful H7
+100010118100,93-42-5,,thionalide (Œ±-mercapto-n-2-napthylacetamide),Yes,,,,,,1,gram,Harmful H7
+100010118101,93-42-5,,thionalide (Œ±-mercapto-n-2-napthylacetamide),Yes,,,,,,1,gram,Harmful H7
+100010118102,93-42-5,,thionalide (Œ±-mercapto-n-2-napthylacetamide),Yes,,,,,,1,gram,Harmful H7
 100010173600,507-16-4,,thionyl bromide,Yes,,,2,,,100,milliliter,Freezer 2
 100010021500,7719-09-07,,thionyl chloride,Yes,8,,,I,1836,1,liter,Corrosive Acid 2
 100010021501,7719-09-07,,thionyl chloride,Yes,8,,,I,1836,500,milliliter,Corrosive Acid 2
@@ -2071,7 +1935,7 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010127600,19158-51-1,p-,toluenesulfonyl cyanide,Yes,8,,,II,3261,1,gram,Freezer 2
 100010042100,108-44-1,m-,toluidine,Yes,,,,III,,100,gram,Flammable liquid Small
 100010042101,108-44-1,m-,toluidine,Yes,,,,III,,100,gram,Flammable liquid Small
-100010021800,6192-52-5,p-,tolunesulfonic acid (anhydrous),Yes,8,,,III,2585,500,gram,Corrosive Acid 2
+100010021800,6192-52-5,p-,tolunesulfonic acid,Yes,8,,,III,2585,500,gram,Corrosive Acid 2
 100010042200,529-19-1,o-,tolunitrile,Yes,,,,II,,100,gram,Flammable liquid Small
 100010042201,529-19-1,o-,tolunitrile,Yes,,,,II,,100,gram,Flammable liquid Small
 100010042202,529-19-1,o-,tolunitrile,Yes,,,,II,,500,gram,Flammable liquid Small
@@ -2117,7 +1981,7 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010022103,358-23-6,,trifluoromethanesulfonic anhydride,Yes,8,,,II,3265,10,gram,Corrosive Acid 2
 100010012500,936841-69-9,4-(,trifluoromethyl)-2-pyridinecarbonitrile,Yes,,,,,,500,milligram,Harmful H19
 100010012501,936841-69-9,4-(,trifluoromethyl)-2-pyridinecarbonitrile,Yes,,,,,,1,gram,Harmful H19
-100010153000,455-14-1,4-,aminobenzotrifluoride,No,,,,,,10,gram,Toxic TS3
+100010153000,455-14-1,4-,aminobenzotrifluoride,Yes,,,,,,10,gram,Toxic TS3
 100010042600,98-16-8,3-(,trifluoromethyl)aniline,Yes,,,,,,500,gram,Flammable liquid Small
 100010127700,131747-62-1,3-(,trifluoromethyl)pyridine-2-carboxaldehyde (3-trifluoromethyl-2-formylpyridine),Yes,6.1,,,,,1,gram,Freezer 2
 100010127701,131747-62-1,3-(,trifluoromethyl)pyridine-2-carboxaldehyde (3-trifluoromethyl-2-formylpyridine),Yes,6.1,,,,,1,gram,Freezer 2
@@ -2132,26 +1996,21 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010065401,121-43-7,,trimethyl borate,Yes,3,,,II,2416,250,milliliter,Fridge Door
 100010042700,149-73-5,,trimethyl orthoformate,Yes,3,,,II,2416,500,milliliter,Flammable liquid Small
 100010074400,13361-64-3,,trimethyl(propargyl)silane,Yes,3,,,,,1,gram,Fridge S3 B1
-100010118700,17955-46-3,,trimethyl(tributylstannyl)silane,Yes,,,,II,3272,5,gram, 
 100010042800,3282-30-2,,trimethylacetyl chloride,Yes,,,,,,100,gram,Flammable liquid Small
 100010042801,3282-30-2,,trimethylacetyl chloride,Yes,,,,,,500,gram,Flammable liquid Small
-100010090900,62637-93-8,,trimethylamine N-oxide dihydrate,Yes,,,,II,2924,25,gram, 
 100010090901,62637-93-8,,trimethylamine N-oxide dihydrate,Yes,,,,II,2924,100,gram,Harmful H15
-100010042900,75-50-3,,trimethylamine,Yes,3,8,,II,1297,250,milliliter,Flammable liquid Small
-100010043000,75-50-3,,trimethylamine,Yes,3,8,,II,1297,500,milliliter,Flammable liquid Small
+100010042900,75-50-3,,trimethylamine solution in ethanol,Yes,3,8,,II,1297,250,milliliter,Flammable liquid Small
+100010043000,75-50-3,,trimethylamine solution in ethanol,Yes,3,8,,II,1297,500,milliliter,Flammable liquid Small
 100010043100,1066-38-2,,trimethylbromogermane,Yes,3,,,II,2924,5,gram,Flammable liquid Small
 100010043200,142-25-6,"N,N,N-",trimethylethylenediamine,Yes,,,,,,5,gram,Flammable liquid Small
-100010043300,108-75-8,,collidine,Yes,,,,,,250,milliliter,Flammable liquid Small
-100010043301,108-75-8,,collidine,Yes,,,,,,250,milliliter,Flammable liquid Small
-100010043302,108-75-8,,collidine,Yes,,,,,,100,milliliter,Flammable liquid Small
+100010043300,108-75-8,,"collidine (see 2,4,6-trimethylpyridine)",Yes,,,,,,250,milliliter,Flammable liquid Small
+100010043301,108-75-8,,"collidine (see 2,4,6-trimethylpyridine)",Yes,,,,,,250,milliliter,Flammable liquid Small
+100010043302,108-75-8,,"collidine (see 2,4,6-trimethylpyridine)",Yes,,,,,,100,milliliter,Flammable liquid Small
 100010043400,2917-47-7,3-(,trimethylsilyl)-1-propanol,Yes,,,,,,25,gram,Flammable liquid Small
 100010070900,1066-54-2,(,trimethylsilyl)acetylene,Yes,,,,,,5,gram,Fridge S2 B1
 100010070901,1066-54-2,(,trimethylsilyl)acetylene,Yes,,,,,,5,gram,Fridge S2 B1
 100010078800,76513-69-4,2-(,trimethylsilyl)ethoxyl methyl chloride,Yes,8,3,,,2920,5,milliliter,Fridge S4 B1
-100010078801,76513-69-4,2-(,trimethylsilyl)ethoxyl methyl chloride,Yes,8,3,,,2920,5,milliliter,Fridge S4 B1
 100010125200,2039-96-5,3-(,trimethylsilyl)propanesulfonate sodium salt,Yes,,,,II,2920,5,gram,Harmful H9
-100010174200,3695-77-0,,triphenyl methanethiol,Yes,9,,,III,3335,5,gram, 
-100010174300,3695-77-0,,triphenyl methanethiol,Yes,9,,,III,3335,5,gram, 
 100010059000,437-17-2,,triphenylcarbenium hexafluorophosphate,Yes,8,,,,3261,1,gram,Freezer 1 S3 B1
 100010059100,0341-02-06,,triphenylcarbenium tetrafluoroborate,Yes,8,,,II,3261,5,gram,Freezer 1 S3 B1
 100010059101,0341-02-06,,triphenylcarbenium tetrafluoroborate,Yes,8,,,II,3261,5,gram,Freezer 1 S3 B1
@@ -2161,7 +2020,7 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010059200,1626-24-0,,triphenylgermanium chloride,Yes,,,,,,5,gram,Freezer 1 S3 B1
 100010118800,1626-24-0,,triphenylgermanium chloride,Yes,,,,,,5,gram,Harmful H7
 100010125300,519-73-3,,triphenylmethane,No,,,,,,50,gram,Harmful H9
-100010125400,3695-77-0,,triphenyl methanethiol,Yes,9,,,III,3335,25,gram,Harmful H9
+100010125400,3695-77-0,,triphenyl methanethiol,No,9,,,III,3335,25,gram,Harmful H9
 100010094000,76-84-6,,triphenylmethanol,No,,,,,,100,gram,Harmful H17
 100010060700,596-43-0,,triphenylmethyl bromide,Yes,8,,,,3261,25,gram,Freezer 1 S4 B1
 100010022300,76-83-5,,triphenylchloromethane,Yes,8,,,III,3261,100,gram,Corrosive Acid 2
@@ -2195,10 +2054,10 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010054400,9002-07-07,,trypsin,Yes,,,,,,100,milligram,Freezer 1 S2 B1
 100010094100,61-54-1,,tryptamine,No,,,,,,50,gram,Harmful H17
 100010153300,14040-11-0,,tungsten hexacarbonyl,Yes,6.1,,,,,50,gram,Toxic TS3
-100010174900,12067-46-8,,tungsten selenide,Yes,6.1,,,III,3283,10,gram,Toxic TS3
-100010154200,8012-95-1,,paraffin oil,No,,,,,,2.5,liter, Non-hazardous
-100010154201,8012-95-1,,paraffin oil,No,,,,,,2.5,liter, Non-hazardous
-100010154202,8012-95-1,,paraffin oil,No,,,,,,2.5,liter, Non-hazardous
+100010174900,12067-46-8,,Tungsten selenide,Yes,6.1,,,III,3283,10,gram,Toxic TS3
+100010154200,8012-95-1,,paraffin oil heavy 68,No,,,,,,2.5,liter, Non-hazardous
+100010154201,8012-95-1,,paraffin oil heavy 68,No,,,,,,2.5,liter, Non-hazardous
+100010154202,8012-95-1,,paraffin oil heavy 68,No,,,,,,2.5,liter, Non-hazardous
 100010022400,2082-59-9,,valeric anhydride,Yes,8,,,III,,100,milliliter,Corrosive Acid 2
 100010125600,675-50-7,d-,valerolactam,No,,,,,3265,25,gram,Harmful H9
 100010153400,13476-99-8,,vanadium (III) acetylacetonate,No,,,,,,10,gram,Toxic TS3
@@ -2207,10 +2066,10 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010174700,121-33-5,,vanillin,Yes,,,,,,250,gram,Harmful H15
 100010063500,0108-05-04,,vinyl acetate,Yes,3,,,,,1,liter,Fridge Bottom draw
 100010074000,625-38-7,,vinylacetic acid,Yes,8,6.1,,II,2922,100,gram,Fridge S3 B1
-100010074100,637-69-4,m-,methoxystyrene,Yes,3,,,,,25,gram,Fridge S3 B1
+100010074100,637-69-4,m-,methoxystyrene,No,3,,,,,25,gram,Fridge S3 B1
 100010060800,30030-25-2,,vinylbenzyl chloride,Yes,8,,,II,3265,25,milliliter,Freezer 1 S4 B1
 100010074200,1592-20-7,4-,vinylbenzyl chloride,Yes,8,,,II,3265,100,milliliter,Fridge S3 B1
-100010154203,8012-95-1,,paraffin oil,No,,,,,,2.5,liter, Non-hazardous
+100010154203,8012-95-1,,paraffin oil heavy 68,No,,,,,,2.5,liter, Non-hazardous
 100010119000,2156-04-09,4-,vinylphenylboronic acid,No,,,,,,1,gram,Harmful H7
 100010060900,100-43-6,4-,vinylpyridine,Yes,6.1,3,,II,3073,100,milliliter,Freezer 1 S4 B1
 100010062700,100-69-6,2-,vinylpyridine,Yes,6.1,3,,,3073,5,milliliter,Freezer 1 S4 B1
@@ -2228,22 +2087,25 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010159400,7446-20-0,,zinc sulfate heptahydrate,Yes,9,,,III,3077,500,gram,Harmful H27
 100010159401,100-46-9,,benzylamine,Yes,8,,,II,2735,100,gram,Corrosive Base 1
 100010159402,77-58-7,,dibutyltin dilaurate,Yes,8,,,III,3265,100,gram,Corrosive Acid 2
-100010159403,97-94-9,,triethylborane solution,Yes,4.3,3,,II,3399,100,milliliter,Fridge Door
-100010023901,1310-73-2,,sodium hydroxide,Yes,8,,,,1813,500,gram,Corrosive Base 2
-100010023902,1310-73-2,,sodium hydroxide,Yes,8,,,,1813,500,gram,Corrosive Base 2
+100010159403,97-94-9,,triethylborane,Yes,4.3,3,,II,3399,100,milliliter,Fridge Door
+100010023901,1310-73-2,,sodium hydroxide pellets,Yes,8,,,,1813,500,gram,Corrosive Base 2
+100010023902,1310-73-2,,sodium hydroxide pellets,Yes,8,,,,1813,500,gram,Corrosive Base 2
 100010017302,7647-01-0,,hydrochloric acid,Yes,8,,,II,1789,2.5,liter,Corrosive Acid 1
 100010014503,0128-08-05,N-,bromosuccinimide,Yes,8,,,II,3261,100,gram,Corrosive Acid 1
-100010014504,98-86-2,,acetophenone,Yes,9,,,III,100010014503,100,gram,Flammable liquid Small
+100010014504,98-86-2,,acetophenone,Yes,9,,,III,1.0001E+11,100,gram,Flammable liquid Small
 100010080523,6393-40-4,4-,amino-3-nitrobenzonitrile,Yes,,,,,,5,gram,Harmful H1
 100010172905,7681-82-5,,sodium iodide,No,,,,II,,100,gram, Non-hazardous
 100010023903,1310-73-2,,sodium hydroxide pellets,Yes,8,,,,1813,500,gram,Corrosive Base 2
 100010135202,7632-00-0,,sodium nitrite,Yes,5.1,6.1,7,III,1500,500,gram, Oxidants
 100010132702,16774-21-3,,ammonium cerium (IV) nitrate,Yes,5.1,,,II,1477,250,gram, Oxidants
 100010133203,37222-66-5,,oxone,Yes,5.1,,,III,3215,500,gram, Oxidants
+100010133204,-,,anti-bumping granules,No,,,,,,250,gram, Non-hazardous
+100010133205,-,,anti-bumping granules,No,,,,,,150,gram, Non-hazardous
 100010133206,65997-17-3,,glass beads,No,,,,,,20,gram, Non-hazardous
 100010134401,7631-99-4,,sodium nitrate,Yes,5.1,,,,1498,500,gram, Oxidants
 100010131402,127-09-03,,sodium acetate,No,,,,,,500,gram, Non-hazardous
 100010131403,25322-68-3,,polyethylene glycol 4000,No,,,,,,500,gram, Non-hazardous
+100010133207,-,,anti-bumping granules,No,,,,,,250,gram, Non-hazardous
 100010136001,7647-15-6,,sodium bromide,No,,,3,II,,500,gram, Non-hazardous
 100010083501,77-92-9,,citric acid,Yes,,,,,,500,gram,Harmful H11
 100010021605,10025-69-1,,tin (II) chloride dihydrate,Yes,8,,,III,3260,100,gram,Corrosive Acid 2
@@ -2251,11 +2113,10 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010013902,7447-39-4,,copper chloride anhydrous,Yes,8,,,III,2802,1,gram,Corrosive Acid 1
 100010015401,6287-38-3,"3,4-",dichlorobenzaldehyde,Yes,8,,,II,1759,5,gram,Corrosive Acid 1
 100010018503,50-00-0,,formaldehyde solution,Yes,8,,,III,2209,500,milliliter,Corrosive Acid 2
-100010088403,62-23-7,4-,nitrobenzoic acid,Yes,,,,,,100,gram, 
 100010014203,31106-82-6,2-(,bromomethyl)pyridine HBr,Yes,8,,,II,3261,25,gram,Corrosive Acid 1
 100010014204,31106-82-6,2-(,bromomethyl)pyridine HBr,Yes,8,,,II,3261,5,gram,Corrosive Acid 1
-100010084901,99-34-3,"3,5-",dinitrobenzoic acid,No,,,,,,250,gram,Harmful H11
-100010013003,64-19-7,,acetic acid,Yes,8,3,,II,2789,2.5,liter,Corrosive Acid 1
+100010084901,99-34-3,"3,5-",dinitrobenzoic acid,Yes,,,,,,250,gram,Harmful H11
+100010013003,64-19-7,,acetic acid (glacial),Yes,8,3,,II,2789,2.5,liter,Corrosive Acid 1
 100010013701,98-88-5,,benzoyl chloride,Yes,8,,,II,1736,500,milliliter,Corrosive Acid 1
 100010013702,586-76-5,4-,bromobenzoic acid,Yes,,,,,,25,gram,Harmful H2
 100010105901,1583-58-0,"2,4-",difluorobenzoic acid,Yes,,,,,,25,gram,Harmful H4
@@ -2306,7 +2167,7 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010021939,6018-89-9,,nickel (II) acetate tetrahydrate,Yes,9,,,III,3077,100,gram,Harmful H17
 100010021940,626-55-1,3-,bromopyridine,Yes,3,,,III,1993,5,gram,Flammable liquid Small
 100010021941,143-66-8,,sodium tetraphenylborate,Yes,6.1,,,,,10,gram,Toxic TS3
-100010021942,?,2-,fluorodibenzyl diselenide,No,6.1,,,,,10,gram,Toxic TS2
+100010021942,?,2-,fluorodibenzyl diselenide,Yes,6.1,,,,,10,gram,Toxic TS2
 100010021943,538-75-0,"1,3-",dicyclohexylcarbodiimide,Yes,6.1,,,,,25,gram,Toxic TS2
 100010021944,538-75-0,"1,3-",dicyclohexylcarbodiimide,Yes,6.1,,,,,25,gram,Toxic TS2
 100010021945,1603-41-4,2-,amino-5-picoline,Yes,6.1,,,II,2811,50,gram,Toxic TS1
@@ -2323,8 +2184,7 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010021956,371-40-4,p-,fluoroaniline,No,6.1,,,III,2941,25,gram,Toxic TS2
 100010021957,693-13-0,"N,N'-",diisopropyl carbodiimide,Yes,6.1,,,,,25,gram,Toxic TS2
 100010021958,693-13-0,"N,N'-",diisopropyl carbodiimide,Yes,6.1,,,,,25,gram,Toxic TS2
-100010021959,12067-46-8,,tungsten selenide,Yes,6.1,,,III,3283,10,gram,Toxic TS3
-100010021960,2966-50-9,,silver trifluoroacetate,Yes,,,,,,5,gram, 
+100010021959,12067-46-8,,Tungsten selenide,Yes,6.1,,,III,3283,10,gram,Toxic TS3
 100010021961,34837-55-3,,phenylselenyl bromide,Yes,6.1,8,,II,2928,25,gram,Toxic TS3
 100010021962,112-54-9,,lauric aldehyde (dodecanal),Yes,9,,,III,3082,100,gram,Harmful H17
 100010021963,7664-93-9,,sulfuric acid,Yes,8,,,,,100,milliliter, Oxidants
@@ -2333,7 +2193,7 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010021966,75-65-0,2-,methylpropan-2-ol (t-butyl alcohol),Yes,3,,,II,1120,500,milliliter,Flammable liquid Small
 100010021967,7553-56-2,,iodine,Yes,8,6.1,,III,3495,100,gram,Corrosive Acid 2
 100010021968,155371-19-0,1-,ethyl-3-methylimidazolium hexafluorophosphate (EMIMPF6),No,,,,,,250,gram,Harmful H12
-100010021969,1066-26-8,,sodium acetylide,Yes,,,,,,500,gram, Dangerous when wet
+100010021969,1066-26-8,,sodium acetylide slurry in xylene/light mineral oil,Yes,,,,,,500,gram, Dangerous when wet
 100010021970,91-66-7,"N,N",diethylaniline,Yes,6.1,,,III,2432,1,liter,Toxic TL2
 100010021971,2157-52-0,9-,fluorenone oxime,Yes,9,,,III,3077,25,gram,Harmful H5
 100010021972,502-56-7,,nonan-5-one,Yes,3,,,III,1224,100,gram,Flammable liquid Small
@@ -2361,22 +2221,22 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010021995,12064-62-9,,gadolinium (III) oxide,No,,,,,,5,gram,Harmful H5
 100010021996,69365-72-6,,gallium (III) nitrate hydrate,Yes,5.1,,,,1477,5,gram,Freezer 1 S1 B1
 100010021997,53188-07-1,6-,"hydroxy-2,5,7,8-tetramethylchromane-2-carboxylic acid",No,,,,,,1,gram,Harmful H5
-100010021998,125565-45-9,,"manganese(III) 5,10,15,20-tetra(4-pyridyl)-21H,23H-porphine chloride tetrakis(methochloride)",No,,,,,,500,milligram,Harmful H6
+100010021998,125565-45-9,,"manganese(III) 5,10,15,20-tetra(4-pyridyl)-21H,23H-porphine chloride tetrakis(methochloride)",No ,,,,,,500,milligram,Harmful H6
 100010021999,7775-14-5,,sodium hydrosulfite,Yes,4.2,,,,1384,5,gram, Flammable solid
 100010022056,71418-44-5,,bromobimane,No,,,,,,25,milligram,Freezer 1 S4 B1
-100010022057,533-67-5,2-,deoxy-D-ribose 97%,No,,,,,,1,gram,Harmful H4
+100010022057,533-67-5,2-,deoxy-D-ribose,No,,,,,,1,gram,Harmful H4
 100010022058,148893-10-1,O-(7-,"azabenzotriazol-1-yl)-N,N,N',N'-tetramethyluronium hexafluorophosphate (HATU)",No,4.1,,,,1325,1,gram, Flammable solid
 100010022003,345909-26-4,,taurocholic acid sodium salt hydrate,No,,,,,,1,gram,Harmful H7
 100010022004,338950-81-5,,sodium glycocholate hydrate,No,,,,,,500,milligram,Harmful H7
 100010022005,6151-40-2,,quinidine hydrochloride monohydrate,No,,,3,,,5,gram,Poisons Draw 1
 100010022006,58-96-8,,uridine,No,,,,,,5,gram,Harmful H7
 100010022007,65271-80-9,,mitroxantrone dihydrochloride,No,,,,,,50,milligram,Toxic TS3
-100010022008,6066-82-6,N-,hydroxysuccinimide,Yes,,,,,,1,gram,Harmful H5
+100010022008,6066-82-6,N-,hydroxysuccinimide,No,,,,,,1,gram,Harmful H5
 100010022009,38260-01-4,,triethylenetetramine dihydrochloride,No,,,,,,5,gram,Harmful H7
 100010022010,53348-04-2,"9,10-",diaminophenanthrene,No,,,,,,250,milligram,Freezer 1 S4 B1
 100010022011,556-50-3,,glycylglycine,No,,,,,,25,milligram,Harmful H5
 100010022012,121584-18-7,,valspodar,No,,,,,,20,milligram,Freezer 1 S4 B1
-100010022013,128446-35-5,(2-,hydroxypropyl)-β-cyclodextrin,No,,,,,,None,,Harmful H5
+100010022013,128446-35-5,(2-,hydroxypropyl)-Œ≤-cyclodextrin,No,,,,,,None,,Harmful H5
 100010022014,188247-01-0,,methylproamine,Yes,6,,,,,5.08,gram,Toxic TS3
 100010022015,68168-23-0,b-,cyclodextrin hydrate,No,,,,,,25,gram,Harmful H3
 100010022016,10016-20-3,a-,cyclodextrin,No,,,,,,5,gram,Harmful H3
@@ -2386,7 +2246,7 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010022020,14634-91-4,,ferroin indicator solution,No,,,,,,50,milliliter,Harmful H5
 100010022021,524-36-7,,pyridoxamine dihydrochloride,No,,,,,,1,gram,Harmful H7
 100010022022,84-11-7,"9,10-",phenanthrenequinone,Yes,,,,,,5,gram,Harmful H7
-100010022023,69-78-3,"5,5'-",dithiobis(2-nitrobenzoic acid),Yes,,,,,,10,gram,Harmful H4
+100010022023,69-78-3,"5,5'-",dithiobis(2-nitrobenzoic acid),No,,,,,,10,gram,Harmful H4
 100010022024,14898-67-0,,rhodium (III) chloride hydrate,Yes,8,,,II,3260,5,gram,Corrosive Acid 2
 100010022025,188247-01-0,,methylproamine,Yes,6,,,,,660,milligram,Toxic TS3
 100010022026,1077-28-7,( -)-a-,Lipoic acid,Yes,,,,,,5,gram,Harmful H5
@@ -2401,7 +2261,6 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010022035,2016-88-8,,Amiloride hydrochloride hydrate,No,,,,,,1,gram,Harmful H1
 100010022036,366-18-7,"2,2'-",bipyridyl,Yes,6.1,,,,,25,gram,Toxic TS2
 100010022037,6533-68-2,,Scopolamine hydrobromide,Yes,6.1,,,,1544,1,gram,Toxic TS3
-100010022038,111-90-0,,Diethylene glycol monoethyl ether,No,,,,,,None,, 
 100010022039,563-63-3,,Silver acetate,Yes,9,,,,3077,10,gram,Harmful H7
 100010022040,6151-25-3,,Quercetin dihydrate,Yes,6.1,,,,2811,25,gram,Toxic TS3
 100010022041,13410-01-0,,Sodium selenate,Yes,6.1,,,,2630,100,gram,Toxic TM6
@@ -2414,9 +2273,9 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100010022048,84012-16-8,,Cropure Borage,No,,,,,,300,milliliter,Harmful H11
 100010022049,73163-53-8,,Cholic acid sodium salt,No,,,,,,25,gram,Harmful H3
 100010022050,137729-23-8,,chloropentaamineruthenium (ii) chloride,No,,,,,,1,gram,Harmful H3
-100010022052,826-36-8,"2,2,6,6-",tetramethylpiperidin-4-one,Yes,,,,,,100,gram,Freezer 1 S4 B2
+100010022052,826-36-8,"2,2,6,6-",tetramethylpiperidin-4-one,No,,,,,,100,gram,Freezer 1 S4 B2
 100010022053,454-29-5,DL-,Homocysteine,No,,,,,,5,gram,Freezer 1 S4 B2
-100010022054,25952-53-8,1-(3-,dimethylaminopropyl)-3-ethylcarbodiimide hydrochloride 98%,No,,,,,,25,gram,Freezer 1 S4 B2
+100010022054,25952-53-8,1-(3-,dimethylaminopropyl)-3-ethylcarbodiimide hydrochloride,No,,,,,,25,gram,Freezer 1 S4 B2
 100010022055,7647-01-0,,hydrochloric acid,Yes,8,,,II,1789,100,milliliter,Fridge Door
 100010173001,7772-98-7,,sodium thiosulfate,No,,,,,,500,gram, Non-hazardous
 100010048303,7440-05-3,,palladium on activated carbon,Yes,,,,,,10,gram,Flammable solid Dessicator 2
@@ -2434,55 +2293,51 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 100011000002,107-15-3,,ethylenediamine,Yes,8,3,,II,1604,1,liter,Corrosive Base 2
 100010135804,42333-78-8,"2,4,6-",tris(4-pyridyl)-s-triazine,Yes,,,,,,1,gram,Harmful H18
 100011000009,121-73-3,1-,chloro-3-nitrobenzene,Yes,6.1,,,II,1578,250,gram,Toxic TM1
-100011000010,334-48-5,,decanoic acid,Yes,,,,,,100,gram, 
-100011000011,143-07-7,,dodecanoic acid,Yes,,,,,,25,gram, 
 100011000012,100-17-4,4-,nitroanisole,Yes,6.1,,,III,3458,5,gram,Toxic TS2
 100011000013,7681-38-1,,sodium hydrogen sulphate,No,,,,,,500,gram,Harmful H18
 100011000014,622-24-2,(2-,chloroethyl)benzene,Yes,,,,,,100,gram,Harmful H18
-100011000015,110-81-6,,diethyl disulfide,Yes,3,,,III,1993,25,gram,Flammable liquid Small
+100011000015,110-81-6,,diethyl disulfide,Yes,3,,,III,1993,25,gram,Freezer 2
 100011000016,512-56-1,,trimethyl phosphate,Yes,,,,,,50,gram,Toxic TS3
 100011000017,6168-72-5,( /-)-2-,amino-1-propanol,Yes,8,,,II,2735,25,gram,Corrosive Base 1
 100011000018,402-43-7,4-,bromobenzotrifluoride,Yes,3,,,III,1993,5,gram,Flammable liquid Small
 100011000019,16834-13-2,"5,10,15,20-","tetra(4-pyridyl)-21H,23H-porphine",Yes,,,,,,1,gram,Harmful H18
-330241091338,487-89-8,,indole-3-carboxaldehyde,No,,,,,,25,gram, 
 282915799892,85-42-7,"1,2-","cyclohexanedicarboxylic anhydride, predominantly cis",Yes,,,,,,100,gram,Harmful H17
 749532349278,76-05-1,,trifluoroacetic acid,Yes,8,,,II,2699,100,milliliter,Corrosive Acid 1
 304330997442,512-56-1,,trimethyl phosphate,Yes,,,,,,50,gram,Toxic TS3
 795375850978,110-60-1,"1,4-",diaminobutane,Yes,4.1,8,,,2925,25,gram,Corrosive Base 1
 255405853770,34837-55-3,,phenylselenyl bromide,Yes,6.1,8,,II,2928,5,gram,Toxic TS3
-253805629698,591-49-1,1-,methyl-1-cyclohexene,Yes,,,,,,5,gram,Flammable liquid Small
+253805629698,591-49-1,1-,methyl-1-cyclohexene,Yes,,,,,,5,gram,Freezer 2
 152335742852,10026-12-7,,niobium (V) chloride,Yes,8,,,,3260,10,gram,Corrosive Acid 2
 101768369554,59-67-6,,nicotinic acid,Yes,,,,,,1,gram,Harmful H6
 182035086514,103-82-2,,phenylacetic acid,Yes,,,7,,,10,gram,Poisons Draw 1
 169267673926,91-20-3,,naphthalene,Yes,4.1,,7,,1334,25,gram,Harmful H6
-495409932170,118-92-3,,anthranilic acid,Yes,,,,,,50,gram,Harmful H10
+495409932170,118-92-3,,anthranilic acid,No,,,,,,50,gram,Harmful H10
 276566035990,887144-97-0,"3,3-","dimethyl-1-(trifluoromethyl)-1,2-benziodoxole (Togni reagent)",Yes,4.1,,,,1325,250,milligram,Fridge S2 B1
-118659196701,300-57-2,,allylbenzene,Yes,3,,,,3295,25,milliliter,Flammable liquid Small
+118659196701,300-57-2,,allylbenzene,Yes,3,,,,3295,25,milliliter,Freezer 2
 281098068004,97-00-7,1-,"chloro-2,4-dinitrobenzene",Yes,6.1,,,,3441,50,gram,Toxic TM2
 209619481600,110-86-1,,pyridine,Yes,3,6.1,,II,1282,500,milliliter,Flammable liquid Small
 483087208487,1122-58-3,4-,dimethylaminopyridine (DMAP),Yes,6.1,,,III,2811,5,gram,Toxic TS2
 258765520204,626-15-3,"a,a'-",dibromo-m-xylene,Yes,8,,,,3621,25,gram,Toxic TS2
 120342998849,20970-75-6,3-,methylpicolinonitrile,Yes,,,,,,100,gram,Harmful H16
-268967431322,7791-25-5,,Sulfuryl chloride,Yes,8,6.1,,,2927,100,milliliter,Corrosive Acid 2
+268967431322,7791-25-5,,Sulfuryl chloride (1M in DCM),Yes,8,6.1,,,2927,100,milliliter,Corrosive Acid 2
 192660052780,7757-82-6,,sodium sulfate,No,,,,,,500,gram, Non-hazardous
 206637839360,7757-82-6,,sodium sulfate,No,,,,,,500,gram, Non-hazardous
 786620516375,110-86-1,,pyridine,Yes,3,6.1,,II,1282,500,milliliter,Flammable liquid Small
 310441491988,7429-90-5,,Aluminium,Yes,4.1,,,,1309,500,gram, Flammable solid
 281879457190,100-16-3,4-,nitrophenylhydrazine,Yes,4.1,,,I,3376,25,gram, Flammable solid
-132327483301,13965-03-02,,bis(triphenylphosphine) palladium (II) dichloride,No,,,,,,1,gram,Flammable solid Dessicator 1
-240152420419,14220-64-5,,bis(benzonitrile)dichloropalladium (II),No,,,,,,1,gram,Flammable solid Dessicator 1
-282688041753,13965-03-02,,bis(triphenylphosphine) palladium (II) dichloride,No,,,,,,5,gram,Flammable solid Dessicator 1
-463000853777,13965-03-02,,bis(triphenylphosphine) palladium (II) dichloride,No,,,,,,5,gram,Flammable solid Dessicator 1
+132327483301,13965-03-02,,bis(triphenylphosphine) palladium (II) dichloride,Yes,,,,,,1,gram,Flammable solid Dessicator 1
+240152420419,14220-64-5,,bis(benzonitrile)dichloropalladium (II),Yes,,,,,,1,gram,Flammable solid Dessicator 1
+282688041753,13965-03-02,,bis(triphenylphosphine) palladium (II) dichloride,Yes,,,,,,5,gram,Flammable solid Dessicator 1
+463000853777,13965-03-02,,bis(triphenylphosphine) palladium (II) dichloride,Yes,,,,,,5,gram,Flammable solid Dessicator 1
 265367747029,455-19-6,4-,(Trifluoromethyl)benzaldehyde,Yes,,,,,,5,gram,Harmful H7
 733621166673,455-19-6,4-,(Trifluoromethyl)benzaldehyde,Yes,,,,,,5,gram,Harmful H7
 224859701614,75-05-8,,acetonitrile,Yes,3,,,II,1648,4,liter,Flammable liquid Large
 271090850702,71-36-3,n-,butanol,Yes,3,,,III,1120,500,milliliter,Flammable liquid Large
-147836018988,280-64-8,9-,BBN,Yes,,,,,,800,milliliter,Flammable liquid Large
+147836018988,280-64-8,9-,BBN (0.5M in THF),Yes,,,,,,800,milliliter,Flammable liquid Large
 862303186950,110-54-3,n-,hexane,Yes,3,,,II,1208,2.5,liter,Flammable liquid Large
 156343484728,64-17-5,,ethanol,Yes,3,,,II,1170,1,liter,Flammable liquid Large
 278774463986,67-56-1,,methanol,Yes,3,6.1,,II,1230,1,liter,Flammable liquid Large
-209893469708,108-75-8,,collidine,Yes,,,,,,100,milliliter,Flammable liquid Small
-236353452372,487-89-8,,indole-3-carboxaldehyde,No,,,,,,5,gram, 
+209893469708,108-75-8,,"collidine (see 2,4,6-trimethylpyridine)",Yes,,,,,,100,milliliter,Flammable liquid Small
 303164386215,110-83-8,,cyclohexene,Yes,3,,,II,2256,10,milliliter,Flammable liquid Small
 328256803799,1343-88-0,,florisil,No,,,,,,500,gram, Chromatography/filtration aids
 291603598293,109-72-8,n-,butyl lithium,Yes,4.2,4.3,,I,3394,25,milliliter,Fridge S1
@@ -2498,13 +2353,34 @@ Serial No.,CAS No.,Prefix,Name,Haz. sub.,DG Class,DG Subclass,Schedule,Packing g
 190246358273,124-07-2,,octanoic acid,Yes,8,,,,3265,100,milliliter,Corrosive Acid 2
 204838045380,528-45-0,"3,4-",dinitrobenzoic acid,Yes,,,,,,5,gram,Harmful H4
 333697508217,111-90-0,,Diethylene glycol monoethyl ether,No,,,,,,100,milliliter,Harmful H4
-202248295893,555-16-8,4-,nitrobenzaldehyde,No,,,,,,10,gram,Harmful H8
+202248295893,555-16-8,4-,nitrobenzaldehyde,Yes,,,,,,10,gram,Harmful H8
 281644926795,107-95-9,b-,alanine,Yes,,,,,,25,gram,Harmful H8
 119889211332,123-31-9,,quinol/hydroquinone,Yes,9,,,III,3077,100,gram,Harmful H12
 317829683115,64-20-0,,tetramethylammonium bromide,Yes,,,,,,25,gram,Harmful H15
 143386736215,108-31-6,,maleic anhydride,Yes,,,,,,500,gram,Harmful H15
 688787271218,7758-99-8,,copper (II) sulfate pentahydrate,Yes,9,,,III,3077,500,gram,Harmful H18
 117524919528,100-47-0,,benzonitrile,Yes,,,,,,100,milliliter,Toxic TM2
-117548595757,138500-85-3,4-(,bromomethyl)phenylboronic acid pinacol ester,No,,,,,,10,gram,Harmful H18
+117548595757,138500-85-3,4-(,bromomethyl)phenylboronic acid pinacol ester,Yes,,,,,,10,gram,Harmful H18
 130108859629,7782-49-2,,selenium,Yes,9,,,III,3077,20,gram,Toxic TM6
 236700989901,105-53-3,,diethyl malonate,Yes,,,,,,250,milliliter,Harmful H18
+329645299192,7719-09-07,,thionyl chloride,Yes,8,,,I,1836,500,milliliter,Corrosive Acid 2
+141561555315,882-33-7,,diphenyl disulfide,Yes,,,,,,25,gram,Toxic TS2
+103812784357,32294-60-3,,diphenyl ditelluride,Yes,,,,,,5,gram,Toxic TS2
+275486148735,10102-20-2,,Sodium tellurite,Yes,6.1,,,,3284,10,gram,Toxic TS3
+270369033385,52-89-1,L-,cysteine hydrochloride,Yes,,,,,,10,gram,Harmful H3
+141821332023,616-79-5,2-,Amino-5-nitrobenzoic acid,Yes,,,,,,25,gram,Harmful H10
+237917957465,536-74-3,,phenylacetylene,Yes,3,,,III,3295,25,milliliter,Fridge S2 B1
+184104414142,3975-77-7,1-,"bromo-2,4,6-tri-tert-butylbenzene",Yes,,,,,,1,gram,Harmful H9
+261083108482,21524-34-5,1-,"bromo-2,4,6-triisopropylbenzene",Yes,,,,,,5,gram,Harmful H9
+226089284233,108-18-9,,diisopropylamine,Yes,3,8,,II,1158,500,milliliter,Corrosive Base 2
+114361765425,118-92-3,,anthranilic acid,Yes,,,,,,500,gram,Harmful H25
+219542032727,118-92-3,,anthranilic acid,Yes,,,,,,1,kilogram,Harmful H25
+760307663552,3240-34-4,,iodobenzene diacetate,Yes,,,,,,25,gram,Harmful H8
+860193918186,7642-15-1,cis-4-,octene,Yes,3,,,,,2,gram,Freezer 2
+185949088046,4850-23-8,trans-4-,octene,Yes,3,,,,,2,gram,Freezer 2
+325023805179,536-74-3,,phenylacetylene,Yes,3,,,III,3295,25,milliliter,Fridge S2 B1
+237531102425,586-78-7,1-,Bromo-4-nitrobenzene,Yes,6.1,,,,3459,5,gram,Harmful H2
+221376197968,121-46-0,,"Bicyclo[2.2.1]hepta-2,5,-diene",Yes,3,,,,2251,100,milliliter,Flammable liquid Small
+150522054823,1195-42-2,N-,Cyclohexylisopropylamine,Yes,3,,,,1993,100,milliliter,Flammable liquid Small
+179998317966,286-20-4,,Cyclohexene oxide,Yes,3,,,,,100,milliliter,Flammable liquid Small
+500202868944,765-30-0,,cyclopropylamine,Yes,3,8,,II,2733,25,gram,Flammable liquid Small

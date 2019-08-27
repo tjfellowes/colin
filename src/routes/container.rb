@@ -68,9 +68,26 @@ class Colin::Routes::Container < Sinatra::Base
       else
         chemical = Colin::Models::Chemical.create(cas: params[:cas], prefix: params[:prefix], name: params[:name], haz_substance: params[:haz_substance], un_number: params[:un_number], dg_class_id: params[:dg_class_id], dg_class_2_id: params[:dg_class_2_id], dg_class_3_id: params[:dg_class_3_id], schedule_id: params[:schedule_id], packing_group_id: params[:packing_group_id], created_at: Time.now.utc.iso8601, updated_at: Time.now.utc.iso8601, name_fulltext: params[:prefix] + params[:name])
       end
-      container = Colin::Models::Container.create(serial_number: params[:serial_number], container_size: params[:container_size], size_unit: params[:size_unit], date_purchased: Time.now.utc.iso8601, chemical_id: chemical.id, supplier_id: params[:supplier_id])
 
-      Colin::Models::ContainerLocation.create(created_at: Time.now.utc.iso8601, updated_at: Time.now.utc.iso8601, container_id: container.id, location_id: params[:location_id]).to_json()
+      if Colin::Models::Location.exists?(name_fulltext: params[:location])
+        location = Colin::Models::Location.where(name_fulltext: params[:location]).take
+      else
+        location = Colin::Models::Location.create(name: params[:location])
+      end
+
+      if Colin::Models::Supplier.exists?(name: params[:supplier])
+        supplier = Colin::Models::Supplier.where(name: params[:supplier]).take
+      else
+        supplier = Colin::Models::Supplier.create(name: params[:supplier])
+      end
+
+      container = Colin::Models::Container.create(serial_number: params[:serial_number], container_size: params[:container_size], size_unit: params[:size_unit], date_purchased: Time.now.utc.iso8601, chemical_id: chemical.id, supplier_id: supplier.id)
+
+      Colin::Models::ContainerLocation.create(created_at: Time.now.utc.iso8601, updated_at: Time.now.utc.iso8601, container_id: container.id, location_id: location.id).to_json()
+
+      #container = Colin::Models::Container.create(serial_number: params[:serial_number], container_size: params[:container_size], size_unit: params[:size_unit], date_purchased: Time.now.utc.iso8601, chemical_id: chemical.id, supplier_id: params[:supplier_id])
+
+      #Colin::Models::ContainerLocation.create(created_at: Time.now.utc.iso8601, updated_at: Time.now.utc.iso8601, container_id: container.id, location_id: params[:location_id]).to_json()
     end
   end
 

@@ -79,11 +79,12 @@ def create_location_division(location, name)
   Location.create! do |d|
     d.name = name
     d.parent_id = location.id
+    d.name_fulltext = location.name + " " + name
   end
 end
 
 def create_locations
-  harmful = Location.create!(name: 'Harmful')
+  harmful = Location.create!(name: 'Harmful', name_fulltext: 'Harmful')
   create_location_division(harmful, 'H1')
   create_location_division(harmful, 'H2')
   create_location_division(harmful, 'H3')
@@ -113,7 +114,7 @@ def create_locations
   create_location_division(harmful, 'H27')
   create_location_division(harmful, 'Dessicator')
 
-  toxic = Location.create!(name: 'Toxic')
+  toxic = Location.create!(name: 'Toxic', name_fulltext: 'Toxic')
   create_location_division(toxic, 'TS1')
   create_location_division(toxic, 'TS2')
   create_location_division(toxic, 'TS3')
@@ -130,7 +131,7 @@ def create_locations
   create_location_division(toxic, 'TXL')
   create_location_division(toxic, 'Dessicator')
 
-  corrosive = Location.create!(name: 'Corrosive')
+  corrosive = Location.create!(name: 'Corrosive', name_fulltext: 'Corrosivw')
   create_location_division(corrosive, 'Acid 1')
   create_location_division(corrosive, 'Acid 2')
   create_location_division(corrosive, 'Base 1')
@@ -139,7 +140,7 @@ def create_locations
   create_location_division(corrosive, 'Base 4')
   create_location_division(corrosive, 'Dessicator')
 
-  fridge = Location.create!(name: 'Fridge')
+  fridge = Location.create!(name: 'Fridge', name_fulltext: 'Fridge')
   create_location_division(fridge, 'Bottom draw')
   create_location_division(fridge, 'Door')
   create_location_division(fridge, 'S1')
@@ -152,7 +153,7 @@ def create_locations
   create_location_division(fridge, 'S4')
   create_location_division(fridge, 'S4 B1')
 
-  freezer =Location.create!(name: 'Freezer')
+  freezer =Location.create!(name: 'Freezer', name_fulltext: 'Freezer')
   create_location_division(freezer, '1 S1')
   create_location_division(freezer, '1 S1 B1')
   create_location_division(freezer, '1 S2 B1')
@@ -165,20 +166,20 @@ def create_locations
   create_location_division(freezer, '2')
   create_location_division(freezer, '3')
 
-  flammable_liquid = Location.create!(name: 'Flammable liquid')
+  flammable_liquid = Location.create!(name: 'Flammable liquid', name_fulltext: 'Flammable liquid')
   create_location_division(flammable_liquid, 'Large')
   create_location_division(flammable_liquid, 'Small')
 
-  flammable_solid = Location.create!(name: 'Flammable solid')
+  flammable_solid = Location.create!(name: 'Flammable solid', name_fulltext: 'Flammable solid')
   create_location_division(flammable_solid, 'Dessicator 1')
   create_location_division(flammable_solid, 'Dessicator 2')
 
-  poison = Location.create!(name: 'Poisons')
+  poison = Location.create!(name: 'Poisons', name_fulltext: 'Poisons')
   create_location_division(poison, 'Draw 1')
   create_location_division(poison, 'Draw 2')
   create_location_division(poison, 'Draw 3')
 
-  bench = Location.create!(name: 'Benches')
+  bench = Location.create!(name: 'Benches', name_fulltext: 'Benches')
   create_location_division(bench, '1')
   create_location_division(bench, '2')
   create_location_division(bench, '3')
@@ -194,13 +195,13 @@ def create_locations
   create_location_division(bench, '13')
   create_location_division(bench, '14')
 
-  Location.create!(name: 'Dangerous when wet')
-  Location.create!(name: 'Oxidants')
-  Location.create!(name: 'Non-hazardous')
-  Location.create!(name: 'Chromatography/filtration aids')
-  Location.create!(name: 'Deuterates dessicator')
-  Location.create!(name: 'Sieves/drying agents')
-  Location.create!(name: 'Non-flammable solvents')
+  Location.create!(name: 'Dangerous when wet', name_fulltext: 'Dangerous when wet')
+  Location.create!(name: 'Oxidants', name_fulltext: 'Oxidants')
+  Location.create!(name: 'Non-hazardous', name_fulltext: 'Non-hazardous')
+  Location.create!(name: 'Chromatography/filtration aids', name_fulltext: 'Chromatography/filtration aids')
+  Location.create!(name: 'Deuterates dessicator', name_fulltext: 'Deuterates dessicator')
+  Location.create!(name: 'Sieves/drying agents', name_fulltext: 'Sieves/drying agents')
+  Location.create!(name: 'Non-flammable solvents', name_fulltext: 'Non-flammable solvents')
 
 end
 
