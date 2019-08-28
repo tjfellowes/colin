@@ -59,7 +59,7 @@ class Colin::Routes::Container < Sinatra::Base
     end
   end
 
-  get '/api/create/container' do
+  get '/api/container/create' do
     if params[:cas].nil?
       halt(422, 'Must provide a CAS number for the chemical in the container.')
     else
@@ -91,7 +91,7 @@ class Colin::Routes::Container < Sinatra::Base
     end
   end
 
-  get '/api/update/container/:serial_number' do
+  get '/api/container/update/:serial_number' do
     if params[:serial_number].nil?
       halt(422, 'Must provide a serial number for the container.')
     else
@@ -100,7 +100,7 @@ class Colin::Routes::Container < Sinatra::Base
     end
   end
 
-  get '/api/delete/container/:serial_number' do
+  get '/api/container/delete/:serial_number' do
     if params[:serial_number].nil?
       halt(422, 'Must provide a serial number for the container.')
     else
@@ -185,7 +185,7 @@ class Colin::Routes::Container < Sinatra::Base
     end
   end
 
-  get '/api/search/container/:query' do
+  get '/api/container/search/:query' do
     content_type :json
       Colin::Models::Container.joins('LEFT JOIN container_locations i ON i.container_id = containers.id AND i.id = (SELECT MAX(id) FROM container_locations WHERE container_locations.container_id = i.container_id) INNER JOIN chemicals ON containers.chemical_id = chemicals.id').where("chemicals.name_fulltext LIKE :query OR serial_number LIKE :query OR chemicals.cas LIKE :query", { query: "%#{params[:query]}%"}).includes(
         chemical: [

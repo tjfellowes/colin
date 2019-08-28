@@ -82,7 +82,7 @@ class Colin::Routes::Chemical < Sinatra::Base
     content_type :json
     # Must provide an integer ID. Otherwise respond with 422 (https://restpatterns.mindtouch.us/HTTP_Status_Codes/422_-_Unprocessable_Entity)
     # which means invalid data provided from user.
-    Colin::Models::Chemical.where("name_fulltext LIKE :query", { query: "%#{params[:query]}%"}).includes(
+    Colin::Models::Chemical.where("name_fulltext LIKE :query OR cas LIKE :query", { query: "%#{params[:query]}%"}).includes(
       schedule: {},
       packing_group: {},
       dg_class:  :superclass,
