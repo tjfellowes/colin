@@ -131,7 +131,7 @@ def create_locations
   create_location_division(toxic, 'TXL')
   create_location_division(toxic, 'Dessicator')
 
-  corrosive = Location.create!(name: 'Corrosive', name_fulltext: 'Corrosivw')
+  corrosive = Location.create!(name: 'Corrosive', name_fulltext: 'Corrosive')
   create_location_division(corrosive, 'Acid 1')
   create_location_division(corrosive, 'Acid 2')
   create_location_division(corrosive, 'Base 1')

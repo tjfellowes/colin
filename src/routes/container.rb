@@ -59,7 +59,7 @@ class Colin::Routes::Container < Sinatra::Base
     end
   end
 
-  get '/api/container/create' do
+  post '/api/container/serial/:serial_number' do
     if params[:cas].nil?
       halt(422, 'Must provide a CAS number for the chemical in the container.')
     else
@@ -72,7 +72,7 @@ class Colin::Routes::Container < Sinatra::Base
       if Colin::Models::Location.exists?(name_fulltext: params[:location])
         location = Colin::Models::Location.where(name_fulltext: params[:location]).take
       else
-        location = Colin::Models::Location.create(name: params[:location])
+        location = Colin::Models::Location.create(name: params[:location], name_fulltext: params[:location])
       end
 
       if Colin::Models::Supplier.exists?(name: params[:supplier])
@@ -93,16 +93,26 @@ class Colin::Routes::Container < Sinatra::Base
     end
   end
 
-  get '/api/container/update/:serial_number' do
+  put '/api/container/serial/:serial_number' do
     if params[:serial_number].nil?
       halt(422, 'Must provide a serial number for the container.')
+    elsif params[:serial_number] == "quit"
     else
-      container = Colin::Models::Container.where(serial_number: params[:serial_number]).take
-      Colin::Models::ContainerLocation.create(created_at: Time.now.utc.iso8601, updated_at: Time.now.utc.iso8601, container_id: container.id, location_id: params[:location_id], temp: params[:temp]).to_json()
+      if params[:location].nil?
+        halt(422, 'Must provide a new location for the container.')
+      else
+        container = Colin::Models::Container.where(serial_number: params[:serial_number]).take
+        if Colin::Models::Location.exists?(name_fulltext: params[:location])
+          location = Colin::Models::Location.where(name_fulltext: params[:location]).take
+        else
+          location = Colin::Models::Location.create(name: params[:location], name_fulltext: params[:location])
+        end
+        Colin::Models::ContainerLocation.create(created_at: Time.now.utc.iso8601, updated_at: Time.now.utc.iso8601, container_id: container.id, location_id: location.id, temp: params[:temp]).to_json()
+      end
     end
   end
 
-  get '/api/container/delete/:serial_number' do
+  delete '/api/container/serial/:serial_number' do
     if params[:serial_number].nil?
       halt(422, 'Must provide a serial number for the container.')
     else
@@ -136,9 +146,19 @@ class Colin::Routes::Container < Sinatra::Base
     end
   end
 
-  get '/api/container/location_id/:location_id' do
+  get '/api/container/location/:location' do
     content_type :json
-    if params[:location_id] == '0'
+
+    if Colin::Models::Location.exists?(name_fulltext: params[:location])
+      location = Colin::Models::Location.where(name_fulltext: params[:location]).take
+      location_id = location.id
+    elsif params[:location] == 'Missing'
+      location_id = '0'
+    else
+      halt(404,"Location not found.")
+    end
+
+    if location_id == '0'
       Colin::Models::Container.joins('LEFT JOIN container_locations i ON i.container_id = containers.id AND i.id = (SELECT MAX(id) FROM container_locations WHERE container_locations.container_id = i.container_id)').where('i.location_id' => nil).includes(
         chemical: [
           {dg_class: :superclass},
@@ -162,7 +182,7 @@ class Colin::Routes::Container < Sinatra::Base
         container_location: {include: {location: { include: :parent }}}
       })
     else
-      Colin::Models::Container.joins('LEFT JOIN container_locations i ON i.container_id = containers.id AND i.id = (SELECT MAX(id) FROM container_locations WHERE container_locations.container_id = i.container_id)').where('i.location_id' => params[:location_id]).includes(
+      Colin::Models::Container.joins('LEFT JOIN container_locations i ON i.container_id = containers.id AND i.id = (SELECT MAX(id) FROM container_locations WHERE container_locations.container_id = i.container_id)').where('i.location_id' => location_id).includes(
         chemical: [
           {dg_class: :superclass},
           {dg_class_2: :superclass},
