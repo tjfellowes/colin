@@ -33,7 +33,7 @@ class Colin::Routes::Container < Sinatra::Base
     })
   end
 
-  get '/api/container/:serial_number' do
+  get '/api/container/serial/:serial_number' do
     content_type :json
     # Must provide an integer ID. Otherwise respond with 422 (https://restpatterns.mindtouch.us/HTTP_Status_Codes/422_-_Unprocessable_Entity)
     # which means invalid data provided from user.
@@ -81,10 +81,12 @@ class Colin::Routes::Container < Sinatra::Base
         supplier = Colin::Models::Supplier.create(name: params[:supplier])
       end
 
+      #Comment for initial import script using location id's
       container = Colin::Models::Container.create(serial_number: params[:serial_number], container_size: params[:container_size], size_unit: params[:size_unit], date_purchased: Time.now.utc.iso8601, chemical_id: chemical.id, supplier_id: supplier.id)
 
       Colin::Models::ContainerLocation.create(created_at: Time.now.utc.iso8601, updated_at: Time.now.utc.iso8601, container_id: container.id, location_id: location.id).to_json()
 
+      #Uncomment for initial import script using location id's
       #container = Colin::Models::Container.create(serial_number: params[:serial_number], container_size: params[:container_size], size_unit: params[:size_unit], date_purchased: Time.now.utc.iso8601, chemical_id: chemical.id, supplier_id: params[:supplier_id])
 
       #Colin::Models::ContainerLocation.create(created_at: Time.now.utc.iso8601, updated_at: Time.now.utc.iso8601, container_id: container.id, location_id: params[:location_id]).to_json()

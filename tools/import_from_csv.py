@@ -173,6 +173,9 @@ loc = {
   "Poisons Draw 1": "85",
   "Poisons Draw 2": "86",
   "Poisons Draw 3": "87",
+  "Poisons draw 1": "85",
+  "Poisons draw 2": "86",
+  "Poisons draw 3": "87",
   "Benches": "88",
   "Bench 1": "89",
   "Bench 2": "90",
@@ -235,8 +238,8 @@ with open('inventory.csv') as csv_file:
       name=str(urllib.quote_plus(row[3]))
 
 
-      if row[4]=='Yes': haz_substance='true'
-      elif row[4]=='No': haz_substance='false'
+      if row[4]=='True': haz_substance='true'
+      elif row[4]=='False': haz_substance='false'
       else: haz_substance='true'
 
       dg_class_id=str(dg[row[5]])
@@ -245,8 +248,7 @@ with open('inventory.csv') as csv_file:
       schedule_id=str(schedule[row[7]])
       pg_id=str(pg[row[8]])
 
-      if row[9]!='-': un_number=str(row[9])
-      else: un_number=''
+      un_number=str(row[9])
 
       container_size = str(row[10])
       size_unit = str(row[11])
@@ -257,7 +259,7 @@ with open('inventory.csv') as csv_file:
 
 
       #create container matching the chemical
-      url = "http://localhost:9292/api/create/container?cas=" + cas + "&prefix=" + prefix + "&name=" + name + "&dg_class_id=" + dg_class_id + "&dg_class_2_id=" + dg_class_2_id + "dg_class_3_id=" + dg_class_3_id + "&schedule_id=" + schedule_id +  "&packing_group_id=" + pg_id +  "&un_number=" + un_number + "&haz_substance=" + haz_substance + "&serial_number=" + serial_number + "&container_size=" + container_size + "&size_unit=" + size_unit + "&supplier_id=" + supplier_id + "&location_id=" + location_id
+      url = "http://localhost:9292/api/container/create?cas=" + cas + "&prefix=" + prefix + "&name=" + name + "&dg_class_id=" + dg_class_id + "&dg_class_2_id=" + dg_class_2_id + "dg_class_3_id=" + dg_class_3_id + "&schedule_id=" + schedule_id +  "&packing_group_id=" + pg_id +  "&un_number=" + un_number + "&haz_substance=" + haz_substance + "&serial_number=" + serial_number + "&container_size=" + container_size + "&size_unit=" + size_unit + "&supplier_id=" + supplier_id + "&location_id=" + location_id
       if cas:
         requests.get(url).status_code
 
