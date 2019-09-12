@@ -71,6 +71,8 @@ class Colin::Routes::Container < Sinatra::Base
 
       if Colin::Models::Location.exists?(name_fulltext: params[:location])
         location = Colin::Models::Location.where(name_fulltext: params[:location]).take
+      elsif Colin::Models::Location.exists?(code: params[:location])
+        location = Colin::Models::Location.where(code: params[:location]).take
       else
         location = Colin::Models::Location.create(name: params[:location], name_fulltext: params[:location])
       end
@@ -104,6 +106,8 @@ class Colin::Routes::Container < Sinatra::Base
         container = Colin::Models::Container.where(serial_number: params[:serial_number]).take
         if Colin::Models::Location.exists?(name_fulltext: params[:location])
           location = Colin::Models::Location.where(name_fulltext: params[:location]).take
+        elsif Colin::Models::Location.exists?(code: params[:location])
+        location = Colin::Models::Location.where(code: params[:location]).take
         else
           location = Colin::Models::Location.create(name: params[:location], name_fulltext: params[:location])
         end
@@ -151,6 +155,9 @@ class Colin::Routes::Container < Sinatra::Base
 
     if Colin::Models::Location.exists?(name_fulltext: params[:location])
       location = Colin::Models::Location.where(name_fulltext: params[:location]).take
+      location_id = location.id
+    elsif Colin::Models::Location.exists?(code: params[:location])
+      location = Colin::Models::Location.where(code: params[:location]).take
       location_id = location.id
     elsif params[:location] == 'Missing'
       location_id = '0'
