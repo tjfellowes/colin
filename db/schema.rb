@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190827045318) do
+ActiveRecord::Schema.define(version: 20190912053557) do
 
   create_table "chemicals", force: :cascade do |t|
     t.string "cas", null: false
@@ -68,6 +68,7 @@ ActiveRecord::Schema.define(version: 20190827045318) do
     t.string "name", null: false
     t.integer "parent_id"
     t.string "name_fulltext", default: "", null: false
+    t.string "code", default: "", null: false
     t.index ["parent_id"], name: "index_locations_on_parent_id"
   end
 

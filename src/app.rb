@@ -31,7 +31,8 @@ module Colin
     Rack::Cascade.new [
       Colin::BaseWebApp,
       Colin::Routes::Chemical,
-      Colin::Routes::Container
+      Colin::Routes::Container,
+      Colin::Routes::Location
     ]
   end
 
