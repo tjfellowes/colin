@@ -111,7 +111,21 @@ class Colin::Routes::Container < Sinatra::Base
         else
           location = Colin::Models::Location.create(name: params[:location], name_fulltext: params[:location])
         end
-        Colin::Models::ContainerLocation.create(created_at: Time.now.utc.iso8601, updated_at: Time.now.utc.iso8601, container_id: container.id, location_id: location.id, temp: params[:temp]).to_json()
+        Colin::Models::ContainerLocation.create(created_at: Time.now.utc.iso8601, updated_at: Time.now.utc.iso8601, container_id: container.id, location_id: location.id, temp: params[:temp])
+
+        Colin::Models::Container.where("serial_number = ?", params[:serial_number]).to_json(include: {
+        chemical: {
+          include: {
+            schedule: {},
+            packing_group: {},
+            dg_class: {include: :superclass},
+            dg_class_2: {include: :superclass},
+            dg_class_3: {include: :superclass}
+          }
+        },
+        supplier: {},
+        container_location: {include: {location: { include: :parent }}}
+      })
       end
     end
   end
