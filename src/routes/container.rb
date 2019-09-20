@@ -84,7 +84,7 @@ class Colin::Routes::Container < Sinatra::Base
       end
 
       #Comment for initial import script using location id's
-      container = Colin::Models::Container.create(serial_number: params[:serial_number], container_size: params[:container_size], size_unit: params[:size_unit], date_purchased: Time.now.utc.iso8601, chemical_id: chemical.id, supplier_id: supplier.id)
+      container = Colin::Models::Container.create(serial_number: params[:serial_number], description: params[:description], container_size: params[:container_size], size_unit: params[:size_unit], date_purchased: Time.now.utc.iso8601, chemical_id: chemical.id, supplier_id: supplier.id)
 
       Colin::Models::ContainerLocation.create(created_at: Time.now.utc.iso8601, updated_at: Time.now.utc.iso8601, container_id: container.id, location_id: location.id).to_json()
 
@@ -99,11 +99,10 @@ class Colin::Routes::Container < Sinatra::Base
     if params[:serial_number].nil?
       halt(422, 'Must provide a serial number for the container.')
     elsif params[:serial_number] == "quit"
+      #do nothing
     else
-      if params[:location].nil?
-        halt(422, 'Must provide a new location for the container.')
-      else
-        container = Colin::Models::Container.where(serial_number: params[:serial_number]).take
+      container = Colin::Models::Container.where(serial_number: params[:serial_number]).take
+      unless params[:location].nil?
         if Colin::Models::Location.exists?(name_fulltext: params[:location])
           location = Colin::Models::Location.where(name_fulltext: params[:location]).take
         elsif Colin::Models::Location.exists?(code: params[:location])
@@ -112,8 +111,13 @@ class Colin::Routes::Container < Sinatra::Base
           location = Colin::Models::Location.create(name: params[:location], name_fulltext: params[:location])
         end
         Colin::Models::ContainerLocation.create(created_at: Time.now.utc.iso8601, updated_at: Time.now.utc.iso8601, container_id: container.id, location_id: location.id, temp: params[:temp])
+      end
 
-        Colin::Models::Container.where("serial_number = ?", params[:serial_number]).to_json(include: {
+      unless params[:description].nil?
+        container.update(description: params[:description])
+      end
+
+      Colin::Models::Container.where("serial_number = ?", params[:serial_number]).to_json(include: {
         chemical: {
           include: {
             schedule: {},
@@ -126,7 +130,6 @@ class Colin::Routes::Container < Sinatra::Base
         supplier: {},
         container_location: {include: {location: { include: :parent }}}
       })
-      end
     end
   end
 
