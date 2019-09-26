@@ -62,14 +62,18 @@ module Colin
     # Development-specific configuration settings
     configure :development do
       # Test database
-      set :database, adapter: 'sqlite3', database: 'tmp/development.sqlite3'
+      set :database, adapter: 'postgresql', encoding: 'unicode', database: 'colin_development', pool: '5'
+    end
+
+    configure :test do
+      set :database, adapter: 'postgresql', encoding: 'unicode', database: 'colin_test', pool: '5'
     end
 
     configure :production do
-      set :database, {adapter: 'mysql',  encoding: 'unicode', host: 'localhost', port: '3306', database: 'colin', pool: 2, username: 'colin', password: 'FtXBppyZ7gCg3Fp5wNpVaDtfhPeUqwY6LUmsjLjb4S6peQ4xFaYcgaJxuzMAB5vB'}
+      set :database, adapter: 'postgresql', encoding: 'unicode', database: 'colin_production', pool: '5'
     end
 
-    set :environment, :development
+    set :environment, :production
 
     # Single-page front-end web app
     get '/' do
