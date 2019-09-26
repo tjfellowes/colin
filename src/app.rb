@@ -62,15 +62,15 @@ module Colin
     # Development-specific configuration settings
     configure :development do
       # Test database
-      set :database, adapter: 'postgresql', encoding: 'unicode', database: 'colin_development', pool: '5'
+      set :database, adapter: 'postgresql', encoding: 'unicode', database: 'colin_development', pool: '5', timeout: '5000'
     end
 
     configure :test do
-      set :database, adapter: 'postgresql', encoding: 'unicode', database: 'colin_test', pool: '5'
+      set :database, adapter: 'postgresql', encoding: 'unicode', database: 'colin_test', pool: '5', timeout: '5000'
     end
 
     configure :production do
-      set :database, adapter: 'postgresql', encoding: 'unicode', database: 'colin_production', pool: '5'
+      set :database, adapter: 'postgresql', encoding: 'unicode', database: 'colin_production', pool: '5', timeout: '5000'
     end
 
     set :environment, :production
