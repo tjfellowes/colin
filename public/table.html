@@ -61,11 +61,47 @@
 
         tr = table.insertRow(-1);
 
-        tr.insertCell(0).innerHTML = String(data[i]["chemical"]["cas"]);
-        tr.insertCell(1).innerHTML = String(data[i]["chemical"]["prefix"]).concat(String(data[i]["chemical"]["name"]));
-        tr.insertCell(2).innerHTML = String(data[i]["container_size"]).concat(String(data[i]["size_unit"]));
-        tr.insertCell(3).innerHTML = String(data[i]["location"]["parent"]["name"]).concat(" ", String(data[i]["location"]["name"]));
-        tr.insertCell(4).innerHTML = String(data[i]["supplier"]["name"]);
+        if (data[i]["chemical"]["cas"]) {
+          var cas = String(data[i]["chemical"]["cas"])
+        } else {
+          var cas = "-"
+        }
+
+        if (data[i]["chemical"]["prefix"] && data[i]["chemical"]["name"]) {
+          var name = String(data[i]["chemical"]["prefix"]) + String(data[i]["chemical"]["name"])
+        } else if (data[i]["chemical"]["name"]) {
+          var name = String(data[i]["chemical"]["name"])
+        } else {
+          var name = "-"
+        }
+
+        if (data[i]["container_size"] && data[i]["size_unit"]) {
+          var size = String(data[i]["container_size"]) + String(data[i]["size_unit"])
+        } else {
+          var size = "-"
+        }
+
+        if (data[i]["location"]["parent"]["name"] && data[i]["location"]["name"]) {
+          var location = String(data[i]["location"]["parent"]["name"]) + " " + String(data[i]["location"]["name"])
+        } else if (data[i]["location"]["name"]) {
+          var location = String(data[i]["location"]["name"])
+        } else {
+          var location = "-"
+        }
+
+        if (data[i]["supplier"]["name"]) {
+          var supplier = String(data[i]["supplier"]["name"])
+        } else {
+          var supplier = "-"
+        }
+
+
+
+        tr.insertCell(0).innerHTML = cas;
+        tr.insertCell(1).innerHTML = name;
+        tr.insertCell(2).innerHTML = size;
+        tr.insertCell(3).innerHTML = location;
+        tr.insertCell(4).innerHTML = supplier;
       }
 
       // FINALLY ADD THE NEWLY CREATED TABLE WITH JSON DATA TO A CONTAINER.
