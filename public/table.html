@@ -62,10 +62,10 @@
         tr = table.insertRow(-1);
 
         tr.insertCell(0).innerHTML = data[i]["chemical"]["cas"];
-        tr.insertCell(1).innerHTML =data[i]["chemical"]["name"];
-        tr.insertCell(2).innerHTML = data[i]["chemical"]["cas"];
-        tr.insertCell(3).innerHTML = data[i]["chemical"]["cas"];
-        tr.insertCell(4).innerHTML = data[i]["chemical"]["name"];
+        tr.insertCell(1).innerHTML = data[i]["chemical"]["prefix"].concat(data[i]["chemical"]["name"]);
+        tr.insertCell(2).innerHTML = data[i]["container_size"].concat(" ", data[i]["size_unit"]);
+        tr.insertCell(3).innerHTML = data[i]["location"]["parent"]["name"].concat(" ", data[i]["location"]["name"]);
+        tr.insertCell(4).innerHTML = data[i]["supplier"]["name"];
       }
 
       // FINALLY ADD THE NEWLY CREATED TABLE WITH JSON DATA TO A CONTAINER.
