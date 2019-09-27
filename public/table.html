@@ -40,7 +40,7 @@
   function CreateTableFromJSON() {
 
     function makeTable(data) {
-      document.write(JSON.stringify(data))
+      document.write(JSON.stringify(data["serial_number"]))
       var col = ['CAS', 'Name', 'Size', 'Location', 'Supplier'];
 
       // CREATE DYNAMIC TABLE.
