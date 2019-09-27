@@ -61,13 +61,13 @@
 
         tr = table.insertRow(-1);
 
-        if (data[i]["chemical"]["cas"]) {
+        if (typeof(data[i]["chemical"]["cas"]) !== 'undefined') {
           var cas = String(data[i]["chemical"]["cas"])
         } else {
           var cas = "-"
         }
 
-        if (data[i]["chemical"]["prefix"] && data[i]["chemical"]["name"]) {
+        if ((typeof(data[i]["chemical"]["prefix"]) !== 'undefined') && (typeof (data[i]["chemical"]["name"]) !== 'undefined')) {
           var name = String(data[i]["chemical"]["prefix"]) + String(data[i]["chemical"]["name"])
         } else if (data[i]["chemical"]["name"]) {
           var name = String(data[i]["chemical"]["name"])
@@ -75,13 +75,13 @@
           var name = "-"
         }
 
-        if (data[i]["container_size"] && data[i]["size_unit"]) {
+        if ((typeof(data[i]["container_size"]) !== 'undefined') && (typeof(data[i]["size_unit"]) !== 'undefined')) {
           var size = String(data[i]["container_size"]) + String(data[i]["size_unit"])
         } else {
           var size = "-"
         }
 
-        if (data[i]["location"]["parent"] && data[i]["location"]["name"]) {
+        if ((typeof(data[i]["location"]["parent"]) !== 'undefined') && (typeof(data[i]["location"]["name"]) !== 'undefined')) {
           var location = String(data[i]["location"]["parent"]["name"]) + " " + String(data[i]["location"]["name"])
         } else if (data[i]["location"]["name"]) {
           var location = String(data[i]["location"]["name"])
@@ -89,7 +89,7 @@
           var location = "-"
         }
 
-        if (data[i]["supplier"]["name"]) {
+        if (typeof(data[i]["supplier"]["name"]) !== 'undefined') {
           var supplier = String(data[i]["supplier"]["name"])
         } else {
           var supplier = "-"
