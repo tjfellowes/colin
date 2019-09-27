@@ -81,7 +81,7 @@
           var size = "-"
         }
 
-        if (data[i]["location"]["parent"]["name"] && data[i]["location"]["name"]) {
+        if (data[i]["location"]["parent"] && data[i]["location"]["name"]) {
           var location = String(data[i]["location"]["parent"]["name"]) + " " + String(data[i]["location"]["name"])
         } else if (data[i]["location"]["name"]) {
           var location = String(data[i]["location"]["name"])
