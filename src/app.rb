@@ -80,6 +80,10 @@ module Colin
       redirect '/index.html'
     end
 
+    get '' do
+      redirect '/index.html'
+    end
+
     # Route for 404 not found
     #not_found do
     #  redirect '/404.html'
