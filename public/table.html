@@ -38,17 +38,9 @@
 
 <script>
   function CreateTableFromJSON() {
-    // EXTRACT VALUE FOR HTML HEADER.
-    // ('Book ID', 'Book Name', 'Category' and 'Price')
+
     function makeTable(data) {
-      var col = [];
-      for (var i = 0; i < data.length; i++) {
-        for (var key in data[i]) {
-          if (col.indexOf(key) === -1) {
-            col.push(key);
-          }
-        }
-      }
+      var col = ['CAS', 'Name', 'Size', 'Location', 'Supplier'];
 
       // CREATE DYNAMIC TABLE.
       var table = document.createElement("table");
@@ -70,7 +62,7 @@
 
         for (var j = 0; j < col.length; j++) {
           var tabCell = tr.insertCell(-1);
-          tabCell.innerHTML = data[i][col[j]];
+          tabCell.innerHTML = data[i]['cas'];
         }
       }
 
