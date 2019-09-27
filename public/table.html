@@ -61,11 +61,11 @@
 
         tr = table.insertRow(-1);
 
-        tr.insertCell(0).innerHTML = string(data[i]["chemical"]["cas"]);
-        tr.insertCell(1).innerHTML = string(data[i]["chemical"]["prefix"]).concat(string(data[i]["chemical"]["name"]));
-        tr.insertCell(2).innerHTML = string(data[i]["container_size"]).concat(string(data[i]["size_unit"]));
-        tr.insertCell(3).innerHTML = string(data[i]["location"]["parent"]["name"]).concat(" ", string(data[i]["location"]["name"]));
-        tr.insertCell(4).innerHTML = string(data[i]["supplier"]["name"]);
+        tr.insertCell(0).innerHTML = String(data[i]["chemical"]["cas"]);
+        tr.insertCell(1).innerHTML = String(data[i]["chemical"]["prefix"]).concat(String(data[i]["chemical"]["name"]));
+        tr.insertCell(2).innerHTML = String(data[i]["container_size"]).concat(String(data[i]["size_unit"]));
+        tr.insertCell(3).innerHTML = String(data[i]["location"]["parent"]["name"]).concat(" ", String(data[i]["location"]["name"]));
+        tr.insertCell(4).innerHTML = String(data[i]["supplier"]["name"]);
       }
 
       // FINALLY ADD THE NEWLY CREATED TABLE WITH JSON DATA TO A CONTAINER.
