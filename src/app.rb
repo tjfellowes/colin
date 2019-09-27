@@ -1,6 +1,7 @@
 require 'sinatra'
 require 'sinatra/activerecord'
 require 'json'
+config.assets.initialize_on_precompile = false
 
 #
 # CoLIN, the COmprehensive Labortory Information Nexus.
