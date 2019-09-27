@@ -43,7 +43,7 @@
             <a class="nav-link" href="#">Inventory</a>
           </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
+        <form id="search" class="form-inline my-2 my-lg-0">
           <input class="form-control mr-sm-2" type="text" placeholder="Search">
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
@@ -54,7 +54,14 @@
   <div class="container">
     <div class="row">
       <div class="col-sm-12">
-        <div id="inventory-table"></div>
+        <table id="inventory-table">
+          <thead>
+            <th>Some Attribute</th>
+            <th>Some Other Attribute</th>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>

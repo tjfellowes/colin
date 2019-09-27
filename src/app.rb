@@ -73,7 +73,7 @@ module Colin
     #   set :database, adapter: 'postgresql', database: 'colin_production', pool: '5', timeout: '5000'
     # end
 
-    set :environment, :production
+    set :environment, :development
 
     # Single-page front-end web app
     get '/' do
