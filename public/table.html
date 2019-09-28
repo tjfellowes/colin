@@ -81,10 +81,8 @@
           var size = "-"
         }
 
-        if ((typeof(data[i]["container_location"]["location"]["parent"]) !== 'undefined') && (typeof(data[i]["container_location"]["location"]["name"]) !== 'undefined')) {
-          var location = String(data[i]["container_location"]["location"]["parent"]["name"]) + " " + String(data[i]["container_location"]["location"]["name"])
-        } else if (data[i]["container_location"]["location"]["name"]) {
-          var location = String(data[i]["container_location"]["location"]["name"])
+        if ((typeof(data[i]["container_location"]["location"]["name_fulltext"]) !== 'undefined')) {
+          var location = String(data[i]["container_location"]["location"]["name_fulltext"])
         } else {
           var location = "-"
         }
