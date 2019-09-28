@@ -81,10 +81,10 @@
           var size = "-"
         }
 
-        if ((typeof(data[i]["location"]["parent"]) !== 'undefined') && (typeof(data[i]["location"]["name"]) !== 'undefined')) {
-          var location = String(data[i]["location"]["parent"]["name"]) + " " + String(data[i]["location"]["name"])
-        } else if (data[i]["location"]["name"]) {
-          var location = String(data[i]["location"]["name"])
+        if ((typeof(data[i]["container_location"]["location"]["parent"]) !== 'undefined') && (typeof(data[i]["container_location"]["location"]["name"]) !== 'undefined')) {
+          var location = String(data[i]["container_location"]["location"]["parent"]["name"]) + " " + String(data[i]["container_location"]["location"]["name"])
+        } else if (data[i]["container_location"]["location"]["name"]) {
+          var location = String(data[i]["container_location"]["location"]["name"])
         } else {
           var location = "-"
         }
