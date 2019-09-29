@@ -43,10 +43,10 @@
             <a class="nav-link" href="#">Inventory</a>
           </li>
         </ul>
-        <form id="search" class="form-inline my-2 my-lg-0" action="#" onsubmit="CreateTableFromJSON(query)">
-          <input class="form-control mr-sm-2" type="text" placeholder="Search" name="query">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
+        <div class="form-inline my-2 my-lg-0" action="#" onsubmit="CreateTableFromJSON(query)">
+          <input class="form-control mr-sm-2" type="text" placeholder="Search" id="query">
+          <button class="btn btn-outline-success my-2 my-sm-0" onclick="CreateTableFromJSON()" type="submit">Search</button>
+        </div>
       </div>
     </nav>
   </div>
@@ -54,7 +54,7 @@
   <div class="container">
     <div class="row">
       <div class="col-sm-12">
-        <div id="inventory-table">
+        <div id="inv entory-table">
         </div>
       </div>
     </div>
@@ -67,11 +67,11 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
   <script>
-    function CreateTableFromJSON(query) {
+    function CreateTableFromJSON() {
 
       function makeTable(data) {
         //document.write(JSON.stringify(data[1]["serial_number"]))
-        var col = ['CAS', 'Name', 'Size', 'Location', 'Supplier'];
+        var col = ['CAS', 'Name', 'Size', 'Location', 'Supplier', 'Test'];
 
         // CREATE DYNAMIC TABLE.
         var table = document.createElement("table");
@@ -133,6 +133,7 @@
         divContainer.innerHTML = "";
         divContainer.appendChild(table);
       }
+      var query = document.getElementById("query").value
       $.getJSON('http://colin-uom.herokuapp.com/api/container/search/' + query, makeTable)
     }
   </script>
