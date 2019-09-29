@@ -76,7 +76,7 @@
         }
 
         if ((typeof(data[i]["container_size"]) !== 'undefined') && (typeof(data[i]["size_unit"]) !== 'undefined')) {
-          var size = String(data[i]["container_size"]) + String(data[i]["size_unit"])
+          var size = String(data[i]["container_size"]) + " " + String(data[i]["size_unit"])
         } else {
           var size = "-"
         }
