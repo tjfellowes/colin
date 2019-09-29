@@ -79,11 +79,11 @@ module Colin
 
     # Single-page front-end web app
     get '/' do
-      redirect '/index.html'
+      redirect '/table.html'
     end
 
     get '' do
-      redirect '/index.html'
+      redirect '/table.html'
     end
 
     # Route for 404 not found
