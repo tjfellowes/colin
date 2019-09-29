@@ -254,14 +254,15 @@ with open('inventory.csv') as csv_file:
       size_unit = str(row[11])
 
       location_id=str(loc[row[12]])
+      location=str(row[12])
 
       supplier_id=str(0)
 
 
       #create container matching the chemical
-      url = "http://localhost:9292/api/container/create?cas=" + cas + "&prefix=" + prefix + "&name=" + name + "&dg_class_id=" + dg_class_id + "&dg_class_2_id=" + dg_class_2_id + "dg_class_3_id=" + dg_class_3_id + "&schedule_id=" + schedule_id +  "&packing_group_id=" + pg_id +  "&un_number=" + un_number + "&haz_substance=" + haz_substance + "&serial_number=" + serial_number + "&container_size=" + container_size + "&size_unit=" + size_unit + "&supplier_id=" + supplier_id + "&location_id=" + location_id
+      url = "http://colin-uom.herokuapp.com/api/container/serial/" + serial_number + "?cas=" + cas + "&prefix=" + prefix + "&name=" + name + "&dg_class_id=" + dg_class_id + "&dg_class_2_id=" + dg_class_2_id + "dg_class_3_id=" + dg_class_3_id + "&schedule_id=" + schedule_id +  "&packing_group_id=" + pg_id +  "&un_number=" + un_number + "&haz_substance=" + haz_substance + "&serial_number=" + serial_number + "&container_size=" + container_size + "&size_unit=" + size_unit + "&supplier_id=" + supplier_id + "&location=" + location
       if cas:
-        requests.get(url).status_code
+        requests.post(url).status_code
 
         t.add_row([serial_number, cas, prefix, name, dg_class_id, dg_class_2_id, dg_class_3_id, schedule_id, container_size, size_unit, pg_id, un_number, haz_substance, location_id])
 

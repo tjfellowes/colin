@@ -87,7 +87,7 @@
           var location = "-"
         }
 
-        if (typeof(data[i]["supplier"]["name"]) !== 'undefined') {
+        if ((typeof (data[i]["supplier"]) !== 'undefined') && (typeof(data[i]["supplier"]["name"]) !== 'undefined')) {
           var supplier = String(data[i]["supplier"]["name"])
         } else {
           var supplier = "-"
