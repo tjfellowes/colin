@@ -52,7 +52,7 @@ class Colin::Routes::Container < Sinatra::Base
           }
         },
         supplier: {},
-        container_location: {include: {location: { include: :parent }}}
+        current_location: {include: {location: { include: :parent }}}
       })
     else
       halt(404, "Container with serial number #{params[:serial_number]} not found.")
