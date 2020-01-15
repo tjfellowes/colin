@@ -164,8 +164,6 @@ class Colin::Routes::Container < Sinatra::Base
           }
         },
         supplier: {},
-        current_location: {include: {location: { include: :parent }}},
-        storage_location: {include: {location: { include: :parent }}},
         container_location: {include: {location: { include: :parent }}}
       })
     else
@@ -247,8 +245,6 @@ class Colin::Routes::Container < Sinatra::Base
           schedule: {},
           packing_group: {}],
         supplier: {},
-        current_location: {include: {location: { include: :parent }}},
-        storage_location: {include: {location: { include: :parent }}},
         container_location: {include: {location: { include: :parent }}}
       ).to_json(include: {
         chemical: {
@@ -261,8 +257,6 @@ class Colin::Routes::Container < Sinatra::Base
           }
         },
         supplier: {},
-        current_location: {include: {location: { include: :parent }}},
-        storage_location: {include: {location: { include: :parent }}},
         container_location: {include: {location: { include: :parent }}}
       })
   end
