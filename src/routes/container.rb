@@ -52,7 +52,9 @@ class Colin::Routes::Container < Sinatra::Base
           }
         },
         supplier: {},
-        current_location: {include: {location: { include: :parent }}}
+        current_location: {include: {location: { include: :parent }}},
+        storage_location: {include: {location: { include: :parent }}},
+        container_location: {include: {location: { include: :parent }}}
       })
     else
       halt(404, "Container with serial number #{params[:serial_number]} not found.")
@@ -128,8 +130,10 @@ class Colin::Routes::Container < Sinatra::Base
           }
         },
         supplier: {},
+        current_location: {include: {location: { include: :parent }}},
+        storage_location: {include: {location: { include: :parent }}},
         container_location: {include: {location: { include: :parent }}}
-      })
+        })
     end
   end
 
@@ -160,6 +164,8 @@ class Colin::Routes::Container < Sinatra::Base
           }
         },
         supplier: {},
+        current_location: {include: {location: { include: :parent }}},
+        storage_location: {include: {location: { include: :parent }}},
         container_location: {include: {location: { include: :parent }}}
       })
     else
@@ -241,7 +247,9 @@ class Colin::Routes::Container < Sinatra::Base
           schedule: {},
           packing_group: {}],
         supplier: {},
-        container_location: {location: :parent}
+        current_location: {include: {location: { include: :parent }}},
+        storage_location: {include: {location: { include: :parent }}},
+        container_location: {include: {location: { include: :parent }}}
       ).to_json(include: {
         chemical: {
           include: {
@@ -253,6 +261,8 @@ class Colin::Routes::Container < Sinatra::Base
           }
         },
         supplier: {},
+        current_location: {include: {location: { include: :parent }}},
+        storage_location: {include: {location: { include: :parent }}},
         container_location: {include: {location: { include: :parent }}}
       })
   end
