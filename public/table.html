@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Convert JSON Data to HTML Table</title>
+  <style>
+    th,
+    td,
+    p,
+    input {
+      font: 14px Verdana;
+    }
+
+    table,
+    th,
+    td {
+      border: solid 1px #DDD;
+      border-collapse: collapse;
+      padding: 2px 3px;
+      text-align: center;
+    }
+
+    th {
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+  <p id="showData"></p>
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"
+  integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
+  integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+<script>
+  function CreateTableFromJSON() {
+
+    function makeTable(data) {
+      //document.write(JSON.stringify(data[1]["serial_number"]))
+      var col = ['CAS', 'Name', 'Size', 'Location', 'Supplier'];
+
+      // CREATE DYNAMIC TABLE.
+      var table = document.createElement("table");
+
+      // CREATE HTML TABLE HEADER ROW USING THE EXTRACTED HEADERS ABOVE.
+
+      var tr = table.insertRow(-1);                   // TABLE ROW.
+
+      for (var i = 0; i < col.length; i++) {
+        var th = document.createElement("th");      // TABLE HEADER.
+        th.innerHTML = col[i];
+        tr.appendChild(th);
+      }
+
+      // ADD JSON DATA TO THE TABLE AS ROWS.
+      for (var i = 0; i < data.length; i++) {
+
+        tr = table.insertRow(-1);
+
+        if (typeof(data[i]["chemical"]["cas"]) !== 'undefined') {
+          var cas = String(data[i]["chemical"]["cas"])
+        } else {
+          var cas = "-"
+        }
+
+        if ((typeof(data[i]["chemical"]["prefix"]) !== 'undefined') && (typeof (data[i]["chemical"]["name"]) !== 'undefined')) {
+          var name = String(data[i]["chemical"]["prefix"]) + String(data[i]["chemical"]["name"])
+        } else if (data[i]["chemical"]["name"]) {
+          var name = String(data[i]["chemical"]["name"])
+        } else {
+          var name = "-"
+        }
+
+        if ((typeof(data[i]["container_size"]) !== 'undefined') && (typeof(data[i]["size_unit"]) !== 'undefined')) {
+          var size = String(data[i]["container_size"]) + " " + String(data[i]["size_unit"])
+        } else {
+          var size = "-"
+        }
+
+        if ((typeof(data[i]["container_location"][data[i]["container_location"].length-1]["location"]["name_fulltext"]) !== 'undefined')) {
+          var location = String(data[i]["container_location"][data[i]["container_location"].length-1]["location"]["name_fulltext"])
+        } else {
+          var location = "-"
+        }
+
+        if ((typeof (data[i]["supplier"]) !== 'undefined') && (typeof(data[i]["supplier"]["name"]) !== 'undefined')) {
+          var supplier = String(data[i]["supplier"]["name"])
+        } else {
+          var supplier = "-"
+        }
+
+
+
+        tr.insertCell(0).innerHTML = cas;
+        tr.insertCell(1).innerHTML = name;
+        tr.insertCell(2).innerHTML = size;
+        tr.insertCell(3).innerHTML = location;
+        tr.insertCell(4).innerHTML = supplier;
+      }
+
+      // FINALLY ADD THE NEWLY CREATED TABLE WITH JSON DATA TO A CONTAINER.
+      var divContainer = document.getElementById("showData");
+      divContainer.innerHTML = "";
+      divContainer.appendChild(table);
+    }
+    $.getJSON('http://colin-uom.herokuapp.com/api/container/all', makeTable)
+  }
+</script>
+<script>CreateTableFromJSON()</script>
+
+</html>

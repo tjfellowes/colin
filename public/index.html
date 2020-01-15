@@ -13,7 +13,7 @@
   <div class="container">
     <nav class="navbar navbar-toggleable-sm navbar-light bg-faded">
       <a class="navbar-brand" href="#">
-        <img src="img/colin.png" class="d-none d-md-block" width="90" height="90">
+        <!--<img src="img/colin.png" class="d-none d-md-block" width="90" height="90">-->
       </a>
       <div>
         <h1 style="padding-top:13px" >CoLIN</h1>
@@ -43,10 +43,10 @@
             <a class="nav-link" href="#">Inventory</a>
           </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="text" placeholder="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
+        <div class="form-inline my-2 my-lg-0" action="#" onsubmit="CreateTableFromJSON(query)">
+          <input class="form-control mr-sm-2" type="text" placeholder="Search" id="query">
+          <button class="btn btn-outline-success my-2 my-sm-0" onclick="CreateTableFromJSON()" type="submit">Search</button>
+        </div>
       </div>
     </nav>
   </div>
@@ -54,7 +54,8 @@
   <div class="container">
     <div class="row">
       <div class="col-sm-12">
-        <div id="inventory-table"></div>
+        <div id="inventory-table">
+        </div>
       </div>
     </div>
   </div>
@@ -63,20 +64,80 @@
   <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
   <script>
-  function makeTable(container, data) {
-    var table = $("<table/>").addClass('CSSTableGenerator');
-    $.each(data, function (rowIndex, r) {
-      var row = $("<tr/>");
-      $.each(r, function (colIndex, c) {
-        row.append($("<t" + (rowIndex == 0 ? "h" : "d") + "/>").text(c));
-      });
-      table.append(row);
-    });
-    return container.append(table);
-  }
+    function CreateTableFromJSON() {
+
+      function makeTable(data) {
+        //document.write(JSON.stringify(data[1]["serial_number"]))
+        var col = ['CAS', 'Name', 'Size', 'Location', 'Supplier'];
+
+        // CREATE DYNAMIC TABLE.
+        var table = document.createElement("table");
+
+        var tr = table.insertRow(-1);                   // TABLE ROW.
+
+        for (var i = 0; i < col.length; i++) {
+          var th = document.createElement("th");      // TABLE HEADER.
+          th.innerHTML = col[i];
+          tr.appendChild(th);
+        }
+
+        // ADD JSON DATA TO THE TABLE AS ROWS.
+        for (var i = 0; i < data.length; i++) {
+
+          tr = table.insertRow(-1);
+
+          if (typeof (data[i]["chemical"]["cas"]) !== 'undefined') {
+            var cas = String(data[i]["chemical"]["cas"])
+          } else {
+            var cas = "-"
+          }
+
+          if ((typeof (data[i]["chemical"]["prefix"]) !== 'undefined') && (typeof (data[i]["chemical"]["name"]) !== 'undefined')) {
+            var name = String(data[i]["chemical"]["prefix"]) + String(data[i]["chemical"]["name"])
+          } else if (data[i]["chemical"]["name"]) {
+            var name = String(data[i]["chemical"]["name"])
+          } else {
+            var name = "-"
+          }
+
+          if ((typeof (data[i]["container_size"]) !== 'undefined') && (typeof (data[i]["size_unit"]) !== 'undefined')) {
+            var size = String(data[i]["container_size"]) + " " + String(data[i]["size_unit"])
+          } else {
+            var size = "-"
+          }
+
+          if ((typeof (data[i]["container_location"][data[i]["container_location"].length - 1]["location"]["name_fulltext"]) !== 'undefined')) {
+            var location = String(data[i]["container_location"][data[i]["container_location"].length - 1]["location"]["name_fulltext"])
+          } else {
+            var location = "-"
+          }
+
+          if ((typeof (data[i]["supplier"]) !== 'undefined') && (typeof (data[i]["supplier"]["name"]) !== 'undefined')) {
+            var supplier = String(data[i]["supplier"]["name"])
+          } else {
+            var supplier = "-"
+          }
+
+          tr.insertCell(0).innerHTML = cas;
+          tr.insertCell(1).innerHTML = name;
+          tr.insertCell(2).innerHTML = size;
+          tr.insertCell(3).innerHTML = location;
+          tr.insertCell(4).innerHTML = supplier;
+        }
+
+        // FINALLY ADD THE NEWLY CREATED TABLE WITH JSON DATA TO A CONTAINER.
+        var divContainer = document.getElementById("inventory-table");
+        divContainer.innerHTML = "";
+        divContainer.appendChild(table);
+      }
+      var query = document.getElementById("query").value
+      $.getJSON('http://colin-uom.herokuapp.com/api/container/search/' + query, makeTable)
+    }
   </script>
+  <script>CreateTableFromJSON()</script>
 
 </body>
 </html>

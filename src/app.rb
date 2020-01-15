@@ -1,5 +1,6 @@
 require 'sinatra'
 require 'sinatra/activerecord'
+require 'sinatra/cross_origin'
 require 'json'
 
 #
@@ -46,6 +47,7 @@ module Colin
   class BaseWebApp < Sinatra::Base
     # Configuration settings
     configure do
+      enable :cross_origin
       # Enable logging
       enable :logging
       # Set the public folder to 'public'
@@ -73,7 +75,7 @@ module Colin
     #   set :database, adapter: 'postgresql', database: 'colin_production', pool: '5', timeout: '5000'
     # end
 
-    set :environment, :production
+    set :environment, :development
 
     # Single-page front-end web app
     get '/' do
