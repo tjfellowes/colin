@@ -19,11 +19,11 @@ class Colin::Models::Container < ActiveRecord::Base
 
 
   def current_location
-    Colin::Models::ContainerLocation.where(container_id: id).includes(location: :parent).order(:created_at).first
+    Colin::Models::ContainerLocation.where(container_id: id).includes(location: :parent).order(:created_at).last
   end
 
   def storage_location
-    Colin::Models::ContainerLocation.where(container_id: id, temp: false).includes(location: :parent).order(:created_at).first
+    Colin::Models::ContainerLocation.where(container_id: id, temp: false).includes(location: :parent).order(:created_at).last
   end
 
 end
