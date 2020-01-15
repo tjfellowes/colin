@@ -61,7 +61,7 @@ class Colin::Routes::Container < Sinatra::Base
 
   post '/api/container/serial/:serial_number' do
     if params[:cas].nil?
-      halt(422, 'Must provide a CAS number for the chemical in the container.')
+      halt(422, 'Must provide a serial number for the chemical in the container.')
     else
       if Colin::Models::Chemical.exists?(cas: params[:cas])
         chemical = Colin::Models::Chemical.where(cas: params[:cas]).take
@@ -253,7 +253,8 @@ class Colin::Routes::Container < Sinatra::Base
           }
         },
         supplier: {},
-        container_location: {include: {location: { include: :parent }}}
+        container_location: {include: {location: { include: :parent }}},
+        current_location: {include: {location: { include: :parent }}}
       })
   end
 end
