@@ -30,7 +30,8 @@ class Colin::Routes::Container < Sinatra::Base
       },
       supplier: {},
       container_location: {include: {location: { include: :parent }}},
-      current_location: {include: {location: { include: :parent }}}
+      current_location: {include: {location: { include: :parent }}},
+      storage_location: {include: {location: { include: :parent }}}
     })
   end
 
@@ -54,7 +55,8 @@ class Colin::Routes::Container < Sinatra::Base
         },
         supplier: {},
         container_location: {include: {location: { include: :parent }}},
-        current_location: {include: {location: { include: :parent }}}
+        current_location: {include: {location: { include: :parent }}},
+        storage_location: {include: {location: { include: :parent }}}
       })
     else
       halt(404, "Container with serial number #{params[:serial_number]} not found.")
@@ -131,7 +133,8 @@ class Colin::Routes::Container < Sinatra::Base
         },
         supplier: {},
         container_location: {include: {location: { include: :parent }}},
-        current_location: {include: {location: { include: :parent }}}
+        current_location: {include: {location: { include: :parent }}},
+        storage_location: {include: {location: { include: :parent }}}
       })
     end
   end
@@ -164,8 +167,8 @@ class Colin::Routes::Container < Sinatra::Base
         },
         supplier: {},
         container_location: {include: {location: { include: :parent }}},
-        current_location: {include: {location: { include: :parent }}}
-
+        current_location: {include: {location: { include: :parent }}},
+        storage_location: {include: {location: { include: :parent }}}
       })
     else
       halt(404, "Container with id #{params[:id]} not found.")
@@ -209,8 +212,8 @@ class Colin::Routes::Container < Sinatra::Base
         },
         supplier: {},
         container_location: {include: {location: { include: :parent }}},
-        current_location: {include: {location: { include: :parent }}}
-
+        current_location: {include: {location: { include: :parent }}},
+        storage_location: {include: {location: { include: :parent }}}
       })
     else
       Colin::Models::Container.joins('LEFT JOIN container_locations i ON i.container_id = containers.id AND i.id = (SELECT MAX(id) FROM container_locations WHERE container_locations.container_id = i.container_id)').where('i.location_id' => location_id).includes(
@@ -234,8 +237,8 @@ class Colin::Routes::Container < Sinatra::Base
         },
         supplier: {},
         container_location: {include: {location: { include: :parent }}},
-        current_location: {include: {location: { include: :parent }}}
-
+        current_location: {include: {location: { include: :parent }}},
+        storage_location: {include: {location: { include: :parent }}}
       })
     end
   end
@@ -263,7 +266,8 @@ class Colin::Routes::Container < Sinatra::Base
         },
         supplier: {},
         container_location: {include: {location: { include: :parent }}},
-        current_location: {include: {location: { include: :parent }}}
+        current_location: {include: {location: { include: :parent }}},
+        storage_location: {include: {location: { include: :parent }}}
       })
   end
 end
