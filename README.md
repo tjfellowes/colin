@@ -1,9 +1,11 @@
 # COLIN
-## The COmprehensive Laboratory Information Nexus
+## The Comprehensive Laboratory Information Nexus
 
-This is COLIN, a laboratory management package developed by the White group at the University of Melbourne.
+This is CoLIN, a laboratory management package developed by the White group at the University of Melbourne.
 
-Features will include chemical inventory management through an integrated barcode system, safety documentation, and group messaging.
+Currently, the inventory management feature is in beta.
+
+Planned features include safety documentation, and group messaging.
 
 ## Inventory management
 The inventory will be stored in a  database on a central machine. This will be accessed through COLIN. A distinction will be made between *chemicals* (the abstract concept) and *containers* (physical instances of a chemical).
