@@ -13,7 +13,7 @@
   <div class="container">
     <nav class="navbar navbar-toggleable-sm navbar-light bg-faded">
       <a class="navbar-brand" href="#">
-        <!--<img src="img/colin.png" class="d-none d-md-block" width="90" height="90">-->
+        <img src="img/colin.png" class="d-none d-md-block" width="90" height="90">
       </a>
       <div>
         <h1 style="padding-top:13px" >CoLIN</h1>
@@ -43,10 +43,10 @@
             <a class="nav-link" href="#">Inventory</a>
           </li>
         </ul>
-        <div class="form-inline my-2 my-lg-0" action="#" onsubmit="CreateTableFromJSON(query)">
+        <form class="form-inline my-2 my-lg-0" action="#" onsubmit="CreateTableFromJSON(query)">
           <input class="form-control mr-sm-2" type="text" placeholder="Search" id="query">
-          <button class="btn btn-outline-success my-2 my-sm-0" onclick="CreateTableFromJSON()" type="submit">Search</button>
-        </div>
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
       </div>
     </nav>
   </div>
