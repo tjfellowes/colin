@@ -37,6 +37,6 @@ Barcodes facilitate speedy inventory audits, and allow group members to quickly 
 ## Installation
 CoLIN is designed to be deployed relatively seamlessly as a Heroku app. Simply clone the repository, and connect to it from Heroku. Ensure you are deploying the production branch, as this is the most stable. If you like to live dangerously, you can deploy development, which will give you access to new features.
 
-This initialises the database and starts a web app, which can only be used to search the inventory (at this stage).
+This starts a web app, which can only be used to search the inventory (at this stage). Once this is done, you will need to initialise the database. In the Heroku console, run `rake db:migrate` to create all the necessary tables. You will also probably want to seed the database with default values for DG classes, packing groups etc. To do this, run `rake db:seed`.
 
-The command line interface is a Python script which can be installed on a local machine, which allows you to edit the inventory. If required, the label printer should be attached to this machine.
+The command line interface is a Python script which can be run on a local machine, which allows you to edit the inventory. If required, the label printer should be attached to this machine.

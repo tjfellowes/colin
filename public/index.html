@@ -135,7 +135,7 @@
         divContainer.appendChild(table);
       }
       var query = document.getElementById("query").value
-      $.getJSON('http://colin-uom.herokuapp.com/api/container/search/' + query, makeTable)
+      $.getJSON(window.location.protocol + '//' + window.location.hostname + '/api/container/search/' + query, makeTable)
     }
   </script>
   <script>CreateTableFromJSON()</script>
