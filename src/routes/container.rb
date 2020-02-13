@@ -72,14 +72,19 @@ class Colin::Routes::Container < Sinatra::Base
       else
         if Colin::Models::DgClass.exists?(number: params[:dg_class])
           dg_class_id = Colin::Models::DgClass.where(number: params[:dg_class]).take.id
+        end
         if Colin::Models::DgClass.exists?(number: params[:dg_class_2])
           dg_class_2_id = Colin::Models::DgClass.where(number: params[:dg_class_2]).take.id
+        end
         if Colin::Models::DgClass.exists?(number: params[:dg_class_3])
           dg_class_3_id = Colin::Models::DgClass.where(number: params[:dg_class_3]).take.id
+        end
         if Colin::Models::Schedule.exists?(number: params[:schedule])
           schedule_id = Colin::Models::Schedule.where(number: params[:schedule]).take.id
+        end
         if Colin::Models::PackingGroup.exists?(name: params[:schedule])
           packing_group_id = Colin::Models::PackingGroup.where(name: params[:schedule]).take.id
+        end
 
         chemical = Colin::Models::Chemical.create(cas: params[:cas], prefix: params[:prefix], name: params[:name], haz_substance: params[:haz_substance], un_number: params[:un_number], dg_class_id: dg_class_id, dg_class_2_id: dg_class_2_id, dg_class_3_id: dg_class_3_id, schedule_id: schedule_id, packing_group_id: packing_group_id, created_at: Time.now.utc.iso8601, updated_at: Time.now.utc.iso8601, name_fulltext: params[:prefix] + params[:name])
       end
