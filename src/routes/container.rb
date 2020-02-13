@@ -65,12 +65,28 @@ class Colin::Routes::Container < Sinatra::Base
 
   post '/api/container/serial/:serial_number' do
     if params[:cas].nil?
-      halt(422, 'Must provide a serial number for the chemical in the container.')
+      halt(422, 'Must provide a CAS for the chemical in the container.')
     else
       if Colin::Models::Chemical.exists?(cas: params[:cas])
         chemical = Colin::Models::Chemical.where(cas: params[:cas]).take
       else
-        chemical = Colin::Models::Chemical.create(cas: params[:cas], prefix: params[:prefix], name: params[:name], haz_substance: params[:haz_substance], un_number: params[:un_number], dg_class_id: params[:dg_class_id], dg_class_2_id: params[:dg_class_2_id], dg_class_3_id: params[:dg_class_3_id], schedule_id: params[:schedule_id], packing_group_id: params[:packing_group_id], created_at: Time.now.utc.iso8601, updated_at: Time.now.utc.iso8601, name_fulltext: params[:prefix] + params[:name])
+        if Colin::Models::DgClass.exists?(number: params[:dg_class])
+          dg_class_id = Colin::Models::DgClass.where(number: params[:dg_class]).take.id
+        end
+        if Colin::Models::DgClass.exists?(number: params[:dg_class_2])
+          dg_class_2_id = Colin::Models::DgClass.where(number: params[:dg_class_2]).take.id
+        end
+        if Colin::Models::DgClass.exists?(number: params[:dg_class_3])
+          dg_class_3_id = Colin::Models::DgClass.where(number: params[:dg_class_3]).take.id
+        end
+        if Colin::Models::Schedule.exists?(number: params[:schedule])
+          schedule_id = Colin::Models::Schedule.where(number: params[:schedule]).take.id
+        end
+        if Colin::Models::PackingGroup.exists?(name: params[:schedule])
+          packing_group_id = Colin::Models::PackingGroup.where(name: params[:schedule]).take.id
+        end
+
+        chemical = Colin::Models::Chemical.create(cas: params[:cas], prefix: params[:prefix], name: params[:name], haz_substance: params[:haz_substance], un_number: params[:un_number], dg_class_id: dg_class_id, dg_class_2_id: dg_class_2_id, dg_class_3_id: dg_class_3_id, schedule_id: schedule_id, packing_group_id: packing_group_id, created_at: Time.now.utc.iso8601, updated_at: Time.now.utc.iso8601, name_fulltext: params[:prefix] + params[:name])
       end
 
       if Colin::Models::Location.exists?(name_fulltext: params[:location])
