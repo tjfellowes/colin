@@ -65,12 +65,18 @@ class Colin::Routes::Container < Sinatra::Base
 
   post '/api/container/serial/:serial_number' do
     if params[:cas].nil?
-      halt(422, 'Must provide a serial number for the chemical in the container.')
+      halt(422, 'Must provide a CAS for the chemical in the container.')
     else
       if Colin::Models::Chemical.exists?(cas: params[:cas])
         chemical = Colin::Models::Chemical.where(cas: params[:cas]).take
       else
-        chemical = Colin::Models::Chemical.create(cas: params[:cas], prefix: params[:prefix], name: params[:name], haz_substance: params[:haz_substance], un_number: params[:un_number], dg_class_id: params[:dg_class_id], dg_class_2_id: params[:dg_class_2_id], dg_class_3_id: params[:dg_class_3_id], schedule_id: params[:schedule_id], packing_group_id: params[:packing_group_id], created_at: Time.now.utc.iso8601, updated_at: Time.now.utc.iso8601, name_fulltext: params[:prefix] + params[:name])
+        dg_class = Colin::Models::DgClass.where(number: params[:dg_class]).take
+        dg_class_2 = Colin::Models::DgClass.where(number: params[:dg_class_2]).take
+        dg_class_3 = Colin::Models::DgClass.where(number: params[:dg_class_3]).take
+        schedule = Colin::Models::Schedule.where(number: params[:schedule]).take
+        packing_group = Colin::Models::PackingGroup.where(name: params[:schedule]).take
+
+        chemical = Colin::Models::Chemical.create(cas: params[:cas], prefix: params[:prefix], name: params[:name], haz_substance: params[:haz_substance], un_number: params[:un_number], dg_class_id: dg_class.id, dg_class_2_id: dg_class_2.id, dg_class_3_id: dg_class_3.id, schedule_id: schedule.id, packing_group_id: packing_group.id, created_at: Time.now.utc.iso8601, updated_at: Time.now.utc.iso8601, name_fulltext: params[:prefix] + params[:name])
       end
 
       if Colin::Models::Location.exists?(name_fulltext: params[:location])
