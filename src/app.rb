@@ -2,6 +2,7 @@ require 'sinatra'
 require 'sinatra/activerecord'
 require 'sinatra/cross_origin'
 require 'json'
+require 'bcrypt'
 
 #
 # CoLIN, the COmprehensive Labortory Information Nexus.
