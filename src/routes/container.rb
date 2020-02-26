@@ -317,6 +317,7 @@ class Colin::Routes::Container < Sinatra::Base
           schedule: {},
           packing_group: {}],
         supplier: {},
+        container_location: {location: :parent}
       ).to_json(include: {
         chemical: {
           include: {
@@ -328,6 +329,9 @@ class Colin::Routes::Container < Sinatra::Base
           }
         },
         supplier: {},
+        container_location: nil,
+        current_location: nil,
+        storage_location: nil
       })
     end
   end
