@@ -329,9 +329,9 @@ class Colin::Routes::Container < Sinatra::Base
           }
         },
         supplier: {},
-        container_location: nil,
-        current_location: nil,
-        storage_location: nil
+        container_location: {'-'},
+        current_location: {'-'},
+        storage_location: {'-'}
       })
     end
   end
