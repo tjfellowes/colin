@@ -107,7 +107,7 @@
             var size = "-"
           }
 
-          if ((typeof (data[i]["container_location"][data[i]["container_location"].length - 1]["location"]["name_fulltext"]) !== 'undefined')) {
+          if ((typeof (data[i]["container_location"] !== 'undefined')) && (typeof (data[i]["container_location"][data[i]["container_location"].length - 1]["location"]["name_fulltext"]) !== 'undefined')) {
             var location = String(data[i]["container_location"][data[i]["container_location"].length - 1]["location"]["name_fulltext"])
           } else {
             var location = "-"
