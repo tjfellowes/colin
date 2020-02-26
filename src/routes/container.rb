@@ -39,6 +39,11 @@ class Colin::Routes::Container < Sinatra::Base
     content_type :json
     # Must provide an integer ID. Otherwise respond with 422 (https://restpatterns.mindtouch.us/HTTP_Status_Codes/422_-_Unprocessable_Entity)
     # which means invalid data provided from user.
+
+    unless session[:authorized]
+      halt(403, 'Not authorised.')
+    end
+
     if params[:serial_number].nil?
       halt(422, 'Must provide a serial number for container.')
     elsif Colin::Models::Container.exists?(serial_number: params[:serial_number])
@@ -64,6 +69,11 @@ class Colin::Routes::Container < Sinatra::Base
   end
 
   post '/api/container/serial/:serial_number' do
+
+    unless session[:authorized]
+      halt(403, 'Not authorised.')
+    end
+
     if params[:cas].nil?
       halt(422, 'Must provide a CAS for the chemical in the container.')
     else
@@ -116,6 +126,11 @@ class Colin::Routes::Container < Sinatra::Base
   end
 
   put '/api/container/serial/:serial_number' do
+
+    unless session[:authorized]
+      halt(403, 'Not authorised.')
+    end
+
     if params[:serial_number].nil?
       halt(422, 'Must provide a serial number for the container.')
     elsif params[:serial_number] == "quit"
@@ -156,6 +171,11 @@ class Colin::Routes::Container < Sinatra::Base
   end
 
   delete '/api/container/serial/:serial_number' do
+
+    unless session[:authorized]
+      halt(403, 'Not authorised.')
+    end
+
     if params[:serial_number].nil?
       halt(422, 'Must provide a serial number for the container.')
     else
@@ -260,7 +280,9 @@ class Colin::Routes::Container < Sinatra::Base
   end
 
   get '/api/container/search/:query' do
-    content_type :json
+
+    if session[:authorized]
+      content_type :json
       Colin::Models::Container.joins('LEFT JOIN container_locations i ON i.container_id = containers.id AND i.id = (SELECT MAX(id) FROM container_locations WHERE container_locations.container_id = i.container_id) INNER JOIN chemicals ON containers.chemical_id = chemicals.id').where("chemicals.name_fulltext ILIKE :query OR serial_number LIKE :query OR chemicals.cas LIKE :query", { query: "%#{params[:query]}%"}).includes(
         chemical: [
           {dg_class: :superclass},
@@ -285,5 +307,32 @@ class Colin::Routes::Container < Sinatra::Base
         current_location: {include: {location: { include: :parent }}},
         storage_location: {include: {location: { include: :parent }}}
       })
+    else
+      content_type :json
+      Colin::Models::Container.joins('LEFT JOIN container_locations i ON i.container_id = containers.id AND i.id = (SELECT MAX(id) FROM container_locations WHERE container_locations.container_id = i.container_id) INNER JOIN chemicals ON containers.chemical_id = chemicals.id').where("chemicals.name_fulltext ILIKE :query OR serial_number LIKE :query OR chemicals.cas LIKE :query", { query: "%#{params[:query]}%"}).includes(
+        chemical: [
+          {dg_class: :superclass},
+          {dg_class_2: :superclass},
+          {dg_class_3: :superclass},
+          schedule: {},
+          packing_group: {}],
+        supplier: {},
+        container_location: {location: :parent}
+      ).to_json(include: {
+        chemical: {
+          include: {
+            schedule: {},
+            packing_group: {},
+            dg_class: {include: :superclass},
+            dg_class_2: {include: :superclass},
+            dg_class_3: {include: :superclass},
+          }
+        },
+        supplier: {},
+        container_location: "-",
+        current_location: "-",
+        storage_location: "-"
+      })
+    end
   end
 end

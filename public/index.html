@@ -132,7 +132,7 @@
         divContainer.appendChild(table);
       }
       var query = document.getElementById("query").value
-      $.getJSON(window.location.protocol + '//' + window.location.hostname + '/api/container/search/' + query, makeTable)
+      $.getJSON(window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + '/api/container/search/' + query + window.location.search, makeTable)
     }
   </script>
   <script>CreateTableFromJSON()</script>

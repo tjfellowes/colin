@@ -2,6 +2,7 @@ require 'sinatra'
 require 'sinatra/activerecord'
 require 'sinatra/cross_origin'
 require 'json'
+require 'securerandom'
 require 'bcrypt'
 
 #
@@ -78,6 +79,10 @@ module Colin
 
     set :environment, :development
 
+    enable :sessions
+    set :session_store, Rack::Session::Pool
+    set :sessions, :expire_after => 2592000
+
     # Single-page front-end web app
     get '/' do
       redirect '/index.html'
@@ -85,6 +90,10 @@ module Colin
 
     get '' do
       redirect '/index.html'
+    end
+
+    get '/login' do
+      session[:authorized] = true
     end
 
     # Route for 404 not found
