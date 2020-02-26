@@ -94,6 +94,7 @@ module Colin
 
     get '/login' do
       session[:authorized] = true
+      redirect '/index.html'
     end
 
     # Route for 404 not found
