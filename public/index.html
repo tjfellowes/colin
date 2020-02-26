@@ -110,7 +110,7 @@
             var size = "-"
           }
 
-          if ((typeof (data[i]["current_location"]) !== 'undefined') && (typeof (data[i]["current_location"]["location"]["name_fulltext"]) !== 'undefined')) {
+          if ((typeof (data[i]["current_location"]["location"]) !== 'undefined') && (typeof (data[i]["current_location"]["location"]["name_fulltext"]) !== 'undefined')) {
             var location = String(data[i]["current_location"]["location"]["name_fulltext"])
           } else {
             var location = "-"
