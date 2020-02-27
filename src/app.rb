@@ -100,11 +100,10 @@ module Colin
 
     post '/login' do
       user = Colin::Models::User.where({username: params[:username]}).take
-      if user.password == params[:password]
+      if user.password == 'admin'
         session[:authorized] = true
         puts("yay")
       end
-      redirect '/index.html'
     end
 
     # Route for 404 not found
