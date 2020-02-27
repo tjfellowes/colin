@@ -102,6 +102,7 @@ module Colin
       user = Colin::Models::User.where({username: params[:username]}).take
       if user.password == params[:password]
         session[:authorized] = true
+        puts("yay")
       end
       redirect '/index.html'
     end
