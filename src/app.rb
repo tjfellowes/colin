@@ -100,7 +100,8 @@ module Colin
 
     post '/login' do
       user = Colin::Models::User.where({username: params[:username]}).take
-      if user.password == 'admin'
+      puts(params[:password])
+      if user.password == params[:password]
         session[:authorized] = true
         puts("yay")
       end
