@@ -99,7 +99,7 @@ module Colin
     end
 
     post '/login' do
-      user = Colin::Models::User.find_by_username?(params[:username])
+      user = Colin::Models::User.find?(username: params[:username])
       if user.password == params[:password]
         session[:authorized] = true
       end
