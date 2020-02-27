@@ -92,8 +92,15 @@ module Colin
       redirect '/index.html'
     end
 
+    post '/newaccount' do
+      user = Colin::Models::User.new(params[:username])
+      user.password = params[:password]
+      user.save!
+    end
+
     post '/login' do
-      if Colin::Models::User.exists?(username: params[:username])
+      user = Colin::Models::User.find_by_username?(params[:username])
+      if user.password == params[:password]
         session[:authorized] = true
       end
       redirect '/index.html'
