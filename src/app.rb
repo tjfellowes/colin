@@ -92,8 +92,10 @@ module Colin
       redirect '/index.html'
     end
 
-    get '/login' do
-      session[:authorized] = true
+    post '/login' do
+      if Colin::Models::User.exists?(username: params[:username])
+        session[:authorized] = true
+      end
       redirect '/index.html'
     end
 
