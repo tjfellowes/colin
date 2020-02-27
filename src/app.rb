@@ -93,9 +93,9 @@ module Colin
     end
 
     post '/newaccount' do
-      user = Colin::Models::User.new(params[:user])
-      user.password = params[:password]
-      user.save!
+      @user = Colin::Models::User.new(params[:username])
+      @user.password = params[:password]
+      @user.save!
     end
 
     post '/login' do
