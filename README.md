@@ -15,6 +15,10 @@ Attributes of *chemicals* include
 * Formula
 * GHS hazard symbols
 * SDS
+* DG class (with up to to subclasses)
+* UN number
+* Packing group
+* Poisons schedule
 
 Attributes of *containers* include
 * Chemical
