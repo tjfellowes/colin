@@ -38,6 +38,8 @@ Upon the arrival of a new chemical, the information should be entered into CoLIN
 
 Barcodes facilitate speedy inventory audits, and allow group members to quickly bring up the container information to mark it as empty, or loaned out to another group.
 
+The database is accessed through a flexible API, and the data can be transformed into any format required for manifest reporting etc.
+
 ## Installation
 CoLIN is designed to be deployed relatively seamlessly as a Heroku app. Simply clone the repository, and connect to it from Heroku. Ensure you are deploying the production branch, as this is the most stable. If you like to live dangerously, you can deploy development, which will give you access to new features.
 
