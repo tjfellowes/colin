@@ -20,11 +20,10 @@ GEM
     minitest (5.12.0)
     mustermann (1.0.3)
     pg (1.1.4)
-    pg (1.1.4-x64-mingw32)
     rack (2.0.8)
     rack-protection (2.0.2)
       rack
-    rake (12.2.1)
+    rake (12.3.3)
     require_all (1.4.0)
     sinatra (2.0.2)
       mustermann (~> 1.0)
@@ -42,12 +41,12 @@ GEM
 
 PLATFORMS
   ruby
-  
+
 DEPENDENCIES
   bcrypt (= 3.1.13)
   pg (= 1.1.4)
   rack (= 2.0.8)
-  rake (= 12.2.1)
+  rake (= 12.3.3)
   require_all (= 1.4.0)
   sinatra (= 2.0.2)
   sinatra-activerecord (= 2.0.13)
