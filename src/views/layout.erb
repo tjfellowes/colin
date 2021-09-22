@@ -6,7 +6,6 @@
       <meta charset="utf-8" />
       <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" /> 
-      <link rel="stylesheet" href="/css/main.css" />
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
       <link rel="stylesheet" href="/css/bootstrap.css" /> 
       <link rel="stylesheet" href="/css/bootstrap-responsive.css" /> 
@@ -15,27 +14,35 @@
    
 
     <body> 
-
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
-        <a class="navbar-brand" href="/"><h1>CoLiN</h1></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
+      <span>
+      <a href="#">
+      <img src="img/colin.png" class="d-none d-md-block" width="90" height="90">
+      </a>
+      </span>
+      <span>
+      <h1>CoLIN</h1>
+      <h2 class="lead">Comprehensive Laboratory Information Nexus</h2>
+      </span>
+      <span style="display:flex;justify-content: space-between;width:100%">
+      </span>
+      <span style="float: right">
+      
         <% unless logged_in? %>
-          <a class="navbar-brand" href="/login"><h2>Login</h2></a>
+          <a class="navbar-brand" style="float:right" href="/login"><p>Login</p></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button> 
         <% end %> 
 
         <% if logged_in? %> 
-          <a class="navbar-brand" href="/newuser"><h2>Create User</h2></a>
-          <a class="navbar-brand" href="/logout"><h2>Logout</h2></a>
+          <a class="navbar-brand" href="/newuser"><p>Create User</p></a>
+          <a class="navbar-brand" href="/logout"><p>Logout</p></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>    
         <% end %>  
+      </span>
 
     </nav></br> 
 
