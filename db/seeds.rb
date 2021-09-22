@@ -3,6 +3,10 @@ require_all 'src'
 
 include Colin::Models
 
+def create_users
+  User.create!(username: 'root', name: 'root', email: 'root@root.com', password: 'root', isadmin: true, issuperuser: true)
+end
+
 def create_packing_groups
   PackingGroup.create!(name: 'I')
   PackingGroup.create!(name: 'II')
@@ -78,4 +82,4 @@ end
 create_packing_groups
 create_dg_classes
 create_schedules
-
+create_users

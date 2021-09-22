@@ -46,3 +46,5 @@ CoLIN is designed to be deployed relatively seamlessly as a Heroku app. Simply c
 This starts a web app, which can only be used to search the inventory (at this stage). Once this is done, you will need to initialise the database. In the Heroku console, run `rake db:migrate` to create all the necessary tables. You will also probably want to seed the database with default values for DG classes, packing groups etc. To do this, run `rake db:seed`.
 
 The command line interface is a Python script which can be run on a local machine, which allows you to edit the inventory. If required, the label printer should be attached to this machine.
+
+For local installation, you will need to install Ruby, then bundler can handle the rest by running `bundle install`.

@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'pg', '1.1.4'
 gem 'rake', '12.3.3'
+gem 'rack-flash3', '1.0.5'
 gem 'require_all', '1.4.0'
 gem 'sinatra', '2.0.2'
 gem 'sinatra-activerecord', '2.0.13'

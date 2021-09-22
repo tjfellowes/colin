@@ -10,7 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190919100454) do
+ActiveRecord::Schema.define(version: 2020_02_27_030056) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "chemicals", force: :cascade do |t|
     t.string "cas", null: false
@@ -19,11 +22,11 @@ ActiveRecord::Schema.define(version: 20190919100454) do
     t.boolean "haz_substance", null: false
     t.string "sds_url"
     t.string "un_number"
-    t.integer "dg_class_id"
-    t.integer "dg_class_2_id"
-    t.integer "dg_class_3_id"
-    t.integer "schedule_id"
-    t.integer "packing_group_id"
+    t.bigint "dg_class_id"
+    t.bigint "dg_class_2_id"
+    t.bigint "dg_class_3_id"
+    t.bigint "schedule_id"
+    t.bigint "packing_group_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name_fulltext", default: "", null: false
@@ -37,8 +40,8 @@ ActiveRecord::Schema.define(version: 20190919100454) do
   create_table "container_locations", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "container_id", null: false
-    t.integer "location_id"
+    t.bigint "container_id", null: false
+    t.bigint "location_id"
     t.boolean "temp", default: false, null: false
     t.index ["container_id"], name: "index_container_locations_on_container_id"
     t.index ["location_id"], name: "index_container_locations_on_location_id"
@@ -51,8 +54,8 @@ ActiveRecord::Schema.define(version: 20190919100454) do
     t.datetime "date_purchased", null: false
     t.datetime "expiry_date"
     t.datetime "date_disposed"
-    t.integer "chemical_id", null: false
-    t.integer "supplier_id"
+    t.bigint "chemical_id", null: false
+    t.bigint "supplier_id"
     t.string "description"
     t.index ["chemical_id"], name: "index_containers_on_chemical_id"
     t.index ["supplier_id"], name: "index_containers_on_supplier_id"
@@ -61,13 +64,13 @@ ActiveRecord::Schema.define(version: 20190919100454) do
   create_table "dg_classes", force: :cascade do |t|
     t.text "number", null: false
     t.text "description", null: false
-    t.integer "superclass_id"
+    t.bigint "superclass_id"
     t.index ["superclass_id"], name: "index_dg_classes_on_superclass_id"
   end
 
   create_table "locations", force: :cascade do |t|
     t.string "name", null: false
-    t.integer "parent_id"
+    t.bigint "parent_id"
     t.string "name_fulltext", default: "", null: false
     t.string "code", default: "", null: false
     t.index ["parent_id"], name: "index_locations_on_parent_id"
@@ -84,6 +87,19 @@ ActiveRecord::Schema.define(version: 20190919100454) do
 
   create_table "suppliers", force: :cascade do |t|
     t.string "name", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.text "username", null: false
+    t.text "name", null: false
+    t.text "email", null: false
+    t.text "password_digest", null: false
+    t.bigint "supervisor_id"
+    t.boolean "isadmin", default: false
+    t.boolean "issuperuser", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["supervisor_id"], name: "index_users_on_supervisor_id"
   end
 
 end

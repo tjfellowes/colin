@@ -1,17 +1,16 @@
 class Colin::Models::User < ActiveRecord::Base
 
-  validates_presence_of :username
-  validates_presence_of :password_hash
+  validates :username, presence: true, uniqueness: true
+  validates_presence_of :name
+  validates_presence_of :email
 
-  # users.password_hash in the database is a :string
-  include BCrypt
+  has_secure_password
 
-  def password
-    @password ||= Password.new(password_hash)
+  def slug
+    self.username
   end
 
-  def password=(new_password)
-    @password = Password.create(new_password)
-    self.password_hash = @password
+  def self.find_by_slug(slug) 
+    User.all.find{|user| user.slug == slug}
   end
 end

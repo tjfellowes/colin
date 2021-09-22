@@ -4,6 +4,7 @@ require 'sinatra/cross_origin'
 require 'json'
 require 'securerandom'
 require 'bcrypt'
+require 'rack-flash'
 
 #
 # CoLIN, the COmprehensive Labortory Information Nexus.
@@ -33,6 +34,8 @@ module Colin
     # Create a new CoLIN application with all routes here.
     Rack::Cascade.new [
       Colin::BaseWebApp,
+      Colin::Routes::User,
+      Colin::Routes::Session,
       Colin::Routes::Chemical,
       Colin::Routes::Container,
       Colin::Routes::Location
@@ -56,12 +59,17 @@ module Colin
       set :public_folder, 'public'
       # Enable ActiveRecord extension
       register Sinatra::ActiveRecordExtension
+
+      set :sessions, true
+        set :session_secret, ENV['SESSION_SECRET']
+
+      use Rack::Flash
     end
 
     # Make every request JSON
-    before do
-      content_type :json
-    end
+    #before do
+    #  content_type :json
+    #end
 
     # Development-specific configuration settings
     # configure :development do
@@ -79,34 +87,32 @@ module Colin
 
     set :environment, :development
 
-    enable :sessions
-    set :session_store, Rack::Session::Pool
-    set :sessions, :expire_after => 2592000
-
     # Single-page front-end web app
     get '/' do
-      redirect '/index.html'
+      erb :login
     end
 
     get '' do
-      redirect '/index.html'
+      redirect '/'
     end
 
-    post '/newaccount' do
-      user = Colin::Models::User.new(username: params[:username])
-      user.password = params[:password]
-      user.save!
-    end
-
-    post '/login' do
-      user = Colin::Models::User.where({username: params[:username]}).take
-      puts(params[:password])
-      if user.password == params[:password]
-        session[:authorized] = true
-        puts("yay")
+    helpers do
+     
+      def logged_in?
+        !!session[:user_id]
       end
+  
+      def current_user 
+        Colin::Models::User.find_by(:id => session[:user_id]) 
+      end 
+  
+      def redirect_if_not_logged_in 
+        if !logged_in? 
+          redirect to '/login' 
+        end  
+      end   
+    
     end
-
     # Route for 404 not found
     #not_found do
     #  redirect '/404.html'

@@ -21,6 +21,8 @@ GEM
     mustermann (1.0.3)
     pg (1.1.4)
     rack (2.0.8)
+    rack-flash3 (1.0.5)
+      rack
     rack-protection (2.0.2)
       rack
     rake (12.3.3)
@@ -46,6 +48,7 @@ DEPENDENCIES
   bcrypt (= 3.1.13)
   pg (= 1.1.4)
   rack (= 2.0.8)
+  rack-flash3
   rake (= 12.3.3)
   require_all (= 1.4.0)
   sinatra (= 2.0.2)
@@ -53,4 +56,4 @@ DEPENDENCIES
   sinatra-cross_origin
 
 BUNDLED WITH
-   2.1.4
+   2.2.27
