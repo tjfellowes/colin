@@ -79,7 +79,20 @@ def create_dg_classes
   DgClass.create(number: '9', description: 'Miscellaneous Goods')
 end
 
+def create_location_types
+  LocationType.create!(name: 'Building')
+  LocationType.create!(name: 'Room')
+  LocationType.create!(name: 'Cupboard')
+  LocationType.create!(name: 'Cabinet')
+  LocationType.create!(name: 'Fridge')
+  LocationType.create!(name: 'Freezer')
+  LocationType.create!(name: 'Shelf')
+  LocationType.create!(name: 'Box')
+end
+
+
 create_packing_groups
 create_dg_classes
 create_schedules
 create_users
+create_location_types

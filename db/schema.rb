@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_27_030056) do
+ActiveRecord::Schema.define(version: 2021_09_23_151837) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,11 +68,27 @@ ActiveRecord::Schema.define(version: 2020_02_27_030056) do
     t.index ["superclass_id"], name: "index_dg_classes_on_superclass_id"
   end
 
+  create_table "location_standards", force: :cascade do |t|
+    t.bigint "locations_id"
+    t.bigint "standards_id"
+    t.index ["locations_id"], name: "index_location_standards_on_locations_id"
+    t.index ["standards_id"], name: "index_location_standards_on_standards_id"
+  end
+
+  create_table "location_types", force: :cascade do |t|
+    t.text "name", null: false
+  end
+
   create_table "locations", force: :cascade do |t|
     t.string "name", null: false
     t.bigint "parent_id"
+    t.string "barcode"
+    t.bigint "location_types_id"
+    t.string "temperature"
+    t.boolean "monitored", default: false, null: false
     t.string "name_fulltext", default: "", null: false
     t.string "code", default: "", null: false
+    t.index ["location_types_id"], name: "index_locations_on_location_types_id"
     t.index ["parent_id"], name: "index_locations_on_parent_id"
   end
 
@@ -83,6 +99,11 @@ ActiveRecord::Schema.define(version: 2020_02_27_030056) do
   create_table "schedules", force: :cascade do |t|
     t.integer "number", null: false
     t.text "description"
+  end
+
+  create_table "standards", force: :cascade do |t|
+    t.text "name", null: false
+    t.text "description", null: false
   end
 
   create_table "suppliers", force: :cascade do |t|
