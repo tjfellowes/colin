@@ -1,12 +1,12 @@
 class AddStorageTypes < ActiveRecord::Migration[5.2]
   def change
     create_table :location_types do |t|
-      t.text  :name, null: false
+      t.string  :name, null: false
     end
 
     create_table :standards do |t|
-      t.text  :name, null: false
-      t.text  :description, null:false
+      t.string  :name, null: false
+      t.string  :description, null:false
     end
 
     create_table :location_standards do |t|

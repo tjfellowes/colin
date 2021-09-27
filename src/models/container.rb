@@ -15,9 +15,6 @@ class Colin::Models::Container < ActiveRecord::Base
   belongs_to :supplier
   belongs_to :chemical
 
-
-
-
   def current_location
     Colin::Models::ContainerLocation.where(container_id: id).includes(location: :parent).order(:created_at).last
   end

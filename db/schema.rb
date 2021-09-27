@@ -10,10 +10,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_23_151837) do
+ActiveRecord::Schema.define(version: 2021_09_24_151227) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "chemical_haz_classes", force: :cascade do |t|
+    t.bigint "chemical_id"
+    t.bigint "haz_class_id"
+    t.string "category"
+    t.index ["chemical_id"], name: "index_chemical_haz_classes_on_chemical_id"
+    t.index ["haz_class_id"], name: "index_chemical_haz_classes_on_haz_class_id"
+  end
+
+  create_table "chemical_haz_stats", force: :cascade do |t|
+    t.bigint "chemical_id"
+    t.bigint "haz_stat_id"
+    t.index ["chemical_id"], name: "index_chemical_haz_stats_on_chemical_id"
+    t.index ["haz_stat_id"], name: "index_chemical_haz_stats_on_haz_stat_id"
+  end
+
+  create_table "chemical_pictograms", force: :cascade do |t|
+    t.bigint "chemical_id"
+    t.bigint "pictogram_id"
+    t.index ["chemical_id"], name: "index_chemical_pictograms_on_chemical_id"
+    t.index ["pictogram_id"], name: "index_chemical_pictograms_on_pictogram_id"
+  end
+
+  create_table "chemical_prec_stats", force: :cascade do |t|
+    t.bigint "chemical_id"
+    t.bigint "prec_stat_id"
+    t.index ["chemical_id"], name: "index_chemical_prec_stats_on_chemical_id"
+    t.index ["prec_stat_id"], name: "index_chemical_prec_stats_on_prec_stat_id"
+  end
 
   create_table "chemicals", force: :cascade do |t|
     t.string "cas", null: false
@@ -30,11 +59,23 @@ ActiveRecord::Schema.define(version: 2021_09_23_151837) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name_fulltext", default: "", null: false
+    t.string "storage_temperature_min"
+    t.string "storage_temperature_max"
+    t.string "un_proper_shipping_name"
+    t.binary "sds"
+    t.bigint "signal_word_id"
+    t.string "inchi"
+    t.string "smiles"
+    t.string "pubchem"
+    t.float "density"
+    t.float "melting_point"
+    t.float "boiling_point"
     t.index ["dg_class_2_id"], name: "index_chemicals_on_dg_class_2_id"
     t.index ["dg_class_3_id"], name: "index_chemicals_on_dg_class_3_id"
     t.index ["dg_class_id"], name: "index_chemicals_on_dg_class_id"
     t.index ["packing_group_id"], name: "index_chemicals_on_packing_group_id"
     t.index ["schedule_id"], name: "index_chemicals_on_schedule_id"
+    t.index ["signal_word_id"], name: "index_chemicals_on_signal_word_id"
   end
 
   create_table "container_locations", force: :cascade do |t|
@@ -57,8 +98,16 @@ ActiveRecord::Schema.define(version: 2021_09_23_151837) do
     t.bigint "chemical_id", null: false
     t.bigint "supplier_id"
     t.string "description"
+    t.string "barcode"
+    t.string "product_number"
+    t.string "lot_number"
+    t.bigint "user_id"
+    t.bigint "owner_id"
+    t.binary "picture"
     t.index ["chemical_id"], name: "index_containers_on_chemical_id"
+    t.index ["owner_id"], name: "index_containers_on_owner_id"
     t.index ["supplier_id"], name: "index_containers_on_supplier_id"
+    t.index ["user_id"], name: "index_containers_on_user_id"
   end
 
   create_table "dg_classes", force: :cascade do |t|
@@ -66,6 +115,15 @@ ActiveRecord::Schema.define(version: 2021_09_23_151837) do
     t.text "description", null: false
     t.bigint "superclass_id"
     t.index ["superclass_id"], name: "index_dg_classes_on_superclass_id"
+  end
+
+  create_table "haz_classes", force: :cascade do |t|
+    t.string "description"
+  end
+
+  create_table "haz_stats", force: :cascade do |t|
+    t.string "code"
+    t.string "description"
   end
 
   create_table "location_standards", force: :cascade do |t|
@@ -76,18 +134,18 @@ ActiveRecord::Schema.define(version: 2021_09_23_151837) do
   end
 
   create_table "location_types", force: :cascade do |t|
-    t.text "name", null: false
+    t.string "name", null: false
   end
 
   create_table "locations", force: :cascade do |t|
     t.string "name", null: false
     t.bigint "parent_id"
+    t.string "name_fulltext", default: "", null: false
+    t.string "code", default: "", null: false
     t.string "barcode"
     t.bigint "location_types_id"
     t.string "temperature"
     t.boolean "monitored", default: false, null: false
-    t.string "name_fulltext", default: "", null: false
-    t.string "code", default: "", null: false
     t.index ["location_types_id"], name: "index_locations_on_location_types_id"
     t.index ["parent_id"], name: "index_locations_on_parent_id"
   end
@@ -96,18 +154,33 @@ ActiveRecord::Schema.define(version: 2021_09_23_151837) do
     t.string "name", null: false
   end
 
+  create_table "pictograms", force: :cascade do |t|
+    t.string "name"
+    t.binary "picture"
+  end
+
+  create_table "prec_stats", force: :cascade do |t|
+    t.string "code"
+    t.string "description"
+  end
+
   create_table "schedules", force: :cascade do |t|
     t.integer "number", null: false
     t.text "description"
   end
 
+  create_table "signal_words", force: :cascade do |t|
+    t.string "name"
+  end
+
   create_table "standards", force: :cascade do |t|
-    t.text "name", null: false
-    t.text "description", null: false
+    t.string "name", null: false
+    t.string "description", null: false
   end
 
   create_table "suppliers", force: :cascade do |t|
     t.string "name", null: false
+    t.string "website"
   end
 
   create_table "users", force: :cascade do |t|
@@ -123,4 +196,5 @@ ActiveRecord::Schema.define(version: 2021_09_23_151837) do
     t.index ["supervisor_id"], name: "index_users_on_supervisor_id"
   end
 
+  add_foreign_key "containers", "users", column: "owner_id"
 end
