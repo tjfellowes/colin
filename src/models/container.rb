@@ -15,6 +15,16 @@ class Colin::Models::Container < ActiveRecord::Base
   belongs_to :supplier
   belongs_to :chemical
 
+  self.includes(
+    chemical: [
+      {dg_class: :superclass},
+      {dg_class_2: :superclass},
+      {dg_class_3: :superclass},
+      schedule: {},
+      packing_group: {}],
+    supplier: {},
+    container_location: {location: :parent})
+
   def current_location
     Colin::Models::ContainerLocation.where(container_id: id).includes(location: :parent).order(:created_at).last
   end

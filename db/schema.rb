@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_24_151227) do
+ActiveRecord::Schema.define(version: 2021_09_27_101653) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,13 @@ ActiveRecord::Schema.define(version: 2021_09_24_151227) do
     t.bigint "pictogram_id"
     t.index ["chemical_id"], name: "index_chemical_pictograms_on_chemical_id"
     t.index ["pictogram_id"], name: "index_chemical_pictograms_on_pictogram_id"
+  end
+
+  create_table "chemical_prec_stat_supps", force: :cascade do |t|
+    t.bigint "chemical_prec_stats_id"
+    t.integer "position", null: false
+    t.string "information", null: false
+    t.index ["chemical_prec_stats_id"], name: "index_chemical_prec_stat_supps_on_chemical_prec_stats_id"
   end
 
   create_table "chemical_prec_stats", force: :cascade do |t|

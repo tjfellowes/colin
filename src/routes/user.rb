@@ -19,7 +19,7 @@ class Colin::Routes::User < Colin::BaseWebApp
         else
             @user = Colin::Models::User.create(username: params[:username], name: params[:name], email: params[:email], password: params[:password], password_confirmation: params[:password_confirmation])
             session[:user_id] = @user.id 
-            flash[:message] = "Your account has been succesfully created!"
+            flash[:message] = "Account has been succesfully created!"
             erb :"/users/index.html"
         end
     end 
