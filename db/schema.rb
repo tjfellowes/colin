@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_27_101653) do
+ActiveRecord::Schema.define(version: 2021_09_27_154121) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,7 +65,6 @@ ActiveRecord::Schema.define(version: 2021_09_27_101653) do
     t.bigint "packing_group_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "name_fulltext", default: "", null: false
     t.string "storage_temperature_min"
     t.string "storage_temperature_max"
     t.string "un_proper_shipping_name"
@@ -96,7 +95,7 @@ ActiveRecord::Schema.define(version: 2021_09_27_101653) do
   end
 
   create_table "containers", force: :cascade do |t|
-    t.string "serial_number", null: false
+    t.string "barcode"
     t.float "container_size"
     t.string "size_unit"
     t.datetime "date_purchased", null: false
@@ -105,7 +104,6 @@ ActiveRecord::Schema.define(version: 2021_09_27_101653) do
     t.bigint "chemical_id", null: false
     t.bigint "supplier_id"
     t.string "description"
-    t.string "barcode"
     t.string "product_number"
     t.string "lot_number"
     t.bigint "user_id"
@@ -146,15 +144,13 @@ ActiveRecord::Schema.define(version: 2021_09_27_101653) do
 
   create_table "locations", force: :cascade do |t|
     t.string "name", null: false
-    t.bigint "parent_id"
-    t.string "name_fulltext", default: "", null: false
-    t.string "code", default: "", null: false
+    t.string "code"
     t.string "barcode"
     t.bigint "location_types_id"
     t.string "temperature"
     t.boolean "monitored", default: false, null: false
+    t.string "ancestry"
     t.index ["location_types_id"], name: "index_locations_on_location_types_id"
-    t.index ["parent_id"], name: "index_locations_on_parent_id"
   end
 
   create_table "packing_groups", force: :cascade do |t|

@@ -56,7 +56,8 @@ class AddExtraSafetyInformation < ActiveRecord::Migration[5.2]
     add_column :chemicals, :melting_point, :float, null: true
     add_column :chemicals, :boiling_point, :float, null: true
 
-    add_column :containers, :barcode, :string, null: true
+    rename_column :containers, :serial_number, :barcode
+    change_column_null :containers, :barcode, true
     add_column :containers, :product_number, :string, null: true
     add_column :containers, :lot_number, :string, null: true
     add_reference :containers, :user, index: true
@@ -64,5 +65,8 @@ class AddExtraSafetyInformation < ActiveRecord::Migration[5.2]
     add_column :containers, :picture, :binary, null: true
 
     add_column :suppliers, :website, :string, null: true
+
+    change_column_null :locations, :code, true
+    change_column_default :locations, :code, nil
   end
 end

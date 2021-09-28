@@ -5,9 +5,9 @@ require 'time'
 #
 # blep
 #
-class Colin::Routes::Container < Sinatra::Base
+class Colin::Routes::Container < Colin::BaseWebApp
   #
-  # Gets the specified container with the given ID.
+  # Gets ALL containers
   #
   get '/api/container/all' do
     content_type :json
@@ -16,15 +16,7 @@ class Colin::Routes::Container < Sinatra::Base
       halt(403, 'Not authorised.')
     end
 
-    Colin::Models::Container.limit(params[:limit]).offset(params[:offset]).includes(
-        chemical: [
-          {dg_class: :superclass},
-          {dg_class_2: :superclass},
-          {dg_class_3: :superclass},
-          schedule: {},
-          packing_group: {}],
-        supplier: {},
-        container_location: {location: :parent}).to_json(include: {
+    Colin::Models::Container.limit(params[:limit]).offset(params[:offset]).to_json(include: {
       chemical: {
         include: {
           schedule: {},
@@ -35,9 +27,7 @@ class Colin::Routes::Container < Sinatra::Base
         }
       },
       supplier: {},
-      container_location: {include: {location: { include: :parent }}},
-      current_location: {include: {location: { include: :parent }}},
-      storage_location: {include: {location: { include: :parent }}}
+      container_location: {include: {location: {include: :path}}}
     })
   end
 

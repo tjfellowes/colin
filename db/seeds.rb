@@ -3,6 +3,31 @@ require_all 'src'
 
 include Colin::Models
 
+def create_sublocation(parent_location, name, code, barcode, temperature, location_types_id)
+  return Location.create! do |d|
+    d.name = name
+    d.code = code
+    d.barcode = barcode
+    d.temperature = temperature
+    d.location_types_id = location_types_id
+    d.parent_id = parent_location.id
+  end
+end
+
+def add_test_data
+  Chemical.create!(cas: '1-1-1', name: 'bepis', haz_substance: true, sds_url: 'https://www.nug.com/sds', un_number: '1234', dg_class_id: '2', dg_class_2_id: '11', schedule_id: '1', packing_group_id: '1', storage_temperature_min: '69', storage_temperature_max: '420', un_proper_shipping_name: 'conke NOS', sds: File.open('db/seeds/sds.pdf', 'rb'), signal_word_id: '2', inchi: 'InChI=1S/C2H6O/c1-2-3/h3H,2H2,1H3', smiles: 'F/C=C/F', pubchem: '702', density: '1.5', melting_point: '20', boiling_point: '1000', created_at: Time.now.utc.iso8601, updated_at: Time.now.utc.iso8601)
+
+  Container.create!(barcode: '1101010', container_size: '50', size_unit: 'g', date_purchased: Time.now.utc.iso8601, chemical_id: '1', supplier_id: '1', description: 'stonky', product_number: '1010101010101_50G', lot_number: '900', user_id: '1', owner_id: '1', picture: File.open('db/seeds/bepis.jpg', 'rb'))
+
+  location = Location.create!(name: 'Parliament House', code: 'PH', barcode: '101', temperature: '25', location_types_id: '1')
+  location = create_sublocation(location, 'Scottys Office', 'SO', '1011', '-20', '2')
+  location = create_sublocation(location, 'Submarine Filing Cabinet', 'SFC', '1012', '30', '4')
+  create_sublocation(location, 'Box 1', 'B1', '1013', '20', '8')
+  create_sublocation(location, 'Box 2', 'B2', '1014', '5', '8')
+
+  ContainerLocation.create!(created_at: Time.now.utc.iso8601, updated_at: Time.now.utc.iso8601, container_id: '1', location_id: '4')
+end
+
 def create_users
   User.create!(username: 'root', name: 'root', email: 'root@root.com', password: 'root', isadmin: true, issuperuser: true)
 end
@@ -364,6 +389,11 @@ def create_pictograms
   Pictogram.create!(name: 'Toxic', picture: File.open("db/seeds/images/toxic.jpg", "rb").read)
 end
 
+def create_signal_words
+  SignalWord.create!(name: 'Warning')
+  SignalWord.create!(name: 'Danger')
+end
+
 create_packing_groups
 create_dg_classes
 create_schedules
@@ -373,3 +403,6 @@ create_prec_stats
 create_haz_stats
 create_haz_classes
 create_pictograms
+create_signal_words
+
+add_test_data

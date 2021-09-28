@@ -5,7 +5,8 @@ require 'time'
 #
 # blep
 #
-class Colin::Routes::Location < Sinatra::Base
+class Colin::Routes::Location < Colin::BaseWebApp
+
   get '/api/location/:location' do
     if params[:location].nil?
       halt(422, 'Must provide a name or code for the location.')

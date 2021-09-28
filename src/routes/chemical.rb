@@ -4,7 +4,7 @@ require 'time'
 #
 # Routes for Chemical model
 #
-class Colin::Routes::Chemical < Sinatra::Base
+class Colin::Routes::Chemical < Colin::BaseWebApp
   #
   # Gets all chemicals. Pagination supported using the `page' and `size'
   # query parameters. E.g. GET /chemical?page=1&size=15 gets the first page
