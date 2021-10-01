@@ -19,10 +19,15 @@ class Colin::Models::Chemical < ActiveRecord::Base
   belongs_to :packing_group
   belongs_to :signal_word
 
-  has_many :haz_classes, through: :chemical_haz_classes, class_name: "HazClass"
-  has_many :pictograms, through: :chemical_pictograms, class_name: "Pictogram"
-  has_many :haz_stats, through: :chemical_haz_stats, class_name: "HazStat"
-  has_many :prec_stats, through: :chemical_prec_stats, class_name: "PrecStat"
+  has_many :chemical_haz_class, class_name: "ChemicalHazClass"
+  has_many :chemical_pictogram, class_name: "ChemicalPictogram"
+  has_many :chemical_haz_stat, class_name: "ChemicalHazStat"
+  has_many :chemical_prec_stat, class_name: "ChemicalPrecStat"
+
+  has_many :haz_class, through: :chemical_haz_class, class_name: "HazClass"
+  has_many :pictogram, through: :chemical_pictogram, class_name: "Pictogram"
+  has_many :haz_stat, through: :chemical_haz_stat, class_name: "HazStat"
+  has_many :prec_stat, through: :chemical_prec_stat, class_name: "PrecStat"
 
   has_many :containers, class_name: "Container"
 end

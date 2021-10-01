@@ -38,10 +38,10 @@ ActiveRecord::Schema.define(version: 2021_09_27_154121) do
   end
 
   create_table "chemical_prec_stat_supps", force: :cascade do |t|
-    t.bigint "chemical_prec_stats_id"
+    t.bigint "chemical_prec_stat_id"
     t.integer "position", null: false
     t.string "information", null: false
-    t.index ["chemical_prec_stats_id"], name: "index_chemical_prec_stat_supps_on_chemical_prec_stats_id"
+    t.index ["chemical_prec_stat_id"], name: "index_chemical_prec_stat_supps_on_chemical_prec_stat_id"
   end
 
   create_table "chemical_prec_stats", force: :cascade do |t|

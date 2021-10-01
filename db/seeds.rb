@@ -17,6 +17,17 @@ end
 def add_test_data
   Chemical.create!(cas: '1-1-1', name: 'bepis', haz_substance: true, sds_url: 'https://www.nug.com/sds', un_number: '1234', dg_class_id: '2', dg_class_2_id: '11', schedule_id: '1', packing_group_id: '1', storage_temperature_min: '69', storage_temperature_max: '420', un_proper_shipping_name: 'conke NOS', sds: File.open('db/seeds/sds.pdf', 'rb'), signal_word_id: '2', inchi: 'InChI=1S/C2H6O/c1-2-3/h3H,2H2,1H3', smiles: 'F/C=C/F', pubchem: '702', density: '1.5', melting_point: '20', boiling_point: '1000', created_at: Time.now.utc.iso8601, updated_at: Time.now.utc.iso8601)
 
+  ChemicalHazClass.create!(chemical_id: '1', haz_class_id: '9', category: '3')
+  ChemicalPictogram.create!(chemical_id: '1', pictogram_id: '3')
+  ChemicalHazStat.create!(chemical_id: '1', haz_stat_id: '6')
+  ChemicalHazStat.create!(chemical_id: '1', haz_stat_id: '9')
+  ChemicalHazStat.create!(chemical_id: '1', haz_stat_id: '32')
+  ChemicalPrecStat.create!(chemical_id: '1', prec_stat_id: '10')
+  ChemicalPrecStat.create!(chemical_id: '1', prec_stat_id: '6')
+  ChemicalPrecStat.create!(chemical_id: '1', prec_stat_id: '9')
+  ChemicalPrecStat.create!(chemical_id: '1', prec_stat_id: '32')
+  ChemicalPrecStatSupp.create!(chemical_prec_stat_id: '1', position: '1', information: 'Conke')
+
   Container.create!(barcode: '1101010', container_size: '50', size_unit: 'g', date_purchased: Time.now.utc.iso8601, chemical_id: '1', supplier_id: '1', description: 'stonky', product_number: '1010101010101_50G', lot_number: '900', user_id: '1', owner_id: '1', picture: File.open('db/seeds/bepis.jpg', 'rb'))
 
   location = Location.create!(name: 'Parliament House', code: 'PH', barcode: '101', temperature: '25', location_types_id: '1')
@@ -26,6 +37,8 @@ def add_test_data
   create_sublocation(location, 'Box 2', 'B2', '1014', '5', '8')
 
   ContainerLocation.create!(created_at: Time.now.utc.iso8601, updated_at: Time.now.utc.iso8601, container_id: '1', location_id: '4')
+
+  Supplier.create!(name: 'Thoma')
 end
 
 def create_users
