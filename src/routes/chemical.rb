@@ -17,21 +17,15 @@ class Colin::Routes::Chemical < Sinatra::Base
       halt(403, 'Not authorised.')
     end
 
-    Colin::Models::Chemical.limit(params[:limit]).offset(params[:offset]).to_json(include: {
-      schedule: {},
-      packing_group: {},
-      signal_word: {},
-      chemical_haz_class: { include: :haz_class },
-      chemical_pictogram: { include: { pictogram: {except: :picture} } },
-      chemical_haz_stat: { include: :haz_stat },
-      chemical_prec_stat: { include: :prec_stat },
-      dg_class: { include: :superclass },
-      dg_class_2: { include: :superclass },
-      dg_class_3: { include: :superclass }
-    })
+    Colin::Models::Chemical.limit(params[:limit]).offset(params[:offset]).to_json()
   end
 
   post '/api/chemical' do
+
+    unless session[:authorized]
+      halt(403, 'Not authorised.')
+    end
+    
     Colin::Models::Chemical.create_chemical(params)
   end
 
@@ -63,16 +57,4 @@ class Colin::Routes::Chemical < Sinatra::Base
       halt(404, "Chemical with CAS #{params[:cas]} not found.")
     end
   end
-
-  # get '/api/create/chemical/' do
-  #   Colin::Models::Chemical.create(cas: params[:cas], prefix: params[:prefix], name: params[:name], haz_substance: params[:haz_substance], un_number: params[:un_number], dg_class_id: params[:dg_class_id], dg_class_2_id: params[:dg_class_2_id], dg_class_3_id: params[:dg_class_3_id], schedule_id: params[:schedule_id], packing_group_id: params[:packing_group_id], created_at: Time.now.utc.iso8601, updated_at: Time.now.utc.iso8601).to_json()
-  #   # Colin::Models::Chemical.find(params[:id]).to_json(include: [
-  #   #     :dg_class,
-  #   #     :dg_subclass,
-  #   #     :schedule,
-  #   #     :packing_group
-  #   #   ])
-  #   #redirect '/'
-  # end
-
 end

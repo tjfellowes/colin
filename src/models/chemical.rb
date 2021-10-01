@@ -31,7 +31,7 @@ class Colin::Models::Chemical < ActiveRecord::Base
 
   has_many :containers, class_name: "Container"
 
-  def create_chemical(params)
+  def self.create_chemical(params)
     if Colin::Models::Chemical.exists?(cas: params[:cas])
       chemical = Colin::Models::Chemical.where(cas: params[:cas]).take
     else
@@ -169,6 +169,6 @@ class Colin::Models::Chemical < ActiveRecord::Base
       end
       #The chemical has now been created!
     end
-    yield chemical
+    return chemical
   end
 end
