@@ -1,0 +1,974 @@
+Creation Date  03-Dec-2010
+
+Revision Date  18-Jan-2018
+
+Revision Number  6
+
+SAFETY DATA SHEET
+
+1. Identification
+
+Product Name
+
+Phenol
+
+Cat No. :
+
+CAS-No
+Synonyms
+
+BP226-100. BP226-500
+
+108-95-2
+Carbolic acid; Hydroxybenzene
+
+Recommended Use
+Uses advised against
+
+Laboratory chemicals.
+Not for food, drug, pesticide or biocidal product use
+
+Details of the supplier of the safety data sheet 
+
+Company 
+Fisher Scientific
+One Reagent Lane
+Fair Lawn, NJ 07410
+Tel: (201) 796-7100
+
+Emergency Telephone Number 
+CHEMTRECÒ, Inside the USA: 800-424-9300
+CHEMTRECÒ, Outside the USA: 001-703-527-3887
+
+Classification 
+This chemical is considered hazardous by the 2012 OSHA Hazard Communication Standard (29 CFR 1910.1200)
+
+2. Hazard(s) identification
+
+Acute oral toxicity
+Acute dermal toxicity
+Acute Inhalation Toxicity - Dusts and Mists
+Skin Corrosion/irritation
+Serious Eye Damage/Eye Irritation
+Germ Cell Mutagenicity
+Specific target organ toxicity (single exposure)
+Target Organs -  Respiratory system.
+Specific target organ toxicity - (repeated exposure)
+Target Organs -  Liver, Kidney, Blood, Central nervous system (CNS).
+
+Category 3
+Category 3
+Category 3
+Category 1  B
+Category 1
+Category 2
+Category 3
+
+Category 1
+
+Label Elements  
+
+Signal Word
+Danger
+
+Hazard Statements
+Toxic if swallowed
+Toxic in contact with skin
+Toxic if inhaled
+Causes severe skin burns and eye damage
+May cause respiratory irritation
+
+______________________________________________________________________________________________
+
+Page  1 / 8
+
+Revision Date  18-Jan-2018
+Phenol
+______________________________________________________________________________________________
+
+May cause drowsiness or dizziness
+Suspected of causing genetic defects
+Causes damage to organs through prolonged or repeated exposure
+
+Precautionary Statements
+Prevention
+Obtain special instructions before use
+Do not handle until all safety precautions have been read and understood
+Use personal protective equipment as required
+Wash face, hands and any exposed skin thoroughly after handling
+Do not eat, drink or smoke when using this product
+Use only outdoors or in a well-ventilated area
+Do not breathe dust/fume/gas/mist/vapors/spray
+Keep away from heat/sparks/open flames/hot surfaces. - No smoking
+Keep cool
+Response
+Immediately call a POISON CENTER or doctor/physician
+Inhalation
+IF INHALED: Remove victim to fresh air and keep at rest in a position comfortable for breathing
+Skin
+Wash contaminated clothing before reuse
+IF ON SKIN (or hair): Take off immediately all contaminated clothing. Rinse skin with water/shower
+Eyes
+IF IN EYES: Rinse cautiously with water for several minutes. Remove contact lenses, if present and easy to do. Continue rinsing
+Ingestion
+Rinse mouth
+Do NOT induce vomiting
+Fire
+In case of fire: Use CO2, dry chemical, or foam for extinction
+Storage
+Store locked up
+Store in a well-ventilated place. Keep container tightly closed
+Disposal
+Dispose of contents/container to an approved waste disposal plant
+Hazards not otherwise classified (HNOC)  
+Toxic to aquatic life with long lasting effects
+Combustible material
+
+3. Composition/Information on Ingredients
+
+Component
+
+Phenol
+
+CAS-No
+108-95-2
+
+Weight %
+
+>95
+
+4. First-aid measures
+
+Eye Contact
+
+Rinse immediately with plenty of water, also under the eyelids, for at least 15 minutes.
+Immediate medical attention is required.
+
+Skin Contact
+
+Wash off immediately with plenty of water for at least 15 minutes. Immediate medical
+
+______________________________________________________________________________________________
+
+Page  2 / 8
+
+Revision Date  18-Jan-2018
+Phenol
+______________________________________________________________________________________________
+
+attention is required.
+
+Inhalation
+
+Move to fresh air. If breathing is difficult, give oxygen. Do not use mouth-to-mouth method if
+victim ingested or inhaled the substance; give artificial respiration with the aid of a pocket
+mask equipped with a one-way valve or other proper respiratory medical device. Immediate
+medical attention is required.
+
+Ingestion
+
+Do not induce vomiting. Call a physician or Poison Control Center immediately.
+
+Most important symptoms and
+effects
+
+Notes to Physician
+
+Breathing difficulties. Causes burns by all exposure routes. .  Symptoms of overexposure
+may be headache, dizziness, tiredness, nausea and vomiting: Product is a corrosive
+material.  Use of gastric lavage or emesis is contraindicated.  Possible perforation of
+stomach or esophagus should be investigated: Ingestion causes severe swelling, severe
+damage to the delicate tissue and danger of perforation: May cause central nervous system
+depression
+Treat symptomatically
+
+Suitable Extinguishing Media
+
+Use water spray, alcohol-resistant foam, dry chemical or carbon dioxide. Cool closed
+containers exposed to fire with water spray.
+
+5. Fire-fighting measures
+
+Unsuitable Extinguishing Media
+
+No information available
+
+Flash Point
+
+Method -
+
+ 79  °C  /  174.2  °F
+
+No information available
+
+Autoignition Temperature
+
+ 605  °C  /  1121  °F
+
+Explosion Limits
+
+Upper
+Lower
+Sensitivity to Mechanical Impact No information available
+Sensitivity to Static Discharge No information available
+
+8.6 vol %
+1.7 vol %
+
+Specific Hazards Arising from the Chemical
+Combustible material. Risk of ignition. Containers may explode when heated. Vapors may travel to source of ignition and flash
+back.
+
+Hazardous Combustion Products
+Carbon monoxide (CO) Carbon dioxide (CO2)
+Protective Equipment and Precautions for Firefighters
+As in any fire, wear self-contained breathing apparatus pressure-demand, MSHA/NIOSH (approved or equivalent) and full
+protective gear.
+
+NFPA  
+
+Health
+
+4
+
+Personal Precautions
+
+Environmental Precautions
+
+Flammability
+
+2
+
+Instability
+
+1
+
+Physical hazards
+
+N/A
+
+6. Accidental release measures
+Use personal protective equipment. Remove all sources of ignition. Ensure adequate
+ventilation. Avoid contact with skin, eyes and clothing. Avoid dust formation. Take
+precautionary measures against static discharges.
+Do not flush into surface water or sanitary sewer system. See Section 12 for additional
+ecological information. Avoid release to the environment. Collect spillage.
+
+Methods for Containment and Clean
+Up
+
+Remove all sources of ignition. Sweep up and shovel into suitable containers for disposal.
+Avoid dust formation. Use spark-proof tools and explosion-proof equipment.
+
+______________________________________________________________________________________________
+
+Page  3 / 8
+
+Revision Date  18-Jan-2018
+Phenol
+______________________________________________________________________________________________
+
+7. Handling and storage
+
+Use only under a chemical fume hood. Wear personal protective equipment. Avoid dust
+formation. Do not breathe dust. Do not get in eyes, on skin, or on clothing. Keep away from
+open flames, hot surfaces and sources of ignition.
+
+Keep containers tightly closed in a dry, cool and well-ventilated place. Keep away from heat
+and sources of ignition. Protect from moisture. Protect from light. Corrosives area.
+
+8. Exposure controls / personal protection
+
+ACGIH TLV
+TWA: 5 ppm
+
+Skin
+
+OSHA PEL
+
+(Vacated) TWA: 5 ppm
+
+(Vacated) TWA: 19 mg/m3
+
+Skin
+
+TWA: 5 ppm
+
+TWA: 19 mg/m3
+
+NIOSH IDLH
+IDLH: 250 ppm
+
+TWA: 5 ppm
+
+TWA: 19 mg/m3
+Ceiling: 15.6 ppm
+Ceiling: 60 mg/m3
+
+Mexico OEL (TWA)
+
+TWA: 5 ppm
+
+TWA: 19 mg/m3
+STEL: 10 ppm
+STEL: 38 mg/m3
+
+Handling
+
+Storage
+
+Legend
+
+Exposure Guidelines 
+
+Component
+
+Phenol
+
+ACGIH - American Conference of Governmental Industrial Hygienists
+OSHA - Occupational Safety and Health Administration
+NIOSH IDLH:  The National Institute for Occupational Safety and Health Immediately Dangerous to Life or Health
+
+Engineering Measures
+
+Use only under a chemical fume hood. Ensure that eyewash stations and safety showers
+are close to the workstation location. Ensure adequate ventilation, especially in confined
+areas.
+
+Personal Protective Equipment 
+
+Eye/face Protection
+
+Wear appropriate protective eyeglasses or chemical safety goggles as described by
+OSHA's eye and face protection regulations in 29 CFR 1910.133 or European Standard
+EN166.
+
+Skin and body protection
+
+Wear appropriate protective gloves and clothing to prevent skin exposure.
+
+Respiratory Protection
+
+Effective dust mask Filter type A.
+
+Hygiene Measures
+
+Handle in accordance with good industrial hygiene and safety practice.
+
+9. Physical and chemical properties
+
+Physical State
+Appearance
+Odor
+Odor Threshold
+pH
+Melting Point/Range
+Boiling Point/Range
+Flash Point
+Evaporation Rate
+Flammability (solid,gas)
+Flammability or explosive limits
+
+Upper
+Lower
+
+Vapor Pressure
+Vapor Density
+Specific Gravity
+Solubility
+
+Crystalline Solid
+Colorless - Translucent White
+pungent
+No information available
+ 6  @ 20°C   10 g/L aq.sol
+ 39  -  42  °C  /  102.2  -  107.6  °F
+ 182  °C  /  359.6  °F  @ 760 mmHg
+ 79  °C  /  174.2  °F
+Not applicable
+No information available
+
+8.6 vol %
+1.7 vol %
+0.4 mbar  @  20 °C
+Not applicable
+1.070
+Soluble in water
+
+______________________________________________________________________________________________
+
+Page  4 / 8
+
+Revision Date  18-Jan-2018
+Phenol
+______________________________________________________________________________________________
+
+Partition coefficient; n-octanol/water
+Autoignition Temperature
+Decomposition Temperature
+Viscosity
+Molecular Formula
+Molecular Weight
+
+No data available
+ 605  °C  /  1121  °F
+No information available
+3.437 mPa.s (50°C)
+C6 H6 O
+94.11
+
+10. Stability and reactivity
+
+Reactive Hazard
+
+Yes
+
+Stability
+
+Hygroscopic, Light sensitive.
+
+Conditions to Avoid
+
+Avoid dust formation. Incompatible products. Exposure to moisture. Exposure to light. Keep
+away from open flames, hot surfaces and sources of ignition.
+
+Incompatible Materials
+
+Acids, Bases, Strong oxidizing agents, Halogens, lead, Metals
+
+Hazardous Decomposition Products Carbon monoxide (CO), Carbon dioxide (CO2)
+
+Hazardous Polymerization
+
+Hazardous polymerization does not occur.
+
+Hazardous Reactions
+
+None under normal processing.
+
+11. Toxicological information
+
+Acute Toxicity 
+
+Product Information
+Component Information
+
+Component
+
+Phenol
+
+Irritation
+
+Sensitization
+
+Carcinogenicity
+
+Component
+
+Phenol
+
+Mutagenic Effects
+
+Calc. ATE 60 mg/kg (Human
+
+Calc. ATE 300 mg/kg (Human
+
+Calc. ATE 0.5 mg/l (Human
+
+LD50 Dermal
+
+LC50 Inhalation
+
+evidence)
+
+LD50 = 660 mg/kg (Rat)
+850 - 1400 mg/kg (Rabbit)
+
+evidence)
+
+LC50 >900 mg/m3/8h (Rat)
+
+LD50 Oral
+
+evidence)
+
+LD50 = 340 mg/kg (Rat)
+
+650 mg/kg (Rat; OECD 401)
+
+Toxicologically Synergistic
+Products
+Delayed and immediate effects as well as chronic effects from short and long-term exposure  
+
+No information available
+
+Causes burns by all exposure routes
+
+No information available
+
+The table below indicates whether each agency has listed any ingredient as a carcinogen.
+
+CAS-No
+108-95-2
+
+IARC
+
+Not listed
+
+NTP
+
+Not listed
+
+ACGIH
+Not listed
+
+OSHA
+
+Not listed
+
+Mexico
+Not listed
+
+No information available
+
+Reproductive Effects
+
+Experiments have shown reproductive toxicity effects on laboratory animals.
+
+Developmental Effects
+
+No information available.
+
+Teratogenicity
+
+No information available.
+
+STOT - single exposure
+STOT - repeated exposure
+
+Respiratory system
+Liver Kidney Blood Central nervous system (CNS)
+
+Aspiration hazard
+
+No information available
+
+Symptoms  / effects,both acute and Symptoms of overexposure may be headache, dizziness, tiredness, nausea and vomiting:
+
+______________________________________________________________________________________________
+
+Page  5 / 8
+
+Revision Date  18-Jan-2018
+Phenol
+______________________________________________________________________________________________
+
+delayed
+
+Product is a corrosive material.  Use of gastric lavage or emesis is contraindicated.
+Possible perforation of stomach or esophagus should be investigated: Ingestion causes
+severe swelling, severe damage to the delicate tissue and danger of perforation: May cause
+central nervous system depression
+
+Endocrine Disruptor Information
+
+No information available
+
+Other Adverse Effects
+
+Tumorigenic effects have been reported in experimental animals. See actual entry in
+RTECS for complete information.
+
+Ecotoxicity 
+Toxic to aquatic organisms, may cause long-term adverse effects in the aquatic environment.
+
+12. Ecological information
+
+Component
+
+Phenol
+
+Freshwater Algae
+
+EC50:  187 - 279 mg/L, 72h
+
+static (Desmodesmus
+
+Freshwater Fish
+
+4-7 mg/L LC50 96 h
+32 mg/L LC50 96 h
+
+Microtox
+
+Water Flea
+
+EC50  21 - 36 mg/L 30 min
+EC50 = 23.28 mg/L 5 min
+EC50 = 25.61 mg/L 15 min
+EC50 = 28.8 mg/L 5 min
+EC50 = 31.6 mg/L 15 min
+
+EC50:  10.2 - 15.5 mg/L, 48h
+
+(Daphnia magna)
+
+EC50:  4.24 - 10.7 mg/L, 48h
+
+Static (Daphnia magna)
+
+subspicatus)
+
+EC50:  0.0188 - 0.1044
+
+mg/L, 96h static
+
+(Pseudokirchneriella
+
+subcapitata)
+
+EC50: = 46.42 mg/L, 96h
+
+(Pseudokirchneriella
+
+subcapitata)
+
+Persistence and Degradability
+
+Soluble in water Persistence is unlikely based on information available.
+
+Bioaccumulation/ Accumulation
+
+No information available.
+
+Mobility
+
+Will likely be mobile in the environment due to its water solubility.
+
+Component
+
+Phenol
+
+log Pow
+
+1.5
+
+Waste Disposal Methods
+
+13. Disposal considerations
+
+Chemical waste generators must determine whether a discarded chemical is classified as a
+hazardous waste.  Chemical waste generators must also consult local, regional, and
+national hazardous waste regulations to ensure complete and accurate classification.
+
+Component
+
+Phenol - 108-95-2
+
+RCRA - U Series Wastes
+
+RCRA - P Series Wastes
+
+U188
+
+-
+
+14. Transport information
+
+DOT 
+
+TDG 
+
+IATA 
+
+UN-No
+Proper Shipping Name
+Hazard Class
+Packing Group
+
+UN-No
+Proper Shipping Name
+Hazard Class
+Packing Group
+
+UN-No
+Proper Shipping Name
+Hazard Class
+Packing Group
+
+IMDG/IMO 
+
+UN1671
+PHENOL, SOLID
+6.1
+II
+
+UN1671
+PHENOL, SOLID
+6.1
+II
+
+UN1671
+PHENOL, SOLID
+6.1
+II
+
+______________________________________________________________________________________________
+
+Page  6 / 8
+
+Revision Date  18-Jan-2018
+Phenol
+______________________________________________________________________________________________
+
+UN-No
+Proper Shipping Name
+Hazard Class
+Packing Group
+
+UN1671
+PHENOL, SOLID
+6.1
+II
+
+15. Regulatory information
+
+All of the components in the product are on the following Inventory lists:  Australia Complete Regulatory Information
+contained in following SDS's X = listed China Canada The product is classified and labeled according to EC directives or
+corresponding national laws The product is classified and labeled in accordance with Directive 1999/45/EC TSCA Korea
+Philippines Japan U.S.A. (TSCA) Canada (DSL/NDSL) Europe (EINECS/ELINCS/NLP) Australia (AICS) Korea (ECL) China
+(IECSC) Japan (ENCS) Philippines (PICCS)
+
+International Inventories
+
+Component
+
+Phenol
+
+TSCA
+
+X
+
+DSL
+
+X
+
+NDSL EINECS ELINCS NLP PICCS ENCS
+
+AICS IECSC KECL
+
+-
+
+203-632-7
+
+-
+
+X
+
+X
+
+X
+
+X
+
+X
+
+Legend:
+X - Listed
+E - Indicates a substance that is the subject of a Section 5(e) Consent order under TSCA.
+F - Indicates a substance that is the subject of a Section 5(f) Rule under TSCA.
+N - Indicates a polymeric substance containing no free-radical initiator in its inventory name but is considered to cover the designated
+polymer made with any free-radical initiator regardless of the amount used.
+P - Indicates a commenced PMN substance
+R - Indicates a substance that is the subject of a Section 6 risk management rule under TSCA.
+S - Indicates a substance that is identified in a proposed or final Significant New Use Rule
+T - Indicates a substance that is the subject of a Section 4 test rule under TSCA.
+XU - Indicates a substance exempt from reporting under the Inventory Update Rule, i.e. Partial Updating of the TSCA Inventory Data Base
+Production and Site Reports (40 CFR 710(B).
+Y1 - Indicates an exempt polymer that has a number-average molecular weight of 1,000 or greater.
+Y2 - Indicates an exempt polymer that is a polyester and is made only from reactants included in a specified list of low concern reactants
+that comprises one of the eligibility criteria for the exemption rule.
+
+U.S. Federal Regulations  
+
+TSCA 12(b)
+
+SARA 313
+
+Component
+
+Phenol
+
+Not applicable
+
+CAS-No
+
+108-95-2
+
+Weight %
+
+SARA 313 - Threshold
+
+Values %
+
+1.0
+
+SARA 311/312 Hazard Categories
+
+See section 2 for more information
+
+CWA (Clean Water Act)
+
+Component
+
+Clean Air Act
+
+Phenol
+
+Component
+
+Phenol
+
+CWA - Hazardous
+
+Substances
+
+X
+
+Quantities
+
+1000 lb
+
+CWA - Reportable
+
+CWA - Toxic Pollutants CWA - Priority Pollutants
+
+HAPS Data
+
+X
+
+Class 1 Ozone Depletors
+
+Class 2 Ozone Depletors
+
+X
+
+-
+
+>95
+
+X
+
+OSHA Occupational Safety and Health Administration
+Not applicable
+
+CERCLA
+
+This material, as supplied, contains one or more substances regulated as a hazardous
+substance under the Comprehensive Environmental Response Compensation and Liability
+Act (CERCLA) (40 CFR 302)
+
+Component
+
+Phenol
+
+Hazardous Substances RQs
+
+1000 lb
+
+CERCLA EHS RQs
+
+1000 lb
+
+______________________________________________________________________________________________
+
+Page  7 / 8
+
+Revision Date  18-Jan-2018
+Phenol
+______________________________________________________________________________________________
+
+California Proposition 65
+
+This product does not contain any Proposition 65 chemicals
+
+Massachusetts
+
+New Jersey
+
+Pennsylvania
+
+X
+
+X
+
+X
+
+Illinois
+
+X
+
+Rhode Island
+
+X
+
+U.S. State Right-to-Know
+Regulations
+
+Component
+
+Phenol
+
+U.S. Department of Transportation
+
+Reportable Quantity (RQ):
+DOT Marine Pollutant
+DOT Severe Marine Pollutant
+
+N
+N
+N
+
+U.S. Department of Homeland Security
+This product does not contain any DHS chemicals.
+
+Other International Regulations 
+
+Mexico - Grade
+
+No information available
+
+Prepared By
+
+Creation Date
+Revision Date
+Print Date
+Revision Summary
+
+16. Other information
+
+Regulatory Affairs
+Thermo Fisher Scientific
+Email: EMSDS.RA@thermofisher.com
+
+03-Dec-2010
+18-Jan-2018
+18-Jan-2018
+This document has been updated to comply with the US OSHA HazCom 2012 Standard
+replacing the current legislation under 29 CFR 1910.1200 to align with the Globally
+Harmonized System of Classification and Labeling of Chemicals (GHS).
+
+Disclaimer
+The information provided in this Safety Data Sheet is correct to the best of our knowledge, information and belief at the
+date of its publication. The information given is designed only as a guidance for safe handling, use, processing, storage,
+transportation, disposal and release and is not to be considered a warranty or quality specification. The information
+relates only to the specific material designated and may not be valid for such material used in combination with any other
+materials or in any process, unless specified in the text
+
+End of SDS
+
+______________________________________________________________________________________________
+
+Page  8 / 8
+
+

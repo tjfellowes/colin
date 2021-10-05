@@ -1,0 +1,803 @@
+ 
+ 
+ 
+
+ 
+
+ 
+
+ 
+ 
+
+ 
+
+ 
+SAFETY DATA SHEET 
+according to Regulation (EC) No. 1907/2006 
+ 
+SECTION 1: Identification of the substance/mixture and of the company/undertaking 
+
+Version 8.0 
+Revision Date 02.10.2021 
+Print Date 05.10.2021 
+
+1.1  Product identifiers 
+
+Product name 
+
+:  Tyrosine 
+
+ 
+
+Product Number 
+Brand 
+REACH No. 
+
+:  T2900000 
+:  Sigma-Aldrich 
+:  A registration number is not available for this substance as the 
+
+substance or its uses are exempted from registration, the 
+annual tonnage does not require a registration or the 
+registration is envisaged for a later registration deadline. 
+
+CAS-No. 
+ 
+
+:  60-18-4 
+
+1.2  Relevant identified uses of the substance or mixture and uses advised against 
+
+Identified uses 
+
+:  Laboratory chemicals, Manufacture of substances 
+
+1.3  Details of the supplier of the safety data sheet 
+
+Company 
+
+:  Merck Life Science UK Limited 
+
+New Road 
+The Old Brickyard 
+GILLINGHAM 
+Dorset 
+SP8 4XT 
+UNITED KINGDOM 
+
+:  +44 (0)1747 833-000 
+:  +44 (0)1747 833-313 
+
+ 
+Telephone 
+Fax 
+
+1.4  Emergency telephone 
+
+Emergency Phone # 
+
+:  +44 (0)870 8200418 (CHEMTREC) 
+
+ 
+
+ 
+SECTION 2: Hazards identification 
+
+2.1  Classification of the substance or mixture 
+
+ 
+Not a hazardous substance or mixture according to Regulation (EC) No. 1272/2008. 
+
+2.2  Label elements 
+
+2.3  Other hazards 
+
+Not a hazardous substance or mixture according to Regulation (EC) No. 1272/2008. 
+
+This substance/mixture contains no components considered to be either persistent, 
+bioaccumulative and toxic (PBT), or very persistent and very bioaccumulative (vPvB) at 
+levels of 0.1% or higher. 
+
+ 
+
+ 
+
+Sigma-Aldrich- T2900000 
+ 
+The life science business of Merck operates as MilliporeSigma in the US and 
+Canada 
+ 
+
+Page 1  of  8 
+ 
+
+ 
+
+ 
+ 
+ 
+SECTION 3: Composition/information on ingredients 
+
+3.1  Substances 
+
+Formula 
+Molecular weight 
+CAS-No. 
+EC-No. 
+ 
+No components need to be disclosed according to the applicable regulations. 
+
+:  4-(HO)C6H4CH2CH(NH2)CO2H 
+:  181.19 g/mol 
+:  60-18-4 
+:  200-460-4 
+
+ 
+
+ 
+
+ 
+SECTION 4: First aid measures 
+
+4.1  Description of first-aid measures 
+
+If inhaled 
+After inhalation: fresh air. 
+
+In case of skin contact 
+In case of skin contact: Take off immediately all contaminated clothing. Rinse skin with 
+water/ shower. 
+
+In case of eye contact 
+After eye contact: rinse out with plenty of water. Remove contact lenses. 
+
+If swallowed 
+After swallowing: make victim drink water (two glasses at most). Consult doctor if feeling 
+unwell. 
+
+4.2  Most important symptoms and effects, both acute and delayed 
+
+The most important known symptoms and effects are described in the labelling (see section 
+2.2) and/or in section 11 
+
+4.3  Indication of any immediate medical attention and special treatment needed 
+
+No data available 
+
+ 
+
+ 
+
+ 
+SECTION 5: Firefighting measures 
+
+5.1  Extinguishing media 
+
+Suitable extinguishing media 
+Water Foam Carbon dioxide (CO2) Dry powder 
+
+Unsuitable extinguishing media 
+For this substance/mixture no limitations of extinguishing agents are given. 
+
+5.2  Special hazards arising from the substance or mixture 
+
+Carbon oxides 
+Nitrogen oxides (NOx) 
+Combustible. 
+Development of hazardous combustion gases or vapours possible in the event of fire. 
+
+5.3  Advice for firefighters 
+
+In the event of fire, wear self-contained breathing apparatus. 
+
+5.4  Further information 
+
+Suppress (knock down) gases/vapors/mists with a water spray jet. Prevent fire 
+extinguishing water from contaminating surface water or the ground water system. 
+
+Sigma-Aldrich- T2900000 
+ 
+The life science business of Merck operates as MilliporeSigma in the US and 
+Canada 
+ 
+
+Page 2  of  8 
+ 
+
+ 
+
+ 
+
+ 
+ 
+
+ 
+ 
+
+ 
+
+ 
+SECTION 6: Accidental release measures 
+
+6.1  Personal precautions, protective equipment and emergency procedures 
+
+Advice for non-emergency personnel: Avoid inhalation of dusts. Evacuate the danger 
+area, observe emergency procedures, consult an expert. 
+For personal protection see section 8. 
+
+6.2  Environmental precautions 
+
+Do not let product enter drains. 
+
+6.3  Methods and materials for containment and cleaning up 
+
+Cover drains. Collect, bind, and pump off spills. Observe possible material restrictions 
+(see sections 7 and 10). Take up dry. Dispose of properly. Clean up affected area. Avoid 
+generation of dusts. 
+
+6.4  Reference to other sections 
+
+For disposal see section 13. 
+
+ 
+ 
+SECTION 7: Handling and storage 
+
+7.1  Precautions for safe handling 
+For precautions see section 2.2. 
+
+7.2  Conditions for safe storage, including any incompatibilities 
+
+Storage conditions 
+Tightly closed. Dry. 
+
+Storage class 
+Storage class (TRGS 510): 13: Non Combustible Solids 
+
+7.3  Specific end use(s) 
+
+Apart from the uses mentioned in section 1.2 no other specific uses are stipulated 
+
+ 
+ 
+SECTION 8: Exposure controls/personal protection 
+
+8.1  Control parameters 
+
+Ingredients with workplace control parameters 
+Contains no substances with occupational exposure limit values. 
+
+8.2  Exposure controls 
+
+ 
+
+ 
+
+Personal protective equipment 
+
+Eye/face protection 
+Use equipment for eye protection tested and approved under appropriate 
+government standards such as NIOSH (US) or EN 166(EU). Safety glasses 
+
+Skin protection 
+This recommendation applies only to the product stated in the safety data sheet, 
+supplied by us and for the designated use. When dissolving in or mixing with other 
+substances and under conditions deviating from those stated in EN374 please 
+contact the supplier of CE-approved gloves (e.g. KCL GmbH, D-36124 Eichenzell, 
+Internet: www.kcl.de). 
+Full contact 
+Material: Nitrile rubber 
+
+Sigma-Aldrich- T2900000 
+ 
+The life science business of Merck operates as MilliporeSigma in the US and 
+Canada 
+ 
+
+ 
+ 
+
+Page 3  of  8 
+ 
+
+ 
+
+ 
+ 
+
+ 
+ 
+
+Minimum layer thickness: 0.11 mm 
+Break through time: 480 min 
+Material tested:KCL 741 Dermatril® L 
+ 
+This recommendation applies only to the product stated in the safety data sheet, 
+supplied by us and for the designated use. When dissolving in or mixing with other 
+substances and under conditions deviating from those stated in EN374 please 
+contact the supplier of CE-approved gloves (e.g. KCL GmbH, D-36124 Eichenzell, 
+Internet: www.kcl.de). 
+Splash contact 
+Material: Nitrile rubber 
+Minimum layer thickness: 0.11 mm 
+Break through time: 480 min 
+Material tested:KCL 741 Dermatril® L 
+ 
+
+Respiratory protection 
+required when dusts are generated. 
+Our recommendations on filtering respiratory protection are based on the following 
+standards: DIN EN 143, DIN 14387 and other accompanying standards relating to 
+the used respiratory protection system. 
+Recommended Filter type: Filter type P1 
+
+The entrepeneur has to ensure that maintenance, cleaning and testing of respiratory 
+protective devices are carried out according to the instructions of the producer. 
+These measures have to be properly documented. 
+
+Control of environmental exposure 
+Do not let product enter drains. 
+
+ 
+
+ 
+
+ 
+SECTION 9: Physical and chemical properties 
+
+9.1  Information on basic physical and chemical properties 
+
+a)  Appearance 
+
+Form: Fine crystals and fragments 
+Color: white 
+
+b)  Odor 
+
+No data available 
+
+c)  Odor Threshold 
+
+No data available 
+
+d)  pH 
+
+e)  Melting 
+
+point/freezing point 
+
+f) 
+
+Initial boiling point 
+and boiling range 
+
+No data available 
+
+Melting point/range: 343 °C 
+
+No data available 
+
+g)  Flash point 
+
+No data available 
+
+h)  Evaporation rate 
+
+No data available 
+
+i)  Flammability (solid, 
+
+The product is not flammable. 
+
+j)  Upper/lower 
+
+No data available 
+
+gas) 
+
+flammability or 
+explosive limits 
+
+k)  Vapor pressure 
+
+No data available 
+
+l)  Vapor density 
+
+No data available 
+
+Sigma-Aldrich- T2900000 
+ 
+The life science business of Merck operates as MilliporeSigma in the US and 
+Canada 
+ 
+
+Page 4  of  8 
+ 
+
+ 
+
+ 
+ 
+
+ 
+ 
+
+m)  Density 
+
+1.46 g/cm3 
+
+ 
+
+Relative density 
+
+1.41 at 20 °C - OECD Test Guideline 109 
+
+n)  Water solubility 
+
+0.479 g/l at 25 °C  
+
+o)  Partition coefficient: 
+
+log Pow: -2.26 at 25 °C - Bioaccumulation is not expected. 
+
+No data available 
+
+q)  Decomposition 
+
+No data available 
+
+n-octanol/water 
+
+p)  Autoignition 
+temperature 
+
+temperature 
+
+r)  Viscosity 
+
+s)  Explosive properties  No data available 
+
+t)  Oxidizing properties  none 
+
+9.2  Other safety information 
+
+  Dissociation constant  2.2 at 25 °C 
+
+ 
+
+ 
+
+ 
+SECTION 10: Stability and reactivity 
+
+10.1  Reactivity 
+
+Viscosity, kinematic: No data available 
+Viscosity, dynamic: No data available 
+
+The following applies in general to flammable organic substances and mixtures: in 
+correspondingly fine distribution, when whirled up a dust explosion potential may generally 
+be assumed. 
+
+10.2  Chemical stability 
+
+The product is chemically stable under standard ambient conditions (room temperature) . 
+
+10.3  Possibility of hazardous reactions 
+
+Violent reactions possible with: 
+Strong oxidizing agents 
+ 
+
+10.4  Conditions to avoid 
+
+no information available 
+
+10.5  Incompatible materials 
+
+No data available 
+
+10.6  Hazardous decomposition products 
+
+In the event of fire: see section 5 
+
+ 
+
+ 
+
+ 
+SECTION 11: Toxicological information 
+
+11.1  Information on toxicological effects 
+
+Acute toxicity 
+LD50 Oral - Rat - > 5,110 mg/kg 
+Remarks: (External MSDS) 
+Inhalation: No data available 
+Dermal: No data available 
+
+Sigma-Aldrich- T2900000 
+ 
+The life science business of Merck operates as MilliporeSigma in the US and 
+Canada 
+ 
+
+Page 5  of  8 
+ 
+
+ 
+
+ 
+ 
+
+ 
+
+ 
+ 
+
+LD50 Intraperitoneal - Mouse - > 1,450 mg/kg 
+
+Skin corrosion/irritation 
+Skin - reconstructed human epidermis (RhE) 
+Result: No skin irritation - 1 h 
+(OECD Test Guideline 439) 
+
+Serious eye damage/eye irritation 
+Eyes - Bovine cornea 
+Result: No eye irritation - 4 h 
+(OECD Test Guideline 437) 
+
+Respiratory or skin sensitization 
+KeratinoSens assay - In vitro study 
+Result: negative 
+(OECD Test Guideline 442D) 
+
+Germ cell mutagenicity 
+Test Type: Ames test 
+Test system:  S. typhimurium  
+Metabolic activation: with and without metabolic activation 
+Method: OECD Test Guideline 471 
+Result: negative 
+
+Carcinogenicity 
+No data available 
+
+Reproductive toxicity 
+No data available 
+
+Specific target organ toxicity - single exposure 
+No data available 
+
+Specific target organ toxicity - repeated exposure 
+No data available 
+
+Aspiration hazard 
+No data available 
+
+11.2  Additional Information 
+
+To the best of our knowledge, the chemical, physical, and toxicological properties have not 
+been thoroughly investigated. 
+ 
+This is a non-essential amino acid that occurs in many forms in natural protein. 
+ 
+No  toxic  effects  are  to  be  expected  when  the  product is handled appropriately. 
+ 
+Other dangerous properties can not be excluded. 
+ 
+Handle in accordance with good industrial hygiene and safety practice. 
+ 
+ 
+
+ 
+
+ 
+SECTION 12: Ecological information 
+
+12.1  Toxicity 
+
+ 
+Toxicity to daphnia 
+and other aquatic 
+
+Sigma-Aldrich- T2900000 
+ 
+The life science business of Merck operates as MilliporeSigma in the US and 
+Canada 
+ 
+
+semi-static test EC50 - Daphnia magna (Water flea) - > 100 mg/l  - 
+48 h 
+
+Page 6  of  8 
+ 
+
+ 
+
+invertebrates 
+ 
+Toxicity to algae 
+
+(OECD Test Guideline 202) 
+
+static test ErC50 - Pseudokirchneriella subcapitata - > 63.2 mg/l  - 
+72 h 
+(OECD Test Guideline 201) 
+
+12.2  Persistence and degradability 
+
+Biodegradability 
+
+aerobic  - Exposure time 5 d 
+Result: 60.8 % - Readily biodegradable.  
+Remarks: (ECHA) 
+ 
+
+12.3  Bioaccumulative potential 
+
+No data available 
+
+12.4  Mobility in soil 
+
+No data available 
+
+12.5  Results of PBT and vPvB assessment 
+
+This substance/mixture contains no components considered to be either persistent, 
+bioaccumulative and toxic (PBT), or very persistent and very bioaccumulative (vPvB) at 
+levels of 0.1% or higher. 
+
+12.6  Other adverse effects 
+
+No data available 
+
+ 
+SECTION 13: Disposal considerations 
+
+13.1  Waste treatment methods 
+
+Product 
+Waste material must be disposed of in accordance with the national and local regulations. 
+Leave chemicals in original containers. No mixing with other waste. Handle uncleaned 
+containers like the product itself. See www.retrologistik.com for processes regarding the 
+return of chemicals and containers, or contact us there if you have further questions. 
+Notice Directive on waste 2008/98/EC.  
+
+IMDG:  -  
+
+IATA:  -  
+
+ 
+SECTION 14: Transport information 
+
+14.1  UN number 
+ADR/RID:  -  
+
+14.2  UN proper shipping name 
+
+ADR/RID:  Not dangerous goods 
+Not dangerous goods 
+IMDG:  
+IATA:  
+Not dangerous goods 
+
+14.3  Transport hazard class(es) 
+
+ADR/RID:  -  
+
+IMDG:  -  
+
+14.4  Packaging group 
+
+ADR/RID:  -  
+
+IMDG:  -  
+
+14.5  Environmental hazards 
+
+14.6  Special precautions for user 
+
+Sigma-Aldrich- T2900000 
+ 
+The life science business of Merck operates as MilliporeSigma in the US and 
+Canada 
+ 
+
+ADR/RID:  no 
+
+IMDG Marine pollutant: no 
+
+IATA: no 
+
+IATA:  -  
+
+IATA:  -  
+
+ 
+ 
+
+ 
+
+ 
+
+ 
+ 
+
+ 
+
+ 
+
+ 
+
+Page 7  of  8 
+ 
+
+ 
+
+ 
+ 
+
+ 
+
+ 
+ 
+
+ 
+ 
+
+Further information 
+Not classified as dangerous in the meaning of transport regulations. 
+
+ 
+
+ 
+SECTION 15: Regulatory information 
+
+15.1  Safety, health and environmental regulations/legislation specific for the 
+substance or mixture  
+
+This material safety data sheet complies with the requirements of Regulation (EC) No. 
+1907/2006. 
+ 
+ 
+
+15.2  Chemical Safety Assessment 
+
+For this product a chemical safety assessment was not carried out 
+
+ 
+ 
+SECTION 16: Other information 
+
+Further information 
+The above information is believed to be correct but does not purport to be all inclusive 
+and shall be used only as a guide. The information in this document is based on the 
+present state of our knowledge and is applicable to the product with regard to 
+appropriate safety precautions. It does not represent any guarantee of the properties of 
+the product. Sigma-Aldrich Corporation and its Affiliates shall not be held liable for any 
+damage resulting from handling or from contact with the above product. See 
+www.sigma-aldrich.com and/or the reverse side of invoice or packing slip for additional 
+terms and conditions of sale. 
+ 
+Copyright 2020 Sigma-Aldrich Co. LLC. License granted to make unlimited paper copies 
+for internal use only. 
+The branding on the header and/or footer of this document may temporarily not visually 
+match the product purchased as we transition our branding. However, all of the 
+information in the document regarding the product remains unchanged and matches the 
+product ordered. For further information please contact mlsbranding@sial.com. 
+ 
+ 
+
+Sigma-Aldrich- T2900000 
+ 
+The life science business of Merck operates as MilliporeSigma in the US and 
+Canada 
+ 
+
+Page 8  of  8 
+ 
+
+ 
+
+
