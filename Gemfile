@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+ruby '2.7.4'
+
 gem 'pg'#, '1.1.4'
 gem 'rake'#, '12.3.3'
 gem 'rack-flash3'#, '1.0.5'
