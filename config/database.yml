@@ -1,11 +1,11 @@
 development:
   adapter: postgresql
   encoding: unicode
-  host:     localhost
-  database: colin_development
-  username: colin
-  password: colin
-  pool: 2
+  pool: 5
+  host: <%= ENV['DATABASE_HOST'] %>
+  database: <%= ENV['DATABASE_NAME'] %>
+  username: <%= ENV['DATABASE_USER'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
 production:
   adapter: postgresql
   encoding: unicode
