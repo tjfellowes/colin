@@ -13,7 +13,7 @@ class Colin::Routes::Session < Colin::BaseWebApp
       if user && user.authenticate(params[:password])
         session[:user_id] = user.id
         session[:authorized] = true
-        redirect to '/user' 
+        redirect to '/' 
       elsif params[:username].empty? || params[:password].empty? 
           flash[:message] = "Username or password cannot be blank. please try again."
           content_type :html

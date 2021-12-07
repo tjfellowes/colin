@@ -1,0 +1,24 @@
+<div class=""> 
+    <table class="table">
+    <thead>
+    <tr>
+        <th scope="col">Barcode</th>
+        <th scope="col">Name</th>
+        <th scope="col">Size</th>
+        <th scope="col">Location</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% search_containers(params[:query]).each do |container| %>
+    <tr>
+        <td><%= container.barcode %></td>
+        <td><%= container.chemical.name %></td>
+        <td><%= container.container_size %> <%= container.size_unit %></td>
+        <td><%= container.current_location.location.parent.name %>
+        /
+        <%= container.current_location.location.name %></td>
+    </tr>
+    <% end %>
+    </tbody>
+    </table>
+</div>

@@ -1,28 +1,21 @@
 <div class="jumbotron w-50" > 
-  <h1>Create User:</h1><br> 
-    <form action="/newuser" method="POST"> 
-      <p>
-        <label for="username"><h2>Username:</h2></label><br>
-        <input type="text" name="username" placeholder="Username" style='width:50%'/>
-      </p>
-      <p> 
-        <label for="name"><h2>Name:</h2></label><br>
-        <input type="text" name="name" placeholder="Name" style='width:50%'/> 
-      </p>  
-      <p> 
-        <label for="email"><h2>Email:</h2></label><br>
-        <input type="text" name="email" placeholder="Email" style='width:50%'/> 
-      </p> 
-      <p> 
-        <label for ="password"><h2>Password:</h2></label><br>
-        <input type="password" name="password" placeholder="Password" style='width:50%'/> 
-      </p> 
-      <p> 
-        <label for ="password_confirmation"><h2>Confirm Password:</h2></label><br>
-        <input type="password" name="password_confirmation", placeholder="Password Confirmation" style='width:50%'/> 
-      </p> 
-      <button><h4>Sign Up</h4></button> 
-    </form><br>
+<h1>Create User</h1>
+  <form action="/api/user" method="POST"> 
+    <div class="form-group">
+      <input type="text" name="username" placeholder="Username" class="form-control"/>
+    </div>
+    <div class="form-group">
+      <input type="text" name="name" placeholder="Name" class="form-control"/>
+    </div>
+    <div class="form-group"> 
+      <input type="text" name="email" placeholder="Email" class="form-control"/> 
+    </div>
+    <div class="form-group">
+      <input type="password" name="password" placeholder="Password" class="form-control"/> 
+    </div>
+    <div class="form-group">
+      <input type="password" name="password_confirmation", placeholder="Password Confirmation" class="form-control"/> 
+    </div>
+    <button type="submit" class="btn btn-primary">Create User</button> 
+  </form><br>
 </div>
-      
-  

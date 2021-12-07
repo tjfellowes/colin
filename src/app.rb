@@ -5,6 +5,7 @@ require 'json'
 require 'securerandom'
 require 'bcrypt'
 require 'rack-flash'
+require "open-uri"
 
 #
 # CoLIN, the COmprehensive Labortory Information Nexus.
@@ -87,9 +88,12 @@ module Colin
 
     set :environment, :development
 
-    # Single-page front-end web app
     get '/' do
-      erb :login
+      if logged_in?
+        erb :"index.html"
+      else
+        erb :login
+      end
     end
 
     get '' do
@@ -111,6 +115,10 @@ module Colin
           redirect to '/login' 
         end  
       end   
+
+      def search_containers(query)
+        Colin::Models::Container.joins('LEFT JOIN container_locations i ON i.container_id = containers.id AND i.id = (SELECT MAX(id) FROM container_locations WHERE container_locations.container_id = i.container_id) INNER JOIN chemicals ON containers.chemical_id = chemicals.id').where("CONCAT(chemicals.prefix, chemicals.name) ILIKE :query OR barcode LIKE :query OR chemicals.cas LIKE :query", { query: "%"+query+"%"})
+      end
     
     end
     # Route for 404 not found

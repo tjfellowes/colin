@@ -16,7 +16,7 @@ class Colin::Routes::Container < Colin::BaseWebApp
       halt(403, 'Not authorised.')
     end
 
-    if params[:barcode].nil?
+    if params[:barcode].blank?
       halt(422, 'Must provide a barcode for container.')
     elsif Colin::Models::Container.exists?(barcode: params[:barcode])
       Colin::Models::Container.where("barcode = ?", params[:barcode]).to_json(include: {
@@ -66,7 +66,7 @@ class Colin::Routes::Container < Colin::BaseWebApp
       halt(403, 'Not authorised.')
     end
 
-    if params[:cas].nil?
+    if params[:cas].blank?
       halt(422, 'Must provide a CAS for the chemical in the container.')
     else
       #Does the chemical in the container exist already in the database? Identified by CAS
@@ -76,27 +76,46 @@ class Colin::Routes::Container < Colin::BaseWebApp
         chemical = Colin::Models::Chemical.create_chemical(params)
       end
 
-      # if Colin::Models::Location.exists?(name_fulltext: params[:location])
-      #   location = Colin::Models::Location.where(name_fulltext: params[:location]).take
-      # elsif Colin::Models::Location.exists?(code: params[:location])
-      #   location = Colin::Models::Location.where(code: params[:location]).take
-      # else
-      #   location = Colin::Models::Location.create(name: params[:location], name_fulltext: params[:location])
-      # end
-
-      if params[:supplier].nil?
-        #Nothing to do here!
-      elsif Colin::Models::Supplier.exists?(name: params[:supplier])
-        supplier = Colin::Models::Supplier.where(name: params[:supplier]).take
+      if params[:location].blank?
+        halt(422, 'Must provide a location for the container.')
       else
-        supplier = Colin::Models::Supplier.create(name: params[:supplier])
+        location = nil
+        #Split the path up into names delimited by forward slashes
+        params[:location].split('/').each do |name|
+          #Pick all the locations whose name matches
+          locations = Colin::Models::Location.where(name: name).all
+          #If there are none something has gone wrong!
+          if locations.length() == 0
+            halt(422, 'Invalid location!')
+          #If there is one, use that as the location
+          elsif locations.length() == 1
+            location = locations.take
+          #If there is more than one, we need to search again, specifying that the parent id should be the id of the previous location in the path.
+          elsif location != nil && Colin::Models::Location.where(name: name).where("reverse(split_part(reverse(ancestry), '/', 1)) = ':parent_id'", {parent_id: location.id}).exists?
+              location = Colin::Models::Location.where(name: name).where("reverse(split_part(reverse(ancestry), '/', 1)) = ':parent_id'", {parent_id: location.id}).take
+          else
+            halt(422, 'Ambiguous location name!')
+          end
+          #Iterate until we get to the end of the path.
+        end 
       end
 
-      Colin::Models::Container.create(barcode: params[:barcode], description: params[:description], container_size: params[:container_size], size_unit: params[:size_unit], date_purchased: Time.now.utc.iso8601, chemical_id: chemical.id, supplier_id: supplier.id)
+      if params[:supplier].blank?
+        #Nothing to do here!
+      elsif Colin::Models::Supplier.exists?(name: params[:supplier])
+        supplier_id = Colin::Models::Supplier.where(name: params[:supplier]).take.id
+      else
+        supplier_id = Colin::Models::Supplier.create(name: params[:supplier]).id
+      end
 
-      #Colin::Models::ContainerLocation.create(created_at: Time.now.utc.iso8601, updated_at: Time.now.utc.iso8601, container_id: container.id, location_id: location.id).to_json()
+      container = Colin::Models::Container.create(barcode: params[:barcode], description: params[:description], container_size: params[:container_size], size_unit: params[:size_unit], date_purchased: Time.now.utc.iso8601, chemical_id: chemical.id, supplier_id: supplier_id)
+
+
+      Colin::Models::ContainerLocation.create(created_at: Time.now.utc.iso8601, updated_at: Time.now.utc.iso8601, container_id: container.id, location_id: location.id)
 
     end
+    flash[:message] = "Chemical created!"
+    redirect to ''
   end
 
   delete '/api/container/barcode/:barcode' do
@@ -106,10 +125,10 @@ class Colin::Routes::Container < Colin::BaseWebApp
       halt(403, 'Not authorised.')
     end
 
-    if params[:barcode].nil?
+    if params[:barcode].blank?
       halt(422, 'Must provide a barcode for the container.')
     else
-      container = Colin::Models::Container.where(serial_number: params[:serial_number]).take
+      container = Colin::Models::Container.where(barcode: params[:barcode]).take
       Colin::Models::Container.update(container.id, {date_disposed: Time.now})
     end
   end
@@ -122,29 +141,38 @@ class Colin::Routes::Container < Colin::BaseWebApp
     end
 
     content_type :json
-    Colin::Models::Container.joins('LEFT JOIN container_locations i ON i.container_id = containers.id AND i.id = (SELECT MAX(id) FROM container_locations WHERE container_locations.container_id = i.container_id) INNER JOIN chemicals ON containers.chemical_id = chemicals.id').where("chemicals.name_fulltext ILIKE :query OR serial_number LIKE :query OR chemicals.cas LIKE :query", { query: "%#{params[:query]}%"}).includes(
-      chemical: [
-        {dg_class: :superclass},
-        {dg_class_2: :superclass},
-        {dg_class_3: :superclass},
-        schedule: {},
-        packing_group: {}],
-      supplier: {},
-      container_location: {location: :parent}
-    ).to_json(include: {
+    search_containers(params[:query]).to_json(include: {
       chemical: {
         include: {
           schedule: {},
           packing_group: {},
-          dg_class: {include: :superclass},
-          dg_class_2: {include: :superclass},
-          dg_class_3: {include: :superclass},
+          signal_word: {},
+          chemical_haz_class: { include: :haz_class },
+          chemical_pictogram: { include: { pictogram: {except: :picture} } },
+          chemical_haz_stat: { include: :haz_stat },
+          chemical_prec_stat: { include: :prec_stat },
+          dg_class: { include: :superclass },
+          dg_class_2: { include: :superclass },
+          dg_class_3: { include: :superclass }
         }
       },
       supplier: {},
       container_location: {include: {location: { include: :parent }}},
-      current_location: {include: {location: { include: :parent }}},
-      storage_location: {include: {location: { include: :parent }}}
+      current_location: {include: {location: { include: :parent }}}
     })
   end
+
+  get '/search' do
+    if params[:query].blank?
+      flash[:message] = "Please supply a search query."
+      redirect to ''
+    else
+      erb :search
+    end
+  end
+
+  get '/newchemical' do
+    erb :'containers/new.html'
+  end
+  
 end

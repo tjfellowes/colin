@@ -32,63 +32,78 @@ class Colin::Models::Chemical < ActiveRecord::Base
   has_many :containers, class_name: "Container"
 
   def self.create_chemical(params)
-    if Colin::Models::Chemical.exists?(cas: params[:cas])
+    if params[:cas].blank?
+      throw(:halt, [422, 'Must provide a CAS for the chemical.'])
+    elsif Colin::Models::Chemical.exists?(cas: params[:cas])
       chemical = Colin::Models::Chemical.where(cas: params[:cas]).take
     else
       #If not, get the safety information supplied and use it to create a new chemical
-      if params[:dg_class].nil?
+
+      if params[:name].blank?
+        throw(:halt, [422, 'Must provide a name for the chemical.'])
+      end
+
+      if params[:haz_substance].blank? || params[:haz_substance] == 'false'
+        haz_substance = false
+      elsif params[:haz_substance] == 'true'
+        haz_substance = true
+      else
+        throw(:halt, [422, 'Invalid hazardous substance value.'])
+      end
+
+      if params[:dg_class].blank?
         #Nothing to do here!
       elsif Colin::Models::DgClass.exists?(number: params[:dg_class])
         dg_class = Colin::Models::DgClass.where(number: params[:dg_class]).take
       else
-        halt(422, 'Invalid dangerous goods class')
+        throw(:halt, [422, 'Invalid dangerous goods class.'])
       end
 
-      if params[:dg_class_2].nil?
+      if params[:dg_class_2].blank?
         #Nothing to do here!
       elsif Colin::Models::DgClass.exists?(number: params[:dg_class_2])
         dg_class_2 = Colin::Models::DgClass.where(number: params[:dg_class_2]).take
       else
-        halt(422, 'Invalid dangerous goods subclass')
+        throw(:halt, [422, 'Invalid dangerous goods subclass.'])
       end
 
-      if params[:dg_class_3].nil?
+      if params[:dg_class_3].blank?
         #Nothing to do here!
       elsif Colin::Models::DgClass.exists?(number: params[:dg_class_3])
         dg_class_3 = Colin::Models::DgClass.where(number: params[:dg_class_3]).take
       else
-        halt(422, 'Invalid dangerous goods subsubclass')
+        throw(:halt, [422, 'Invalid dangerous goods subsubclass.'])
       end
 
-      if params[:schedule].nil?
+      if params[:schedule].blank?
         #Nothing to do here!
       elsif Colin::Models::Schedule.exists?(number: params[:schedule])
         schedule = Colin::Models::Schedule.where(number: params[:schedule]).take
       else
-        halt(422, 'Invalid schedule')
+        throw(:halt, [422, 'Invalid schedule.'])
       end
 
-      if params[:packing_group].nil?
+      if params[:packing_group].blank?
         #Nothing to do here!
       elsif Colin::Models::PackingGroup.exists?(name: params[:schedule])
         packing_group = Colin::Models::PackingGroup.where(name: params[:schedule]).take
       else
-        halt(422, 'Invalid packing group')
+        throw(:halt, [422, 'Invalid packing group.'])
       end
 
-      if params[:signal_word].nil?
+      if params[:signal_word].blank?
         #Nothing to do here!
       elsif Colin::Models::SignalWord.exists?(name: params[:signal_word])
         signal_word = Colin::Models::SignalWord.where(name: params[:signal_word]).take
       else
-        halt(422, 'Invalid signal word')
+        throw(:halt, [422, 'Invalid signal word.'])
       end
 
       chemical = Colin::Models::Chemical.create(
         cas: params[:cas], 
         prefix: params[:prefix], 
         name: params[:name], 
-        haz_substance: params[:haz_substance], 
+        haz_substance: haz_substance, 
         un_number: params[:un_number], 
         un_proper_shipping_name: params[:un_proper_shipping_name],
         dg_class: dg_class, 
@@ -110,7 +125,7 @@ class Colin::Models::Chemical < ActiveRecord::Base
 
       #Now that we have an instance of the chemical, we can deal with foreign keys
 
-      if params[:haz_stat].nil?
+      if params[:haz_stat].blank?
         #Nothing to do here!
       else
         for i in params[:haz_stat].split(':')
@@ -118,12 +133,12 @@ class Colin::Models::Chemical < ActiveRecord::Base
             haz_stat = Colin::Models::HazStat.where(code: i).take
             Colin::Models::ChemicalHazStat.create!(chemical_id: chemical.id, haz_stat_id: haz_stat.id)
           else
-            halt(422, "Invalid H statement code #{i} (supply as colon separated list)")
+            throw(:halt, [422, "Invalid H statement code #{i} (supply as colon separated list)."])
           end
         end
       end
 
-      if params[:prec_stat].nil?
+      if params[:prec_stat].blank?
         #Nothing to do here!
       else
         for i in params[:prec_stat].split(':')
@@ -136,12 +151,12 @@ class Colin::Models::Chemical < ActiveRecord::Base
               n=n+1
             end
           else
-            halt(422, "Invalid P statement code #{i.split(',')[0]} (supply as colon separated list)")
+            throw(:halt, [422, "Invalid P statement code #{i.split(',')[0]} (supply as colon separated list)."])
           end
         end
       end
 
-      if params[:haz_class].nil?
+      if params[:haz_class].blank?
         #Nothing to do here!
       else
         for i in params[:haz_class].split(':')
@@ -150,12 +165,12 @@ class Colin::Models::Chemical < ActiveRecord::Base
             category = i.split(',')[1]
             chemical_haz_class = Colin::Models::ChemicalHazClass.create!(chemical_id: chemical.id, haz_class_id: haz_class.id, category: category)
           else
-            halt(422, "Invalid hazard classification #{i.split(',')[0]} (supply as colon separated list)")
+            throw(:halt, [422, "Invalid hazard classification #{i.split(',')[0]} (supply as colon separated list)."])
           end
         end
       end
 
-      if params[:pictogram].nil?
+      if params[:pictogram].blank?
         #Nothing to do here!
       else
         for i in params[:pictogram].split(':')
@@ -163,7 +178,7 @@ class Colin::Models::Chemical < ActiveRecord::Base
             pictogram = Colin::Models::Pictogram.where(code: i).take
             Colin::Models::ChemicalPictogram.create!(chemical_id: chemical.id, pictogram_id: pictogram.id)
           else
-            halt(422, "Invalid pictogram name #{i} (supply as colon separated list)")
+            throw(:halt, [422, "Invalid pictogram name #{i} (supply as colon separated list)."])
           end
         end
       end

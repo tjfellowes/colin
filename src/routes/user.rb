@@ -2,7 +2,7 @@ class Colin::Routes::User < Colin::BaseWebApp
     get "/user" do 
         if logged_in?
             @user = current_user
-            erb :"users/index.html"
+            erb :"index.html"
         else
             redirect to '/login'
         end
@@ -12,7 +12,7 @@ class Colin::Routes::User < Colin::BaseWebApp
         erb :"/users/new.html"
     end 
     
-    post "/newuser" do 
+    post "/api/user" do 
         if params[:username].empty? || params[:email].empty? || params[:password].empty? || params[:name].empty? 
             flash[:message] = "You must complete all fields in order to create an account. Please try again."
             redirect to '/newuser'

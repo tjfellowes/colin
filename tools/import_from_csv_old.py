@@ -3,7 +3,6 @@ import pint
 import requests
 import json
 import urllib
-from prettytable import PrettyTable
 
 from pint import UnitRegistry
 ureg = UnitRegistry()
@@ -12,7 +11,6 @@ with open('inventory.csv') as csv_file:
   csv_reader = csv.reader(csv_file, dialect='excel', delimiter=',')
   line_count = 0
   cas_list = list()
-  t = PrettyTable(['serial_number', 'cas', 'prefix', 'name', 'dg_class_id', 'dg_class_2_id', 'dg_class_3_id', 'schedule_id', 'container_size', 'size_unit', 'pg_id', 'un_number', 'haz_substance', 'location_id'])
   for row in csv_reader:
     if line_count:
       serial_number=str(row[0])
@@ -45,9 +43,5 @@ with open('inventory.csv') as csv_file:
       if cas:
         requests.post(url).status_code
 
-        t.add_row([serial_number, cas, prefix, name, dg_class, dg_class_2, dg_class_3, schedule, container_size, size_unit, pg, un_number, haz_substance, location])
-
     line_count += 1
-
-  print(t)
 
