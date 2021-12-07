@@ -14,8 +14,9 @@
         <td><%= container.barcode %></td>
         <td><%= container.chemical.name %></td>
         <td><%= container.container_size %> <%= container.size_unit %></td>
-        <td><%= container.current_location.location.parent.name %>
-        /
+        <td><%= if container.current_location.location.has_parent?
+            container.current_location.location.parent.name + ' / '
+            end%>
         <%= container.current_location.location.name %></td>
     </tr>
     <% end %>

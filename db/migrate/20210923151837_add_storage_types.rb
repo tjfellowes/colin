@@ -15,7 +15,7 @@ class AddStorageTypes < ActiveRecord::Migration[5.2]
     end 
 
     add_column :locations, :barcode, :string, null: true
-    add_reference :locations, :location_types
+    add_reference :locations, :location_type
     add_column :locations, :temperature, :string, null: true
     add_column :locations, :monitored, :boolean, null: false, default: false
   end

@@ -14,13 +14,13 @@ class Colin::Routes::User < Colin::BaseWebApp
     
     post "/api/user" do 
         if params[:username].empty? || params[:email].empty? || params[:password].empty? || params[:name].empty? 
-            flash[:message] = "You must complete all fields in order to create an account. Please try again."
+            flash.now[:message] = "You must complete all fields in order to create an account. Please try again."
             redirect to '/newuser'
         else
-            @user = Colin::Models::User.create(username: params[:username], name: params[:name], email: params[:email], password: params[:password], password_confirmation: params[:password_confirmation])
+            @user = Colin::Models::User.create(username: params[:username], name: params[:name], email: params[:email], password: params[:password], password_confirmation: params[:password_confirmation], supervisor_id: params[:supervisor_id])
             session[:user_id] = @user.id 
-            flash[:message] = "Account has been succesfully created!"
-            erb :"/users/index.html"
+            flash.now[:message] = "Account has been succesfully created!"
+            redirect to '/'
         end
     end 
 end

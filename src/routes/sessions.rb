@@ -15,11 +15,11 @@ class Colin::Routes::Session < Colin::BaseWebApp
         session[:authorized] = true
         redirect to '/' 
       elsif params[:username].empty? || params[:password].empty? 
-          flash[:message] = "Username or password cannot be blank. please try again."
+          flash.now[:message] = "Username or password cannot be blank. please try again."
           content_type :html
           erb :login 
       else 
-        flash[:message] = "Incorrect username or password. Please try again."
+        flash.now[:message] = "Incorrect username or password. Please try again."
         content_type :html
         erb :login
       end

@@ -85,8 +85,8 @@ class Colin::Models::Chemical < ActiveRecord::Base
 
       if params[:packing_group].blank?
         #Nothing to do here!
-      elsif Colin::Models::PackingGroup.exists?(name: params[:schedule])
-        packing_group = Colin::Models::PackingGroup.where(name: params[:schedule]).take
+      elsif Colin::Models::PackingGroup.exists?(name: params[:packing_group])
+        packing_group = Colin::Models::PackingGroup.where(name: params[:packing_group]).take
       else
         throw(:halt, [422, 'Invalid packing group.'])
       end
@@ -97,6 +97,16 @@ class Colin::Models::Chemical < ActiveRecord::Base
         signal_word = Colin::Models::SignalWord.where(name: params[:signal_word]).take
       else
         throw(:halt, [422, 'Invalid signal word.'])
+      end
+
+      if params[:storage_temperature].blank?
+        #Nothing to do here!
+      elsif params[:storage_temperature].split('~').length == 1
+        storage_temperature_min = params[:storage_temperature]
+        storage_temperature_max = params[:storage_temperature]
+      else
+        storage_temperature_min = params[:storage_temperature].split('~').min
+        storage_temperature_max = params[:storage_temperature].split('~').max
       end
 
       chemical = Colin::Models::Chemical.create(
@@ -111,8 +121,8 @@ class Colin::Models::Chemical < ActiveRecord::Base
         dg_class_3: dg_class_3, 
         schedule: schedule, 
         packing_group: packing_group,
-        storage_temperature_min: params[:storage_temperature_min], 
-        storage_temperature_max: params[:storage_temperature_max], 
+        storage_temperature_min: storage_temperature_min, 
+        storage_temperature_max: storage_temperature_max, 
         inchi: params[:inchi],
         smiles: params[:smiles],
         pubchem: params[:pubchem],
@@ -128,7 +138,7 @@ class Colin::Models::Chemical < ActiveRecord::Base
       if params[:haz_stat].blank?
         #Nothing to do here!
       else
-        for i in params[:haz_stat].split(':')
+        for i in params[:haz_stat].split(';')
           if Colin::Models::HazStat.exists?(code: i)
             haz_stat = Colin::Models::HazStat.where(code: i).take
             Colin::Models::ChemicalHazStat.create!(chemical_id: chemical.id, haz_stat_id: haz_stat.id)
@@ -141,7 +151,7 @@ class Colin::Models::Chemical < ActiveRecord::Base
       if params[:prec_stat].blank?
         #Nothing to do here!
       else
-        for i in params[:prec_stat].split(':')
+        for i in params[:prec_stat].split(';')
           if Colin::Models::PrecStat.exists?(code: i.split(',')[0])
             prec_stat = Colin::Models::PrecStat.where(code: i.split(',')[0]).take
             chemical_prec_stat = Colin::Models::ChemicalPrecStat.create!(chemical_id: chemical.id, prec_stat_id: prec_stat.id)
@@ -159,7 +169,7 @@ class Colin::Models::Chemical < ActiveRecord::Base
       if params[:haz_class].blank?
         #Nothing to do here!
       else
-        for i in params[:haz_class].split(':')
+        for i in params[:haz_class].split(';')
           if Colin::Models::HazClass.exists?(description: i.split(',')[0])
             haz_class = Colin::Models::HazClass.where(description: i.split(',')[0]).take
             category = i.split(',')[1]
@@ -173,7 +183,7 @@ class Colin::Models::Chemical < ActiveRecord::Base
       if params[:pictogram].blank?
         #Nothing to do here!
       else
-        for i in params[:pictogram].split(':')
+        for i in params[:pictogram].split(';')
           if Colin::Models::Pictogram.exists?(name: i)
             pictogram = Colin::Models::Pictogram.where(code: i).take
             Colin::Models::ChemicalPictogram.create!(chemical_id: chemical.id, pictogram_id: pictogram.id)

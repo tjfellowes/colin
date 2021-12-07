@@ -146,11 +146,11 @@ ActiveRecord::Schema.define(version: 2021_09_27_154121) do
     t.string "name", null: false
     t.string "code"
     t.string "barcode"
-    t.bigint "location_types_id"
+    t.bigint "location_type_id"
     t.string "temperature"
     t.boolean "monitored", default: false, null: false
     t.string "ancestry"
-    t.index ["location_types_id"], name: "index_locations_on_location_types_id"
+    t.index ["location_type_id"], name: "index_locations_on_location_type_id"
   end
 
   create_table "packing_groups", force: :cascade do |t|

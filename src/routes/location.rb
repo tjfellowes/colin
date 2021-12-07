@@ -12,6 +12,14 @@ class Colin::Routes::Location < Colin::BaseWebApp
   end
 
   post '/api/location' do
+    if params[:monitored].blank? || params[:monitored] == 'false'
+      monitored = false
+    elsif params[:monitored] == 'true'
+      monitored = true
+    else
+      throw(:halt, [422, 'Invalid monitored value.'])
+    end
+
     if params[:path].blank?
       halt(422, 'Must provide a location for the container.')
     else
@@ -22,7 +30,8 @@ class Colin::Routes::Location < Colin::BaseWebApp
         locations = Colin::Models::Location.where(name: name).all
         #If there are none we need to create the location!
         if locations.length() == 0
-          location = Colin::Models::Location.create(name: name, code: params[:code], temperature: params[:temperature], monitored: params[:monitored], parent: location)
+          location_type = Colin::Models::LocationType.where(name: params[:location_type]).take
+          location = Colin::Models::Location.create(name: name, code: params[:code], temperature: params[:temperature], location_type: location_type, monitored: monitored, parent: location)
         #If there is one, use that as the location
         elsif locations.length() == 1
           location = locations.take
@@ -36,7 +45,7 @@ class Colin::Routes::Location < Colin::BaseWebApp
       end 
     end
     flash[:message] = "Location created!"
-    redirect to ''
+    redirect to '/newlocation'
   end
 
   delete '/api/location' do
