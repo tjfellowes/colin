@@ -45,14 +45,14 @@ class Colin::Routes::Location < Colin::BaseWebApp
       end 
     end
     flash[:message] = "Location created!"
-    redirect to '/newlocation'
+    redirect to '/location/new'
   end
 
   delete '/api/location' do
     #blep
   end
 
-  get '/newlocation' do
+  get '/location/new' do
     erb :'locations/new.html'
   end 
 end

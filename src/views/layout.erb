@@ -27,7 +27,7 @@
         <% if logged_in? %>
           <ul class="navbar-nav justify-content-end">
             <li>
-              <form class="form-inline my-2 my-lg-0" method="get" action="/search">
+              <form class="form-inline my-2 my-lg-0" method="get" action="/container/search">
                 <input class="form-control mr-sm-2" type="text" placeholder="Name, CAS, or barcode" id="query" name="query">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
               </form>
@@ -47,7 +47,7 @@
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#"id="inventoryDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Inventory</a>
               <div class="dropdown-menu" aria-labelledby="inventoryDropdown">
-                <a class="dropdown-item" href="/newchemical">Add Chemical</a>
+                <a class="dropdown-item" href="/container/new">Add Chemical</a>
               </div>
             </li>
             <li class="nav-item">
@@ -56,8 +56,8 @@
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#"id="managementDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Management</a>
               <div class="dropdown-menu" aria-labelledby="managementDropdown">
-                <a class="dropdown-item" href="/newuser">Create User</a>
-                <a class="dropdown-item" href="/newlocation">Add Location</a>
+                <a class="dropdown-item" href="/user/new">Create User</a>
+                <a class="dropdown-item" href="/location/new">Add Location</a>
               </div>
             </li>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">

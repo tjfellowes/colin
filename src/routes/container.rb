@@ -108,8 +108,7 @@ class Colin::Routes::Container < Colin::BaseWebApp
         supplier_id = Colin::Models::Supplier.create(name: params[:supplier]).id
       end
 
-      container = Colin::Models::Container.create(barcode: params[:barcode], description: params[:description], container_size: params[:container_size], size_unit: params[:size_unit], date_purchased: Time.now.utc.iso8601, chemical_id: chemical.id, supplier_id: supplier_id, owner_id: params[:owner_id], user_id: current_user.id)
-
+      container = Colin::Models::Container.create(barcode: params[:barcode], description: params[:description], container_size: params[:container_size], size_unit: params[:size_unit], date_purchased: Time.now.utc.iso8601, chemical_id: chemical.id, supplier_id: supplier_id, product_number: params[:product_number], lot_number: params[:lot_number], owner_id: params[:owner_id], user_id: current_user.id)
 
       Colin::Models::ContainerLocation.create(created_at: Time.now.utc.iso8601, updated_at: Time.now.utc.iso8601, container_id: container.id, location_id: location.id)
 
@@ -162,17 +161,21 @@ class Colin::Routes::Container < Colin::BaseWebApp
     })
   end
 
-  get '/search' do
+  get '/container/search' do
     if params[:query].blank?
       flash[:message] = "Please supply a search query."
       redirect to ''
     else
-      erb :search
+      erb :'containers/search.html'
     end
   end
 
-  get '/newchemical' do
+  get '/container/new' do
     erb :'containers/new.html'
+  end
+
+  get '/container/barcode/:barcode' do
+    erb :'containers/detail.html'
   end
   
 end
