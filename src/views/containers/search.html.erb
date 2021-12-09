@@ -9,7 +9,8 @@
     </tr>
     </thead>
     <tbody>
-    <% search_containers(params[:query]).each do |container| %>
+    <% @pagy, @containers = pagy(search_containers(params[:query]), items: params[:items])%>
+    <% @containers.each do |container| %>
     <tr>
         <td><%= container.barcode %></td>
         <td><a href="/container/barcode/<%= container.barcode %>"><%= container.chemical.name %></a></td>
@@ -22,4 +23,21 @@
     <% end %>
     </tbody>
     </table>
+    
+    <div class="container">
+        <div class="">
+            <%= pagy_bootstrap_nav(@pagy) if @pagy.pages > 1 %>
+        </div>
+        <!--<div class="dropdown w-25">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Items per page
+            </button>
+            <div class="dropdown-menu ml-1" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="?limit">20</a>
+                <a class="dropdown-item" href="#">50</a>
+                <a class="dropdown-item" href="#">100</a>
+                <a class="dropdown-item" href="#">All</a>
+            </div>
+        </div>-->
+    </div>
 </div>

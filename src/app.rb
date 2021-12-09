@@ -5,7 +5,9 @@ require 'json'
 require 'securerandom'
 require 'bcrypt'
 require 'rack-flash'
-require "open-uri"
+require 'open-uri'
+require 'pagy'
+require 'pagy/extras/bootstrap'
 
 #
 # CoLIN, the COmprehensive Labortory Information Nexus.
@@ -51,6 +53,9 @@ module Colin
   # The primary web application, CoLIN.
   #
   class BaseWebApp < Sinatra::Base
+
+    include Pagy::Backend  
+    
     # Configuration settings
     configure do
       enable :cross_origin
@@ -101,6 +106,8 @@ module Colin
     end
 
     helpers do
+      
+      include Pagy::Frontend
      
       def logged_in?
         !!session[:user_id]
@@ -121,6 +128,7 @@ module Colin
       end
     
     end
+
     # Route for 404 not found
     #not_found do
     #  redirect '/404.html'

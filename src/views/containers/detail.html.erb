@@ -1,4 +1,5 @@
-<div class="container" > 
+<div class="container  mb-5"> 
+<style>dt { text-align: right !important } dd { text-align: left !important }</style>
     <h1>Chemical info</h1>
     <% if Colin::Models::Container.where(barcode: params[:barcode]).exists?
         container = Colin::Models::Container.where(barcode: params[:barcode]).take   
@@ -8,7 +9,7 @@
         </div>
     <%end%>
 
-    <dl class="row text-left">
+    <dl class="row mt-5">
         <dt class="col-2">CAS:</dt>
         <dd class="col-2"><%= container.chemical.cas %></dd>
         <dt class="col-2">Name:</dt>
@@ -40,7 +41,7 @@
         <dt class="col-2">Owner:</dt>
         <dd class="col-4"><%= if !container.owner.nil? 
         container.owner.name end %></dd>
-        <dt class="col-2">Added by:</dt>
+        <dt class="col-2">Last modified by:</dt>
         <dd class="col-4"><%= if !container.user.nil? 
         container.user.name end %></dd>
         <hr class="w-100"/>
@@ -111,8 +112,6 @@
         <dt class="col-2">Schedule:</dt>
         <dd class="col-2"><%= if !container.chemical.schedule.nil? 
         container.chemical.schedule.number.to_s end %></dd>
-
-
     </dl>
-
+    <a class="btn btn-primary btn-lg btn-block" role="button" href="/container/edit/barcode/<%= container.barcode %>">Edit</a>
 </div>

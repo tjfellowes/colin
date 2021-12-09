@@ -1,0 +1,131 @@
+<div class="container mb-5">
+    <style>dt { text-align: right !important } dd { text-align: left !important }</style>
+    <h1>Edit container info</h1>
+    <% if Colin::Models::Container.where(barcode: params[:barcode]).exists?
+        container = Colin::Models::Container.where(barcode: params[:barcode]).take   
+    else %>
+        <div class="alert alert-danger w-50" role="alert">
+            Container with barcode <%= params[:barcode] %> not found.
+        </div>
+    <%end%>
+
+    <form action="/api/container/edit/barcode/<%= params[:barcode] %>" method="POST">
+    <dl class="row mt-5">
+        <dt class="col-2">CAS:</dt>
+        <dd class="col-2"><input class="form-control" id="cas" name="cas" aria-describedby="cas" value="<%= container.chemical.cas%>" readonly></dd>
+        <dt class="col-2">Name:</dt>
+        <dd class="col-6 text-truncate"><input type="text" class="form-control" id="name" aria-describedby="name" value="<%= container.chemical.prefix.to_s + container.chemical.name %>" readonly></dd>
+        <dt class="col-2">Barcode:</dt>
+        <dd class="col-2"><input class="form-control" id="new_barcode" name="new_barcode" aria-describedby="new_barcode" value="<%= container.barcode %>"></dd>
+        <dt class="col-2">Location: </dt>
+        <dd class="col-6 text-truncate">
+        <% path = []
+        container.current_location.location.path_ids.each do |location_id|
+        path.append(Colin::Models::Location.where(id: location_id).take.name)
+        end %>
+        <input class="form-control" id="location" name="location" aria-describedby="location" value="<%= path.join(' / ')%>">
+        </dd>
+        <hr class="w-100"/>
+
+        <dt class="col-2">Supplier:</dt>
+        <dd class="col-4"><input class="form-control" id="supplier" name="supplier" aria-describedby="supplier" value="<%=  
+        container.supplier.name if !container.supplier.nil? %>"></dd>
+        <dt class="col-2">Product number:</dt>
+        <dd class="col-4"><input class="form-control" id="product_number" name="product_number" aria-describedby="product_number" value="<%= container.product_number if !container.product_number.nil? %>"></dd>
+        <dt class="col-2">Lot number:</dt>
+        <dd class="col-4"><input class="form-control" id="lot_number" name="lot_number" aria-describedby="lot_number" value="<%= container.lot_number if !container.lot_number.nil? %>"></dd>
+        <dt class="col-2">Quantity:</dt>
+        <dd class="col-4"><input class="form-control" id="quantity" name="quantity" aria-describedby="quantity" value="<%= 
+        container.container_size.to_s + ' ' + container.size_unit if !container.container_size.nil? && !container.size_unit.nil? %>"></dd>
+        <dt class="col-2">Owner:</dt>
+        <dd class="col-4">
+            <select class="form-control" id="owner_id" name="owner_id">
+                <option value="" selected disabled><%=  
+                    container.owner.name if !container.owner.nil? %></option>        
+                <% Colin::Models::User.all.each do |user| %>
+                <option value="<%= user.id %>"><%= user.name %></option>
+                <% end %>  
+            </select>
+        </dd>
+        <dt class="col-2">Last modified by:</dt>
+        <dd class="col-4"><input class="form-control" id="user" name="user" aria-describedby="user" value="<%= container.user.name if !container.user.nil? %>" readonly></dd>
+        <hr class="w-100"/>
+
+        <dt class="col-2">InChI:</dt>
+        <dd class="col-4"><input class="form-control" id="inchi" name="inchi" aria-describedby="inchi" value="<%=  
+        container.chemical.inchi if !container.chemical.inchi.nil?%>" readonly></dd>
+        <dt class="col-2">SMILES:</dt>
+        <dd class="col-4"><input class="form-control" id="smiles" name="smiles" aria-describedby="smiles" value="<%=  
+        container.chemical.smiles if !container.chemical.smiles.nil?%>" readonly></dd>
+        <dt class="col-2">PubChem ID:</dt>
+        <dd class="col-4"><input class="form-control" id="pubchem" name="pubchem" aria-describedby="pubchem" value="<%=  
+        container.chemical.pubchem if !container.chemical.pubchem.nil?%>" readonly></dd>
+        <dt class="col-2">Density:</dt>
+        <dd class="col-4">
+            <div class="input-group">
+                <input type="text" class="form-control w-75" name="density" value="<%= container.chemical.density.to_s if !container.chemical.density.nil? %>" readonly>
+                <div class="input-group-append">
+                    <div class="input-group-text"> g/mL</div>
+                </div>
+            </div>
+        </dd>
+        <dt class="col-2">Melting point:</dt>
+        <dd class="col-4">
+            <div class="input-group">
+                <input type="text" class="form-control w-75" name="melting_point" value="<%= container.melting_point.density.to_s if !container.chemical.melting_point.nil? %>" readonly>
+                <div class="input-group-append">
+                    <div class="input-group-text"> &#8451;</div>
+                </div>
+            </div>
+        </dd>
+        <dt class="col-2">Boiling point:</dt>
+        <dd class="col-4">
+            <div class="input-group">
+                <input type="text" class="form-control w-75" name="boiling_point" value="<%= container.boiling_point.density.to_s if !container.chemical.boiling_point.nil? %>" readonly>
+                <div class="input-group-append">
+                    <div class="input-group-text"> &#8451;</div>
+                </div>
+            </div>
+        </dd>
+        <hr class="w-100"/>
+
+        <dt class="col-2">Hazard statements:</dt>
+        <dd class="col-10">
+        <input class="form-control" id="haz_stats" name="haz_stats" aria-describedby="haz_stats" value="<%= container.chemical.haz_stat.all.map { |i| i.code }.join('; ')%>" readonly>
+        </dd>
+        <dt class="col-2">Precaution statements:</dt>
+        <dd class="col-10">
+        <input class="form-control" id="prec_stats" name="prec_stats" aria-describedby="prec_stats" value="<%= container.chemical.prec_stat.all.map { |i| i.code }.join('; ')%>" readonly>
+        </dd>
+        <hr class="w-100"/>
+
+        <dt class="col-2">UN number:</dt>
+        <dd class="col-2"><input class="form-control" id="un_number" name="un_number" aria-describedby="un_number" value="<%=  
+        container.chemical.un_number if !container.chemical.un_number.nil?%>" readonly></dd>
+        <dt class="col-2">UN proper shipping name:</dt>
+        <dd class="col-6"><input class="form-control" id="un_proper_shipping_name" name="un_proper_shipping_name" aria-describedby="un_proper_shipping_name" value="<%=  
+        container.chemical.un_proper_shipping_name if !container.chemical.un_proper_shipping_name.nil?%>" readonly></dd>
+        <dt class="col-2">Transport class:</dt>
+        <dd class="col-2"><input class="form-control" id="dg_class" name="dg_class" aria-describedby="dg_class" value="<%= 
+        if !container.chemical.dg_class.nil? && container.chemical.dg_class_2.nil? && container.chemical.dg_class_3.nil?
+        container.chemical.dg_class.number.to_s
+        elsif !container.chemical.dg_class.nil? && !container.chemical.dg_class_2.nil? && container.chemical.dg_class_3.nil?
+        container.chemical.dg_class.number.to_s + ' (' + container.chemical.dg_class_2.number.to_s + ')'
+        elsif !container.chemical.dg_class.nil? && !container.chemical.dg_class_2.nil? && !container.chemical.dg_class_3.nil?
+        container.chemical.dg_class.number.to_s + ' (' + container.chemical.dg_class_2.number.to_s + ', ' + container.chemical.dg_class_3.number.to_s + ')'
+        end %>" readonly>
+       </dd>
+        <dt class="col-2">Packing group:</dt>
+        <dd class="col-2"><input class="form-control" id="packing_group" name="packing_group" aria-describedby="packing_group" value="<%=  
+        container.chemical.packing_group.name if !container.chemical.packing_group.nil?%>" readonly></dd>
+        <dt class="col-2">Schedule:</dt>
+        <dd class="col-2"><input class="form-control" id="schedule" name="schedule" aria-describedby="schedule" value="<%=  
+        container.chemical.schedule.number if !container.chemical.schedule.nil?%>" readonly></dd>
+    </dl>
+    <input class="btn btn-primary btn-lg btn-block" type="submit" value="Save">
+    <a class="btn btn-secondary btn-lg btn-block" href="/container/barcode/<%= params[:barcode] %>">Cancel</a>
+    </form>
+    <form action="/api/container/delete/barcode/<%= params[:barcode] %>" method="POST">
+    <input class="btn btn-outline-danger btn-lg btn-block mt-2" type="submit" value="Delete">
+    </form>
+</div>
