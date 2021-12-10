@@ -13,7 +13,7 @@
     <% @containers.each do |container| %>
     <tr>
         <td><%= container.barcode %></td>
-        <td><a href="/container/barcode/<%= container.barcode %>"><%= container.chemical.name %></a></td>
+        <td><a href="/container/barcode/<%= container.barcode %>"><%= container.chemical.prefix %><%= container.chemical.name %></a></td>
         <td><%= container.container_size %> <%= container.size_unit %></td>
         <td><%= if container.current_location.location.has_parent?
             container.current_location.location.parent.name + ' / '

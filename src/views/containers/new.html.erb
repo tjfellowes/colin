@@ -1,159 +1,101 @@
-<div class="jumbotron w-50" > 
+<div class="container"> 
+<style>dt { text-align: right !important } dd { text-align: left !important }</style>
 <h1>Add chemical</h1>
-  <form action="/api/container" method="POST"> 
-    <h4>SDS information</h4>
-    <div class="form-group">
-      <label for="sds">Upload SDS</label>
-      <input type="file" class="form-control-file" id="sds" name="sds">
-    </div>
-    <h5>Section 1</h5>
-    <div class="form-group">
-      <input type="text" name="supplier" placeholder="Supplier" class="form-control"/>
-    </div>
-    <div class="form-group">
-        <div class="input-group">
-            <input type="text" class="form-control w-25" name="prefix" placeholder="Prefix">
-            <input type="text" class="form-control w-75" name="name" placeholder="Name">
-        </div>
-    </div>
-    <div class="form-group">
-      <input type="text" name="product_number" placeholder="Product number" class="form-control"/>
-    </div>
-    <div class="form-group">
-      <input type="text" name="cas" placeholder="CAS" class="form-control"/>
-    </div>
+  <form action="/api/container" method="POST">
+    <dl class="row mt-5">
+        <dt class="col-md-2">CAS:</dt>
+        <dd class="col-md-2"><input class="form-control" id="cas" name="cas" aria-describedby="cas"></dd>
+        <dt class="col-md-2">Name:</dt>
+        <dd class="col-md-6 text-truncate">
+            <div class="input-group">
+                <input type="text" class="form-control w-25" id="prefix" name="prefix" aria-describedby="prefix" placeholder="Prefix">
+                <input type="text" class="form-control w-75" id="name" name="name" aria-describedby="name" placeholder="Name">
+            </div>
+        </dd>
+        <dt class="col-md-2">Barcode:</dt>
+        <dd class="col-md-2"><input class="form-control" id="barcode" name="barcode" aria-describedby="barcode"></dd>
+        <dt class="col-md-2">Location: </dt>
+        <dd class="col-md-6 text-truncate"><input class="form-control" id="location" name="location" aria-describedby="location"></dd>
+        <hr class="w-100"/>
 
-    <h5>Section 2</h5>
-    <div class="form-group">
-      <input class="form-check-input" type="checkbox" value="true" name ="haz_substance" id="haz_substance">
-      <label class="form-check-label" for="haz_substance">
-        Hazardous substance?
-      </label>
-    </div>
-    <div class="form-group">
-      <input type="text" name="haz_class" placeholder="2.1 Hazard classification (Oxidising solids,2;Acute toxicity,1;Acute aquatic toxicity,4)" class="form-control"/>
-    </div>
-    <div class="form-group">
-      <select multiple class="form-control" id="pictogram" name="pictogram">
-        <option value="" selected disabled>2.2 Pictogram</option>        
-        <% Colin::Models::Pictogram.all.each do |pictogram| %>
-          <option><%= pictogram.name %></option>
-        <% end %>  
-      </select>
-    </div>
-    <div class="form-group">
-      <select class="form-control" id="signal_word" name="signal_word">
-        <option value="" selected disabled>2.2 Signal word</option>        
-        <% Colin::Models::SignalWord.all.each do |signal_word| %>
-          <option><%= signal_word.name %></option>
-        <% end %>  
-      </select>
-    </div>
-    <div class="form-group">
-      <input type="text" name="haz_stat" placeholder="2.2 H statements (H272;H290;H302)" class="form-control"/>
-    </div>
-    <div class="form-group">
-      <input type="text" name="prec_stat" placeholder="2.2 P statements (P210;P260)" class="form-control"/>
-    </div>
-  
-    <h5>Section 7</h5>
-    <div class="form-group">
-      <div class="input-group mb-3">
-        <input type="text" class="form-control w-75" name="storage_temperature" placeholder="Storage temperature (-20~-10)">
-        <div class="input-group-append">
-          <span class="input-group-text" id="basic-addon2">&#8451;</span>
-        </div>
-      </div>
-    </div>
+        <dt class="col-md-2">Supplier:</dt>
+        <dd class="col-md-4"><input class="form-control" id="supplier" name="supplier" aria-describedby="supplier"></dd>
+        <dt class="col-md-2">Product number:</dt>
+        <dd class="col-md-4"><input class="form-control" id="product_number" name="product_number" aria-describedby="product_number"></dd>
+        <dt class="col-md-2">Lot number:</dt>
+        <dd class="col-md-4"><input class="form-control" id="lot_number" name="lot_number" aria-describedby="lot_number"></dd>
+        <dt class="col-md-2">Quantity:</dt>
+        <dd class="col-md-4"><input class="form-control" id="quantity" name="quantity" aria-describedby="quantity"></dd>
+        <dt class="col-md-2">Owner:</dt>
+        <dd class="col-md-4">
+            <select class="form-control" id="owner_id" name="owner_id">      
+                <% Colin::Models::User.all.each do |user| %>
+                <option value="<%= user.id %>"><%= user.name %></option>
+                <% end %>  
+            </select>
+        </dd>
+        <dt class="col-md-2">Last modified by:</dt>
+        <dd class="col-md-4"><input class="form-control" id="user" name="user" aria-describedby="user" value="<%= current_user.name%>" readonly></dd>
+        <hr class="w-100"/>
 
-    <h5>Section 14</h5>
-    <div class="form-group">
-      <input type="text" name="un_number" placeholder="14.1 UN number" class="form-control"/>
-    </div>
-    <div class="form-group">
-      <input type="text" name="un_proper_shipping_name" placeholder="14.2 UN proper shipping name" class="form-control"/>
-    </div>
-    <div class="form-group">
-        <div class="input-group">
-            <input type="text" class="form-control w-50" name="dg_class" placeholder="14.3 Transport hazard class">
-            <input type="text" class="form-control w-25" name="dg_class_2" placeholder="Subclass">
-            <input type="text" class="form-control w-25" name="dg_class_3" placeholder="Subsubclass">
-        </div>
-    </div>
-    <div class="form-group">
-      <input type="text" name="packing_group" placeholder="14.4 Packing group" class="form-control"/>
-    </div>
+        <dt class="col-md-2">InChI:</dt>
+        <dd class="col-md-4"><input class="form-control" id="inchi" name="inchi" aria-describedby="inchi"></dd>
+        <dt class="col-md-2">SMILES:</dt>
+        <dd class="col-md-4"><input class="form-control" id="smiles" name="smiles" aria-describedby="smiles"></dd>
+        <dt class="col-md-2">PubChem ID:</dt>
+        <dd class="col-md-4"><input class="form-control" id="pubchem" name="pubchem" aria-describedby="pubchem"></dd>
+        <dt class="col-md-2">Density:</dt>
+        <dd class="col-md-4">
+            <div class="input-group">
+                <input type="text" class="form-control w-75" name="density">
+                <div class="input-group-append">
+                    <div class="input-group-text"> g/mL</div>
+                </div>
+            </div>
+        </dd>
+        <dt class="col-md-2">Melting point:</dt>
+        <dd class="col-md-4">
+            <div class="input-group">
+                <input type="text" class="form-control w-75" name="melting_point">
+                <div class="input-group-append">
+                    <div class="input-group-text"> &#8451;</div>
+                </div>
+            </div>
+        </dd>
+        <dt class="col-md-2">Boiling point:</dt>
+        <dd class="col-md-4">
+            <div class="input-group">
+                <input type="text" class="form-control w-75" name="boiling_point">
+                <div class="input-group-append">
+                    <div class="input-group-text"> &#8451;</div>
+                </div>
+            </div>
+        </dd>
+        <hr class="w-100"/>
 
-    <h5>Section 15</h5>
-    <div class="form-group">
-      <input type="text" name="schedule" placeholder="Schedule" class="form-control"/>
-    </div>
+        <dt class="col-md-2">Hazard statements:</dt>
+        <dd class="col-md-10">
+        <input class="form-control" id="haz_stats" name="haz_stats" aria-describedby="haz_stats">
+        </dd>
+        <dt class="col-md-2">Precaution statements:</dt>
+        <dd class="col-md-10">
+        <input class="form-control" id="prec_stats" name="prec_stats" aria-describedby="prec_stats">
+        </dd>
+        <hr class="w-100"/>
 
-    <h4>Chemical information</h4>
-    <div class="form-group">
-      <input type="text" name="inchi" placeholder="InChI" class="form-control"/>
-    </div>
-    <div class="form-group">
-      <input type="text" name="smiles" placeholder="SMILES" class="form-control"/>
-    </div>
-    <div class="form-group">
-      <input type="text" name="pubchem" placeholder="Pubchem ID" class="form-control"/>
-    </div>
-    <div class="form-group">
-      <div class="input-group mb-3">
-        <input type="text" class="form-control w-75" name="density" placeholder="Density">
-        <div class="input-group-append">
-          <span class="input-group-text" id="basic-addon2">g/mL</span>
-        </div>
-      </div>
-    </div>
-    <div class="form-group">
-      <div class="input-group mb-3">
-        <input type="text" class="form-control w-75" name="melting_point" placeholder="Melting point">
-        <div class="input-group-append">
-          <span class="input-group-text" id="basic-addon2">&#8451;</span>
-        </div>
-      </div>
-    </div>
-    <div class="form-group">
-      <div class="input-group mb-3">
-        <input type="text" class="form-control w-75" name="boiling_point" placeholder="Boiling point">
-        <div class="input-group-append">
-          <span class="input-group-text" id="basic-addon2">&#8451;</span>
-        </div>
-      </div>
-    </div>
-
-    <h4>Lab information</h4>
-    <div class="form-group">
-      <input type="text" name="barcode" placeholder="Barcode" class="form-control"/>
-    </div>
-    <div class="form-group">
-      <input type="text" name="location" placeholder="Location" class="form-control"/>
-    </div>
-    <div class="form-group">
-        <div class="input-group">
-            <input type="text" class="form-control w-75" name="container_size" placeholder="Quantity">
-            <input type="text" class="form-control w-25" name="size_unit" placeholder="Unit">
-        </div>
-    </div>
-    <div class="form-group">
-      <input type="text" name="lot_number" placeholder="Lot number" class="form-control"/>
-    </div>
-    <div class="form-group">
-      <label for="sds">Upload picture</label>
-      <input type="file" class="form-control-file" id="picture" name="picture">
-    </div>
-    <div class="form-group">
-      <select class="form-control" id="owner_id" name="owner_id">
-        <option value="" selected disabled>Owner</option>        
-        <% Colin::Models::User.all.each do |user| %>
-          <option value="<%= user.id %>"><%= user.name %></option>
-        <% end %>  
-      </select>
-    </div>
-    
-    
-    <button type="submit" class="btn btn-primary">Create Chemical</button> 
-  </form><br>
+        <dt class="col-md-2">UN number:</dt>
+        <dd class="col-md-2"><input class="form-control" id="un_number" name="un_number" aria-describedby="un_number"></dd>
+        <dt class="col-md-2">UN proper shipping name:</dt>
+        <dd class="col-md-6"><input class="form-control" id="un_proper_shipping_name" name="un_proper_shipping_name" aria-describedby="un_proper_shipping_name"></dd>
+        <dt class="col-md-2">Transport class:</dt>
+        <dd class="col-md-2"><input class="form-control" id="dg_class" name="dg_class" aria-describedby="dg_class">
+        </dd>
+        <dt class="col-md-2">Packing group:</dt>
+        <dd class="col-md-2"><input class="form-control" id="packing_group" name="packing_group" aria-describedby="packing_group"></dd>
+        <dt class="col-md-2">Schedule:</dt>
+        <dd class="col-md-2"><input class="form-control" id="schedule" name="schedule" aria-describedby="schedule"></dd>
+    </dl>
+    <input class="btn btn-primary btn-lg btn-block" type="submit" value="Save">
+    <a class="btn btn-secondary btn-lg btn-block" href="">Cancel</a>
+  </form>
 </div>

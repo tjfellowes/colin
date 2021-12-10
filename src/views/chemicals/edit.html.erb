@@ -1,0 +1,124 @@
+<div class="container mb-5">
+    <style>dt { text-align: right !important } dd { text-align: left !important }</style>
+    <h1>Edit chemical info</h1>
+    <% if Colin::Models::Chemical.where(cas: params[:cas]).exists?
+        chemical = Colin::Models::Chemical.where(cas: params[:cas]).take   
+    else %>
+        <div class="alert alert-danger w-50" role="alert">
+            Chemical with CAS number <%= params[:cas] %> not found.
+        </div>
+    <%end%>
+
+    <form action="/api/chemical/edit/cas/<%= params[:cas] %>" method="POST">
+    <dl class="row mt-5">
+        <dt class="col-md-2">CAS:</dt>
+        <dd class="col-md-2"><input class="form-control" id="new_cas" name="new_cas" aria-describedby="new_cas" value="<%= chemical.cas %>"></dd>
+        <dt class="col-md-2">Name:</dt>
+        <dd class="col-md-6 text-truncate">
+            <div class="input-group">
+                <input type="text" class="form-control w-25" id="prefix" name="prefix" aria-describedby="prefix" placeholder="Prefix" value="<%= chemical.prefix %>">
+                <input type="text" class="form-control w-75" id="name" name="name" aria-describedby="name" placeholder="Name" value="<%= chemical.name %>">
+            </div>
+        </dd>
+        <dt class="col-md-2">Barcode:</dt>
+        <dd class="col-md-2"><input class="form-control" id="new_barcode" name="new_barcode" aria-describedby="new_barcode" readonly></dd>
+        <dt class="col-md-2">Location: </dt>
+        <dd class="col-md-6 text-truncate">
+        <input class="form-control" id="location" name="location" aria-describedby="location" readonly>
+        </dd>
+        <hr class="w-100"/>
+
+        <dt class="col-md-2">Supplier:</dt>
+        <dd class="col-md-4"><input class="form-control" id="supplier" name="supplier" aria-describedby="supplier" readonly></dd>
+        <dt class="col-md-2">Product number:</dt>
+        <dd class="col-md-4"><input class="form-control" id="product_number" name="product_number" aria-describedby="product_number" readonly></dd>
+        <dt class="col-md-2">Lot number:</dt>
+        <dd class="col-md-4"><input class="form-control" id="lot_number" name="lot_number" aria-describedby="lot_number" readonly></dd>
+        <dt class="col-md-2">Quantity:</dt>
+        <dd class="col-md-4"><input class="form-control" id="quantity" name="quantity" aria-describedby="quantity" readonly></dd>
+        <dt class="col-md-2">Owner:</dt>
+        <dd class="col-md-4">
+            <select class="form-control" id="owner_id" name="owner_id" readonly>
+                <option value="" selected disabled>
+                </option>         
+            </select>
+        </dd>
+        <dt class="col-md-2">Last modified by:</dt>
+        <dd class="col-md-4"><input class="form-control" id="user" name="user" aria-describedby="user" readonly></dd>
+        <hr class="w-100"/>
+
+        <dt class="col-md-2">InChI:</dt>
+        <dd class="col-md-4"><input class="form-control" id="inchi" name="inchi" aria-describedby="inchi" value="<%=  
+        chemical.inchi if !chemical.inchi.nil?%>"></dd>
+        <dt class="col-md-2">SMILES:</dt>
+        <dd class="col-md-4"><input class="form-control" id="smiles" name="smiles" aria-describedby="smiles" value="<%=  
+        chemical.smiles if !chemical.smiles.nil?%>"></dd>
+        <dt class="col-md-2">PubChem ID:</dt>
+        <dd class="col-md-4"><input class="form-control" id="pubchem" name="pubchem" aria-describedby="pubchem" value="<%=  
+        chemical.pubchem if !chemical.pubchem.nil?%>"></dd>
+        <dt class="col-md-2">Density:</dt>
+        <dd class="col-md-4">
+            <div class="input-group">
+                <input type="text" class="form-control w-75" name="density" value="<%= chemical.density.to_s if !chemical.density.nil? %>">
+                <div class="input-group-append">
+                    <div class="input-group-text"> g/mL</div>
+                </div>
+            </div>
+        </dd>
+        <dt class="col-md-2">Melting point:</dt>
+        <dd class="col-md-4">
+            <div class="input-group">
+                <input type="text" class="form-control w-75" name="melting_point" value="<%= chemical.melting_point.density.to_s if !chemical.melting_point.nil? %>">
+                <div class="input-group-append">
+                    <div class="input-group-text"> &#8451;</div>
+                </div>
+            </div>
+        </dd>
+        <dt class="col-md-2">Boiling point:</dt>
+        <dd class="col-md-4">
+            <div class="input-group">
+                <input type="text" class="form-control w-75" name="boiling_point" value="<%= chemical.boiling_point.density.to_s if !chemical.boiling_point.nil? %>">
+                <div class="input-group-append">
+                    <div class="input-group-text"> &#8451;</div>
+                </div>
+            </div>
+        </dd>
+        <hr class="w-100"/>
+
+        <dt class="col-md-2">Hazard statements:</dt>
+        <dd class="col-md-10">
+        <input class="form-control" id="haz_stat" name="haz_stat" aria-describedby="haz_stat" value="<%= chemical.haz_stat.all.map { |i| i.code }.join('; ')%>">
+        </dd>
+        <dt class="col-md-2">Precaution statements:</dt>
+        <dd class="col-md-10">
+        <input class="form-control" id="prec_stat" name="prec_stat" aria-describedby="prec_stat" value="<%= chemical.prec_stat.all.map { |i| i.code }.join('; ')%>">
+        </dd>
+        <hr class="w-100"/>
+
+        <dt class="col-md-2">UN number:</dt>
+        <dd class="col-md-2"><input class="form-control" id="un_number" name="un_number" aria-describedby="un_number" value="<%=  
+        chemical.un_number if !chemical.un_number.nil?%>"></dd>
+        <dt class="col-md-2">UN proper shipping name:</dt>
+        <dd class="col-md-6"><input class="form-control" id="un_proper_shipping_name" name="un_proper_shipping_name" aria-describedby="un_proper_shipping_name" value="<%=  
+        chemical.un_proper_shipping_name if !chemical.un_proper_shipping_name.nil?%>"></dd>
+        <dt class="col-md-2">Transport class:</dt>
+        <dd class="col-md-2"><input class="form-control" id="dg_class" name="dg_class" aria-describedby="dg_class" value="<%= 
+        if !chemical.dg_class_1.nil? && chemical.dg_class_2.nil? && chemical.dg_class_3.nil?
+        chemical.dg_class_1.number.to_s
+        elsif !chemical.dg_class_1.nil? && !chemical.dg_class_2.nil? && chemical.dg_class_3.nil?
+        chemical.dg_class_1.number.to_s + ' (' + chemical.dg_class_2.number.to_s + ')'
+        elsif !chemical.dg_class_1.nil? && !chemical.dg_class_2.nil? && !chemical.dg_class_3.nil?
+        chemical.dg_class_1.number.to_s + ' (' + chemical.dg_class_2.number.to_s + ', ' + chemical.dg_class_3.number.to_s + ')'
+        end %>">
+       </dd>
+        <dt class="col-md-2">Packing group:</dt>
+        <dd class="col-md-2"><input class="form-control" id="packing_group" name="packing_group" aria-describedby="packing_group" value="<%=  
+        chemical.packing_group.name if !chemical.packing_group.nil?%>"></dd>
+        <dt class="col-md-2">Schedule:</dt>
+        <dd class="col-md-2"><input class="form-control" id="schedule" name="schedule" aria-describedby="schedule" value="<%=  
+        chemical.schedule.number if !chemical.schedule.nil?%>"></dd>
+    </dl>
+    <input class="btn btn-primary btn-lg btn-block" type="submit" value="Save">
+    <a class="btn btn-secondary btn-lg btn-block" href="">Cancel</a>
+    </form>
+</div>

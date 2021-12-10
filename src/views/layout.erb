@@ -41,13 +41,8 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <% if logged_in? %>
         <ul class="navbar-nav">
-          <% unless logged_in? %>
-          <li class="nav-item">
-            <a class="nav-link" href="/login">Login</a>
-          </li>
-          <% end %>
-          <% if logged_in? %>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#"id="inventoryDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Inventory</a>
             <div class="dropdown-menu" aria-labelledby="inventoryDropdown">
@@ -64,9 +59,7 @@
               <a class="dropdown-item" href="/location/new">Add Location</a>
             </div>
           </li>
-          <% end %>
         </ul>
-        <% if logged_in? %>
         <ul class="navbar-nav ml-auto justify-content-end">
           <li class="nav-item"> 
             <a class="nav-link disabled" href="#">Logged in as <%= current_user.name %></a>

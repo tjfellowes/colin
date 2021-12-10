@@ -105,6 +105,32 @@ module Colin
       redirect '/'
     end
 
+    get '/container/search' do
+      if params[:query].blank?
+        flash[:message] = "Please supply a search query."
+        redirect to ''
+      else
+        erb :'containers/search.html'
+      end
+    end
+  
+    get '/container/new' do
+      erb :'containers/new.html'
+    end
+  
+    get '/container/barcode/:barcode' do
+      erb :'containers/detail.html'
+    end
+  
+    get '/container/edit/barcode/:barcode' do
+      erb :'containers/edit.html'
+    end
+    
+    get '/chemical/edit/cas/:cas' do
+      erb :'chemicals/edit.html'
+    end
+  
+
     helpers do
       
       include Pagy::Frontend
