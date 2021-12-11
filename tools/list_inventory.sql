@@ -8,6 +8,7 @@ description,
 container_size, 
 size_unit, 
 date_purchased, 
+date_disposed,
 parent_location.name AS parent_location,
 location.name AS location,
 haz_substance, 
@@ -16,7 +17,8 @@ dg_class_1.number AS dg_class_1,
 dg_class_2.number AS dg_class_2,
 dg_class_3.number AS dg_class_3,
 packing_groups.name AS packing_group,
-schedules.number AS schedule
+schedules.number AS schedule,
+suppliers.name AS supplier
 FROM container_locations 
 INNER JOIN containers ON container_locations.container_id = containers.id
 INNER JOIN chemicals ON containers.chemical_id = chemicals.id

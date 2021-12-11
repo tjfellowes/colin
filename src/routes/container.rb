@@ -384,7 +384,7 @@ class Colin::Routes::Container < Colin::BaseWebApp
     redirect to ''
   end
 
-  get '/api/container/search/:query' do
+  get '/api/container/search' do
     content_type :json
     
     unless session[:authorized]
@@ -392,7 +392,7 @@ class Colin::Routes::Container < Colin::BaseWebApp
     end
 
     content_type :json
-    search_containers(params[:query]).to_json(include: {
+    Colin::Models::Container.joins('LEFT JOIN container_locations i ON i.container_id = containers.id AND i.id = (SELECT MAX(id) FROM container_locations WHERE container_locations.container_id = i.container_id) INNER JOIN chemicals ON containers.chemical_id = chemicals.id').where("CONCAT(chemicals.prefix, chemicals.name) ILIKE :query OR barcode LIKE :query OR chemicals.cas LIKE :query", { query: "%"+params[:query]+"%"}).limit(params[:limit]).offset(params[:offset]).to_json(include: {
       chemical: {
         include: {
           schedule: {},

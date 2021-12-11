@@ -7,7 +7,7 @@ import urllib
 
 from requests import status_codes
 
-url = 'http://138.253.226.139:9292/'
+url = 'http://192.168.1.148:9292'
 
 headers = {'User-Agent': 'Mozilla/5.0'}
 payload = {'username':'root','password':'root'}
