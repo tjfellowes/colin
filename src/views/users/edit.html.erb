@@ -1,0 +1,44 @@
+<div class="jumbotron w-50" > 
+    <%if Colin::Models::User.where(username: params[:username]).exists?
+        user = Colin::Models::User.where(username: params[:username]).take
+      else
+        halt(422, "Invalid username.")
+      end %>
+<h1>Update User</h1>
+  <form action="/api/user/edit/username/<%= user.username %>" method="POST"> 
+    <div class="form-group">
+      <label for="new_username">Username</label>
+      <input type="text" name="new_username" id="new_username" placeholder="Username" class="form-control" value="<%= user.username %>"/>
+    </div>
+    <div class="form-group">
+        <label for="name">Name</label>
+      <input type="text" name="name" id="name" placeholder="Name" class="form-control" value="<%= user.name %>"/>
+    </div>
+    <div class="form-group"> 
+      <label for="email">Email</label>
+      <input type="text" name="email" id="email" placeholder="Email" class="form-control" value="<%= user.email %>"/> 
+    </div>
+    <div class="form-group">
+      <label for="supervisor_id">Supervisor</label>
+      <select class="form-control" id="supervisor_id" name="supervisor_id">
+        <option value="" selected disabled><%= user.supervisor.name %></option>        
+        <% Colin::Models::User.all.each do |user| %>
+          <option value="<%= user.id %>"><%= user.name %></option>
+        <% end %>  
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="old_password">Old Password</label>
+      <input type="password" name="old_password" id="old_password" placeholder="Old Password" class="form-control"/> 
+    </div>
+    <div class="form-group">
+      <label for="password">New Password</label>
+      <input type="password" name="password" id="password" placeholder="Password" class="form-control"/> 
+    </div>
+    <div class="form-group">
+      <label for="password_confirmation">Confirm New Password</label>
+      <input type="password" name="password_confirmation" id="password_confirmation" placeholder="Password Confirmation" class="form-control"/> 
+    </div>
+    <button type="submit" class="btn btn-primary">Update User</button> 
+  </form><br>
+</div>

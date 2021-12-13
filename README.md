@@ -64,4 +64,4 @@ Returns all containers and all associated information
 * AJAX for all fields
 * List chemicals by location
 * Structure searching
-* Flexible chemical structure storage
+* Flexible chemical structure storage/cheminformatics

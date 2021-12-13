@@ -129,6 +129,14 @@ module Colin
     get '/chemical/edit/cas/:cas' do
       erb :'chemicals/edit.html'
     end
+
+    get '/user/new' do 
+      erb :"/users/new.html"
+    end 
+
+    get '/user/edit/username/:username' do 
+      erb :"/users/edit.html"
+    end 
   
 
     helpers do

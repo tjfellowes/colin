@@ -4,6 +4,9 @@ class Colin::Models::User < ActiveRecord::Base
   validates_presence_of :name
   validates_presence_of :email
 
+  has_many :underlings, class_name: "User", foreign_key: "supervisor_id"
+  belongs_to :supervisor, class_name: "User"
+
   has_secure_password
 
   def slug
