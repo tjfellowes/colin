@@ -134,6 +134,10 @@ module Colin
     get '/chemical/edit/cas/:cas' do
       erb :'chemicals/edit.html'
     end
+    
+    get '/location/new' do
+      erb :'locations/new.html'
+    end 
 
     get '/user/login' do 
       erb :"/login"
@@ -146,6 +150,10 @@ module Colin
     get '/user/edit/username/:username' do 
       erb :"/users/edit.html"
     end 
+
+    get '/img/favicon.ico' do
+      'blep'
+    end
   
 
     helpers do

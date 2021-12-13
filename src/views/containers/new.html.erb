@@ -15,7 +15,7 @@
         <dt class="col-md-2">Barcode:</dt>
         <dd class="col-md-2"><input class="form-control" id="barcode" name="barcode" aria-describedby="barcode"></dd>
         <dt class="col-md-2">Location: </dt>
-        <dd class="col-md-6 text-truncate"><input class="form-control" id="location" name="location" aria-describedby="location"></dd>
+        <dd class="col-md-6 text-truncate"><input class="form-control" id="location" name="location" list="location_list" aria-describedby="location"><datalist id="location_list"></datalist></dd>
         <hr class="w-100"/>
 
         <dt class="col-md-2">Supplier:</dt>
@@ -97,5 +97,22 @@
     </dl>
     <input class="btn btn-primary btn-lg btn-block" type="submit" value="Save">
     <a class="btn btn-secondary btn-lg btn-block" href="">Cancel</a>
+    <p id="location_list"></p>
   </form>
+
+    <script>
+        $("#location").keyup(function() {
+            $.ajax({
+                url: window.location.origin + "/api/location/search",
+                data: {query: $("#location").val()}
+            }).then(function(data) {
+                for (i = 0; i < data.length; i++) {
+                    if (data[i].parent) {$('#location_list').append("<option>" + data[i].parent.name + " / " + data[i].name + "</option>");}
+                    else {$('#location_list').append("<option>" + data[i].name + "</option>");}
+                }   
+            });
+        });
+    </script>
+
+
 </div>

@@ -11,6 +11,19 @@ class Colin::Routes::Location < Colin::BaseWebApp
     #blep
   end
 
+  get '/api/location/search' do
+    content_type :json
+
+    unless session[:authorized]
+      halt(403, 'Not authorised.')
+    end
+
+    if params[:query].present?
+      Colin::Models::Location.where("name ILIKE :query OR barcode LIKE :query", { query: "%"+params[:query]+"%"}).all.to_json(include: :parent)
+    end
+
+  end
+
   post '/api/location' do
     if params[:monitored].blank? || params[:monitored] == 'false'
       monitored = false
@@ -52,7 +65,4 @@ class Colin::Routes::Location < Colin::BaseWebApp
     #blep
   end
 
-  get '/location/new' do
-    erb :'locations/new.html'
-  end 
 end
