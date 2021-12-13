@@ -54,7 +54,7 @@ def add_test_data
 end
 
 def create_users
-  User.create!(username: 'root', name: 'root', email: 'root@root.com', password: 'root', isadmin: true, issuperuser: true)
+  User.create!(username: 'root', name: 'root', email: 'root@root.com', password: 'root', supervisor_id: 1, isadmin: true, issuperuser: true)
 end
 
 def create_packing_groups
