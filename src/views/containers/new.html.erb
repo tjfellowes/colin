@@ -106,6 +106,7 @@
                 url: window.location.origin + "/api/location/search",
                 data: {query: $("#location").val()}
             }).then(function(data) {
+                $('#location_list').empty()
                 for (i = 0; i < data.length; i++) {
                     if (data[i].parent) {$('#location_list').append("<option>" + data[i].parent.name + " / " + data[i].name + "</option>");}
                     else {$('#location_list').append("<option>" + data[i].name + "</option>");}
