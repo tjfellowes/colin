@@ -1,14 +1,14 @@
 class Colin::Routes::Session < Colin::BaseWebApp
 
-    get "/login" do 
+    get "/user/login" do 
       if logged_in?
-        redirect to "/user"
+        redirect to "/"
       else
         erb :login 
       end 
     end 
       
-    post '/login' do
+    post '/user/login' do
       user = Colin::Models::User.find_by(username: params[:username])
       if user && user.authenticate(params[:password])
         session[:user_id] = user.id
@@ -25,7 +25,7 @@ class Colin::Routes::Session < Colin::BaseWebApp
       end
     end
     
-    get '/logout' do 
+    get '/user/logout' do 
       session.destroy
       redirect to '/'
     end 

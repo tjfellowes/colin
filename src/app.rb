@@ -93,11 +93,16 @@ module Colin
 
     set :environment, :development
 
+    before "/user/*" do
+      puts(request.host)
+      https_required!
+    end
+
     get '/' do
       if logged_in?
         erb :"index.html"
       else
-        erb :login
+        redirect to '/user/login'
       end
     end
 
@@ -130,6 +135,10 @@ module Colin
       erb :'chemicals/edit.html'
     end
 
+    get '/user/login' do 
+      erb :"/login"
+    end 
+
     get '/user/new' do 
       erb :"/users/new.html"
     end 
@@ -142,6 +151,14 @@ module Colin
     helpers do
       
       include Pagy::Frontend
+
+      def https_required!
+        #if settings.production? && request.scheme == 'http'
+        if request.scheme == 'http' && request.host != 'localhost' 
+            headers['Location'] = request.url.sub('http', 'https')
+            halt 301, "https required\n"
+        end
+      end
      
       def logged_in?
         !!session[:user_id]
