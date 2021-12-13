@@ -7,7 +7,7 @@ import urllib
 
 from requests import status_codes
 
-url = 'http://192.168.1.148:9292'
+url = 'http://colin-uom-dev.herokuapp.com'
 
 headers = {'User-Agent': 'Mozilla/5.0'}
 payload = {'username':'root','password':'root'}
