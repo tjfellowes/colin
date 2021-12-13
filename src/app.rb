@@ -5,6 +5,9 @@ require 'json'
 require 'securerandom'
 require 'bcrypt'
 require 'rack-flash'
+require 'open-uri'
+require 'pagy'
+require 'pagy/extras/bootstrap'
 
 #
 # CoLIN, the COmprehensive Labortory Information Nexus.
@@ -50,6 +53,9 @@ module Colin
   # The primary web application, CoLIN.
   #
   class BaseWebApp < Sinatra::Base
+
+    include Pagy::Backend  
+    
     # Configuration settings
     configure do
       enable :cross_origin
@@ -87,16 +93,47 @@ module Colin
 
     set :environment, :development
 
-    # Single-page front-end web app
     get '/' do
-      erb :login
+      if logged_in?
+        erb :"index.html"
+      else
+        erb :login
+      end
     end
 
     get '' do
       redirect '/'
     end
 
+    get '/container/search' do
+      if params[:query].blank?
+        flash[:message] = "Please supply a search query."
+        redirect to ''
+      else
+        erb :'containers/search.html'
+      end
+    end
+  
+    get '/container/new' do
+      erb :'containers/new.html'
+    end
+  
+    get '/container/barcode/:barcode' do
+      erb :'containers/detail.html'
+    end
+  
+    get '/container/edit/barcode/:barcode' do
+      erb :'containers/edit.html'
+    end
+    
+    get '/chemical/edit/cas/:cas' do
+      erb :'chemicals/edit.html'
+    end
+  
+
     helpers do
+      
+      include Pagy::Frontend
      
       def logged_in?
         !!session[:user_id]
@@ -111,8 +148,13 @@ module Colin
           redirect to '/login' 
         end  
       end   
+
+      def search_containers(query)
+        
+      end
     
     end
+
     # Route for 404 not found
     #not_found do
     #  redirect '/404.html'

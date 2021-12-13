@@ -1,59 +1,89 @@
-<!DOCTYPE html> 
-  <html> 
-    <head>
-      <title>CoLiN</title> 
-  
-      <meta charset="utf-8" />
-      <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" /> 
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-      <link rel="stylesheet" href="/css/bootstrap.css" /> 
-      <link rel="stylesheet" href="/css/bootstrap-responsive.css" /> 
-      
-    </head>
-   
+<!DOCTYPE html>
 
-    <body> 
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+<html lang="en">
 
-      <span>
-      <a href="#">
-      <img src="img/colin.png" class="d-none d-md-block" width="90" height="90">
-      </a>
-      </span>
-      <span>
-      <h1>CoLIN</h1>
-      <h2 class="lead">Comprehensive Laboratory Information Nexus</h2>
-      </span>
-      <span style="display:flex;justify-content: space-between;width:100%">
-      </span>
-      <span style="float: right">
-      
-        <% unless logged_in? %>
-          <a class="navbar-brand" style="float:right" href="/login"><p>Login</p></a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button> 
-        <% end %> 
+<head>
+  <title>CoLIN - The Comprehensive Laboratory Information Nexus</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
 
-        <% if logged_in? %> 
-          <a class="navbar-brand" href="/newuser"><p>Create User</p></a>
-          <a class="navbar-brand" href="/logout"><p>Logout</p></a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>    
-        <% end %>  
-      </span>
+<body>
+  <div class="container">
+    <nav class="navbar navbar-toggleable-sm navbar-light bg-faded">
+        <ul class="navbar-nav ms-auto">
+        <a class="navbar-brand" href="/">
+          <img src="/img/colin.png" class="d-none d-md-block" width="90" height="90">
+        </a>
+        </ul>
+        <ul class="navbar-nav  mr-auto">
+          <li>
+            <h1 style="padding-top:13px" >CoLIN</h1>
+            <h4>Under development!</h4>
+            <p class="lead">Comprehensive Laboratory Information Nexus</p>
+          </li>
+        </ul>
+        <% if logged_in? %>
+          <ul class="navbar-nav justify-content-end">
+            <li>
+              <form class="form-inline my-2" method="get" action="/container/search">
+                <input class="form-control" type="text" placeholder="Name, CAS, or barcode" id="query" name="query">
+                <button class="btn btn-outline-success my-2" type="submit">Search</button>
+              </form>
+            </li>
+          </ul>
+        <% end %>
+    </nav>
 
-    </nav></br> 
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <% if logged_in? %>
+        <ul class="navbar-nav">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#"id="inventoryDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Inventory</a>
+            <div class="dropdown-menu" aria-labelledby="inventoryDropdown">
+              <a class="dropdown-item" href="/container/new">Add Chemical</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/">Safety</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#"id="managementDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Management</a>
+            <div class="dropdown-menu" aria-labelledby="managementDropdown">
+              <a class="dropdown-item" href="/user/new">Create User</a>
+              <a class="dropdown-item" href="/location/new">Add Location</a>
+            </div>
+          </li>
+        </ul>
+        <ul class="navbar-nav ml-auto justify-content-end">
+          <li class="nav-item"> 
+            <a class="nav-link disabled" href="#">Logged in as <%= current_user.name %></a>
+            </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/logout">Logout</a>
+          </li>
+        </ul>
+        <% end %>
+      </div>
+    </nav>
+
 
     <center>
-
     <div> 
       <h3 style='color:red;'><% if flash.has?(:message) %> <%= flash[:message] %><% end %></h3> 
       <%= yield %>          
     </div> 
-
     </center>
+
+  </div>
+      
+
+    
 
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>

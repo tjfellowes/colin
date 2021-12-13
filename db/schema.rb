@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(version: 2021_09_27_154121) do
     t.boolean "haz_substance", null: false
     t.string "sds_url"
     t.string "un_number"
-    t.bigint "dg_class_id"
+    t.bigint "dg_class_1_id"
     t.bigint "dg_class_2_id"
     t.bigint "dg_class_3_id"
     t.bigint "schedule_id"
@@ -78,7 +78,7 @@ ActiveRecord::Schema.define(version: 2021_09_27_154121) do
     t.float "boiling_point"
     t.index ["dg_class_2_id"], name: "index_chemicals_on_dg_class_2_id"
     t.index ["dg_class_3_id"], name: "index_chemicals_on_dg_class_3_id"
-    t.index ["dg_class_id"], name: "index_chemicals_on_dg_class_id"
+    t.index ["dg_class_1_id"], name: "index_chemicals_on_dg_class_1_id"
     t.index ["packing_group_id"], name: "index_chemicals_on_packing_group_id"
     t.index ["schedule_id"], name: "index_chemicals_on_schedule_id"
     t.index ["signal_word_id"], name: "index_chemicals_on_signal_word_id"
@@ -146,11 +146,11 @@ ActiveRecord::Schema.define(version: 2021_09_27_154121) do
     t.string "name", null: false
     t.string "code"
     t.string "barcode"
-    t.bigint "location_types_id"
+    t.bigint "location_type_id"
     t.string "temperature"
     t.boolean "monitored", default: false, null: false
     t.string "ancestry"
-    t.index ["location_types_id"], name: "index_locations_on_location_types_id"
+    t.index ["location_type_id"], name: "index_locations_on_location_type_id"
   end
 
   create_table "packing_groups", force: :cascade do |t|

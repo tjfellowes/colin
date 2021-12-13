@@ -7,33 +7,52 @@ require 'time'
 #
 class Colin::Routes::Location < Colin::BaseWebApp
 
-  get '/api/location/:location' do
-    if params[:location].nil?
-      halt(422, 'Must provide a name or code for the location.')
-    elsif Colin::Models::Location.exists?(name_fulltext: params[:location])
-      Colin::Models::Location.where('name_fulltext = ?', params[:location]).to_json()
-    elsif Colin::Models::Location.exists?(code: params[:location])
-      Colin::Models::Location.where('code = ?', params[:location]).to_json()
-    else
-      halt(404, "Location not found.")
-    end
-  end
-
-  post '/api/location/' do
+  get '/api/location' do
     #blep
   end
 
-  put '/api/location/:location' do
-    if params[:location].nil?
-      halt(422, 'Must provide a name for the location.')
-    elsif Colin::Models::Location.exists?(name_fulltext: params[:location])
-      Colin::Models::Location.where('name_fulltext = ?', params[:location]).update(code: params[:code]).to_json()
+  post '/api/location' do
+    if params[:monitored].blank? || params[:monitored] == 'false'
+      monitored = false
+    elsif params[:monitored] == 'true'
+      monitored = true
     else
-      halt(404, "Location not found.")
+      throw(:halt, [422, 'Invalid monitored value.'])
     end
+
+    if params[:path].blank?
+      halt(422, 'Must provide a location for the container.')
+    else
+      location = nil
+      #Split the path up into names delimited by forward slashes
+      params[:path].split('/').each do |name|
+        #Pick all the locations whose name matches
+        locations = Colin::Models::Location.where(name: name.strip).all
+        #If there are none we need to create the location!
+        if locations.length() == 0
+          location_type = Colin::Models::LocationType.where(name: params[:location_type]).take
+          location = Colin::Models::Location.create(name: name.strip, code: params[:code], temperature: params[:temperature], location_type: location_type, monitored: monitored, parent: location)
+        #If there is one, use that as the location
+        elsif locations.length() == 1
+          location = locations.take
+        #If there is more than one, we need to search again, specifying that the parent id should be the id of the previous location in the path.
+        elsif location != nil && Colin::Models::Location.where(name: name.strip).where("reverse(split_part(reverse(ancestry), '/', 1)) = ':parent_id'", {parent_id: location.id}).exists?
+            location = Colin::Models::Location.where(name: name.strip).where("reverse(split_part(reverse(ancestry), '/', 1)) = ':parent_id'", {parent_id: location.id}).take
+        else
+          halt(422, 'Ambiguous location name!')
+        end
+        #Iterate until we get to the end of the path.
+      end 
+    end
+    flash[:message] = "Location created!"
+    redirect to '/location/new'
   end
 
-  delete '/api/location/' do
+  delete '/api/location' do
     #blep
   end
+
+  get '/location/new' do
+    erb :'locations/new.html'
+  end 
 end
