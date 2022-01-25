@@ -38,6 +38,8 @@ class Colin::Routes::User < Colin::BaseWebApp
             end
             flash.now[:message] = "Account updated!"
             redirect to '/'
+        else
+            halt(422, "Username with username " + params[:username] + " not found.")
         end
     end 
 end

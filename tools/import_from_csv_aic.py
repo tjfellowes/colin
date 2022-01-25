@@ -7,13 +7,13 @@ import urllib
 
 from requests import status_codes
 
-url = 'http://192.168.1.148:9292'
+url = 'http://localhost:9292'
 
 headers = {'User-Agent': 'Mozilla/5.0'}
 payload = {'username':'root','password':'root'}
 
 session = requests.Session()
-session.post(url + '/login',headers=headers,data=payload)
+session.post(url + '/user/login',headers=headers,data=payload)
 
 with open('AIC_inventory.csv') as csv_file:
   csv_reader = csv.reader(csv_file, dialect='excel', delimiter=',')

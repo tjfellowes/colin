@@ -163,23 +163,23 @@ class Colin::Routes::Chemical < Sinatra::Base
 
       #Now that we have an instance of the chemical, we can deal with foreign keys
 
-      if params[:haz_stat].blank?
+      if params[:haz_stats].blank?
         #Nothing to do here!
       else
-        for i in params[:haz_stat].split(';')
+        for i in params[:haz_stats]
           if Colin::Models::HazStat.exists?(code: i)
             haz_stat = Colin::Models::HazStat.where(code: i).take
             Colin::Models::ChemicalHazStat.create!(chemical_id: chemical.id, haz_stat_id: haz_stat.id)
           else
-            throw(:halt, [422, "Invalid H statement code #{i} (supply as colon separated list)."])
+            throw(:halt, [422, "Invalid H statement code #{i}."])
           end
         end
       end
 
-      if params[:prec_stat].blank?
+      if params[:prec_stats].blank?
         #Nothing to do here!
       else
-        for i in params[:prec_stat].split(';')
+        for i in params[:prec_stats]
           if Colin::Models::PrecStat.exists?(code: i.split(',')[0])
             prec_stat = Colin::Models::PrecStat.where(code: i.split(',')[0]).take
             chemical_prec_stat = Colin::Models::ChemicalPrecStat.create!(chemical_id: chemical.id, prec_stat_id: prec_stat.id)
@@ -189,7 +189,7 @@ class Colin::Routes::Chemical < Sinatra::Base
               n=n+1
             end
           else
-            throw(:halt, [422, "Invalid P statement code #{i.split(',')[0]} (supply as colon separated list)."])
+            throw(:halt, [422, "Invalid P statement code #{i.split(',')[0]}."])
           end
         end
       end
@@ -331,25 +331,25 @@ class Colin::Routes::Chemical < Sinatra::Base
         updated_at: Time.now.utc.iso8601
       )[0]
 
-      if params[:haz_stat].blank?
+      if params[:haz_stats].blank?
         #Nothing to do here!
       else
         Colin::Models::ChemicalHazStat.where(chemical_id: chemical.id).delete_all
-        for i in params[:haz_stat].split(';')
+        for i in params[:haz_stats]
           if Colin::Models::HazStat.exists?(code: i.strip)
             haz_stat = Colin::Models::HazStat.where(code: i.strip).take
             Colin::Models::ChemicalHazStat.create!(chemical_id: chemical.id, haz_stat_id: haz_stat.id)
           else
-            throw(:halt, [422, "Invalid H statement code #{i.strip} (supply as colon separated list)."])
+            throw(:halt, [422, "Invalid H statement code #{i.strip}."])
           end
         end
       end
 
-      if params[:prec_stat].blank?
+      if params[:prec_stats].blank?
         #Nothing to do here!
       else
         Colin::Models::ChemicalPrecStat.where(chemical_id: chemical.id).delete_all
-        for i in params[:prec_stat].split(';')
+        for i in params[:prec_stats]
           if Colin::Models::PrecStat.exists?(code: i.strip.split(',')[0])
             prec_stat = Colin::Models::PrecStat.where(code: i.strip.split(',')[0]).take
             chemical_prec_stat = Colin::Models::ChemicalPrecStat.create!(chemical_id: chemical.id, prec_stat_id: prec_stat.id)
@@ -359,7 +359,7 @@ class Colin::Routes::Chemical < Sinatra::Base
               n=n+1
             end
           else
-            throw(:halt, [422, "Invalid P statement code #{i.strip.split(',')[0]} (supply as colon separated list)."])
+            throw(:halt, [422, "Invalid P statement code #{i.strip.split(',')[0]}."])
           end
         end
       end

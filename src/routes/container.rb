@@ -75,10 +75,7 @@ class Colin::Routes::Container < Colin::BaseWebApp
       if Colin::Models::Chemical.exists?(cas: params[:cas])
         chemical = Colin::Models::Chemical.where(cas: params[:cas]).take
       else
-        unless session[:authorized]
-          halt(403, 'Not authorised.')
-        end
-    
+
         if params[:cas].blank?
           throw(:halt, [422, 'Must provide a CAS for the chemical.'])
         elsif Colin::Models::Chemical.exists?(cas: params[:cas])
@@ -187,23 +184,23 @@ class Colin::Routes::Container < Colin::BaseWebApp
     
           #Now that we have an instance of the chemical, we can deal with foreign keys
     
-          if params[:haz_stat].blank?
+          if params[:haz_stats].blank?
             #Nothing to do here!
           else
-            for i in params[:haz_stat].split(';')
+            for i in params[:haz_stats]
               if Colin::Models::HazStat.exists?(code: i)
                 haz_stat = Colin::Models::HazStat.where(code: i).take
                 Colin::Models::ChemicalHazStat.create!(chemical_id: chemical.id, haz_stat_id: haz_stat.id)
               else
-                throw(:halt, [422, "Invalid H statement code #{i} (supply as colon separated list)."])
+                throw(:halt, [422, "Invalid H statement code #{i}."])
               end
             end
           end
     
-          if params[:prec_stat].blank?
+          if params[:prec_stats].blank?
             #Nothing to do here!
           else
-            for i in params[:prec_stat].split(';')
+            for i in params[:prec_stats]
               if Colin::Models::PrecStat.exists?(code: i.split(',')[0])
                 prec_stat = Colin::Models::PrecStat.where(code: i.split(',')[0]).take
                 chemical_prec_stat = Colin::Models::ChemicalPrecStat.create!(chemical_id: chemical.id, prec_stat_id: prec_stat.id)
@@ -213,7 +210,7 @@ class Colin::Routes::Container < Colin::BaseWebApp
                   n=n+1
                 end
               else
-                throw(:halt, [422, "Invalid P statement code #{i.split(',')[0]} (supply as colon separated list)."])
+                throw(:halt, [422, "Invalid P statement code #{i.split(',')[0]}"])
               end
             end
           end
@@ -248,28 +245,8 @@ class Colin::Routes::Container < Colin::BaseWebApp
         end
       end
 
-      if params[:location].blank?
+      if params[:location_id].blank?
         halt(422, 'Must provide a location for the container.')
-      else
-        location = nil
-        #Split the path up into names delimited by forward slashes
-        params[:location].split('/').each do |name|
-          #Pick all the locations whose name matches
-          locations = Colin::Models::Location.where(name: name.strip).all
-          #If there are none something has gone wrong!
-          if locations.length() == 0
-            halt(422, 'Invalid location!')
-          #If there is one, use that as the location
-          elsif locations.length() == 1
-            location = locations.take
-          #If there is more than one, we need to search again, specifying that the parent id should be the id of the previous location in the path.
-          elsif location != nil && Colin::Models::Location.where(name: name.strip).where("reverse(split_part(reverse(ancestry), '/', 1)) = ':parent_id'", {parent_id: location.id}).exists?
-              location = Colin::Models::Location.where(name: name.strip).where("reverse(split_part(reverse(ancestry), '/', 1)) = ':parent_id'", {parent_id: location.id}).take
-          else
-            halt(422, 'Ambiguous location name!')
-          end
-          #Iterate until we get to the end of the path.
-        end 
       end
 
       if params[:supplier].blank?
@@ -289,7 +266,7 @@ class Colin::Routes::Container < Colin::BaseWebApp
 
       container = Colin::Models::Container.create(barcode: params[:barcode], description: params[:description], container_size: container_size, size_unit: size_unit, date_purchased: Time.now.utc.iso8601, chemical_id: chemical.id, supplier_id: supplier_id, product_number: params[:product_number], lot_number: params[:lot_number], owner_id: params[:owner_id], user_id: current_user.id)
 
-      Colin::Models::ContainerLocation.create(created_at: Time.now.utc.iso8601, updated_at: Time.now.utc.iso8601, container_id: container.id, location_id: location.id)
+      Colin::Models::ContainerLocation.create(created_at: Time.now.utc.iso8601, updated_at: Time.now.utc.iso8601, container_id: container.id, location_id: params[:location_id])
 
     end
     flash[:message] = "Chemical created!"
@@ -297,7 +274,7 @@ class Colin::Routes::Container < Colin::BaseWebApp
   end
 
   # Edits a container
-  post '/api/container/edit/barcode/:barcode' do
+  post '/api/container/barcode/:barcode' do
     content_type :json
     # Must provide an integer ID. Otherwise respond with 422 (https://restpatterns.mindtouch.us/HTTP_Status_Codes/422_-_Unprocessable_Entity)
     # which means invalid data provided from user.
@@ -323,28 +300,8 @@ class Colin::Routes::Container < Colin::BaseWebApp
         end
 
         #Update the location
-        if params[:location].blank?
+        if params[:location_id].blank?
           halt(422, 'Must provide a location for the container.')
-        else
-          location = nil
-          #Split the path up into names delimited by forward slashes
-          params[:location].split('/').each do |name|
-            #Pick all the locations whose name matches
-            locations = Colin::Models::Location.where(name: name.strip).all
-            #If there are none something has gone wrong!
-            if locations.length() == 0
-              halt(422, 'Invalid location!')
-            #If there is one, use that as the location
-            elsif locations.length() == 1
-              location = locations.take
-            #If there is more than one, we need to search again, specifying that the parent id should be the id of the previous location in the path.
-            elsif location != nil && Colin::Models::Location.where(name: name.strip).where("reverse(split_part(reverse(ancestry), '/', 1)) = ':parent_id'", {parent_id: location.id}).exists?
-                location = Colin::Models::Location.where(name: name.strip).where("reverse(split_part(reverse(ancestry), '/', 1)) = ':parent_id'", {parent_id: location.id}).take
-            else
-              halt(422, 'Ambiguous location name!')
-            end
-            #Iterate until we get to the end of the path.
-          end 
         end
 
         #Update the container size
@@ -357,7 +314,7 @@ class Colin::Routes::Container < Colin::BaseWebApp
 
         container = Colin::Models::Container.where("barcode = ?", params[:barcode]).update(barcode: params[:new_barcode], container_size: container_size, size_unit: size_unit, product_number: params[:product_number], lot_number: params[:lot_number], owner_id: params[:owner_id], supplier_id: supplier_id, user_id: current_user.id).first
 
-        Colin::Models::ContainerLocation.create(created_at: Time.now.utc.iso8601, updated_at: Time.now.utc.iso8601, container_id: container.id, location_id: location.id)
+        Colin::Models::ContainerLocation.create(created_at: Time.now.utc.iso8601, updated_at: Time.now.utc.iso8601, container_id: container.id, location_id: params[:location_id])
       end
     else
       halt(404, "Container with barcode #{params[:barcode]} not found.")
@@ -367,7 +324,7 @@ class Colin::Routes::Container < Colin::BaseWebApp
   end
 
   # Deletes a container
-  post '/api/container/delete/barcode/:barcode' do
+  delete '/api/container/barcode/:barcode' do
     content_type :json
     
     unless session[:authorized]

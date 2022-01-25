@@ -9,7 +9,7 @@
         </div>
     <%end%>
 
-    <form action="/api/container/edit/barcode/<%= params[:barcode] %>" method="POST">
+    <form action="/api/container/barcode/<%= params[:barcode] %>" method="POST">
     <a class="btn btn-light btn-lg btn-block" href="/chemical/edit/cas/<%= container.chemical.cas%>">Edit chemical info</a>
     <dl class="row mt-5">
         <dt class="col-md-2">CAS:</dt>
@@ -19,12 +19,12 @@
         <dt class="col-md-2">Barcode:</dt>
         <dd class="col-md-2"><input class="form-control" id="new_barcode" name="new_barcode" aria-describedby="new_barcode" value="<%= container.barcode %>"></dd>
         <dt class="col-md-2">Location: </dt>
-        <dd class="col-md-6 text-truncate">
-        <% path = []
-        container.current_location.location.path_ids.each do |location_id|
-        path.append(Colin::Models::Location.where(id: location_id).take.name)
-        end %>
-        <input class="form-control" id="location" name="location" aria-describedby="location" value="<%= path.join(' / ')%>">
+        <dd class="col-md-6">
+            <select class="form-control selectpicker" id="location_id" name="location_id" aria-describedby="location" data-live-search="true">
+            <% Colin::Models::Location.all.each do |location| %>
+            <option <%= "selected" if container.current_location.location.id == location.id %> value="<%= location.id %>"><%= location.path.select(:name).map{|i| i.name}.join('/') %></option>
+            <% end %>  
+            </select>
         </dd>
         <hr class="w-100"/>
 
@@ -40,11 +40,9 @@
         container.container_size.to_s + ' ' + container.size_unit if !container.container_size.nil? && !container.size_unit.nil? %>"></dd>
         <dt class="col-md-2">Owner:</dt>
         <dd class="col-md-4">
-            <select class="form-control" id="owner_id" name="owner_id">
-                <option value="" selected disabled><%=  
-                    container.owner.name if !container.owner.nil? %></option>        
+            <select class="form-control selectpicker" id="owner_id" name="owner_id" title="Owner" data-live-search="true">      
                 <% Colin::Models::User.all.each do |user| %>
-                <option value="<%= user.id %>"><%= user.name %></option>
+                <option <%= "selected" if container.owner == user %> value="<%= user.id %>"><%= user.name %></option>
                 <% end %>  
             </select>
         </dd>
@@ -92,11 +90,19 @@
 
         <dt class="col-md-2">Hazard statements:</dt>
         <dd class="col-md-10">
-        <input class="form-control" id="haz_stats" name="haz_stats" aria-describedby="haz_stats" value="<%= container.chemical.haz_stat.all.map { |i| i.code }.join('; ')%>" readonly>
+        <select class="form-control selectpicker" multiple title="H statements" id="haz_stats" name="haz_stats[]" aria-describedby="haz_stats" data-live-search="true" disabled>
+            <% Colin::Models::HazStat.all.each do |hazstat| %>
+                <option <%= "selected" if container.chemical.haz_stat.each.map{|h| h.id}.include? hazstat.id %> value="<%= hazstat.code %>"><%= hazstat.code + " - " + hazstat.description %></option>
+            <% end %>  
+        </select>
         </dd>
         <dt class="col-md-2">Precaution statements:</dt>
         <dd class="col-md-10">
-        <input class="form-control" id="prec_stats" name="prec_stats" aria-describedby="prec_stats" value="<%= container.chemical.prec_stat.all.map { |i| i.code }.join('; ')%>" readonly>
+        <select class="form-control selectpicker" multiple title="P statements" id="prec_stats" name="prec_stats[]" aria-describedby="prec_stats" data-live-search="true" disabled>
+            <% Colin::Models::PrecStat.all.each do |precstat| %>
+                <option <%= "selected" if container.chemical.prec_stat.each.map{|p| p.id}.include? precstat.id %> value="<%= precstat.code %>"><%= precstat.code + " - " + precstat.description %></option>
+            <% end %>  
+        </select>
         </dd>
         <hr class="w-100"/>
 
@@ -126,7 +132,23 @@
     <input class="btn btn-primary btn-lg btn-block" type="submit" value="Save">
     <a class="btn btn-secondary btn-lg btn-block" href="/container/barcode/<%= params[:barcode] %>">Cancel</a>
     </form>
-    <form action="/api/container/delete/barcode/<%= params[:barcode] %>" method="POST">
-    <input class="btn btn-outline-danger btn-lg btn-block mt-2" type="submit" value="Delete">
-    </form>
+    <button class="btn btn-outline-danger btn-lg btn-block mt-2" type="submit" >Delete</button>
 </div>
+<script>
+$("#delete").onclick( function() {
+    var xhr = new XMLHttpRequest();
+    var url = '/api/container/barcode/<%= params[:barcode] %>';
+    xhr.open('DELETE', url, true);
+
+    //Send the proper header information along with the request
+    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+    xhr.onreadystatechange = function() {//Call a function when the state changes.
+        if(htxhrtp.readyState == 4 && xhr.status == 200) {
+            alert(xhr.responseText);
+        }
+    }
+    xhr.send(params);
+});
+</script>
+<script src="/js/location_ajax.js"></script>

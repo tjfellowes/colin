@@ -87,11 +87,19 @@
 
         <dt class="col-md-2">Hazard statements:</dt>
         <dd class="col-md-10">
-        <input class="form-control" id="haz_stat" name="haz_stat" aria-describedby="haz_stat" value="<%= chemical.haz_stat.all.map { |i| i.code }.join('; ')%>">
+        <select class="form-control selectpicker" multiple title="H statements" id="haz_stats" name="haz_stats[]" aria-describedby="haz_stats" data-live-search="true">
+            <% Colin::Models::HazStat.all.each do |hazstat| %>
+                <option <%= "selected" if chemical.haz_stat.each.map{|h| h.id}.include? hazstat.id %> value="<%= hazstat.code %>"><%= hazstat.code + " - " + hazstat.description %></option>
+            <% end %>  
+        </select>
         </dd>
         <dt class="col-md-2">Precaution statements:</dt>
         <dd class="col-md-10">
-        <input class="form-control" id="prec_stat" name="prec_stat" aria-describedby="prec_stat" value="<%= chemical.prec_stat.all.map { |i| i.code }.join('; ')%>">
+        <select class="form-control selectpicker" multiple title="P statements" id="prec_stats" name="prec_stats[]" aria-describedby="prec_stats" data-live-search="true">
+            <% Colin::Models::PrecStat.all.each do |precstat| %>
+                <option <%= "selected" if chemical.prec_stat.each.map{|p| p.id}.include? precstat.id %> value="<%= precstat.code %>"><%= precstat.code + " - " + precstat.description %></option>
+            <% end %>  
+        </select>
         </dd>
         <hr class="w-100"/>
 

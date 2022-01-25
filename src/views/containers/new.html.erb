@@ -15,8 +15,17 @@
         <dt class="col-md-2">Barcode:</dt>
         <dd class="col-md-2"><input class="form-control" id="barcode" name="barcode" aria-describedby="barcode"></dd>
         <dt class="col-md-2">Location: </dt>
-        <dd class="col-md-6 text-truncate"><input class="form-control" id="location" name="location" list="location_list" aria-describedby="location"><datalist id="location_list"></datalist></dd>
+        <dd class="col-md-6">
+        <select class="form-control selectpicker" id="location_id" name="location_id" aria-describedby="location" title="Location" data-live-search="true">      
+            <% Colin::Models::Location.all.each do |location| %>
+            <option value="<%= location.id %>"><%= location.path.select(:name).map{|i| i.name}.join('/') %></option>
+            <% end %>  
+        </select>
+        <!--<input class="form-control" id="location" name="location" list="location_list" aria-describedby="location" autocomplete="off"><datalist id="location_list"></datalist>-->
+        
+        </dd>
         <hr class="w-100"/>
+
 
         <dt class="col-md-2">Supplier:</dt>
         <dd class="col-md-4"><input class="form-control" id="supplier" name="supplier" aria-describedby="supplier"></dd>
@@ -28,7 +37,7 @@
         <dd class="col-md-4"><input class="form-control" id="quantity" name="quantity" aria-describedby="quantity"></dd>
         <dt class="col-md-2">Owner:</dt>
         <dd class="col-md-4">
-            <select class="form-control" id="owner_id" name="owner_id">      
+            <select class="form-control selectpicker" id="owner_id" name="owner_id" title="Owner" data-live-search="true">      
                 <% Colin::Models::User.all.each do |user| %>
                 <option value="<%= user.id %>"><%= user.name %></option>
                 <% end %>  
@@ -75,11 +84,21 @@
 
         <dt class="col-md-2">Hazard statements:</dt>
         <dd class="col-md-10">
-        <input class="form-control" id="haz_stats" name="haz_stats" aria-describedby="haz_stats">
+        <!--<input class="form-control" id="haz_stats" name="haz_stats" aria-describedby="haz_stats">-->
+        <select class="form-control selectpicker" multiple title="H statements" id="haz_stats" name="haz_stats[]" aria-describedby="haz_stats" data-live-search="true">
+            <% Colin::Models::HazStat.all.each do |hazstat| %>
+                <option value="<%= hazstat.code %>"><%= hazstat.code + " - " + hazstat.description %></option>
+            <% end %>  
+        </select>
         </dd>
         <dt class="col-md-2">Precaution statements:</dt>
         <dd class="col-md-10">
-        <input class="form-control" id="prec_stats" name="prec_stats" aria-describedby="prec_stats">
+        <!--<input class="form-control" id="prec_stats" name="prec_stats" aria-describedby="prec_stats">-->
+        <select class="form-control selectpicker" multiple title="P statements" id="prec_stats" name="prec_stats[]" aria-describedby="prec_stats" data-live-search="true">
+            <% Colin::Models::PrecStat.all.each do |precstat| %>
+                <option value="<%= precstat.code %>"><%= precstat.code + " - " + precstat.description %></option>
+            <% end %>  
+        </select>
         </dd>
         <hr class="w-100"/>
 
@@ -94,26 +113,10 @@
         <dd class="col-md-2"><input class="form-control" id="packing_group" name="packing_group" aria-describedby="packing_group"></dd>
         <dt class="col-md-2">Schedule:</dt>
         <dd class="col-md-2"><input class="form-control" id="schedule" name="schedule" aria-describedby="schedule"></dd>
+
     </dl>
     <input class="btn btn-primary btn-lg btn-block" type="submit" value="Save">
     <a class="btn btn-secondary btn-lg btn-block" href="">Cancel</a>
-    <p id="location_list"></p>
+
   </form>
-
-    <script>
-        $("#location").keyup(function() {
-            $.ajax({
-                url: window.location.origin + "/api/location/search",
-                data: {query: $("#location").val()}
-            }).then(function(data) {
-                $('#location_list').empty()
-                for (i = 0; i < data.length; i++) {
-                    if (data[i].parent) {$('#location_list').append("<option>" + data[i].parent.name + " / " + data[i].name + "</option>");}
-                    else {$('#location_list').append("<option>" + data[i].name + "</option>");}
-                }   
-            });
-        });
-    </script>
-
-
 </div>
