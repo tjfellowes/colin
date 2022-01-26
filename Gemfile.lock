@@ -28,6 +28,11 @@ GEM
       rack
     rack-protection (2.0.2)
       rack
+    rack-test (1.1.0)
+      rack (>= 1.0, < 3)
+    racksh (1.0.0)
+      rack (>= 1.0)
+      rack-test (>= 0.5)
     rake (12.3.3)
     require_all (1.4.0)
     sinatra (2.0.2)
@@ -54,6 +59,7 @@ DEPENDENCIES
   pg
   rack
   rack-flash3
+  racksh
   rake
   require_all
   sinatra

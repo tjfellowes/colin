@@ -4,7 +4,7 @@
     <div class="form-group">
       <select class="form-control selectpicker" id="parent_id" name="parent_id" aria-describedby="parent" title="Parent Location" data-live-search="true">      
             <% Colin::Models::Location.all.each do |location| %>
-            <option value="<%= location.id %>"><%= location.path.select(:name).map{|i| i.name}.join('/') %></option>
+            <option value="<%= location.id %>"><%= location.location_path %></option>
             <% end %>  
         </select>
     </div>

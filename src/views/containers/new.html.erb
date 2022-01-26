@@ -18,7 +18,7 @@
             <dd class="col-md-6">
             <select class="form-control selectpicker" id="location_id" name="location_id" aria-describedby="location" title="Location" data-live-search="true">      
                 <% Colin::Models::Location.all.each do |location| %>
-                <option value="<%= location.id %>"><%= location.path.select(:name).map{|i| i.name}.join('/') %></option>
+                <option value="<%= location.id %>"><%= location.location_path %></option>
                 <% end %>  
             </select>        
             </dd>

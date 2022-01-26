@@ -18,11 +18,7 @@
         <dd class="col-md-2"><%= container.barcode %></dd>
         <dt class="col-md-2">Location: </dt>
         <dd class="col-md-6 text-truncate">
-        <% path = []
-        container.current_location.location.path_ids.each do |location_id|
-        path.append(Colin::Models::Location.where(id: location_id).take.name)
-        end %>
-        <%= path.join(' / ')%>
+        <%= container.current_location.location.location_path %>
         </dd>
         <hr class="w-100"/>
 

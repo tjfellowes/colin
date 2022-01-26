@@ -15,7 +15,7 @@
         <td><%= container.barcode %></td>
         <td><a href="/container/barcode/<%= container.barcode %>"><%= container.chemical.prefix %><%= container.chemical.name %></a></td>
         <td><%= container.container_size %> <%= container.size_unit %></td>
-        <td><%= container.current_location.location.parent.name + ' / ' if container.current_location.location.has_parent? %><%= container.current_location.location.name %></td>
+        <td><%= container.current_location.location.location_path %></td>
     </tr>
     <% end %>
     </tbody>

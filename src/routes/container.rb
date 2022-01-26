@@ -38,19 +38,19 @@ class Colin::Routes::Container < Colin::BaseWebApp
     elsif Colin::Models::Container.exists?(barcode: params[:barcode])
       Colin::Models::Container.where("barcode = ?", params[:barcode]).to_json(include: {
         chemical: {
-        include: {
-          schedule: {},
-          packing_group: {},
-          signal_word: {},
-          chemical_haz_class: { include: :haz_class },
-          chemical_pictogram: { include: { pictogram: {except: :picture} } },
-          chemical_haz_stat: { include: :haz_stat },
-          chemical_prec_stat: { include: :prec_stat },
-          dg_class_1: { include: :superclass },
-          dg_class_2: { include: :superclass },
-          dg_class_3: { include: :superclass }
-        }
-      },
+          include: {
+            schedule: {},
+            packing_group: {},
+            signal_word: {},
+            chemical_haz_class: { include: :haz_class },
+            chemical_pictogram: { include: { pictogram: {except: :picture} } },
+            chemical_haz_stat: { include: :haz_stat },
+            chemical_prec_stat: { include: :prec_stat },
+            dg_class_1: { include: :superclass },
+            dg_class_2: { include: :superclass },
+            dg_class_3: { include: :superclass }
+          }
+        },
         supplier: {},
         container_location: {include: {location: { include: :parent }}},
         current_location: {include: {location: { include: :parent }}}

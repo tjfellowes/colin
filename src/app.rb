@@ -41,7 +41,8 @@ module Colin
       Colin::Routes::Session,
       Colin::Routes::Chemical,
       Colin::Routes::Container,
-      Colin::Routes::Location
+      Colin::Routes::Location,
+      Colin::Routes::LocationType
     ]
   end
 

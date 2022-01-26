@@ -1,0 +1,131 @@
+Cupboard	25	Harmful		
+Box	25		H1	
+Box	25		H2	
+Box	25		H3	
+Box	25		H4	
+Box	25		H5	
+Box	25		H6	
+Box	25		H7	
+Box	25		H8	
+Box	25		H9	
+Box	25		H10	
+Box	25		H11	
+Box	25		H12	
+Box	25		H13	
+Box	25		H14	
+Box	25		H15	
+Box	25		H16	
+Box	25		H17	
+Box	25		H18	
+Box	25		H19	
+Box	25		H20	
+Box	25		H21	
+Box	25		H22	
+Box	25		H23	
+Box	25		H24	
+Box	25		H25	
+Box	25		H26	
+Box	25		H27	
+Box	25		Dessicator	
+Cupboard	25	Hazardous		
+Shelf	25		Shelf 1	
+Shelf	25		Shelf 2	
+Shelf	25	Bench		
+Shelf	25		1	
+Shelf	25		2	
+Shelf	25		3	
+Shelf	25		4	
+Shelf	25		5	
+Shelf	25		6	
+Shelf	25		7	
+Shelf	25		8	
+Shelf	25		9	
+Shelf	25		10	
+Shelf	25		11	
+Shelf	25		12	
+Shelf	25		13	
+Shelf	25		14	
+Shelf	25	Chromatography and filtration aids		
+Shelf	25	Corrosive dessicator 		
+Box	25		1	
+Box	25		2	
+Cabinet	25	Corrosive Acid		
+Cabinet	25		Liquid	
+Cabinet	25			1
+Cabinet	25			2
+Cupboard	25		Solid	
+Box	25			1
+Box	25			2
+Box	25			3
+Box	25			4
+Cupboard	25	Corrosive Base		
+Box	25		1	
+Box	25		2	
+Box	25		3	
+Box	25		4	
+Cupboard	25	Dangerous when wet		
+Box	25	Deuterates dessicator		
+Cabinet	25	Flammable liquid		
+Cabinet	25		Large	
+Cabinet	25		Small	
+Box	25			Box 1
+Box	25			Box 2
+Box	25			Box 3
+Box	25			Box 4
+Box	25			Box 5
+Box	25			Box 6
+Cupboard	25	Flammable solid		
+Box	25		Box 1	
+Box	25		Box 2	
+Box	25		Dessicator 1	
+Box	25		Dessicator 2	
+Freezer	-20	Freezer 1		
+Box	-20		Box 1	
+Box	-20		Box 2	
+Box	-20		Box 3	
+Box	-20		Box 4	
+Box	-20		Box 5	
+Box	-20		Box 6	
+Freezer	-20	Freezer 2		
+Fridge	4	Fridge		
+Shelf	4		Door	
+Shelf	4		Bottom draw	
+Box	4		Box 1	
+Shelf	4		Shelf 1	
+Box	4			Box 1
+Box	4			Box 2
+Box	4			Box 3
+Shelf	4		Shelf 2	
+Box	4			Box 1
+Box	4			Box 2
+Box	4			Box 3
+Shelf	4		Shelf 3	
+Box	4			Box 1
+Box	4			Box 2
+Box	4			Box 3
+Shelf	4		Shelf 4	
+Box	4			Box 1
+Box	4			Box 2
+Box	4			Box 3
+Cupboard	25	Non-flammable solvents		
+Cupboard	25	Oxidants		
+Cupboard	25	Poisons		
+Box	25		Draw 1	
+Box	25		Draw 2	
+Box	25		Draw 3	
+Shelf	25	Sieves and drying agents		
+Cupboard	25	Toxic		
+Box	25		Dessicator	
+Box	25		TL1	
+Box	25		TL2	
+Box	25		TM1	
+Box	25		TM2	
+Box	25		TM3	
+Box	25		TM4	
+Box	25		TM5	
+Box	25		TM6	
+Box	25		TS1	
+Box	25		TS2	
+Box	25		TS3	
+Box	25		TXL1	
+Box	25		TXL2	

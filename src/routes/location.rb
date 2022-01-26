@@ -7,6 +7,14 @@ require 'time'
 #
 class Colin::Routes::Location < Colin::BaseWebApp
 
+  get '/api/location' do 
+    unless session[:authorized]
+      halt(403, 'Not authorised.')
+    end
+    content_type :json
+    Colin::Models::Location.all.to_json(methods: :location_path)
+  end
+
   get '/api/location/id/:id' do 
     unless session[:authorized]
       halt(403, 'Not authorised.')
@@ -57,10 +65,10 @@ class Colin::Routes::Location < Colin::BaseWebApp
     elsif params[:parent_id].present?
       location_type = Colin::Models::LocationType.find(params[:location_type_id])
       parent = Colin::Models::Location.find(params[:parent_id])
-      location = Colin::Models::Location.create(name: params[:name], barcode: params[:barcode], temperature: params[:temperature], location_type: location_type, monitored: monitored, parent: parent)
+      location = Colin::Models::Location.create(id: params[:id], name: params[:name], barcode: params[:barcode], temperature: params[:temperature], location_type: location_type, monitored: monitored, parent: parent)
     else
       location_type = Colin::Models::LocationType.find(params[:location_type_id])
-      location = Colin::Models::Location.create(name: params[:name], barcode: params[:barcode], temperature: params[:temperature], location_type: location_type, monitored: monitored)
+      location = Colin::Models::Location.create(id: params[:id], name: params[:name], barcode: params[:barcode], temperature: params[:temperature], location_type: location_type, monitored: monitored)
     end
     flash[:message] = "Location created!"
     redirect to '/location/new'
@@ -103,3 +111,7 @@ class Colin::Routes::Location < Colin::BaseWebApp
     redirect to '/'
   end
 end
+
+
+
+
