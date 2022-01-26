@@ -31,8 +31,12 @@ class Colin::Routes::Chemical < Sinatra::Base
     # which means invalid data provided from user.
     if params[:cas].nil?
       halt(422, 'Must provide a CAS number for chemical.')
-    elsif Colin::Models::Chemical.exists?(:cas => params[:cas])
-      Colin::Models::Chemical.where(cas: params[:cas]).to_json(include: {
+
+    elsif Colin::Models::Chemical.where("cas ILIKE :cas", { cas: "%"+params[:cas]+"%"}).count > 1
+      Colin::Models::Chemical.where("cas ILIKE :cas", { cas: "%"+params[:cas]+"%"}).select(:id, :cas).to_json()
+
+    elsif Colin::Models::Chemical.where("cas ILIKE :cas", { cas: "%"+params[:cas]+"%"}).count == 1
+      Colin::Models::Chemical.where("cas ILIKE :cas", { cas: "%"+params[:cas]+"%"}).to_json(include: {
         schedule: {},
         packing_group: {},
         signal_word: {},
@@ -44,6 +48,7 @@ class Colin::Routes::Chemical < Sinatra::Base
         dg_class_2: { include: :superclass },
         dg_class_3: { include: :superclass }
       })
+
     else
       halt(404, "Chemical with CAS #{params[:cas]} not found.")
     end
@@ -194,29 +199,29 @@ class Colin::Routes::Chemical < Sinatra::Base
         end
       end
 
-      if params[:haz_class].blank?
+      if params[:haz_classes].blank?
         #Nothing to do here!
       else
-        for i in params[:haz_class].split(';')
+        for i in params[:haz_classes]
           if Colin::Models::HazClass.exists?(description: i.split(',')[0])
             haz_class = Colin::Models::HazClass.where(description: i.split(',')[0]).take
             category = i.split(',')[1]
             chemical_haz_class = Colin::Models::ChemicalHazClass.create!(chemical_id: chemical.id, haz_class_id: haz_class.id, category: category)
           else
-            throw(:halt, [422, "Invalid hazard classification #{i.split(',')[0]} (supply as colon separated list)."])
+            throw(:halt, [422, "Invalid hazard classification #{i.split(',')[0]}."])
           end
         end
       end
 
-      if params[:pictogram].blank?
+      if params[:pictograms].blank?
         #Nothing to do here!
       else
-        for i in params[:pictogram].split(';')
+        for i in params[:pictograms]
           if Colin::Models::Pictogram.exists?(name: i)
             pictogram = Colin::Models::Pictogram.where(code: i).take
             Colin::Models::ChemicalPictogram.create!(chemical_id: chemical.id, pictogram_id: pictogram.id)
           else
-            throw(:halt, [422, "Invalid pictogram name #{i} (supply as colon separated list)."])
+            throw(:halt, [422, "Invalid pictogram name #{i}."])
           end
         end
       end
@@ -364,31 +369,31 @@ class Colin::Routes::Chemical < Sinatra::Base
         end
       end
 
-      if params[:haz_class].blank?
+      if params[:haz_classes].blank?
         #Nothing to do here!
       else
         Colin::Models::ChemicalHazClass.where(chemical_id: chemical.id).delete_all
-        for i in params[:haz_class].split(';')
+        for i in params[:haz_class]
           if Colin::Models::HazClass.exists?(description: i.strip.split(',')[0])
             haz_class = Colin::Models::HazClass.where(description: i.strip.split(',')[0]).take
             category = i.strip.split(',')[1]
             chemical_haz_class = Colin::Models::ChemicalHazClass.create!(chemical_id: chemical.id, haz_class_id: haz_class.id, category: category)
           else
-            throw(:halt, [422, "Invalid hazard classification #{i.strip.split(',')[0]} (supply as colon separated list)."])
+            throw(:halt, [422, "Invalid hazard classification #{i.strip.split(',')[0]}."])
           end
         end
       end
 
-      if params[:pictogram].blank?
+      if params[:pictograms].blank?
         #Nothing to do here!
       else
         Colin::Models::ChemicalPictogram.where(chemical_id: chemical.id).delete_all
-        for i in params[:pictogram].split(';')
+        for i in params[:pictogram]
           if Colin::Models::Pictogram.exists?(name: i.strip)
             pictogram = Colin::Models::Pictogram.where(code: i.strip).take
             Colin::Models::ChemicalPictogram.create!(chemical_id: chemical.id, pictogram_id: pictogram.id)
           else
-            throw(:halt, [422, "Invalid pictogram name #{i.strip} (supply as colon separated list)."])
+            throw(:halt, [422, "Invalid pictogram name #{i.strip}."])
           end
         end
       end

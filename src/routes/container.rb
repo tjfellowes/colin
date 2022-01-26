@@ -215,29 +215,29 @@ class Colin::Routes::Container < Colin::BaseWebApp
             end
           end
     
-          if params[:haz_class].blank?
+          if params[:haz_classes].blank?
             #Nothing to do here!
           else
-            for i in params[:haz_class].split(';')
+            for i in params[:haz_classes]
               if Colin::Models::HazClass.exists?(description: i.split(',')[0])
                 haz_class = Colin::Models::HazClass.where(description: i.split(',')[0]).take
                 category = i.split(',')[1]
                 chemical_haz_class = Colin::Models::ChemicalHazClass.create!(chemical_id: chemical.id, haz_class_id: haz_class.id, category: category)
               else
-                throw(:halt, [422, "Invalid hazard classification #{i.split(',')[0]} (supply as colon separated list)."])
+                throw(:halt, [422, "Invalid hazard classification #{i.split(',')[0]}."])
               end
             end
           end
     
-          if params[:pictogram].blank?
+          if params[:pictograms].blank?
             #Nothing to do here!
           else
-            for i in params[:pictogram].split(';')
+            for i in params[:pictograms]
               if Colin::Models::Pictogram.exists?(name: i)
                 pictogram = Colin::Models::Pictogram.where(code: i).take
                 Colin::Models::ChemicalPictogram.create!(chemical_id: chemical.id, pictogram_id: pictogram.id)
               else
-                throw(:halt, [422, "Invalid pictogram name #{i} (supply as colon separated list)."])
+                throw(:halt, [422, "Invalid pictogram name #{i}."])
               end
             end
           end
@@ -264,7 +264,13 @@ class Colin::Routes::Container < Colin::BaseWebApp
         container_size, size_unit = params[:container_size], params[:size_unit]
       end
 
-      container = Colin::Models::Container.create(barcode: params[:barcode], description: params[:description], container_size: container_size, size_unit: size_unit, date_purchased: Time.now.utc.iso8601, chemical_id: chemical.id, supplier_id: supplier_id, product_number: params[:product_number], lot_number: params[:lot_number], owner_id: params[:owner_id], user_id: current_user.id)
+      if !params[:barcode].blank?
+        barcode = params[:barcode]
+      else
+        barcode = Colin::Models::Container.all.select(:barcode).map{|i| i.barcode.to_i}.max + 1
+      end
+
+      container = Colin::Models::Container.create(barcode: barcode, description: params[:description], container_size: container_size, size_unit: size_unit, date_purchased: Time.now.utc.iso8601, chemical_id: chemical.id, supplier_id: supplier_id, product_number: params[:product_number], lot_number: params[:lot_number], owner_id: params[:owner_id], user_id: current_user.id)
 
       Colin::Models::ContainerLocation.create(created_at: Time.now.utc.iso8601, updated_at: Time.now.utc.iso8601, container_id: container.id, location_id: params[:location_id])
 
