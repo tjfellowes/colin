@@ -21,7 +21,7 @@
     <div class="form-group">
       <label for="supervisor_id">Supervisor</label>
       <select class="form-control selectpicker" id="supervisor_id" name="supervisor_id">
-        <% Colin::Models::User.all.each do |auser| %>
+        <% Colin::Models::User.where(hidden: false).each do |auser| %>
           <option <%= "selected" if auser.id == user.supervisor.id %> value="<%= auser.id %>"><%= auser.name %></option>
         <% end %>  
       </select>
