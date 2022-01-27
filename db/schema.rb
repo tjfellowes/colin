@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_27_154121) do
+ActiveRecord::Schema.define(version: 2022_01_27_135729) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -196,6 +196,8 @@ ActiveRecord::Schema.define(version: 2021_09_27_154121) do
     t.boolean "issuperuser", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "active", default: true
+    t.boolean "hidden", default: false
     t.index ["supervisor_id"], name: "index_users_on_supervisor_id"
   end
 

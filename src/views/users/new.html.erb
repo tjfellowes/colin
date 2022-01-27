@@ -12,7 +12,7 @@
     </div>
     <div class="form-group">
       <select class="form-control selectpicker" id="supervisor_id" name="supervisor_id" title="Supervisor">     
-        <% Colin::Models::User.all.each do |user| %>
+        <% Colin::Models::User.where(hidden: false).each do |user| %>
           <option value="<%= user.id %>"><%= user.name %></option>
         <% end %>  
       </select>
@@ -23,6 +23,14 @@
     <div class="form-group">
       <input type="password" name="password_confirmation", placeholder="Password Confirmation" class="form-control"/> 
     </div>
+
+    <div class="form-group">
+    <input class="form-check-input" type="checkbox" value="true" name ="isadmin" id="isadmin">
+    <label class="form-check-label" for="isadmin">
+      Is admin?
+    </label>
+    </div>
+
     <button type="submit" class="btn btn-primary">Create User</button> 
   </form><br>
 </div>

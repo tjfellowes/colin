@@ -41,7 +41,7 @@
         <dt class="col-md-2">Owner:</dt>
         <dd class="col-md-4">
             <select class="form-control selectpicker" id="owner_id" name="owner_id" title="Owner" data-live-search="true">      
-                <% Colin::Models::User.all.each do |user| %>
+                <% Colin::Models::User.where(hidden: false).each do |user| %>
                 <option <%= "selected" if container.owner == user %> value="<%= user.id %>"><%= user.name %></option>
                 <% end %>  
             </select>

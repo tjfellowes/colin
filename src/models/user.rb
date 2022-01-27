@@ -1,4 +1,5 @@
 class Colin::Models::User < ActiveRecord::Base
+  default_scope {where(active: TRUE)}
 
   validates :username, presence: true, uniqueness: true
   validates_presence_of :name
