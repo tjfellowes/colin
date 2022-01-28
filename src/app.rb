@@ -140,6 +140,10 @@ module Colin
       erb :'locations/new.html'
     end 
 
+    get '/location/stocktake/:location_id' do
+      erb :'locations/stocktake.html'
+    end
+
     get '/user/login' do 
       erb :"/login"
     end 

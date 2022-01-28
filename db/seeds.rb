@@ -15,7 +15,6 @@ def create_sublocation(parent_location, name, code, barcode, temperature, locati
 end
 
 def add_test_data
-
   synlab = Location.create!(name: 'Synthetic Lab', code: 'Syn', barcode: '100000', temperature: '25', location_types_id: '2')
   cupboard = create_sublocation(synlab, 'Cupboard 1', 'C1', '100100', '25', '3')
   create_sublocation(cupboard, 'Box 1', 'B1', '100101', '25', '8')
