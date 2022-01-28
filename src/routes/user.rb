@@ -15,13 +15,19 @@ class Colin::Routes::User < Colin::BaseWebApp
     post "/api/user/edit/username/:username" do 
         if params[:username].blank? 
             halt(422, "Username not supplied.")
+        elsif params[:username] != current_user.username && !current_user.issuperuser
+            halt(403, "Cannot edit other users!")
         elsif Colin::Models::User.where(username: params[:username]).exists?
             user = Colin::Models::User.where(username: params[:username]).take
             if !params[:password].blank? 
-                if user.authenticate(params[:old_password])
-                    user.update(password: params[:password], password_confirmation: params[:password_confirmation])
+                if user.authenticate(params[:old_password]) || current_user.issuperuser
+                    if params[:password] == params[:password_confirmation]
+                        user.update(password: params[:password], password_confirmation: params[:password_confirmation])
+                    else
+                        halt(403, "Passwords do not match.")
+                    end
                 else
-                    halt(401, "Old password incorrect.")
+                    halt(403, "Old password incorrect.")
                 end
             end
             if !params[:new_username].blank?

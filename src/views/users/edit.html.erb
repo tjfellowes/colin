@@ -1,8 +1,8 @@
 <div class="jumbotron w-50" > 
-    <%if Colin::Models::User.where(username: params[:username]).exists?
+    <%if current_user.issuperuser && !params[:username].blank?
         user = Colin::Models::User.where(username: params[:username]).take
       else
-        halt(422, "Invalid username.")
+        user = current_user
       end %>
 <h1>Update User</h1>
   <form action="/api/user/edit/username/<%= user.username %>" method="POST"> 
@@ -26,10 +26,12 @@
         <% end %>  
       </select>
     </div>
+    <% if !current_user.issuperuser %>
     <div class="form-group">
       <label for="old_password">Old Password</label>
       <input type="password" name="old_password" id="old_password" placeholder="Old Password" class="form-control"/> 
     </div>
+    <% end %>
     <div class="form-group">
       <label for="password">New Password</label>
       <input type="password" name="password" id="password" placeholder="Password" class="form-control"/> 

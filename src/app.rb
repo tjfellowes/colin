@@ -152,7 +152,7 @@ module Colin
       erb :"/users/new.html"
     end 
 
-    get '/user/edit/username/:username' do 
+    get '/user/edit' do 
       erb :"/users/edit.html"
     end 
 
