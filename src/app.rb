@@ -116,8 +116,13 @@ module Colin
         flash[:message] = "Please supply a search query."
         redirect to ''
       else
-        erb :'containers/search.html'
+        erb :'containers/list.html'
       end
+    end
+
+    get '/container/list' do
+      params[:query] = '%'
+      erb :'containers/list.html'
     end
   
     get '/container/new' do
@@ -136,24 +141,56 @@ module Colin
       erb :'chemicals/edit.html'
     end
     
-    get '/location/new' do
-      erb :'locations/new.html'
+    get '/location' do
+      erb :'locations/list.html'
+    end 
+
+    get '/location/new' do 
+      if current_user.isadmin?
+        erb :"/locations/new.html"
+      else
+        halt(403, "You must be logged in as an admin!")
+      end
+    end 
+
+    get '/location/edit/:location_id' do 
+      if current_user.isadmin?
+        erb :"/locations/edit.html"
+      else
+        halt(403, "You must be logged in as an admin!")
+      end
     end 
 
     get '/location/stocktake/:location_id' do
       erb :'locations/stocktake.html'
     end
 
+    get '/user' do
+      if current_user.issuperuser?
+        erb :'users/list.html'
+      else
+        halt(403, "You must be logged in as a superuser!")
+      end
+    end 
+
     get '/user/login' do 
       erb :"/login"
     end 
 
     get '/user/new' do 
-      erb :"/users/new.html"
+      if current_user.isadmin?
+        erb :"/users/new.html"
+      else
+        halt(403, "You must be logged in as an admin!")
+      end
     end 
 
     get '/user/edit' do 
-      erb :"/users/edit.html"
+      if current_user.issuperuser?
+        erb :"/users/edit.html"
+      else
+        halt(403, "You must be logged in as a superuser!")
+      end
     end 
 
     get '/img/favicon.ico' do
@@ -186,10 +223,6 @@ module Colin
           redirect to '/login' 
         end  
       end   
-
-      def search_containers(query)
-        
-      end
     
     end
 

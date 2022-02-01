@@ -68,41 +68,28 @@
             <a class="nav-link dropdown-toggle" href="#" id="chemicalsDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Chemicals</a>
             <div class="dropdown-menu" aria-labelledby="chemicalsDropdown">
               <a class="dropdown-item" href="/container/new">Add Chemical</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item disabled" href="/container">List Chemicals</a>
             </div>
           </li>
 
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="locationsDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Locations</a>
             <div class="dropdown-menu" aria-labelledby="locationsDropdown">
-              <a class="dropdown-item <% if current_user.isadmin == false %>disabled<% end %>" href="/location/new">Add location</a>
-              <a class="dropdown-item disabled" href="#">Edit location</a>
-              <a class="dropdown-item disabled" href="/location/stocktake">Stocktake</a>
+              <a class="dropdown-item disabled" href="#">Stocktake</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="/location/new">Add Location</a>
+              <a class="dropdown-item" href="/location">List Locations</a>
             </div>
           </li>
 
-          <% if current_user.isadmin == true %>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#"id="managementDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Users</a>
             <div class="dropdown-menu" style="width: 300px;" aria-labelledby="managementDropdown">
               <a class="dropdown-item" href="/user/new">Create User</a>
-              <% if current_user.issuperuser == true %> 
-              <form action="/user/edit" method="GET" class="px-4">
-                <div class="form-group">
-                  <div class="input-group mb-3">
-                  <input type="username" class="form-control" id="username" name="username" placeholder="Username">
-                    <div class="input-group-append">
-                      <button type="submit" class="btn btn-primary">Edit user</button>
-                    </div>
-                  </div>
-                </div>
-              </form> 
-              <% end %>
-
-              
-              
+              <a class="dropdown-item" href="/user">List Users</a>
             </div>
           </li>
-          <% end %>
 
         </ul>
         <ul class="navbar-nav ml-auto justify-content-end">

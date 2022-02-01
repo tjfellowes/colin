@@ -1,0 +1,27 @@
+<div class=""> 
+    <table class="table">
+    <thead>
+    <tr>
+        <th scope="col">Location Path</th>
+        <th scope="col">Type</th>
+        <th scope="col">Temperature</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @pagy, @locations = pagy(Colin::Models::Location.all) %>
+    <% @locations.each do |location| %>
+    <tr>
+        <td><a href="/location/edit/<%=location.id%>"><%= location.location_path %></a></td>
+        <td><%= location.location_type.name %></td>
+        <td><%= location.temperature %>&nbsp;&#8451;</td>
+    </tr>
+    <% end %>
+    </tbody>
+    </table>
+
+    <div class="container">
+        <div class="">
+            <%= pagy_bootstrap_nav(@pagy) if @pagy.pages > 1 %>
+        </div>
+    </div>
+</div>
