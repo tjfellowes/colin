@@ -1,26 +1,35 @@
 class Colin::Routes::User < Colin::BaseWebApp
     
     post "/api/user" do 
+
+        unless session[:authorized] && current_user.can_create_user?
+            halt(403, 'Not authorised.')
+        end
+        
+        content_type :json
+
         if params[:username].blank? || params[:email].blank? || params[:password].blank? || params[:name].blank? 
-            flash.now[:message] = "You must complete all fields in order to create an account. Please try again."
-            redirect to '/user/new'
+            halt(422, 'Username, name, email, and password are required')
+        elsif params[:password] != params[:password_confirmation]
+            halt(422, 'Passwords do not match')
         else
-            user = Colin::Models::User.create(username: params[:username], name: params[:name], email: params[:email], password: params[:password], password_confirmation: params[:password_confirmation], supervisor_id: params[:supervisor_id], isadmin: params[:isadmin])
-            session[:user_id] = user.id 
-            flash.now[:message] = "Account has been succesfully created!"
-            redirect to '/'
+            Colin::Models::User.create(username: params[:username], name: params[:name], email: params[:email], password: params[:password], password_confirmation: params[:password_confirmation], supervisor_id: params[:supervisor_id], can_create_container: params[:can_create_container], can_edit_container: params[:can_edit_container], can_create_location: params[:can_create_location], can_edit_location: params[:can_edit_location], can_create_user: params[:can_create_user], can_edit_user: params[:can_edit_user]).to_json()
         end
     end 
 
-    post "/api/user/edit/username/:username" do 
+    put "/api/user/username/:username" do 
+        unless session[:authorized] && ( current_user.can_edit_user? || current_user.username == params[:username] )
+            halt(403, 'Not authorised.')
+        end
+
+        content_type :json
+
         if params[:username].blank? 
             halt(422, "Username not supplied.")
-        elsif params[:username] != current_user.username && !current_user.issuperuser
-            halt(403, "Cannot edit other users!")
         elsif Colin::Models::User.where(username: params[:username]).exists?
             user = Colin::Models::User.where(username: params[:username]).take
             if !params[:password].blank? 
-                if user.authenticate(params[:old_password]) || current_user.issuperuser
+                if user.authenticate(params[:old_password]) || current_user.can_edit_user
                     if params[:password] == params[:password_confirmation]
                         user.update(password: params[:password], password_confirmation: params[:password_confirmation])
                     else
@@ -42,8 +51,10 @@ class Colin::Routes::User < Colin::BaseWebApp
             if !params[:supervisor_id].blank?
                 user.update(supervisor_id: params[:supervisor_id])
             end
-            flash.now[:message] = "Account updated!"
-            redirect to '/'
+
+            user.update(can_create_container: params[:can_create_container], can_edit_container: params[:can_edit_container], can_create_location: params[:can_create_location], can_edit_location: params[:can_edit_location], can_create_user: params[:can_create_user], can_edit_user: params[:can_edit_user])
+
+            user.to_json()
         else
             halt(422, "Username with username " + params[:username] + " not found.")
         end

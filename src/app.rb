@@ -126,7 +126,11 @@ module Colin
     end
   
     get '/container/new' do
-      erb :'containers/new.html'
+      if current_user.can_create_container?
+        erb :'containers/new.html'
+      else
+        halt(403, "Not authorised!")
+      end
     end
   
     get '/container/barcode/:barcode' do
@@ -134,30 +138,42 @@ module Colin
     end
   
     get '/container/edit/barcode/:barcode' do
-      erb :'containers/edit.html'
+      if current_user.can_edit_container?
+        erb :'containers/edit.html'
+      else
+        halt(403, "Not authorised!")
+      end
     end
     
     get '/chemical/edit/cas/:cas' do
-      erb :'chemicals/edit.html'
+      if current_user.can_edit_container?
+        erb :'chemicals/edit.html'
+      else
+        halt(403, "Not authorised!")
+      end
     end
     
     get '/location' do
-      erb :'locations/list.html'
+      if current_user.can_edit_location?
+        erb :'locations/list.html'
+      else
+        halt(403, "Not authorised!")
+      end
     end 
 
     get '/location/new' do 
-      if current_user.isadmin?
+      if current_user.can_create_location?
         erb :"/locations/new.html"
       else
-        halt(403, "You must be logged in as an admin!")
+        halt(403, "Not authorised!")
       end
     end 
 
     get '/location/edit/:location_id' do 
-      if current_user.isadmin?
+      if current_user.can_edit_location?
         erb :"/locations/edit.html"
       else
-        halt(403, "You must be logged in as an admin!")
+        halt(403, "Not authorised!")
       end
     end 
 
@@ -166,10 +182,10 @@ module Colin
     end
 
     get '/user' do
-      if current_user.issuperuser?
+      if current_user.can_edit_user?
         erb :'users/list.html'
       else
-        halt(403, "You must be logged in as a superuser!")
+        halt(403, "Not authorised!")
       end
     end 
 
@@ -178,18 +194,18 @@ module Colin
     end 
 
     get '/user/new' do 
-      if current_user.isadmin?
+      if current_user.can_create_user?
         erb :"/users/new.html"
       else
-        halt(403, "You must be logged in as an admin!")
+        halt(403, "Not authorised!")
       end
     end 
 
-    get '/user/edit' do 
-      if current_user.issuperuser?
+    get '/user/username/edit/:username' do 
+      if current_user.can_edit_user? || current_user.username == params[:username]
         erb :"/users/edit.html"
       else
-        halt(403, "You must be logged in as a superuser!")
+        halt(403, "Not authorised!")
       end
     end 
 
@@ -215,7 +231,7 @@ module Colin
       end
   
       def current_user 
-        Colin::Models::User.find_by(:id => session[:user_id]) 
+        Colin::Models::User.find_by(id: session[:user_id]) 
       end 
   
       def redirect_if_not_logged_in 

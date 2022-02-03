@@ -51,7 +51,14 @@ class Colin::Routes::Location < Colin::BaseWebApp
     end
   end
 
+  # Create a location
   post '/api/location' do
+    unless session[:authorized] && current_user.can_create_location?
+      halt(403, 'Not authorised.')
+    end
+
+    content_type :json
+
     if params[:monitored].blank? || params[:monitored] == 'false'
       monitored = false
     elsif params[:monitored] == 'true'
@@ -65,22 +72,27 @@ class Colin::Routes::Location < Colin::BaseWebApp
     elsif params[:parent_id].present?
       location_type = Colin::Models::LocationType.find(params[:location_type_id])
       parent = Colin::Models::Location.find(params[:parent_id])
-      location = Colin::Models::Location.create(id: params[:id], name: params[:name], barcode: params[:barcode], temperature: params[:temperature], location_type: location_type, monitored: monitored, parent: parent)
+
+      Colin::Models::Location.create(id: params[:id], name: params[:name], barcode: params[:barcode], temperature: params[:temperature], location_type: location_type, monitored: monitored, parent: parent).to_json()
     else
       location_type = Colin::Models::LocationType.find(params[:location_type_id])
-      location = Colin::Models::Location.create(id: params[:id], name: params[:name], barcode: params[:barcode], temperature: params[:temperature], location_type: location_type, monitored: monitored)
+
+      Colin::Models::Location.create(id: params[:id], name: params[:name], barcode: params[:barcode], temperature: params[:temperature], location_type: location_type, monitored: monitored).to_json()
     end
-    flash[:message] = "Location created!"
-    redirect to '/location/new'
   end
 
-  post '/api/location/id/:id' do
-    unless session[:authorized]
+  # Update a location
+  put '/api/location/id/:id' do
+    unless session[:authorized] && current_user.can_edit_location?
       halt(403, 'Not authorised.')
     end
+
+    content_type :json
+
     if params[:id].blank?
       halt(422, "You must supply a location ID.")
     end
+
     if params[:monitored].blank? || params[:monitored] == 'false'
       monitored = false
     elsif params[:monitored] == 'true'
@@ -92,23 +104,21 @@ class Colin::Routes::Location < Colin::BaseWebApp
     if params[:name].blank?
       halt(422, 'Must provide a name for the location.')
     else
-      location_type = Colin::Models::LocationType.where(name: params[:location_type]).take
-      location = Colin::Models::Location.create(name: name.strip, code: params[:code], barcode: params[:barcode], temperature: params[:temperature], location_type: location_type, monitored: monitored, parent_id: parent_id)
+      location = Colin::Models::Location.find(params[:id]).update(name: params[:name], code: params[:code], barcode: params[:barcode], temperature: params[:temperature], location_type_id: params[:location_type_id], monitored: monitored, parent_id: params[:parent_id]).to_json()
     end
-    flash[:message] = "Location updated!"
-    redirect to '/location/edit'
   end
 
+  # Delete a location
   delete '/api/location/id/:id' do
-    unless session[:authorized]
+    unless session[:authorized] && current_user.can_edit_location?
       halt(403, 'Not authorised.')
     end
     if params[:id].blank?
       halt(422, "You must supply a location ID.")
     end
     Colin::Models::Location.delete(params[:id])
-    flash[:message] = "Location deleted!"
-    redirect to '/'
+    status 204
+    body ''
   end
 end
 

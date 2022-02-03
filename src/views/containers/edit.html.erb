@@ -132,23 +132,6 @@
     <input class="btn btn-primary btn-lg btn-block" type="submit" value="Save">
     <a class="btn btn-secondary btn-lg btn-block" href="/container/barcode/<%= params[:barcode] %>">Cancel</a>
     </form>
-    <button class="btn btn-outline-danger btn-lg btn-block mt-2" type="submit" >Delete</button>
+    <button class="btn btn-outline-danger btn-lg btn-block mt-2" type="submit" href="/api/container/delete/<%= params[:barcode] %>">Delete</button>
 </div>
-<script>
-$("#delete").onclick( function() {
-    var xhr = new XMLHttpRequest();
-    var url = '/api/container/barcode/<%= params[:barcode] %>';
-    xhr.open('DELETE', url, true);
-
-    //Send the proper header information along with the request
-    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-
-    xhr.onreadystatechange = function() {//Call a function when the state changes.
-        if(htxhrtp.readyState == 4 && xhr.status == 200) {
-            alert(xhr.responseText);
-        }
-    }
-    xhr.send(params);
-});
-</script>
 <script src="/js/location_ajax.js"></script>

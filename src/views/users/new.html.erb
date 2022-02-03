@@ -1,51 +1,100 @@
 <div class="jumbotron w-50" > 
-<h1>Create User</h1>
-  <form action="/api/user" method="POST"> 
-    <div class="form-group">
-      <input type="text" name="username" placeholder="Username" class="form-control"/>
-    </div>
-    <div class="form-group">
-      <input type="text" name="name" placeholder="Name" class="form-control"/>
-    </div>
-    <div class="form-group"> 
-      <input type="text" name="email" placeholder="Email" class="form-control"/> 
-    </div>
-    <div class="form-group">
-      <select class="form-control selectpicker" id="supervisor_id" name="supervisor_id" title="Supervisor">     
-        <% Colin::Models::User.where(hidden: false).each do |user| %>
-          <option value="<%= user.id %>"><%= user.name %></option>
-        <% end %>  
-      </select>
-    </div>
-    <div class="form-group">
-      <input type="password" name="password" placeholder="Password" class="form-control"/> 
-    </div>
-    <div class="form-group">
-      <input type="password" name="password_confirmation", placeholder="Password Confirmation" class="form-control"/> 
-    </div>
-    
-    <div class="row">
-      <div class="form-group col-md-6">
-      <input class="form-check-input" type="checkbox" value="true" name ="isadmin" id="isadmin">
-      <label class="form-check-label" for="isadmin" data-toggle="tooltip" title="Admins can create new users and locations.">
-        Admin?
-      </label>
-      </div>
+<h1>Create User</h1> 
+  <div class="form-group">
+    <input type="text" name="username" placeholder="Username" class="form-control"/>
+  </div>
+  <div class="form-group">
+    <input type="text" name="name" placeholder="Name" class="form-control"/>
+  </div>
+  <div class="form-group"> 
+    <input type="text" name="email" placeholder="Email" class="form-control"/> 
+  </div>
+  <div class="form-group">
+    <select class="form-control selectpicker" id="supervisor_id" name="supervisor_id" title="Supervisor">     
+      <% Colin::Models::User.where(hidden: false).each do |user| %>
+        <option value="<%= user.id %>"><%= user.name %></option>
+      <% end %>  
+    </select>
+  </div>
+  <div class="form-group">
+    <input type="password" name="password" placeholder="Password" class="form-control"/> 
+  </div>
+  <div class="form-group">
+    <input type="password" name="password_confirmation", placeholder="Password Confirmation" class="form-control"/> 
+  </div>
 
-      <div class="form-group col-md-6">
-      <input class="form-check-input" type="checkbox" value="true" name ="hidden" id="hidden">
-      <label class="form-check-label" for="hidden" data-toggle="tooltip" title="Hidden users are not shown in dropdown menus, but can still log in.">
-        Hidden?
-      </label>
+  <label class="form-label h3" for="permissions">Permissions</label>
+  <div class="form-group" id="permissions">
+    <label class="form-check-label h5" for="containers">Containers</label>
+    <div class="form-group col-md-6" id="containers">
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="can_create_container" name="can_create_container" value="true">
+        <label class="form-check-label" for="can_create_container">Create</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="can_edit_container" name="can_edit_container" value="true">
+        <label class="form-check-label" for="can_edit_container">Edit</label>
       </div>
     </div>
+  </div>
 
-    <button type="submit" class="btn btn-primary">Create User</button> 
-  </form><br>
+  <div class="form-group">
+    <label class="form-check-label h5" for="locations">Locations</label>
+    <div class="form-group col-md-6" id="locations">
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="can_create_location" name="can_create_location" value="true">
+        <label class="form-check-label" for="can_create_location">Create</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="can_edit_location" name="can_edit_location" value="true">
+        <label class="form-check-label" for="can_edit_location">Edit</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="form-check-label h5" for="users">Users</label>
+    <div class="form-group col-md-6" id="users">
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="can_create_user" name="can_create_user" value="true">
+        <label class="form-check-label" for="can_create_user">Create</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="can_edit_user" name="can_edit_user" value="true">
+        <label class="form-check-label" for="can_edit_user">Edit</label>
+      </div>
+    </div>
+  </div>
+
+  <button id="submit" class="btn btn-primary">Create User</button>
+  <button class="btn btn-secondary" id="cancel">Cancel</button>
+
 </div>
 
 <script>
-$(function () {
-  $('[data-toggle="tooltip"]').tooltip()
-})
+$(document).ready(function () {
+  $("#submit").click(function (e) {
+    $.ajax({
+      type: "POST",
+      url: "/api/user",
+      data: {
+        username: $("[name='username']").val(),
+        name: $("[name='name']").val(),
+        email: $("[name='email']").val(),
+        password: $("[name='password']").val(),
+        password_confirmation: $("[name='password_confirmation']").val(),
+        supervisor_id: $("[name='supervisor_id']").val(),
+        can_create_container: $("[name='can_create_container']").val(),
+        can_edit_container: $("[name='can_edit_container']").val(),
+        can_create_location: $("[name='can_create_location']").val(),
+        can_edit_location: $("[name='can_edit_location']").val(),
+        can_create_user: $("[name='can_create_user']").val(),
+        can_edit_user: $("[name='can_edit_user']").val()
+      },
+      dataType: "json",
+      success: function () {window.location.href = "/";}
+    });
+    $("#cancel").click(function () {window.location.href = "/";});
+  });
+});
 </script>

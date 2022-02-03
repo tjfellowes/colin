@@ -23,50 +23,13 @@ class Colin::Routes::Container < Colin::BaseWebApp
     })
   end
 
-  # Gets a specific container by barcode
-  get '/api/container/barcode/:barcode' do
-    content_type :json
-    # Must provide an integer ID. Otherwise respond with 422 (https://restpatterns.mindtouch.us/HTTP_Status_Codes/422_-_Unprocessable_Entity)
-    # which means invalid data provided from user.
-
-    unless session[:authorized]
-      halt(403, 'Not authorised.')
-    end
-
-    if params[:barcode].blank?
-      halt(422, 'Must provide a barcode for container.')
-    elsif Colin::Models::Container.exists?(barcode: params[:barcode])
-      Colin::Models::Container.where("barcode = ?", params[:barcode]).to_json(include: {
-        chemical: {
-          include: {
-            schedule: {},
-            packing_group: {},
-            signal_word: {},
-            chemical_haz_class: { include: :haz_class },
-            chemical_pictogram: { include: { pictogram: {except: :picture} } },
-            chemical_haz_stat: { include: :haz_stat },
-            chemical_prec_stat: { include: :prec_stat },
-            dg_class_1: { include: :superclass },
-            dg_class_2: { include: :superclass },
-            dg_class_3: { include: :superclass }
-          }
-        },
-        supplier: {},
-        container_location: {include: {location: { include: :parent }}},
-        current_location: {include: {location: { include: :parent }}}
-      })
-    else
-      halt(404, "Container with barcode #{params[:barcode]} not found.")
-    end
-  end
-
   # Create a new container
   post '/api/container' do
-    content_type :json
-
-    unless session[:authorized]
+    unless session[:authorized] && current_user.can_create_container?
       halt(403, 'Not authorised.')
     end
+
+    content_type :json
 
     if params[:cas].blank?
       halt(422, 'Must provide a CAS for the chemical in the container.')
@@ -274,13 +237,30 @@ class Colin::Routes::Container < Colin::BaseWebApp
 
       Colin::Models::ContainerLocation.create(created_at: Time.now.utc.iso8601, updated_at: Time.now.utc.iso8601, container_id: container.id, location_id: params[:location_id])
 
+      container.to_json(include: {
+        chemical: {
+          include: {
+            schedule: {},
+            packing_group: {},
+            signal_word: {},
+            chemical_haz_class: { include: :haz_class },
+            chemical_pictogram: { include: { pictogram: {except: :picture} } },
+            chemical_haz_stat: { include: :haz_stat },
+            chemical_prec_stat: { include: :prec_stat },
+            dg_class_1: { include: :superclass },
+            dg_class_2: { include: :superclass },
+            dg_class_3: { include: :superclass }
+          }
+        },
+        supplier: {},
+        container_location: {include: {location: { include: :parent }}},
+        current_location: {include: {location: { include: :parent }}}
+      })
     end
-    flash[:message] = "Chemical created!"
-    redirect to ''
   end
 
-  # Edits a container
-  post '/api/container/barcode/:barcode' do
+  # Gets a specific container by barcode
+  get '/api/container/barcode/:barcode' do
     content_type :json
     # Must provide an integer ID. Otherwise respond with 422 (https://restpatterns.mindtouch.us/HTTP_Status_Codes/422_-_Unprocessable_Entity)
     # which means invalid data provided from user.
@@ -292,8 +272,47 @@ class Colin::Routes::Container < Colin::BaseWebApp
     if params[:barcode].blank?
       halt(422, 'Must provide a barcode for container.')
     elsif Colin::Models::Container.exists?(barcode: params[:barcode])
+      Colin::Models::Container.where("barcode = ?", params[:barcode]).to_json(include: {
+        chemical: {
+          include: {
+            schedule: {},
+            packing_group: {},
+            signal_word: {},
+            chemical_haz_class: { include: :haz_class },
+            chemical_pictogram: { include: { pictogram: {except: :picture} } },
+            chemical_haz_stat: { include: :haz_stat },
+            chemical_prec_stat: { include: :prec_stat },
+            dg_class_1: { include: :superclass },
+            dg_class_2: { include: :superclass },
+            dg_class_3: { include: :superclass }
+          }
+        },
+        supplier: {},
+        container_location: {include: {location: { include: :parent }}},
+        current_location: {include: {location: { include: :parent }}}
+      })
+    else
+      halt(404, "Container with barcode #{params[:barcode]} not found.")
+    end
+  end
+
+  # Edits a container
+  put '/api/container/barcode/:barcode' do
+
+    # Must provide an integer ID. Otherwise respond with 422 (https://restpatterns.mindtouch.us/HTTP_Status_Codes/422_-_Unprocessable_Entity)
+    # which means invalid data provided from user.
+
+    unless session[:authorized] && current_user.can_edit_container?
+      halt(403, 'Not authorised.')
+    end
+
+    content_type :json
+
+    if params[:barcode].blank?
+      halt(422, 'Must provide a barcode for container.')
+    elsif Colin::Models::Container.exists?(barcode: params[:barcode])
       if params[:new_barcode].blank?
-        halt(422, 'Must provide a barcode for container.')
+        halt(422, 'Must provide a new barcode for container.')
       else
 
         #Update the supplier
@@ -321,30 +340,47 @@ class Colin::Routes::Container < Colin::BaseWebApp
         container = Colin::Models::Container.where("barcode = ?", params[:barcode]).update(barcode: params[:new_barcode], container_size: container_size, size_unit: size_unit, product_number: params[:product_number], lot_number: params[:lot_number], owner_id: params[:owner_id], supplier_id: supplier_id, user_id: current_user.id).first
 
         Colin::Models::ContainerLocation.create(created_at: Time.now.utc.iso8601, updated_at: Time.now.utc.iso8601, container_id: container.id, location_id: params[:location_id])
+
+        container.to_json(include: {
+          chemical: {
+            include: {
+              schedule: {},
+              packing_group: {},
+              signal_word: {},
+              chemical_haz_class: { include: :haz_class },
+              chemical_pictogram: { include: { pictogram: {except: :picture} } },
+              chemical_haz_stat: { include: :haz_stat },
+              chemical_prec_stat: { include: :prec_stat },
+              dg_class_1: { include: :superclass },
+              dg_class_2: { include: :superclass },
+              dg_class_3: { include: :superclass }
+            }
+          },
+          supplier: {},
+          container_location: {include: {location: { include: :parent }}},
+          current_location: {include: {location: { include: :parent }}}
+        })
       end
     else
       halt(404, "Container with barcode #{params[:barcode]} not found.")
     end
-    flash[:message] = "Chemical updated!"
-    redirect to '/container/barcode/' + params[:new_barcode]
   end
 
   # Deletes a container
   delete '/api/container/barcode/:barcode' do
-    content_type :json
-    
-    unless session[:authorized]
+    unless session[:authorized] && current_user.can_edit_container?
       halt(403, 'Not authorised.')
     end
+
+    content_type :json
 
     if params[:barcode].blank?
       halt(422, 'Must provide a barcode for the container.')
     else
-      container = Colin::Models::Container.where(barcode: params[:barcode]).take
-      Colin::Models::Container.update(container.id, {date_disposed: Time.now})
+      Colin::Models::Container.where(barcode: params[:barcode]).take.update(date_disposed: Time.now)
+      status 204
+      body ''
     end
-    flash[:message] = "Chemical deleted!"
-    redirect to ''
   end
 
   get '/api/container/search' do

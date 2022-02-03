@@ -10,7 +10,9 @@ class Colin::Routes::Chemical < Sinatra::Base
   # query parameters. E.g. GET /chemical?limit=1&offset=15 gets the first page
   # of 15 chemicals. Defaults are page 1 and size 15. 
   #
-  get '/api/chemical/all' do
+
+  #Gets ALL chemicals
+  get '/api/chemical' do
     content_type :json
 
     unless session[:authorized]
@@ -20,6 +22,7 @@ class Colin::Routes::Chemical < Sinatra::Base
     Colin::Models::Chemical.limit(params[:limit]).offset(params[:offset]).to_json()
   end
 
+  # Get a specific chemical by CAS
   get '/api/chemical/cas/:cas' do
     content_type :json
 
@@ -54,9 +57,9 @@ class Colin::Routes::Chemical < Sinatra::Base
     end
   end
 
-  
+  # Create a new chemical
   post '/api/chemical' do
-    unless session[:authorized]
+    unless session[:authorized] && current_user.can_create_container?
       halt(403, 'Not authorised.')
     end
 
@@ -229,8 +232,8 @@ class Colin::Routes::Chemical < Sinatra::Base
     end
   end
 
-  post '/api/chemical/edit/cas/:cas' do
-    unless session[:authorized]
+  put '/api/chemical/cas/:cas' do
+    unless session[:authorized] && current_user.can_edit_container?
       halt(403, 'Not authorised.')
     end
     

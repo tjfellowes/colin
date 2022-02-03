@@ -8,7 +8,7 @@
     </tr>
     </thead>
     <tbody>
-    <% @pagy, @locations = pagy(Colin::Models::Location.all) %>
+    <% @pagy, @locations = pagy(Colin::Models::Location.all.order(:id)) %>
     <% @locations.each do |location| %>
     <tr>
         <td><a href="/location/edit/<%=location.id%>"><%= location.location_path %></a></td>

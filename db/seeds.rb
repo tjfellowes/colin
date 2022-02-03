@@ -53,7 +53,7 @@ def add_test_data
 end
 
 def create_users
-  User.create!(username: 'root', name: 'root', email: 'root@root.com', password: 'root', supervisor_id: 1, isadmin: true, issuperuser: true)
+  User.create!(username: 'root', name: 'root', email: 'root@root.com', password: 'root', supervisor_id: 1, hidden: true, can_create_container: true, can_edit_container: true, can_create_user: true, can_edit_user: true, can_create_location: true, can_edit_location: true)
 end
 
 def create_packing_groups

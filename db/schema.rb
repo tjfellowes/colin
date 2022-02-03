@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_27_135729) do
+ActiveRecord::Schema.define(version: 2022_02_02_144539) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -192,12 +192,16 @@ ActiveRecord::Schema.define(version: 2022_01_27_135729) do
     t.text "email", null: false
     t.text "password_digest", null: false
     t.bigint "supervisor_id"
-    t.boolean "isadmin", default: false
-    t.boolean "issuperuser", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "active", default: true
     t.boolean "hidden", default: false
+    t.boolean "can_create_container", default: false
+    t.boolean "can_edit_container", default: false
+    t.boolean "can_create_location", default: false
+    t.boolean "can_edit_location", default: false
+    t.boolean "can_create_user", default: false
+    t.boolean "can_edit_user", default: false
     t.index ["supervisor_id"], name: "index_users_on_supervisor_id"
   end
 
