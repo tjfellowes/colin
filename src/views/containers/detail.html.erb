@@ -1,15 +1,23 @@
 <div class="container  mb-5"> 
 <style>dt { text-align: right !important } dd { text-align: left !important }</style>
     <h1>Chemical info</h1>
-    <% if Colin::Models::Container.where(barcode: params[:barcode]).exists?
-        container = Colin::Models::Container.where(barcode: params[:barcode]).take   
+    <% if Colin::Models::Container.unscoped.where(barcode: params[:barcode]).exists?
+        container = Colin::Models::Container.unscoped.where(barcode: params[:barcode]).take   
     else %>
         <div class="alert alert-danger w-50" role="alert">
             Container with barcode <%= params[:barcode] %> not found.
         </div>
     <%end%>
 
-    <dl class="row mt-5">
+    <% if container.date_disposed? %>
+    <div class="alert alert-warning w-50" role="alert">
+        Container was deleted <%= container.date_disposed.strftime("%a %d/%m/%Y at %I:%M %p") %>.
+        <input hidden name="barcode" value="<%=container.barcode%>">
+        <a class="btn btn-outline-dark btn-lg btn-block my-3" role="button" id="undo">Undo</a>
+    </div>
+    <% end %>
+
+    <dl class="row mt-5"> 
         <dt class="col-md-2">CAS:</dt>
         <dd class="col-md-2"><%= container.chemical.cas %></dd>
         <dt class="col-md-2">Name:</dt>
@@ -109,5 +117,20 @@
         <dd class="col-md-2"><%= if !container.chemical.schedule.nil? 
         container.chemical.schedule.number.to_s end %></dd>
     </dl>
+    <% if !container.date_disposed? %>
     <a class="btn btn-primary btn-lg btn-block" role="button" href="/container/edit/barcode/<%= container.barcode %>">Edit</a>
+    <% end %>
 </div>
+
+<script>
+$(document).ready(function () {
+  $("#undo").click(function () {
+    $.ajax({
+      type: "POST",
+      url: "/api/container/barcode/" + $("[name=barcode]").val(),
+      dataType: "json",
+      success: function () {window.location.href = "/";}
+    });
+  });
+});
+</script>

@@ -16,7 +16,7 @@
         <dt class="col-md-2">Location: </dt>
         <dd class="col-md-6">
         <select class="form-control selectpicker" id="location_id" name="location_id" aria-describedby="location" title="Location" data-live-search="true">      
-            <% Colin::Models::Location.all.each do |location| %>
+            <% Colin::Models::Location.active.each do |location| %>
             <option value="<%= location.id %>"><%= location.location_path %></option>
             <% end %>  
         </select>        
@@ -35,7 +35,7 @@
         <dt class="col-md-2">Owner:</dt>
         <dd class="col-md-4">
             <select class="form-control selectpicker" id="owner_id" name="owner_id" title="Owner" data-live-search="true">      
-                <% Colin::Models::User.where(hidden: false).each do |user| %>
+                <% Colin::Models::User.active.where(hidden: false).each do |user| %>
                 <option value="<%= user.id %>"><%= user.name %></option>
                 <% end %>  
             </select>
@@ -151,7 +151,7 @@ $(document).ready(function () {
       dataType: "json",
       success: function () {window.location.href = "/";}
     });
-    $("#cancel").click(function () {window.location.href = "/";});
   });
+  $("#cancel").click(function () {window.location.href = "/";});
 });
 </script>

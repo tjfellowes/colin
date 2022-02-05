@@ -120,7 +120,7 @@ module Colin
       end
     end
 
-    get '/container/list' do
+    get '/container' do
       params[:query] = '%'
       erb :'containers/list.html'
     end
@@ -177,7 +177,7 @@ module Colin
       end
     end 
 
-    get '/location/stocktake/:location_id' do
+    get '/location/stocktake' do
       erb :'locations/stocktake.html'
     end
 

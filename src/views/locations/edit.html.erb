@@ -1,11 +1,11 @@
 <div class="jumbotron w-50" > 
 <h1>Edit location</h1>
-<% location = Colin::Models::Location.find(params[:location_id]) %>
-  <form action="/api/location/id/<%= location.id %>" method="POST"> 
+<% location = Colin::Models::Location.active.find(params[:location_id]) %>
+    <input hidden type="text" name="location_id" id="location_id" value="<%= params[:location_id] %>"/>
     <div class="form-group">
         <label for="parent_id">Parent location</label>
         <select class="form-control selectpicker" id="parent_id" name="parent_id" aria-describedby="parent" title="Parent Location" data-live-search="true">      
-            <% Colin::Models::Location.all.each do |parent_location| %>
+            <% Colin::Models::Location.active.each do |parent_location| %>
             <option <%= 'selected' if location.parent_id == parent_location.id %> value="<%= parent_location.id %>"><%= parent_location.location_path %></option>
             <% end %>  
         </select>
@@ -44,9 +44,38 @@
       Monitored?
     </label>
     </div>-->
-    <input class="btn btn-primary btn-lg btn-block" type="submit" value="Save">
-    <a class="btn btn-secondary btn-lg btn-block" href="/container/barcode/<%= params[:barcode] %>">Cancel</a> 
-    </form>
-    <button class="btn btn-outline-danger btn-lg btn-block mt-2" type="submit" >Delete</button>
+    <button id="submit" class="btn btn-primary">Update Location</button> 
+    <button class="btn btn-secondary" id="cancel">Cancel</button>
+    <button class="btn btn-danger" id="delete">Delete</button>
 
 </div>
+
+<script>
+$(document).ready(function () {
+  $("#submit").click(function () {
+    $.ajax({
+      type: "PUT",
+      url: "/api/location/id/" + $("[name=location_id]").val(),
+      data: {
+        parent_id: $("[name='parent_id']").val(),
+        name: $("[name='name']").val(),
+        barcode: $("[name='barcode']").val(),
+        location_type_id: $("[name='location_type_id']").val(),
+        temperature: $("[name='temperature']").val(),
+        monitored: $("[name='monitored']").prop("checked")
+      },
+      dataType: "json",
+      success: function () {window.location.href = "/";}
+    });
+  });
+  $("#cancel").click(function () {window.location.href = "/";});
+  $("#delete").click(function () {
+    $.ajax({
+      type: "DELETE",
+      url: "/api/location/id/" + $("[name=location_id]").val(),
+      dataType: "json",
+      success: function () {window.location.href = "/";}
+    });
+  });
+});
+</script>

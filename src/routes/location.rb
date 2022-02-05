@@ -116,7 +116,7 @@ class Colin::Routes::Location < Colin::BaseWebApp
     if params[:id].blank?
       halt(422, "You must supply a location ID.")
     end
-    Colin::Models::Location.delete(params[:id])
+    Colin::Models::Location.find(params[:id]).update(date_deleted: Time.now)
     status 204
     body ''
   end

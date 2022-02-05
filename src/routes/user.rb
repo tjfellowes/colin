@@ -13,6 +13,9 @@ class Colin::Routes::User < Colin::BaseWebApp
         elsif params[:password] != params[:password_confirmation]
             halt(422, 'Passwords do not match')
         else
+            if params[:supervisor_id].blank?
+                params[:supervisor_id] = 1
+            end
             Colin::Models::User.create(username: params[:username], name: params[:name], email: params[:email], password: params[:password], password_confirmation: params[:password_confirmation], supervisor_id: params[:supervisor_id], can_create_container: params[:can_create_container], can_edit_container: params[:can_edit_container], can_create_location: params[:can_create_location], can_edit_location: params[:can_edit_location], can_create_user: params[:can_create_user], can_edit_user: params[:can_edit_user]).to_json()
         end
     end 

@@ -383,6 +383,21 @@ class Colin::Routes::Container < Colin::BaseWebApp
     end
   end
 
+  # Undeletes a previously deleted container
+  post '/api/container/barcode/:barcode' do
+    unless session[:authorized] && current_user.can_edit_container?
+      halt(403, 'Not authorised.')
+    end
+
+    content_type :json
+
+    if params[:barcode].blank?
+      halt(422, 'Must provide a barcode for the container.')
+    else
+      Colin::Models::Container.unscoped.where(barcode: params[:barcode]).take.update(date_disposed: nil).to_json()
+    end
+  end
+
   get '/api/container/search' do
     content_type :json
     

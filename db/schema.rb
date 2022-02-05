@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_02_144539) do
+ActiveRecord::Schema.define(version: 2022_02_04_175416) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -150,6 +150,7 @@ ActiveRecord::Schema.define(version: 2022_02_02_144539) do
     t.string "temperature"
     t.boolean "monitored", default: false, null: false
     t.string "ancestry"
+    t.datetime "date_deleted"
     t.index ["location_type_id"], name: "index_locations_on_location_type_id"
   end
 
@@ -184,6 +185,7 @@ ActiveRecord::Schema.define(version: 2022_02_02_144539) do
   create_table "suppliers", force: :cascade do |t|
     t.string "name", null: false
     t.string "website"
+    t.datetime "date_deleted"
   end
 
   create_table "users", force: :cascade do |t|
@@ -202,6 +204,7 @@ ActiveRecord::Schema.define(version: 2022_02_02_144539) do
     t.boolean "can_edit_location", default: false
     t.boolean "can_create_user", default: false
     t.boolean "can_edit_user", default: false
+    t.datetime "date_deleted"
     t.index ["supervisor_id"], name: "index_users_on_supervisor_id"
   end
 

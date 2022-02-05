@@ -9,7 +9,13 @@
     </tr>
     </thead>
     <tbody>
-    <% @pagy, @users = pagy(Colin::Models::User.all) %>
+    <%
+    if current_user.id == 1
+        @pagy, @users = pagy(Colin::Models::User.all) 
+    else
+        @pagy, @users = pagy(Colin::Models::User.active.where(hidden: false)) 
+    end
+    %>
     <% @users.each do |user| %>
     <tr>
         <td><a href="/user/username/edit/<%= user.username %>"><%= user.username %></a></td>

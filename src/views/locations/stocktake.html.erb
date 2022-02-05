@@ -1,0 +1,39 @@
+<div class="jumbotron w-50" > 
+<h1>Stocktake location</h1>
+<div class="form-group">
+    <select class="form-control selectpicker" id="parent_id" name="parent_id" aria-describedby="parent" title="Location" data-live-search="true">      
+        <% Colin::Models::Location.active.each do |location| %>
+        <option value="<%= location.id %>"><%= location.location_path %></option>
+        <% end %>  
+    </select>
+</div>
+
+<script>
+$(document).ready(function () {
+  $("#submit").click(function () {
+    $.ajax({
+      type: "PUT",
+      url: "/api/location/id/" + $("[name=location_id]").val(),
+      data: {
+        parent_id: $("[name='parent_id']").val(),
+        name: $("[name='name']").val(),
+        barcode: $("[name='barcode']").val(),
+        location_type_id: $("[name='location_type_id']").val(),
+        temperature: $("[name='temperature']").val(),
+        monitored: $("[name='monitored']").prop("checked")
+      },
+      dataType: "json",
+      success: function () {window.location.href = "/";}
+    });
+  });
+  $("#cancel").click(function () {window.location.href = "/";});
+  $("#delete").click(function () {
+    $.ajax({
+      type: "DELETE",
+      url: "/api/location/id/" + $("[name=location_id]").val(),
+      dataType: "json",
+      success: function () {window.location.href = "/";}
+    });
+  });
+});
+</script>

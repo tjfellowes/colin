@@ -73,7 +73,7 @@
 
 <script>
 $(document).ready(function () {
-  $("#submit").click(function (e) {
+  $("#submit").click(function () {
     $.ajax({
       type: "POST",
       url: "/api/user",
@@ -84,12 +84,12 @@ $(document).ready(function () {
         password: $("[name='password']").val(),
         password_confirmation: $("[name='password_confirmation']").val(),
         supervisor_id: $("[name='supervisor_id']").val(),
-        can_create_container: $("[name='can_create_container']").val(),
-        can_edit_container: $("[name='can_edit_container']").val(),
-        can_create_location: $("[name='can_create_location']").val(),
-        can_edit_location: $("[name='can_edit_location']").val(),
-        can_create_user: $("[name='can_create_user']").val(),
-        can_edit_user: $("[name='can_edit_user']").val()
+        can_create_container: $("[name='can_create_container']").prop("checked"),
+        can_edit_container: $("[name='can_edit_container']").prop("checked"),
+        can_create_location: $("[name='can_create_location']").prop("checked"),
+        can_edit_location: $("[name='can_edit_location']").prop("checked"),
+        can_create_user: $("[name='can_create_user']").prop("checked"),
+        can_edit_user: $("[name='can_edit_user']").prop("checked")
       },
       dataType: "json",
       success: function () {window.location.href = "/";}

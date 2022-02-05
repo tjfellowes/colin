@@ -4,6 +4,8 @@
 require 'ancestry'
 
 class Colin::Models::Location < ActiveRecord::Base
+  scope :active, -> {where("date_deleted IS NULL OR date_deleted > ?",Time.now )}
+
   has_ancestry
   validates_presence_of :name
   has_many :container_locations

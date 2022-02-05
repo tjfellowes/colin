@@ -9,8 +9,10 @@
         </div>
     <%end%>
 
-    <form action="/api/container/barcode/<%= params[:barcode] %>" method="POST">
     <a class="btn btn-light btn-lg btn-block" href="/chemical/edit/cas/<%= container.chemical.cas%>">Edit chemical info</a>
+
+    <input hidden type="text" name="barcode" id="barcode" value="<%= params[:barcode] %>"/>
+
     <dl class="row mt-5">
         <dt class="col-md-2">CAS:</dt>
         <dd class="col-md-2"><input class="form-control" id="cas" name="cas" aria-describedby="cas" value="<%= container.chemical.cas%>" readonly></dd>
@@ -21,7 +23,7 @@
         <dt class="col-md-2">Location: </dt>
         <dd class="col-md-6">
             <select class="form-control selectpicker" id="location_id" name="location_id" aria-describedby="location" data-live-search="true">
-            <% Colin::Models::Location.all.each do |location| %>
+            <% Colin::Models::Location.active.each do |location| %>
             <option <%= "selected" if container.current_location.location.id == location.id %> value="<%= location.id %>"><%= location.location_path %></option>
             <% end %>  
             </select>
@@ -41,7 +43,7 @@
         <dt class="col-md-2">Owner:</dt>
         <dd class="col-md-4">
             <select class="form-control selectpicker" id="owner_id" name="owner_id" title="Owner" data-live-search="true">      
-                <% Colin::Models::User.where(hidden: false).each do |user| %>
+                <% Colin::Models::User.active.where(hidden: false).each do |user| %>
                 <option <%= "selected" if container.owner == user %> value="<%= user.id %>"><%= user.name %></option>
                 <% end %>  
             </select>
@@ -129,9 +131,39 @@
         <dd class="col-md-2"><input class="form-control" id="schedule" name="schedule" aria-describedby="schedule" value="<%=  
         container.chemical.schedule.number if !container.chemical.schedule.nil?%>" readonly></dd>
     </dl>
-    <input class="btn btn-primary btn-lg btn-block" type="submit" value="Save">
-    <a class="btn btn-secondary btn-lg btn-block" href="/container/barcode/<%= params[:barcode] %>">Cancel</a>
-    </form>
-    <button class="btn btn-outline-danger btn-lg btn-block mt-2" type="submit" href="/api/container/delete/<%= params[:barcode] %>">Delete</button>
+    <button class="btn btn-primary btn-lg btn-block" id="submit">Save</button>
+    <button class="btn btn-secondary btn-lg btn-block" id="cancel">Cancel</button>
+    <button class="btn btn-outline-danger btn-lg btn-block mt-2" id="delete">Delete</button>
 </div>
-<script src="/js/location_ajax.js"></script>
+<script>
+$(document).ready(function () {
+  $("#submit").click(function () {
+    $.ajax({
+      type: "PUT",
+      url: "/api/container/barcode/" + $("[name=barcode]").val(),
+      data: {
+        barcode: $("[name='barcode']").val(),
+        new_barcode: $("[name='new_barcode']").val(),
+        location_id: $("[name='location_id']").val(),
+        supplier: $("[name='supplier']").val(),
+        product_number: $("[name='product_number']").val(),
+        lot_number: $("[name='lot_number']").val(),
+        quantity: $("[name='quantity']").val(),
+        owner_id: $("[name='owner_id']").val(),
+        user: $("[name='user']").val()
+      },
+      dataType: "json",
+      success: function () {window.location.href = "/";}
+    });
+  });
+  $("#cancel").click(function () {window.location.href = "/";});
+  $("#delete").click(function () {
+    $.ajax({
+      type: "DELETE",
+      url: "/api/container/barcode/" + $("[name=barcode]").val(),
+      dataType: "json",
+      success: function () {window.location.href = "/";}
+    });
+  });
+});
+</script>

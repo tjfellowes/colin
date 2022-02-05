@@ -1,5 +1,5 @@
 class Colin::Models::User < ActiveRecord::Base
-  default_scope {where(active: TRUE)}
+  scope :active, -> {where(active: TRUE).where("date_deleted IS NULL OR date_deleted > ?",Time.now )}
 
   validates :username, presence: true, uniqueness: true
   validates_presence_of :name

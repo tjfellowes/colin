@@ -67,29 +67,42 @@
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="chemicalsDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Chemicals</a>
             <div class="dropdown-menu" aria-labelledby="chemicalsDropdown">
+              <% if current_user.can_create_container? %>
               <a class="dropdown-item" href="/container/new">Add Chemical</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item disabled" href="/container">List Chemicals</a>
+              <% end %>
+              <a class="dropdown-item" href="/container">List Chemicals</a>
             </div>
           </li>
 
+          <% if current_user.can_create_location? || current_user.can_edit_location? || current_user.can_edit_container? %>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="locationsDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Locations</a>
             <div class="dropdown-menu" aria-labelledby="locationsDropdown">
-              <a class="dropdown-item disabled" href="#">Stocktake</a>
+              <% if current_user.can_edit_container? %>
+              <a class="dropdown-item" href="/location/stocktake">Stocktake</a>
+              <% end %>
               <div class="dropdown-divider"></div>
+              <% if current_user.can_create_location? %>
               <a class="dropdown-item" href="/location/new">Add Location</a>
-              <a class="dropdown-item" href="/location">List Locations</a>
+              <% end %>
+              <a class="dropdown-item" href="/location">List Locations</a> 
             </div>
           </li>
+          <% end %>
 
+          <% if current_user.can_create_user? || current_user.can_edit_user? %>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#"id="managementDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Users</a>
             <div class="dropdown-menu" style="width: 300px;" aria-labelledby="managementDropdown">
-              <a class="dropdown-item" href="/user/new">Create User</a>
+              <% if current_user.can_create_user? %>
+              <a class="dropdown-item" href="/user/new">Add User</a>
+              <% end %>
+              <% if current_user.can_edit_user? %>
               <a class="dropdown-item" href="/user">List Users</a>
+              <% end %>
             </div>
           </li>
+          <% end %>
 
         </ul>
         <ul class="navbar-nav ml-auto justify-content-end">
