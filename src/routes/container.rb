@@ -19,7 +19,8 @@ class Colin::Routes::Container < Colin::BaseWebApp
     #Gets all the containers including chemical info
     Colin::Models::Container.limit(params[:limit]).offset(params[:offset]).to_json(include: {
       chemical: {},
-      current_location: {include: {location: {include: :path}}}
+      supplier: {},
+      current_location: {}
     })
   end
 
@@ -271,8 +272,8 @@ class Colin::Routes::Container < Colin::BaseWebApp
 
     if params[:barcode].blank?
       halt(422, 'Must provide a barcode for container.')
-    elsif Colin::Models::Container.exists?(barcode: params[:barcode])
-      Colin::Models::Container.where("barcode = ?", params[:barcode]).to_json(include: {
+    elsif Colin::Models::Container.unscoped.exists?(barcode: params[:barcode])
+      Colin::Models::Container.unscoped.where("barcode = ?", params[:barcode]).to_json(include: {
         chemical: {
           include: {
             schedule: {},
@@ -289,10 +290,35 @@ class Colin::Routes::Container < Colin::BaseWebApp
         },
         supplier: {},
         container_location: {include: {location: { include: :parent }}},
-        current_location: {include: {location: { include: :parent }}}
+        current_location: {}
       })
     else
       halt(404, "Container with barcode #{params[:barcode]} not found.")
+    end
+  end
+
+  # Gets containers in a given location id
+  get '/api/container/location_id/:location_id' do
+    content_type :json
+    # Must provide an integer ID. Otherwise respond with 422 (https://restpatterns.mindtouch.us/HTTP_Status_Codes/422_-_Unprocessable_Entity)
+    # which means invalid data provided from user.
+
+    unless session[:authorized]
+      halt(403, 'Not authorised.')
+    end
+
+    if params[:location_id].blank?
+      halt(422, 'Must provide a location_id.')
+    elsif Colin::Models::Location.exists?(id: params[:location_id])
+      Colin::Models::Container.joins('LEFT JOIN container_locations i ON i.container_id = containers.id AND
+        i.id = (SELECT MAX(id) FROM container_locations WHERE container_locations.container_id = i.container_id)
+        INNER JOIN chemicals ON containers.chemical_id = chemicals.id').where("i.location_id = ?", params[:location_id]).to_json(include: {
+          chemical: {},
+          supplier: {},
+          current_location: {}
+        })
+    else
+      halt(404, "Location with location_id #{params[:location_id]} not found.")
     end
   end
 
@@ -311,56 +337,58 @@ class Colin::Routes::Container < Colin::BaseWebApp
     if params[:barcode].blank?
       halt(422, 'Must provide a barcode for container.')
     elsif Colin::Models::Container.exists?(barcode: params[:barcode])
+      container = Colin::Models::Container.where(barcode: params[:barcode]).take
+
       if params[:new_barcode].blank?
-        halt(422, 'Must provide a new barcode for container.')
-      else
-
-        #Update the supplier
-        if params[:supplier].blank?
-          #Nothing to do here!
-        elsif Colin::Models::Supplier.exists?(name: params[:supplier])
-          supplier_id = Colin::Models::Supplier.where(name: params[:supplier]).take.id
-        else
-          supplier_id = Colin::Models::Supplier.create(name: params[:supplier]).id
-        end
-
-        #Update the location
-        if params[:location_id].blank?
-          halt(422, 'Must provide a location for the container.')
-        end
-
-        #Update the container size
-
-        if !params[:quantity].empty?
-          container_size, size_unit = params[:quantity].strip.split(/(?: +|(?:(?<=\d)(?=[a-z]))|(?:(?<=[a-z])(?=\d)))/)
-        else
-          container_size, size_unit = params[:container_size], params[:size_unit]
-        end
-
-        container = Colin::Models::Container.where("barcode = ?", params[:barcode]).update(barcode: params[:new_barcode], container_size: container_size, size_unit: size_unit, product_number: params[:product_number], lot_number: params[:lot_number], owner_id: params[:owner_id], supplier_id: supplier_id, user_id: current_user.id).first
-
-        Colin::Models::ContainerLocation.create(created_at: Time.now.utc.iso8601, updated_at: Time.now.utc.iso8601, container_id: container.id, location_id: params[:location_id])
-
-        container.to_json(include: {
-          chemical: {
-            include: {
-              schedule: {},
-              packing_group: {},
-              signal_word: {},
-              chemical_haz_class: { include: :haz_class },
-              chemical_pictogram: { include: { pictogram: {except: :picture} } },
-              chemical_haz_stat: { include: :haz_stat },
-              chemical_prec_stat: { include: :prec_stat },
-              dg_class_1: { include: :superclass },
-              dg_class_2: { include: :superclass },
-              dg_class_3: { include: :superclass }
-            }
-          },
-          supplier: {},
-          container_location: {include: {location: { include: :parent }}},
-          current_location: {include: {location: { include: :parent }}}
-        })
+        params[:new_barcode] = params[:barcode]
       end
+
+      #Update the supplier
+      if params[:supplier].blank?
+        #Nothing to do here!
+      elsif Colin::Models::Supplier.exists?(name: params[:supplier])
+        supplier_id = Colin::Models::Supplier.where(name: params[:supplier]).take.id
+      else
+        supplier_id = Colin::Models::Supplier.create(name: params[:supplier]).id
+      end
+
+      #Update the location
+      if params[:location_id].blank?
+        halt(422, 'Must provide a location for the container.')
+      end
+
+      #Update the container size
+
+      if !params[:quantity].blank?
+        container_size, size_unit = params[:quantity].strip.split(/(?: +|(?:(?<=\d)(?=[a-z]))|(?:(?<=[a-z])(?=\d)))/)
+      else
+        container_size, size_unit = params[:container_size], params[:size_unit]
+      end
+
+
+      container.update(barcode: params[:new_barcode], container_size: container_size, size_unit: size_unit, product_number: params[:product_number], lot_number: params[:lot_number], owner_id: params[:owner_id], supplier_id: supplier_id, user_id: current_user.id)
+
+      Colin::Models::ContainerLocation.create(created_at: Time.now.utc.iso8601, updated_at: Time.now.utc.iso8601, container_id: container.id, location_id: params[:location_id])
+
+      container.to_json(include: {
+        chemical: {
+          include: {
+            schedule: {},
+            packing_group: {},
+            signal_word: {},
+            chemical_haz_class: { include: :haz_class },
+            chemical_pictogram: { include: { pictogram: {except: :picture} } },
+            chemical_haz_stat: { include: :haz_stat },
+            chemical_prec_stat: { include: :prec_stat },
+            dg_class_1: { include: :superclass },
+            dg_class_2: { include: :superclass },
+            dg_class_3: { include: :superclass }
+          }
+        },
+        supplier: {},
+        container_location: {include: {location: { include: :parent }}},
+        current_location: {include: {location: { include: :parent }}}
+      })
     else
       halt(404, "Container with barcode #{params[:barcode]} not found.")
     end
@@ -407,23 +435,9 @@ class Colin::Routes::Container < Colin::BaseWebApp
 
     content_type :json
     Colin::Models::Container.joins('LEFT JOIN container_locations i ON i.container_id = containers.id AND i.id = (SELECT MAX(id) FROM container_locations WHERE container_locations.container_id = i.container_id) INNER JOIN chemicals ON containers.chemical_id = chemicals.id').where("CONCAT(chemicals.prefix, chemicals.name) ILIKE :query OR barcode LIKE :query OR chemicals.cas LIKE :query", { query: "%"+params[:query]+"%"}).limit(params[:limit]).offset(params[:offset]).to_json(include: {
-      chemical: {
-        include: {
-          schedule: {},
-          packing_group: {},
-          signal_word: {},
-          chemical_haz_class: { include: :haz_class },
-          chemical_pictogram: { include: { pictogram: {except: :picture} } },
-          chemical_haz_stat: { include: :haz_stat },
-          chemical_prec_stat: { include: :prec_stat },
-          dg_class_1: { include: :superclass },
-          dg_class_2: { include: :superclass },
-          dg_class_3: { include: :superclass }
-        }
-      },
+      chemical: {},
       supplier: {},
-      container_location: {include: {location: { include: :parent }}},
-      current_location: {include: {location: { include: :parent }}}
+      current_location: {}
     })
   end
 

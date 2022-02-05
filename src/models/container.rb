@@ -21,9 +21,5 @@ class Colin::Models::Container < ActiveRecord::Base
     Colin::Models::ContainerLocation.where(container_id: id).order(:created_at).last
   end
 
-  def storage_location
-    Colin::Models::ContainerLocation.where(container_id: id, temp: false).order(:created_at).last
-  end
-
 end
 
