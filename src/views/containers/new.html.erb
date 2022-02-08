@@ -81,7 +81,6 @@
 
         <dt class="col-md-2">Hazard statements:</dt>
         <dd class="col-md-10">
-        <!--<input class="form-control" id="haz_stats" name="haz_stats" aria-describedby="haz_stats">-->
         <select class="form-control selectpicker" multiple title="H statements" id="haz_stats" name="haz_stats[]" aria-describedby="haz_stats" data-live-search="true">
             <% Colin::Models::HazStat.all.each do |hazstat| %>
                 <option value="<%= hazstat.code %>"><%= hazstat.code + " - " + hazstat.description %></option>
@@ -90,13 +89,41 @@
         </dd>
         <dt class="col-md-2">Precaution statements:</dt>
         <dd class="col-md-10">
-        <!--<input class="form-control" id="prec_stats" name="prec_stats" aria-describedby="prec_stats">-->
         <select class="form-control selectpicker" multiple title="P statements" id="prec_stats" name="prec_stats[]" aria-describedby="prec_stats" data-live-search="true">
             <% Colin::Models::PrecStat.all.each do |precstat| %>
                 <option value="<%= precstat.code %>"><%= precstat.code + " - " + precstat.description %></option>
             <% end %>  
         </select>
         </dd>
+        <dt class="col-md-2">Hazard classification:</dt>
+        <dd class="col-md-4">
+        <select class="form-control selectpicker" multiple title="Hazard classifications" id="haz_classes" name="haz_class_ids[]" aria-describedby="haz_classes" data-live-search="true">
+            <% Colin::Models::HazClass.all.each do |hazclass| %>
+                <option value="<%= hazclass.id %>"><%= hazclass.description %></option>
+            <% end %>  
+        </select>
+        </dd>
+        <dt class="col-md-2">Hazard category:</dt>
+        <dd class="col-md-4">
+            <input class="form-control" id="category" name="category" placeholder="Category" aria-describedby="category">
+        </dd>
+        <dt class="col-md-2">Pictogram:</dt>
+        <dd class="col-md-4">
+             <select class="form-control selectpicker" multiple title="Pictogram" id="pictograms" name="pictogram_ids[]" aria-describedby="pictograms" data-live-search="true">
+            <% Colin::Models::Pictogram.all.each do |pictogram| %>
+                <option value="<%= pictogram.id %>" data-content="<img class='img-thumbnail img-fluid' style='width:50px;height:50px;' src='/api/image/pictogram/<%= pictogram.id %>'>&nbsp;<%= pictogram.name %>"></option>
+            <% end %>  
+            </select>
+        </dd>
+        <dt class="col-md-2">Signal word:</dt>
+        <dd class="col-md-4">
+            <select class="form-control selectpicker" title="Signal Word" id="signal_word" name="signal_word_id" aria-describedby="signal_word">
+            <% Colin::Models::SignalWord.all.each do |signalword| %>
+                <option value="<%= signalword.id %>"><%= signalword.name %></option>
+            <% end %>  
+            </select>
+        </dd>
+        
         <hr class="w-100"/>
 
         <dt class="col-md-2">UN number:</dt>
@@ -142,6 +169,10 @@ $(document).ready(function () {
         boiling_point: $("[name='boiling_point']").val(),
         haz_stats: $("[name='haz_stats[]']").val(),
         prec_stats: $("[name='prec_stats[]']").val(),
+        pictogram_ids: $("[name='pictogram_ids[]']").val(),
+        haz_class_ids: $("[name='haz_class_ids[]']").val(),
+        category: $("[name='category']").val(),
+        signal_word_id: $("[name='signal_word_id']").val(),
         un_number: $("[name='un_number']").val(),
         un_proper_shipping_name: $("[name='un_proper_shipping_name']").val(),
         dg_class: $("[name='dg_class']").val(),

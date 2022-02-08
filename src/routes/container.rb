@@ -179,29 +179,26 @@ class Colin::Routes::Container < Colin::BaseWebApp
             end
           end
     
-          if params[:haz_classes].blank?
+          if params[:haz_class_ids].blank?
             #Nothing to do here!
           else
-            for i in params[:haz_classes]
-              if Colin::Models::HazClass.exists?(description: i.split(',')[0])
-                haz_class = Colin::Models::HazClass.where(description: i.split(',')[0]).take
-                category = i.split(',')[1]
-                chemical_haz_class = Colin::Models::ChemicalHazClass.create!(chemical_id: chemical.id, haz_class_id: haz_class.id, category: category)
+            for i in params[:haz_class_ids]
+              if Colin::Models::HazClass.exists?(id: i)
+                chemical_haz_class = Colin::Models::ChemicalHazClass.create!(chemical_id: chemical.id, haz_class_id: i, category: params[:category])
               else
-                throw(:halt, [422, "Invalid hazard classification #{i.split(',')[0]}."])
+                throw(:halt, [422, "Invalid hazard classification id."])
               end
             end
           end
     
-          if params[:pictograms].blank?
+          if params[:pictogram_ids].blank?
             #Nothing to do here!
           else
-            for i in params[:pictograms]
-              if Colin::Models::Pictogram.exists?(name: i)
-                pictogram = Colin::Models::Pictogram.where(code: i).take
-                Colin::Models::ChemicalPictogram.create!(chemical_id: chemical.id, pictogram_id: pictogram.id)
+            for i in params[:pictogram_ids]
+              if Colin::Models::Pictogram.exists?(id: i)
+                Colin::Models::ChemicalPictogram.create!(chemical_id: chemical.id, pictogram_id: i)
               else
-                throw(:halt, [422, "Invalid pictogram name #{i}."])
+                throw(:halt, [422, "Invalid pictogram id."])
               end
             end
           end

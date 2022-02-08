@@ -42,7 +42,8 @@ module Colin
       Colin::Routes::Chemical,
       Colin::Routes::Container,
       Colin::Routes::Location,
-      Colin::Routes::LocationType
+      Colin::Routes::LocationType,
+      Colin::Routes::Image
     ]
   end
 
@@ -217,6 +218,8 @@ module Colin
     helpers do
       
       include Pagy::Frontend
+
+      
 
       def https_required!
         #if settings.production? && request.scheme == 'http'
