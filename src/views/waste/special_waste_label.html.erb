@@ -1,0 +1,100 @@
+<style>
+@page {
+    size: a4;
+    margin: 1cm;
+    size: landscape;
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
+}
+body {
+ background: white;
+ color: black;
+}
+table {
+    width: 13.7cm;
+    max-height: 19cm;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 10pt;
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+th, td {
+    border: 2px solid;
+    padding: 10px 5px;
+    width: 33%;
+
+}
+.hazards {
+    font-size: 8pt;
+}
+</style>
+
+<%
+name = current_user.name
+date = Time.now.utc.strftime("%d/%m/%Y")
+description = params[:description]
+components = params[:component].map{ |i| 
+    if @chemical = Colin::Models::Chemical.where(cas: i)
+        @chemical.take
+    end
+    }.compact
+%>
+
+<table>
+<thead>
+<tr>
+<td><strong>Name: </strong><%= name %></td>
+<td colspan="2"><strong>Date: </strong><%= date %></td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td colspan="3">
+    <p><strong>Description of Waste</strong></p>
+    <%= description %>
+    <p><strong>List all components, including concentrations (if known):</strong></p>
+    <%= components.map{ |i| i.prefix + i.name}.join(', ') %>
+</td>
+</tr>
+<tr>
+<td colspan="3">PLEASE WRITE FULL NAMES e.g., dimethylformamide <em><u>NOT</u></em> DMF</td>
+</tr>
+<tr>
+<td colspan="3"><strong>Hazard Statements/Properties (write all Hazard Statement in the box and tick all relevant Hazard Properties):</strong><br>
+    <%= components.map{ |i| i.haz_stat.map{ |j| j.code + ' - ' + j.description}}.join('<br>') %>
+</td>
+</tr>
+<tr class="hazards">
+<td>HP1 Explosive <input disabled checked type="checkbox"></td>
+<td>HP7 Carcinogenic <input type="checkbox"></td>
+<td rowspan="2">HP12 Releases acute toxic gas in contact with water or acid <input type="checkbox"></td>
+</tr>
+<tr class="hazards">
+<td>HP2 Oxidizing <input type="checkbox"></td>
+<td>HP8 Corrosive <input type="checkbox"></td>
+</tr>
+<tr class="hazards">
+<td>HP3 Flammable <input type="checkbox"></td>
+<td>HP9 Infectious <input type="checkbox"></td>
+<td>HP13 Sensitizing <input type="checkbox"></td>
+</tr>
+<tr class="hazards">
+<td>HP4 Irritant <input type="checkbox"></td>
+<td>HP10 Toxic for reproduction <input type="checkbox"></td>
+<td>HP14 Ecotoxic <input type="checkbox"></td>
+</tr>
+<tr class="hazards">
+<td>HP5 Harmful <input type="checkbox"></td>
+<td>HP11 Mutagenic <input type="checkbox"></td>
+<td rowspan="2">HP15 Waste capable other hazards <input type="checkbox"></td>
+</tr>
+<tr class="hazards">
+<td>HP6 Toxic <input type="checkbox"></td>
+<td>POPS <input type="checkbox"></td>
+
+</tr>
+<tr>
+<td colspan="3" style="text-align: center;"><strong>PLEASE WRITE CLEARLY!</strong></td>
+</tr>
+</tbody>
+</table>

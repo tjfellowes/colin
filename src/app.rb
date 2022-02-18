@@ -210,6 +210,10 @@ module Colin
       end
     end 
 
+    get '/waste/special/label' do
+      erb :"/waste/special_waste_label.html", layout: false
+    end
+
     get '/img/favicon.ico' do
       'blep'
     end
@@ -218,8 +222,6 @@ module Colin
     helpers do
       
       include Pagy::Frontend
-
-      
 
       def https_required!
         #if settings.production? && request.scheme == 'http'
@@ -233,7 +235,7 @@ module Colin
         !!session[:user_id]
       end
   
-      def current_user 
+      def current_user
         Colin::Models::User.find_by(id: session[:user_id]) 
       end 
   

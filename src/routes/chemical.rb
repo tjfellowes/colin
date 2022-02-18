@@ -4,7 +4,7 @@ require 'time'
 #
 # Routes for Chemical model
 #
-class Colin::Routes::Chemical < Sinatra::Base
+class Colin::Routes::Chemical < Colin::BaseWebApp
   #
   # Gets all chemicals. Pagination supported using the `limit' and `offset'
   # query parameters. E.g. GET /chemical?limit=1&offset=15 gets the first page
@@ -202,33 +202,33 @@ class Colin::Routes::Chemical < Sinatra::Base
         end
       end
 
-      if params[:haz_classes].blank?
+      if params[:haz_class_ids].blank?
         #Nothing to do here!
       else
-        for i in params[:haz_classes]
-          if Colin::Models::HazClass.exists?(description: i.split(',')[0])
-            haz_class = Colin::Models::HazClass.where(description: i.split(',')[0]).take
-            category = i.split(',')[1]
-            chemical_haz_class = Colin::Models::ChemicalHazClass.create!(chemical_id: chemical.id, haz_class_id: haz_class.id, category: category)
+        for i in params[:haz_class_ids]
+          if Colin::Models::HazClass.exists?(id: i)
+            if !params[:category].blank?
+              chemical_haz_class = Colin::Models::ChemicalHazClass.create!(chemical_id: chemical.id, haz_class_id: i, category: params[:category])
+            else
+              halt(422, "Must provide hazard classification category.")
+            end
           else
-            throw(:halt, [422, "Invalid hazard classification #{i.split(',')[0]}."])
+            throw(:halt, [422, "Invalid hazard classification id."])
           end
         end
       end
 
-      if params[:pictograms].blank?
+      if params[:pictogram_ids].blank?
         #Nothing to do here!
       else
-        for i in params[:pictograms]
-          if Colin::Models::Pictogram.exists?(name: i)
-            pictogram = Colin::Models::Pictogram.where(code: i).take
-            Colin::Models::ChemicalPictogram.create!(chemical_id: chemical.id, pictogram_id: pictogram.id)
+        for i in params[:pictogram_ids]
+          if Colin::Models::Pictogram.exists?(id: i)
+            Colin::Models::ChemicalPictogram.create!(chemical_id: chemical.id, pictogram_id: i)
           else
-            throw(:halt, [422, "Invalid pictogram name #{i}."])
+            throw(:halt, [422, "Invalid pictogram id."])
           end
         end
       end
-      #The chemical has now been created!
     end
   end
 
@@ -406,6 +406,6 @@ class Colin::Routes::Chemical < Sinatra::Base
       throw(:halt, [404, "Chemical with CAS #{params[:cas]} not found"])
       #Now that we have an instance of the chemical, we can deal with foreign key
     end
-    redirect to '/container/search?query=' + params[:new_cas]
+    redirect to '/container/search?query=' + params[:new_cas].to_s
   end
 end
