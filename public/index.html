@@ -17,7 +17,6 @@
       </a>
       <div>
         <h1 style="padding-top:13px" >CoLIN</h1>
-        <h2>Under development!</h2>
         <p class="lead">Comprehensive Laboratory Information Nexus</p>
       </div>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -38,9 +37,6 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Inventory</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/login">Login</a>
           </li>
         </ul>
         <form class="form-inline my-2 my-lg-0" action="#" onsubmit="CreateTableFromJSON(query)">
@@ -135,7 +131,7 @@
         divContainer.appendChild(table);
       }
       var query = document.getElementById("query").value
-      $.getJSON(window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + '/api/container/search/' + query + window.location.search, makeTable)
+      $.getJSON(window.location.protocol + '//' + window.location.hostname + '/api/container/search/' + query, makeTable)
     }
   </script>
   <script>CreateTableFromJSON()</script>
