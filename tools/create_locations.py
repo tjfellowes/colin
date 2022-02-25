@@ -9,10 +9,10 @@ from requests import status_codes
 # This script imports a tsv file of locations to colin.
 # The first column is the location type (Building, Room, Cupboard, Cabinet, Fridge, Freezer, Shelf, Box), the second column is the temperature in degrees C, and subsequent columns are the names of the locations, organised as a tree.
 
-url = 'http://localhost:9292'
-#url = 'https://colin-uom-dev.herokuapp.com'
+#url = 'http://localhost:9292'
+url = 'https://colin-uom.herokuapp.com'
 
-tsv_file = 'aic_locations.tsv'
+tsv_file = 'jmw_locations.tsv'
 
 headers = {'User-Agent': 'Mozilla/5.0'}
 payload = {'username':'root','password':'root'}
