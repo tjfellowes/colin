@@ -334,8 +334,8 @@ class Colin::Routes::Container < Colin::BaseWebApp
 
     if params[:barcode].blank?
       halt(422, 'Must provide a barcode for container.')
-    elsif Colin::Models::Container.exists?(barcode: params[:barcode])
-      container = Colin::Models::Container.where(barcode: params[:barcode]).take
+    elsif Colin::Models::Container.unscoped.exists?(barcode: params[:barcode])
+      container = Colin::Models::Container.unscoped.where(barcode: params[:barcode]).take
 
       if params[:new_barcode].blank?
         params[:new_barcode] = params[:barcode]
@@ -363,8 +363,7 @@ class Colin::Routes::Container < Colin::BaseWebApp
         container_size, size_unit = params[:container_size], params[:size_unit]
       end
 
-
-      container.update(barcode: params[:new_barcode], container_size: container_size, size_unit: size_unit, product_number: params[:product_number], lot_number: params[:lot_number], owner_id: params[:owner_id], supplier_id: supplier_id, user_id: current_user.id)
+      container.update(barcode: params[:new_barcode], container_size: container_size, size_unit: size_unit, product_number: params[:product_number], lot_number: params[:lot_number], owner_id: params[:owner_id], supplier_id: supplier_id, user_id: current_user.id, date_disposed: nil)
 
       Colin::Models::ContainerLocation.create(created_at: Time.now.utc.iso8601, updated_at: Time.now.utc.iso8601, container_id: container.id, location_id: params[:location_id])
 
