@@ -14,16 +14,11 @@ class Colin::Models::Container < ActiveRecord::Base
   # Foreign key relationships
   belongs_to :supplier
   belongs_to :chemical
-
-
-
+  belongs_to :user
+  belongs_to :owner, class_name: "User"
 
   def current_location
-    Colin::Models::ContainerLocation.where(container_id: id).includes(location: :parent).order(:created_at).last
-  end
-
-  def storage_location
-    Colin::Models::ContainerLocation.where(container_id: id, temp: false).includes(location: :parent).order(:created_at).last
+    Colin::Models::ContainerLocation.where(container_id: id).order(:created_at).last
   end
 
 end

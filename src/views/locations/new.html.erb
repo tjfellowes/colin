@@ -1,0 +1,64 @@
+<div class="jumbotron w-50" > 
+<h1>Add location</h1>
+  <div class="form-group">
+    <select class="form-control selectpicker" id="parent_id" name="parent_id" aria-describedby="parent" title="Parent Location" data-live-search="true">      
+          <% Colin::Models::Location.active.each do |location| %>
+          <option value="<%= location.id %>"><%= location.location_path %></option>
+          <% end %>  
+      </select>
+  </div>
+  <div class="form-group">
+    <input type="text" name="name" placeholder="Name" class="form-control"/>
+  </div>
+  <div class="form-group">
+    <input type="text" name="barcode" placeholder="Barcode" class="form-control"/>
+  </div>
+
+  <div class="form-group">
+    <select class="form-control selectpicker" id="location_type_id" name="location_type_id" title="Location Type">   
+      <% Colin::Models::LocationType.all.each do |location_type| %>
+        <option value="<%= location_type.id %>"><%= location_type.name %></option>
+      <% end %>  
+    </select>
+  </div>
+
+  <div class="form-group">
+      <div class="input-group mb-3">
+          <input type="text" class="form-control w-75" name="temperature" placeholder="Temperature">
+          <div class="input-group-append">
+              <span class="input-group-text" id="basic-addon2">&#8451;</span>
+          </div>
+      </div>
+  </div>
+
+  <div class="form-group">
+  <input class="form-check-input" type="checkbox" value="true" name ="monitored" id="monitored">
+  <label class="form-check-label" for="monitored">
+    Monitored?
+  </label>
+  </div>
+  <button id="submit" class="btn btn-primary">Create Location</button> 
+  <button class="btn btn-secondary" id="cancel">Cancel</button>
+</div>
+
+<script>
+$(document).ready(function () {
+  $("#submit").click(function () {
+    $.ajax({
+      type: "POST",
+      url: "/api/location",
+      data: {
+        parent_id: $("[name='parent_id']").val(),
+        name: $("[name='name']").val(),
+        barcode: $("[name='barcode']").val(),
+        location_type_id: $("[name='location_type_id']").val(),
+        temperature: $("[name='temperature']").val(),
+        monitored: $("[name='monitored']").prop("checked")
+      },
+      dataType: "json",
+      success: function () {window.location.href = "/";}
+    });
+  });
+  $("#cancel").click(function () {window.location.href = "/";});
+});
+</script>

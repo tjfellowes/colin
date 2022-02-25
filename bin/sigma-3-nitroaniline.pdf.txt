@@ -1,0 +1,889 @@
+ 
+ 
+ 
+
+ 
+ 
+
+ 
+SAFETY DATA SHEET 
+according to Regulation (EC) No. 1907/2006 
+ 
+SECTION 1: Identification of the substance/mixture and of the company/undertaking 
+
+Version 6.0 
+Revision Date 24.10.2019 
+Print Date 02.10.2021 
+
+ 
+
+1.1  Product identifiers 
+
+Product name 
+
+:  3-Nitroaniline 
+
+Product Number 
+Brand 
+Index-No. 
+REACH No. 
+
+:  N9829 
+:  Aldrich 
+:  612-012-00-9 
+:  A registration number is not available for this substance as the 
+
+substance or its uses are exempted from registration, the 
+annual tonnage does not require a registration or the 
+registration is envisaged for a later registration deadline. 
+
+CAS-No. 
+
+:  99-09-2 
+
+1.2  Relevant identified uses of the substance or mixture and uses advised against 
+
+Identified uses 
+
+:  Laboratory chemicals, Manufacture of substances 
+
+1.3  Details of the supplier of the safety data sheet 
+
+Company 
+
+:  Merck Life Science UK Limited 
+
+New Road 
+The Old Brickyard 
+GILLINGHAM 
+Dorset 
+SP8 4XT 
+UNITED KINGDOM 
+
+:  +44 (0)1747 833-000 
+:  +44 (0)1747 833-313 
+
+ 
+Telephone 
+Fax 
+
+1.4  Emergency telephone number 
+
+Emergency Phone # 
+
+:  +44 (0)870 8200418 (CHEMTREC) 
+
+ 
+
+ 
+
+ 
+SECTION 2: Hazards identification 
+
+2.1  Classification of the substance or mixture 
+
+Classification according to Regulation (EC) No 1272/2008 
+Acute toxicity, Oral (Category 3), H301 
+Acute toxicity, Inhalation (Category 3), H331 
+Acute toxicity, Dermal (Category 3), H311 
+Specific target organ toxicity - repeated exposure (Category 2), H373 
+Long-term (chronic) aquatic hazard (Category 3), H412 
+
+For the full text of the H-Statements mentioned in this Section, see Section 16. 
+
+ 
+
+ 
+
+Aldrich- N9829 
+ 
+The life science business of Merck operates as MilliporeSigma in 
+the US and Canada 
+ 
+
+Page 1  of  9 
+ 
+
+ 
+
+ 
+ 
+2.2  Label elements 
+
+Labelling according Regulation (EC) No 1272/2008 
+Pictogram 
+
+ 
+
+Danger 
+
+ 
+Signal word 
+ 
+Hazard statement(s) 
+H301 + H311 + H331 
+H373 
+
+H412 
+ 
+Precautionary statement(s) 
+P273 
+P280 
+P301 + P310 + P330 
+
+P302 + P352 + P312 
+
+P304 + P340 + P311 
+
+P314 
+ 
+Supplemental Hazard 
+Statements 
+
+2.3  Other hazards 
+
+Toxic if swallowed, in contact with skin or if inhaled. 
+May cause damage to organs through prolonged or repeated 
+exposure. 
+Harmful to aquatic life with long lasting effects. 
+
+Avoid release to the environment. 
+Wear protective gloves/ protective clothing. 
+IF SWALLOWED: Immediately call a POISON CENTER/doctor. 
+Rinse mouth. 
+IF ON SKIN: Wash with plenty of water. Call a POISON 
+CENTER/doctor if you feel unwell. 
+IF INHALED: Remove person to fresh air and keep comfortable 
+for breathing. Call a POISON CENTER/doctor. 
+Get medical advice/ attention if you feel unwell. 
+
+none 
+
+This substance/mixture contains no components considered to be either persistent, 
+bioaccumulative and toxic (PBT), or very persistent and very bioaccumulative (vPvB) at 
+levels of 0.1% or higher. 
+
+ 
+SECTION 3: Composition/information on ingredients 
+
+ 
+
+ 
+
+3.1  Substances 
+
+Formula 
+
+:  C6H6N2O2 
+:  138.12 g/mol 
+:  99-09-2 
+:  202-729-1 
+:  612-012-00-9 
+
+Molecular weight 
+CAS-No. 
+EC-No. 
+Index-No. 
+ 
+Component 
+
+m-Nitroaniline 
+ 
+
+ 
+
+ 
+
+Classification 
+
+Concentration 
+
+Acute Tox. 3; STOT RE 2; 
+Aquatic Chronic 3; H301, 
+H331, H311, H373, H412 
+
+<= 100 % 
+
+For the full text of the H-Statements mentioned in this Section, see Section 16. 
+
+ 
+
+ 
+SECTION 4: First aid measures 
+
+4.1  Description of first aid measures 
+
+General advice 
+Consult a physician. Show this safety data sheet to the doctor in attendance. 
+
+Aldrich- N9829 
+ 
+The life science business of Merck operates as MilliporeSigma in 
+the US and Canada 
+ 
+
+Page 2  of  9 
+ 
+
+ 
+
+ 
+
+ 
+ 
+
+If inhaled 
+If breathed in, move person into fresh air. If not breathing, give artificial respiration. 
+Consult a physician. 
+
+In case of skin contact 
+Wash off with soap and plenty of water. Take victim immediately to hospital. Consult a 
+physician. 
+
+In case of eye contact 
+Flush eyes with water as a precaution. 
+
+If swallowed 
+Never give anything by mouth to an unconscious person. Rinse mouth with water. Consult 
+a physician. 
+
+4.2  Most important symptoms and effects, both acute and delayed 
+
+The most important known symptoms and effects are described in the labelling (see section 
+2.2) and/or in section 11 
+
+4.3  Indication of any immediate medical attention and special treatment needed 
+
+No data available 
+
+ 
+
+ 
+
+ 
+SECTION 5: Firefighting measures 
+
+5.1  Extinguishing media 
+
+Suitable extinguishing media 
+Use water spray, alcohol-resistant foam, dry chemical or carbon dioxide. 
+
+5.2  Special hazards arising from the substance or mixture 
+
+Carbon oxides, Nitrogen oxides (NOx) 
+
+5.3  Advice for firefighters 
+
+Wear self-contained breathing apparatus for firefighting if necessary. 
+
+5.4  Further information 
+
+No data available 
+
+ 
+SECTION 6: Accidental release measures 
+
+6.1  Personal precautions, protective equipment and emergency procedures 
+
+Wear respiratory protection. Avoid dust formation. Avoid breathing vapours, mist or gas. 
+Ensure adequate ventilation. Evacuate personnel to safe areas. Avoid breathing dust. 
+For personal protection see section 8. 
+
+6.2  Environmental precautions 
+
+Prevent further leakage or spillage if safe to do so. Do not let product enter drains. 
+Discharge into the environment must be avoided. 
+
+6.3  Methods and materials for containment and cleaning up 
+
+Pick up and arrange disposal without creating dust. Sweep up and shovel. Keep in 
+suitable, closed containers for disposal. 
+
+6.4  Reference to other sections 
+
+For disposal see section 13. 
+
+ 
+ 
+SECTION 7: Handling and storage 
+
+7.1  Precautions for safe handling 
+
+Avoid contact with skin and eyes. Avoid formation of dust and aerosols. 
+
+Aldrich- N9829 
+ 
+The life science business of Merck operates as MilliporeSigma in 
+the US and Canada 
+ 
+
+Page 3  of  9 
+ 
+
+ 
+
+ 
+ 
+
+ 
+
+ 
+
+ 
+ 
+
+Provide appropriate exhaust ventilation at places where dust is formed. 
+For precautions see section 2.2. 
+
+7.2  Conditions for safe storage, including any incompatibilities 
+
+Keep container tightly closed in a dry and well-ventilated place. Store in cool place.  
+
+7.3  Specific end use(s) 
+
+Apart from the uses mentioned in section 1.2 no other specific uses are stipulated 
+
+ 
+ 
+SECTION 8: Exposure controls/personal protection 
+
+8.1  Control parameters 
+
+Components with workplace control parameters 
+Contains no substances with occupational exposure limit values. 
+
+8.2  Exposure controls 
+
+Appropriate engineering controls 
+Avoid contact with skin, eyes and clothing. Wash hands before breaks and immediately 
+after handling the product. 
+
+Personal protective equipment 
+
+ 
+
+Eye/face protection 
+Face shield and safety glasses Use equipment for eye protection tested and 
+approved under appropriate government standards such as NIOSH (US) or EN 
+166(EU). 
+
+Skin protection 
+Handle with gloves. Gloves must be inspected prior to use. Use proper glove 
+removal technique (without touching glove's outer surface) to avoid skin contact 
+with this product. Dispose of contaminated gloves after use in accordance with 
+applicable laws and good laboratory practices. Wash and dry hands. 
+ 
+The selected protective gloves have to satisfy the specifications of Regulation (EU) 
+2016/425 and the standard EN 374 derived from it. 
+ 
+Full contact 
+Material: Nitrile rubber 
+Minimum layer thickness: 0.11 mm 
+Break through time: 480 min 
+Material tested:Dermatril® (KCL 740 / Aldrich Z677272, Size M) 
+ 
+Splash contact 
+Material: Nitrile rubber 
+Minimum layer thickness: 0.11 mm 
+Break through time: 480 min 
+Material tested:Dermatril® (KCL 740 / Aldrich Z677272, Size M) 
+ 
+data source: KCL GmbH, D-36124 Eichenzell, phone +49 (0)6659 87300, e-mail 
+sales@kcl.de, test method: EN374 
+If used in solution, or mixed with other substances, and under conditions which 
+differ from EN 374, contact the supplier of the CE approved gloves. This 
+recommendation is advisory only and must be evaluated by an industrial hygienist 
+and safety officer familiar with the specific situation of anticipated use by our 
+customers. It should not be construed as offering an approval for any specific use 
+scenario. 
+ 
+
+Aldrich- N9829 
+ 
+The life science business of Merck operates as MilliporeSigma in 
+the US and Canada 
+ 
+
+Page 4  of  9 
+ 
+
+ 
+
+ 
+ 
+
+ 
+ 
+
+Body Protection 
+Complete suit protecting against chemicals, The type of protective equipment must 
+be selected according to the concentration and amount of the dangerous substance 
+at the specific workplace. 
+
+Respiratory protection 
+Where risk assessment shows air-purifying respirators are appropriate use a full-
+face particle respirator type N99 (US) or type P2 (EN 143) respirator cartridges as a 
+backup to engineering controls. If the respirator is the sole means of protection, use 
+a full-face supplied air respirator. Use respirators and components tested and 
+approved under appropriate government standards such as NIOSH (US) or CEN 
+(EU). 
+
+Control of environmental exposure 
+Prevent further leakage or spillage if safe to do so. Do not let product enter drains. 
+Discharge into the environment must be avoided. 
+
+ 
+
+ 
+
+ 
+SECTION 9: Physical and chemical properties 
+
+9.1  Information on basic physical and chemical properties 
+
+Melting point/range: 111 - 114 °C - lit. 
+
+a)  Appearance 
+
+b)  Odour 
+
+d)  pH 
+
+e)  Melting 
+
+Form: crystalline 
+Colour: yellow 
+
+No data available 
+
+No data available 
+
+c)  Odour Threshold 
+
+No data available 
+
+point/freezing point 
+
+f) 
+
+Initial boiling point 
+and boiling range 
+
+306.0 °C 
+
+g)  Flash point 
+
+196.0 °C - closed cup 
+
+h)  Evaporation rate 
+
+No data available 
+
+i)  Flammability (solid, 
+
+No data available 
+
+j)  Upper/lower 
+
+No data available 
+
+gas) 
+
+flammability or 
+explosive limits 
+
+k)  Vapour pressure 
+
+No data available 
+
+l)  Vapour density 
+
+No data available 
+
+m)  Relative density 
+
+0.90 g/cm3 at 25.00 °C 
+
+n)  Water solubility 
+
+No data available 
+
+o)  Partition coefficient: 
+
+log Pow: 1.37log Pow: 5 
+
+n-octanol/water 
+
+p)  Auto-ignition 
+temperature 
+
+No data available 
+
+q)  Decomposition 
+
+No data available 
+
+temperature 
+
+r)  Viscosity 
+
+No data available 
+
+Aldrich- N9829 
+ 
+The life science business of Merck operates as MilliporeSigma in 
+the US and Canada 
+ 
+
+Page 5  of  9 
+ 
+
+ 
+
+ 
+ 
+
+ 
+ 
+
+acids, Acid chlorides, Acid anhydrides, Chloroformates, Strong oxidizing agents 
+
+10.6  Hazardous decomposition products 
+
+Hazardous decomposition products formed under fire conditions. - Carbon oxides, Nitrogen 
+oxides (NOx) 
+Other decomposition products - No data available 
+In the event of fire: see section 5 
+
+s)  Explosive properties  No data available 
+
+t)  Oxidizing properties  No data available 
+
+9.2  Other safety information 
+
+No data available 
+ 
+
+ 
+SECTION 10: Stability and reactivity 
+
+10.1  Reactivity 
+
+No data available 
+
+10.2  Chemical stability 
+
+Stable under recommended storage conditions. 
+
+10.3  Possibility of hazardous reactions 
+
+No data available 
+
+10.4  Conditions to avoid 
+
+No data available 
+
+10.5  Incompatible materials 
+
+ 
+
+ 
+
+ 
+SECTION 11: Toxicological information 
+
+11.1  Information on toxicological effects 
+
+Acute toxicity 
+LD50 Oral - Rat - 535.0 mg/kg 
+
+Skin corrosion/irritation 
+No data available 
+
+Serious eye damage/eye irritation 
+No data available 
+
+Respiratory or skin sensitisation 
+No data available 
+
+Germ cell mutagenicity 
+No data available 
+
+Carcinogenicity 
+
+ 
+ 
+
+ 
+ 
+
+IARC: 
+
+No component of this product present at levels greater than or equal to 0.1% is 
+identified as probable, possible or confirmed human carcinogen by IARC. 
+
+Reproductive toxicity 
+No data available 
+
+Specific target organ toxicity - single exposure 
+No data available 
+
+Specific target organ toxicity - repeated exposure 
+The substance or mixture is classified as specific target organ toxicant, repeated exposure, 
+category 2. 
+
+Aldrich- N9829 
+ 
+The life science business of Merck operates as MilliporeSigma in 
+the US and Canada 
+ 
+
+Page 6  of  9 
+ 
+
+ 
+
+Aspiration hazard 
+No data available 
+
+Additional Information 
+RTECS: BY6825000 
+ 
+Absorption into the body leads to the formation of methemoglobin which in sufficient 
+concentration causes cyanosis. Onset may be delayed 2 to 4 hours or longer., To the best 
+of our knowledge, the chemical, physical, and toxicological properties have not been 
+thoroughly investigated. 
+ 
+Liver -  
+
+ 
+
+ 
+
+ 
+SECTION 12: Ecological information 
+
+12.1  Toxicity 
+
+ 
+Toxicity to fish 
+
+12.2  Persistence and degradability 
+
+No data available 
+
+12.3  Bioaccumulative potential 
+
+Bioaccumulation 
+
+LC50 - other fish - 81.2 mg/l  - 96.0 h 
+
+Danio rerio (zebra fish) - 96 h 
+ - 28 mg/l(m-Nitroaniline) 
+ 
+Bioconcentration factor (BCF): 8.3 
+
+12.4  Mobility in soil 
+
+No data available 
+
+12.5  Results of PBT and vPvB assessment 
+
+This substance/mixture contains no components considered to be either persistent, 
+bioaccumulative and toxic (PBT), or very persistent and very bioaccumulative (vPvB) at 
+levels of 0.1% or higher. 
+
+12.6  Other adverse effects 
+
+Harmful to aquatic life with long lasting effects. 
+
+ 
+SECTION 13: Disposal considerations 
+
+13.1  Waste treatment methods 
+
+Product 
+Offer surplus and non-recyclable solutions to a licensed disposal company. Dissolve or 
+mix the material with a combustible solvent and burn in a chemical incinerator equipped 
+with an afterburner and scrubber. Waste material must be disposed of in accordance with 
+the Directive on waste 2008/98/EC as well as other national and local regulations. Leave 
+chemicals in original containers. No mixing with other waste. Handle uncleaned containers 
+like the product itself.  
+
+Contaminated packaging 
+Dispose of as unused product.  
+
+ 
+SECTION 14: Transport information 
+
+14.1  UN number 
+
+ADR/RID: 1661 
+
+IMDG: 1661 
+
+IATA: 1661 
+
+Aldrich- N9829 
+ 
+The life science business of Merck operates as MilliporeSigma in 
+the US and Canada 
+ 
+
+Page 7  of  9 
+ 
+
+ 
+
+ 
+ 
+
+ 
+
+ 
+
+ 
+ 
+
+ 
+
+ 
+
+ 
+ 
+14.2  UN proper shipping name 
+
+ADR/RID:  NITROANILINES (m-Nitroaniline) 
+IMDG:  
+IATA:  
+
+NITROANILINES (o-, m-, p-) (m-Nitroaniline) 
+Nitroanilines 
+
+14.3  Transport hazard class(es) 
+
+ADR/RID: 6.1 
+
+IMDG: 6.1 
+
+IATA: 6.1 
+
+14.4  Packaging group 
+
+ADR/RID: II 
+
+IMDG: II 
+
+IATA: II 
+
+14.5  Environmental hazards 
+
+ADR/RID:  yes 
+
+IMDG Marine pollutant: yes 
+
+IATA: no 
+
+14.6  Special precautions for user 
+
+No data available 
+
+ 
+SECTION 15: Regulatory information 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+ 
+
+15.1  Safety, health and environmental regulations/legislation specific for the 
+substance or mixture  
+
+This safety datasheet complies with the requirements of Regulation (EC) No. 1907/2006. 
+ 
+ 
+ 
+
+15.2  Chemical safety assessment 
+
+For this product a chemical safety assessment was not carried out 
+
+ 
+SECTION 16: Other information 
+
+Full text of H-Statements referred to under sections 2 and 3. 
+
+Toxic if swallowed. 
+Toxic if swallowed, in contact with skin or if inhaled. 
+
+H301 
+H301 + H311 + 
+H331 
+H311 
+H331 
+H373 
+H412 
+
+Toxic in contact with skin. 
+Toxic if inhaled. 
+May cause damage to organs through prolonged or repeated exposure. 
+Harmful to aquatic life with long lasting effects. 
+
+Further information 
+Copyright 2018 Sigma-Aldrich Co. LLC. License granted to make unlimited paper copies 
+for internal use only. 
+The above information is believed to be correct but does not purport to be all inclusive 
+and shall be used only as a guide. The information in this document is based on the 
+present state of our knowledge and is applicable to the product with regard to 
+appropriate safety precautions. It does not represent any guarantee of the properties of 
+the product. Sigma-Aldrich Corporation and its Affiliates shall not be held liable for any 
+damage resulting from handling or from contact with the above product. See 
+www.sigma-aldrich.com and/or the reverse side of invoice or packing slip for additional 
+terms and conditions of sale. 
+ 
+The branding on the header and/or footer of this document may temporarily not visually 
+
+match the product purchased as we transition our branding. However, all of the 
+information in the document regarding the product remains unchanged and matches the 
+product ordered. For further information please contact mlsbranding@sial.com. 
+
+Aldrich- N9829 
+ 
+The life science business of Merck operates as MilliporeSigma in 
+the US and Canada 
+ 
+
+Page 8  of  9 
+ 
+
+ 
+
+ 
+ 
+ 
+
+ 
+ 
+
+Aldrich- N9829 
+ 
+The life science business of Merck operates as MilliporeSigma in 
+the US and Canada 
+ 
+
+Page 9  of  9 
+ 
+
+ 
+
+

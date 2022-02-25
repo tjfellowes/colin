@@ -27,7 +27,7 @@ class CreateTables < ActiveRecord::Migration[5.1]
       t.string  :un_number,     null: true
 
       # Foreign keys with indexing enabled
-      t.references :dg_class,       index: true, null: true
+      t.references :dg_class_1,       index: true, null: true
       t.references :dg_class_2,     references: :dg_classes, index: true, null: true
       t.references :dg_class_3,     references: :dg_classes, index: true, null: true
       t.references :schedule,       index: true, null: true

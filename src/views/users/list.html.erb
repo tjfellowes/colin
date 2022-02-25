@@ -1,0 +1,35 @@
+<div class=""> 
+    <table class="table">
+    <thead>
+    <tr>
+        <th scope="col">Username</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Supervisor</th>
+    </tr>
+    </thead>
+    <tbody>
+    <%
+    if current_user.id == 1
+        @pagy, @users = pagy(Colin::Models::User.all) 
+    else
+        @pagy, @users = pagy(Colin::Models::User.active.where(hidden: false)) 
+    end
+    %>
+    <% @users.each do |user| %>
+    <tr>
+        <td><a href="/user/username/edit/<%= user.username %>"><%= user.username %></a></td>
+        <td><%= user.name %></td>
+        <td><%= user.email %></td>
+        <td><%= user.supervisor.name if user.supervisor %></td>
+    </tr>
+    <% end %>
+    </tbody>
+    </table>
+
+    <div class="container">
+        <div class="">
+            <%= pagy_bootstrap_nav(@pagy) if @pagy.pages > 1 %>
+        </div>
+    </div>
+</div>

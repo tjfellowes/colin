@@ -1,0 +1,118 @@
+<style>
+@page {
+    size: a4;
+    margin: 1cm;
+    size: landscape;
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
+}
+body {
+ background: white;
+ color: black;
+}
+table {
+    width: 13.7cm;
+    max-height: 19cm;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 10pt;
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+th, td {
+    border: 2px solid;
+    padding: 10px 5px;
+    width: 33%;
+
+}
+.hazards {
+    font-size: 8pt;
+}
+</style>
+
+<%
+name = current_user.name
+date = Time.now.utc.strftime("%d/%m/%Y")
+description = params[:description]
+components = params[:component].map{ |i| 
+    if @chemical = Colin::Models::Chemical.where(cas: i)
+        @chemical.take
+    end
+    }.compact
+
+hazards  = components.map{ |i| i.haz_class.map{ |j| j.description} + i.haz_stat.map{ |j| j.code.split('+')} + i.pictogram.map{ |k| k.code}}.flatten
+%>
+<% explosive, carcinogenic, release_gas, oxidising, corrosive, flammable, infectious, sensitising, irritant, reprotoxic, ecotoxic, harmful, mutagenic, other, toxic, pops = false
+
+explosive = true if (hazards & ['Explosives', 'H200', 'H201', 'H202', 'H203', 'H204', 'H205', 'H206', 'H207', 'H208', 'H230', 'H231', 'H240', 'H241', 'GHS01']).any?
+carcinogenic = true if (hazards & ['Carcinogenicity', 'GHS08', 'H350', 'H350i', 'H351']).any?
+release_gas = true if (hazards & ['Substances which in contact with water emit flammable gases']).any?
+oxidising = true if (hazards & ['Oxidising liquids', 'Oxidising solids', 'Organic peroxides', 'H270', 'H271', 'H272', 'GHS03']).any?
+corrosive = true if (hazards & ['Substances corrosive to metal', 'Skin corrosion', 'H290', 'GHS05', 'H314', 'H318']).any?
+flammable = true if (hazards & ['Flammable gases', 'Flammable aerosols', 'Flammable liquids', 'Flammable solids', 'Pyrophoric solids', 'Pyrophoric liquids', 'Self-heating substances', 'Substances which in contact with water emit flammable gases', 'H220', 'H221', 'H222', 'H223', 'H224', 'H225', 'H226', 'H227', 'H228', 'H232', 'H241', 'H242', 'H250', 'H251', 'H252', 'H260', 'H261', 'GHS02']).any?
+sensitising = true if (hazards & ['Sensitisation (Skin or Eye)', 'GHS08', 'H317', 'H334']).any?
+irritant = true if (hazards & ['Skin irritation', 'GHS07', 'H315', 'H316', 'H319', 'H320', 'H335']).any?
+reprotoxic = true if (hazards & ['Reproductive toxicity', 'GHS08', 'H360', 'H360F', 'H360D', 'H360FD', 'H360Fd', 'H360Df', 'H361', 'H361F', 'H361D', 'H361FD', 'H361Fd', 'H361Df', 'H362']).any?
+ecotoxic = true if (hazards & ['Acute aquatic toxicity', 'Chronic aquatic toxicity', 'GHS09', 'H400', 'H401', 'H402', 'H410', 'H411', 'H412', 'H413', 'H420']).any?
+harmful = true if (hazards & ['Acute toxicity', 'Skin corrosion', 'Skin irritation', 'Eye effects', 'Sensitisation (Skin or Eye)', 'Germ cell mutagenicity', 'Carcinogenicity', 'Reproductive toxicity', 'Target organ systemic toxicity: single and repeated exposure', 'Aspiration toxicity', 'GHS08', 'GHS06', 'H302', 'H303', 'H304', 'H305', 'H312', 'H313', 'H332', 'H333', 'H336', 'H371', 'H373']).any?
+mutagenic = true if (hazards & ['Germ cell mutagenicity', 'GHS08', 'H340', 'H341']).any?
+toxic = true if (hazards & ['Acute toxicity', 'Germ cell mutagenicity', 'Carcinogenicity', 'Reproductive toxicity', 'Target organ systemic toxicity: single and repeated exposure', 'Aspiration toxicity', 'GHS06', 'H300', 'H301', 'H310', 'H311', 'H330', 'H331', 'H370', 'H372']).any?
+%>
+
+<table>
+<thead>
+<tr>
+<td><strong>Name: </strong><%= name %></td>
+<td colspan="2"><strong>Date: </strong><%= date %></td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td colspan="3">
+    <p><strong>Description of Waste</strong></p>
+    <%= description %>
+    <p><strong>List all components, including concentrations (if known):</strong></p>
+    <%= components.map{ |i| [i.prefix, i.name].join('')}.join(', ') %>
+</td>
+</tr>
+<tr>
+<td colspan="3">PLEASE WRITE FULL NAMES e.g., dimethylformamide <em><u>NOT</u></em> DMF</td>
+</tr>
+<tr>
+<td colspan="3"><strong>Hazard Statements/Properties (write all Hazard Statement in the box and tick all relevant Hazard Properties):</strong><br>
+    <%= components.map{ |i| i.haz_stat.map{ |j| j.code + ' - ' + j.description}}.join('<br>') %>
+</td>
+</tr>
+<tr class="hazards">
+<td>HP1 Explosive <input type="checkbox" <%= 'checked' if explosive %> ></td>
+<td>HP7 Carcinogenic <input type="checkbox" <%= 'checked' if carcinogenic %>></td>
+<td rowspan="2">HP12 Releases acute toxic gas in contact with water or acid <input type="checkbox" <%= 'checked' if release_gas %>></td>
+</tr>
+<tr class="hazards">
+<td>HP2 Oxidizing <input type="checkbox" <%= 'checked' if oxidising %>></td>
+<td>HP8 Corrosive <input type="checkbox" <%= 'checked' if corrosive %>></td>
+</tr>
+<tr class="hazards">
+<td>HP3 Flammable <input type="checkbox" <%= 'checked' if flammable %>></td>
+<td>HP9 Infectious <input type="checkbox" <%= 'checked' if infectious %>></td>
+<td>HP13 Sensitizing <input type="checkbox" <%= 'checked' if sensitising %>></td>
+</tr>
+<tr class="hazards">
+<td>HP4 Irritant <input type="checkbox" <%= 'checked' if irritant %>></td>
+<td>HP10 Toxic for reproduction <input type="checkbox" <%= 'checked' if reprotoxic %>></td>
+<td>HP14 Ecotoxic <input type="checkbox" <%= 'checked' if ecotoxic %>></td>
+</tr>
+<tr class="hazards">
+<td>HP5 Harmful <input type="checkbox" <%= 'checked' if harmful %>></td>
+<td>HP11 Mutagenic <input type="checkbox" <%= 'checked' if mutagenic %>></td>
+<td rowspan="2">HP15 Waste capable other hazards <input type="checkbox" <%= 'checked' if other %>></td>
+</tr>
+<tr class="hazards">
+<td>HP6 Toxic <input type="checkbox" <%= 'checked' if toxic %>></td> 
+<td>POPS <input type="checkbox"<%= 'checked' if pops %>></td>
+
+</tr>
+<tr>
+<td colspan="3" style="text-align: center;"><strong>PLEASE WRITE CLEARLY!</strong></td>
+</tr>
+</tbody>
+</table>

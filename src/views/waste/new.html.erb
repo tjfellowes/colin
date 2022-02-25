@@ -1,0 +1,27 @@
+<div class="jumbotron w-50" > 
+<h1>Create waste label</h1> 
+<form method="GET" action='/waste/special/label'>
+  <div class="form-group">
+    <input type="text" name="description" placeholder="Description of waste" class="form-control"/>
+  </div>
+  <div class="form-group" id="cas_list">
+    <div class="input-group" >
+      <input class="form-control" id="cas" placeholder="CAS number" aria-describedby="cas_search">
+      <div class="input-group-append">
+        <button class="btn btn-outline-secondary" id="add" type="button">Add component</button>
+      </div>
+    </div>
+  </div>
+
+  <button type="submit" id="submit" class="btn btn-primary">Create Label</button>
+  </form>
+</div>
+
+<script src="/js/cas_autocomplete.js"></script>
+<script>
+$(document).ready(function () {
+  $("#add").click(function () {
+    $("#cas_list").append("<input class='form-control' name='component[]' value='" + $("#cas").val() + "'>")
+  })
+})
+</script>

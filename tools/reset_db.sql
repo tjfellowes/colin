@@ -1,0 +1,9 @@
+DELETE FROM chemicals;
+DELETE FROM chemical_haz_classes;
+DELETE FROM chemical_haz_stats;
+DELETE FROM chemical_pictograms;
+DELETE FROM chemical_prec_stat_supps;
+DELETE FROM chemical_prec_stats;
+DELETE FROM containers;
+DELETE FROM locations;
+DELETE FROM container_locations;

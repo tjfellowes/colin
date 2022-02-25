@@ -1,0 +1,143 @@
+<h1>Stocktake</h1>
+<div class="form-row w-75" > 
+
+  <form id="location_select" class="form-group w-50 px-2">
+    <fieldset id="location_fieldset">
+    <select class="form-control selectpicker" id="location_id" name="location_id" aria-describedby="location" title="Location" data-live-search="true">      
+      <% Colin::Models::Location.active.each do |location| %>
+      <option value="<%= location.id %>"><%= location.location_path %></option>
+      <% end %>  
+    </select>
+    <button type="submit" class="btn btn-primary btn-lg btn-block my-3">Select</button>
+    </fieldset>
+  </form>
+
+  <form id="scan" class="form-group w-50 px-2">
+    <fieldset id="scan_fieldset" disabled>
+    <input type="text" id="barcode" name="barcode" placeholder="Barcode" class="form-control"/>
+    <button type="submit" class="btn btn-primary btn-lg btn-block my-3">Scan</button>
+    </fieldset>
+  </form>
+</div>
+
+<div class="form-group w-75" > 
+  <div class="form-group">
+    
+
+
+</div>
+
+<div hidden id="containers_table"> 
+  <table class="table">
+  <thead>
+  <tr>
+    <th scope="col">Barcode</th>
+    <th scope="col">Name</th>
+  </tr>
+  </thead>
+  <tbody id="containers_table_body">
+  </tbody>
+  </table>
+  <button type="button" id="deleteMissing" class="btn btn-outline-danger mx-3 my-1">Delete missing</button>
+  <button type="button" id="updateMisplaced" class="btn btn-outline-warning mx-3 my-1">Update misplaced</button>
+  <button type="button" id="finished" class="btn btn-primary mx-3 my-1">Finish</button>
+</div>
+
+<script>
+$(document).ready(function () {
+  var lost = [];
+  var found = [];
+  var misplaced = [];
+
+  $(document).click(function() {
+    console.log(lost);
+    console.log(found);
+    console.log(misplaced);
+  });
+
+  // Red table rows are clickable, and mark the container as found.
+  $("#containers_table_body").on('click', 'tr', function() {
+    $('#barcode').val($(this).find('td:first').text());
+    $('#scan').submit();
+    $('#barcode').val('');
+  });
+
+  $("#location_select").submit(function (e) {
+    e.preventDefault();
+    $.ajax({
+      type: "GET",
+      url: "/api/container/location_id/" + $("[name=location_id]").val(),
+      dataType: "json",
+      success: function (response) {
+        $("#containers_table").attr('hidden', false);
+        $("#scan_fieldset").attr('disabled', false);
+        $("#location_fieldset").attr('disabled', true);
+        response.forEach(function (container) {
+          if (container['barcode']) {var barcode = container['barcode']}
+          if (container['chemical'] && container['chemical']['name']) {var name = container['chemical']['name']}
+          $("#containers_table").find('tbody').append($('<tr>').attr('barcode', barcode).addClass('table-danger').append($('<td>').text(barcode)).append($('<td>').text(name)));
+          lost.push(barcode);
+        });
+      }
+    });
+  });
+
+  $("#scan").submit(function (e) {
+    e.preventDefault();
+    if (lost.includes($("#barcode").val())) {
+      $("[barcode=" + $("#barcode").val() + "]").removeClass('table-danger').addClass('table-success');
+      lost.splice(lost.indexOf($("#barcode").val()), 1);
+      found.push($("#barcode").val());
+    } else if (!found.includes($("#barcode").val()) && !misplaced.includes($("#barcode").val())) {
+      $.ajax({
+        type: "GET",
+        url: "/api/container/barcode/" + $("#barcode").val(),
+        dataType: "json",
+        success: function (response) {
+          response.forEach(function (container) {
+            if (container['barcode']) {var barcode = container['barcode']}
+            if (container['chemical'] && container['chemical']['name']) {var name = container['chemical']['name']}
+            $("#containers_table").find('tbody').append($('<tr>').addClass('table-warning').append($('<td>').text(barcode)).append($('<td>').text(name)));
+          });
+          misplaced.push($("#barcode").val())
+        },
+        error: function (response) {
+          if (response['status']=='404') {
+            alert('Container with barcode ' + $("#barcode").val() + ' not found!');
+          }
+        }
+      });
+    } else {
+      //Do nothing
+    }
+  });
+
+  $("#deleteMissing").click(function () {
+    lost.forEach(function (barcode) {
+      $.ajax({
+        type: "DELETE",
+        url: "/api/container/barcode/" + barcode
+      });
+    }); 
+    $("#containers_table_body").find(".table-danger").remove();
+  });
+
+  $("#updateMisplaced").click(function () {
+    misplaced.forEach(function (barcode) {
+      $.ajax({
+        type: "PUT",
+        url: "/api/container/barcode/" + barcode,
+        data: {
+          location_id: $("[name=location_id").val()
+        }
+      });
+    }); 
+    $("#containers_table_body").find(".table-warning").removeClass("table-warning").addClass("table-success");
+  });
+
+  $("#finished").click(function () {
+    window.location.href = '/location/stocktake';
+  });
+
+});
+</script>

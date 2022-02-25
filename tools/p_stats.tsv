@@ -1,0 +1,143 @@
+P101	If medical advice is needed, have product container or label at hand.
+P102	Keep out of reach of children.
+P103	Read label before use
+P201	Obtain special instructions before use.
+P202	Do not handle until all safety precautions have been read and understood.
+P210	Keep away from heat, hot surface, sparks, open flames and other ignition sources. No smoking.
+P211	Do not spray on an open flame or other ignition source.
+P212	Avoid heating under confinement or reduction of the desensitized agent.
+P220	Keep away from clothing and other combustible materials.
+P221	Take any precaution to avoid mixing with $1.
+P222	Do not allow contact with air.
+P223	Do not allow contact with water.
+P230	Keep wetted with $1.
+P231	Handle under inert gas.
+P232	Protect from moisture.
+P233	Keep container tightly closed.
+P234	Keep only in original container.
+P235	Keep cool.
+P240	Ground/bond container and receiving equipment.
+P241	Use explosion-proof $1 equipment.
+P242	Use only non-sparking tools.
+P243	Take precautionary measures against static discharge.
+P244	Keep valves and fittings free from oil and grease.
+P250	Do not subject to $1.
+P251	Do not pierce or burn, even after use.
+P260	Do not breathe $1.
+P261	Avoid breathing $1.
+P262	Do not get in eyes, on skin, or on clothing.
+P263	Avoid contact during pregnancy/while nursing.
+P264	Wash $1 thoroughly after handling.
+P270	Do not eat, drink or smoke when using this product.
+P271	Use only outdoors or in a well-ventilated area.
+P272	Contaminated work clothing should not be allowed out of the workplace.
+P273	Avoid release to the environment.
+P280	Wear protective gloves/protective clothing/eye protection/face protection.
+P281	Use personal protective equipment as required.
+P282	Wear cold insulating gloves/face shield/eye protection.
+P283	Wear fire resistant or flame retardant clothing.
+P284	Wear respiratory protection.
+P285	In case of inadequate ventilation wear respiratory protection.
+P231+P232	Handle under $1. Protect from moisture.
+P235+P410	Keep cool. Protect from sunlight.
+P301	IF SWALLOWED: $1.
+P302	IF ON SKIN: $1.
+P303	IF ON SKIN (or hair): $1.
+P304	IF INHALED: $1.
+P305	IF IN EYES: $1.
+P306	IF ON CLOTHING: $1.
+P307	IF exposed: $1.
+P308	IF exposed or concerned:
+P309	IF exposed or if you feel unwell
+P310	Immediately call a POISON CENTER or doctor/physician.
+P311	Call a $1.
+P312	Call a $1 if you feel unwell.
+P313	Get medical advice/attention.
+P314	Get medical advice/attention if you feel unwell.
+P315	Get immediate medical advice/attention.
+P320	Specific treatment is urgent (see $1 on this label).
+P321	Specific treatment (see $1 on this label).
+P322	Specific measures (see $1 on this label).
+P330	Rinse mouth.
+P331	Do NOT induce vomiting.
+P332	IF SKIN irritation occurs: $1
+P333	If skin irritation or rash occurs: $1
+P334	Immerse in cool water [or wrap in wet bandages].
+P335	Brush off loose particles from skin.
+P336	Thaw frosted parts with lukewarm water. Do not rub affected area.
+P337	If eye irritation persists:
+P338	Remove contact lenses, if present and easy to do. Continue rinsing.
+P340	Remove victim to fresh air and keep at rest in a position comfortable for breathing.
+P341	If breathing is difficult, remove victim to fresh air and keep at rest in a position comfortable for breathing.
+P342	If experiencing respiratory symptoms:
+P350	Gently wash with plenty of soap and water.
+P351	Rinse cautiously with water for several minutes.
+P352	Wash with plenty of $1.
+P353	Rinse skin with water [or shower].
+P360	Rinse immediately contaminated clothing and skin with plenty of water before removing clothes.
+P361	Take off immediately all contaminated clothing.
+P362	Take off contaminated clothing.
+P363	Wash contaminated clothing before reuse.
+P364	And wash it before reuse.[Added in 2015 version]
+P370	In case of fire:
+P371	In case of major fire and large quantities:
+P372	Explosion risk.
+P373	DO NOT fight fire when fire reaches explosives.
+P374	Fight fire with normal precautions from a reasonable distance.
+P376	Stop leak if safe to do so.
+P377	Leaking gas fire: Do not extinguish, unless leak can be stopped safely.
+P378	Use $1 to extinguish.
+P380	Evacuate area.
+P381	In case of leakage, eliminate all ignition sources.
+P390	Absorb spillage to prevent material damage.
+P391	Collect spillage.
+P301+P310	IF SWALLOWED: Immediately call a $1.
+P301+P312	IF SWALLOWED: call a $1 IF you feel unwell.
+P301+P330+P331	IF SWALLOWED: Rinse mouth. Do NOT induce vomiting.
+P302+P334	IF ON SKIN: Immerse in cool water [or wrap in wet bandages].
+P302+P335+P334	Brush off loose particles from skin. Immerse in cool water [or wrap in wet bandages].
+P302+P350	IF ON SKIN: Gently wash with plenty of soap and water.
+P302+P352	IF ON SKIN: wash with plenty of water.
+P303+P361+P353	IF ON SKIN (or hair): Take off Immediately all contaminated clothing. Rinse SKIN with water [or shower].
+P304+P312	IF INHALED: Call a $1 if you feel unwell.
+P304+P340	IF INHALED: Remove person to fresh air and keep comfortable for breathing.
+P304+P341	IF INHALED: If breathing is difficult, remove victim to fresh air and keep at rest in a position comfortable for breathing.
+P305+P351+P338	IF IN EYES: Rinse cautiously with water for several minutes. Remove contact lenses if present and easy to do - continue rinsing.
+P306+P360	IF ON CLOTHING: Rinse Immediately contaminated CLOTHING and SKIN with plenty of water before removing clothes.
+P307+P311	IF exposed: call a POISON CENTER or doctor/physician.
+P308+P311	IF exposed or concerned: Call a $1
+P308+P313	IF exposed or concerned: Get medical advice/attention.
+P309+P311	IF exposed or if you feel unwell: call a POISON CENTER or doctor/physician.
+P332+P313	IF SKIN irritation occurs: Get medical advice/attention.
+P333+P313	IF SKIN irritation or rash occurs: Get medical advice/attention.
+P335+P334	Brush off loose particles from skin. Immerse in cool water/wrap in wet bandages.
+P337+P313	IF eye irritation persists: Get medical advice/attention.
+P342+P311	IF experiencing respiratory symptoms: Call a $1.
+P361+P364	Take off immediately all contaminated clothing and wash it before reuse.
+P362+P364	Take off contaminated clothing and wash it before reuse.
+P370+P376	in case of fire: Stop leak if safe to do so.
+P370+P378	In case of fire: Use $1 to extinguish.
+P370+P380	In case of fire: Evacuate area.
+P370+P380+P375	In case of fire: Evacuate area. Fight fire remotely due to the risk of explosion.
+P371+P380+P375	In case of major fire and large quantities: Evacuate area. Fight fire remotely due to the risk of explosion.
+P401	Store in accordance with $1.
+P402	Store in a dry place.
+P403	Store in a well-ventilated place.
+P404	Store in a closed container.
+P405	Store locked up.
+P406	Store in $1 container with a resistant inner liner.
+P407	Maintain air gap between stacks or pallets.
+P410	Protect from sunlight.
+P411	Store at temperatures not exceeding $1.
+P412	Do not expose to temperatures exceeding $1.
+P413	Store bulk masses greater than $1 at temperatures not exceeding $2.
+P420	Store separately.
+P422	Store contents under $1
+P402+P404	Store in a dry place. Store in a closed container.
+P403+P233	Store in a well-ventilated place. Keep container tightly closed.
+P403+P235	Store in a well-ventilated place. Keep cool.
+P410+P403	Protect from sunlight. Store in a well-ventilated place.
+P410+P412	Protect from sunlight. Do not expose to temperatures exceeding $1.
+P411+P235	Store at temperatures not exceeding $1. Keep cool.
+P501	Dispose of contents/container to $1.
+P502	Refer to manufacturer or supplier for information on recovery or recycling.

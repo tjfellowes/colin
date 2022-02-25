@@ -1,0 +1,1 @@
+SELECT locations.*, COUNT(container_locations.location_id) as number_of_chemicals FROM locations LEFT JOIN container_locations ON locations.id=container_locations.location_id GROUP BY locations.id ORDER BY locations.id;
