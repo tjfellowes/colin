@@ -15,49 +15,94 @@ payload = {'username':'root','password':'root'}
 session = requests.Session()
 session.post(url + '/user/login',headers=headers,data=payload)
 
-with open('AIC_inventory.csv') as csv_file:
-  csv_reader = csv.reader(csv_file, dialect='excel', delimiter=',')
+haz_classes_dict = {(str(i.get('superclass',{}).get('description','')) + ' (' + i['description'] + ')'):i['id'] for i in session.get(url + '/api/haz_class',headers=headers,data=payload).json()}
+
+haz_classes_dict['No data available'] = ''
+haz_classes_dict['Not hazardous'] = ''
+haz_classes_dict[''] = ''
+
+with open('haz_classes_dictionary.json', 'r') as f:
+  haz_classes_dict.update(json.load(f))
+
+locations_dict = {i['location_path']:i['id'] for i in session.get(url + '/api/location',headers=headers,data=payload).json()}
+
+pictograms_dict = {i['code']:i['id'] for i in session.get(url + '/api/pictogram',headers=headers,data=payload).json()}
+
+temperature_dict = {'ROOM': 25, 'FRIDGE': 4, 'FREEZER': -20, '': 25}
+
+
+with open('Chemicals_all_19_02_2022.csv') as csv_file:
+  csv_reader = csv.DictReader(csv_file, dialect='excel', delimiter=',')
   for row in csv_reader:
-    supplier = row[2]
-    prefix = ''
-    name = row[17]
-    product_number = row[25]
-    cas = row[4]
-    haz_substance = 'true'
-    haz_class = row[9]
-    pictogram = row[12]
-    signal_word = row[35]
-    haz_stat = row[11].replace(" ", "")
-    prec_stat = row[24].replace(" ", "")
-    storage_temperature = '20'
-    un_number = row[44]
-    un_proper_shipping_name = ''
-    dg_class = row[41]
-    dg_class_2 = row[42]
-    dg_class_3 = row[43]
-    packing_group = row[22]
-    schedule = ''
-    barcode = row[1]
-    location = row[15]
-    container_size = row[29]
-    size_unit = row[30]
-    lot_number = row[16]
-    owner_id = '1'
+    try:
+      haz_class_ids = [haz_classes_dict[i] for i in row['Hazard Classification'].split(';')]
+    except KeyError as e:
+      print("Hazard class not found: " + e.args[0])
+      print("Please manually enter the hazard classification ID:")
+      id = input()
+      haz_classes_dict[e.args[0]] = int(id)
+      with open('haz_classes_dictionary.json', 'w') as outfile:
+        json.dump(haz_classes_dict, outfile, indent=4)
 
-    location = location.replace(' > ', '/')
+    if True:
+      payload = { 
+      'location_id' : locations_dict[row['Location path'].replace(' > ','/')], 
+      'supplier' : row['Brand'],
+      'container_size' : row['Net Quantity'],
+      'size_unit' : row['Quantity unit'],
+      'cas' : row['CAS'],
+      'barcode' : row['Barcode'],
+      'product_number' : row['Product number'],
+      'owner_id' : 1,
+      'cas' : row['CAS'],
+      'name' : row['Product name'],
+      'dg_class_1' : row['Transport hazard class 1'],
+      'dg_class_2' : row['Transport hazard class 2'],
+      'dg_class_3' : row['Transport hazard class 3'],
+      'packing_group' : row['Packaging group'],
+      'un_number' : row['UN number'],
+      'storage_temperature' : temperature_dict[row['Storage temperature']],
+      'inchi': row['InChI'],
+      'signal_word': row['Hazard Signal Word'],
+      'haz_stats[]': [i for i in row['Hazard code(s)'].replace(' ','').split(';') if i],
+      'prec_stats[]': [i for i in row['Precautionary statement(s)'].replace(' ','').split(';') if i],
+      'pictogram_ids[]': [pictograms_dict[i] for i in row['Hazard Label(s)'].replace('_','').split(';') if i],
+      'haz_class_ids[]': [haz_classes_dict[i] for i in row['Hazard Classification'].split(';') if haz_classes_dict[i]]
+      }
+      #print(payload['barcode'])
 
-    payload = {'path':location}
-    response = session.post(url + '/api/location',headers=headers,data=payload)
+    if True:
+      response = session.post(url + '/api/container',headers=headers,data=payload)
 
-    payload = {'cas': cas, 'name': name, 'location': location, 'barcode': barcode, 'container_size': container_size, 'size_unit': size_unit, 'supplier': supplier, 'product_number': product_number, 'dg_class': dg_class, 'dg_class_2': dg_class_2, 'dg_class_3': dg_class_3, 'lot_number': lot_number, 'haz_stat': haz_stat, 'prec_stat': prec_stat, 'un_number': un_number, 'packing_group': packing_group, 'schedule': schedule, 'storage_temperature': storage_temperature, 'un_proper_shipping_name': un_proper_shipping_name, 'owner_id': owner_id}
-    response = session.post(url + '/api/container',headers=headers,data=payload)
+      if response.status_code == 422:
+        print(response.content)
+      elif response.status_code == 200:
+        #print(name)
+        pass
+      else:
+        print(str(response.status_code) + str(response.content))
 
-    if response.status_code == 422:
-      print(response.content)
-    elif response.status_code == 200:
-      #print(name)
-      pass
-    else:
-      print(str(response.status_code) + str(response.content))
+    if False:
+      response = session.put(url + '/api/container/barcode/' + row['Barcode'],headers=headers,data=payload)
+
+      if response.status_code == 422:
+        print(response.content)
+      elif response.status_code == 200:
+        #print(name)
+        pass
+      else:
+        print(str(response.status_code) + str(response.content))
+
+    if False:
+      response = session.put(url + '/api/chemical/cas/' + row['CAS'],headers=headers,data=payload)
+
+      if response.status_code == 422:
+        print(response.content)
+      elif response.status_code == 200:
+        #print(name)
+        pass
+      else:
+        print(str(response.status_code) + str(response.content))
+
 
 

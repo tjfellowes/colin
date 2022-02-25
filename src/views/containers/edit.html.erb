@@ -23,7 +23,7 @@
         <dt class="col-md-2">Location: </dt>
         <dd class="col-md-6">
             <select class="form-control selectpicker" id="location_id" name="location_id" aria-describedby="location" data-live-search="true">
-            <% Colin::Models::Location.active.each do |location| %>
+            <% Colin::Models::Location.active.can_store_chemicals.each do |location| %>
             <option <%= "selected" if container.current_location.location.id == location.id %> value="<%= location.id %>"><%= location.location_path %></option>
             <% end %>  
             </select>
@@ -73,7 +73,7 @@
         <dt class="col-md-2">Melting point:</dt>
         <dd class="col-md-4">
             <div class="input-group">
-                <input type="text" class="form-control w-75" name="melting_point" value="<%= container.chemical.melting_point.density.to_s if !container.chemical.melting_point.nil? %>" readonly>
+                <input type="text" class="form-control w-75" name="melting_point" value="<%= container.chemical.melting_point.to_s if !container.chemical.melting_point.nil? %>" readonly>
                 <div class="input-group-append">
                     <div class="input-group-text"> &#8451;</div>
                 </div>
@@ -82,7 +82,7 @@
         <dt class="col-md-2">Boiling point:</dt>
         <dd class="col-md-4">
             <div class="input-group">
-                <input type="text" class="form-control w-75" name="boiling_point" value="<%= container.chemical.boiling_point.density.to_s if !container.chemical.boiling_point.nil? %>" readonly>
+                <input type="text" class="form-control w-75" name="boiling_point" value="<%= container.chemical.boiling_point.to_s if !container.chemical.boiling_point.nil? %>" readonly>
                 <div class="input-group-append">
                     <div class="input-group-text"> &#8451;</div>
                 </div>
@@ -106,6 +106,31 @@
             <% end %>  
         </select>
         </dd>
+        <dt class="col-md-2">Hazard classification:</dt>
+        <dd class="col-md-10">
+        <select class="form-control selectpicker" multiple title="Hazard classifications" id="haz_classes" name="haz_class_ids[]" aria-describedby="haz_classes" data-live-search="true" disabled>
+            <% Colin::Models::HazClass.toplevel.each do |hazclass| %>
+                <option <%= "selected" if container.chemical.haz_class.each.map{|h| h.superclass_id}.include? hazclass.id %> value="<%= hazclass.id %>"><%= hazclass.description %></option>
+            <% end %>  
+        </select>
+        </dd>
+        <dt class="col-md-2">Pictogram:</dt>
+        <dd class="col-md-4">
+             <select class="form-control selectpicker" multiple title="Pictogram" id="pictograms" name="pictogram_ids[]" aria-describedby="pictograms" data-live-search="true" disabled>
+            <% Colin::Models::Pictogram.all.each do |pictogram| %>
+                <option <%= "selected" if container.chemical.pictogram.each.map{|p| p.id}.include? pictogram.id %> value="<%= pictogram.id %>" data-content="<img class='img-thumbnail img-fluid' style='width:50px;height:50px;' src='/api/pictogram/image/id/<%= pictogram.id %>'>&nbsp;<%= pictogram.name %>"></option>
+            <% end %>  
+            </select>
+        </dd>
+        <dt class="col-md-2">Signal word:</dt>
+        <dd class="col-md-4">
+            <select class="form-control selectpicker" title="Signal Word" id="signal_word" name="signal_word" aria-describedby="signal_word" disabled>
+            <% Colin::Models::SignalWord.all.each do |signalword| %>
+                <option value="<%= signalword.name %>"><%= signalword.name %></option>
+            <% end %>  
+            </select>
+        </dd>
+
         <hr class="w-100"/>
 
         <dt class="col-md-2">UN number:</dt>

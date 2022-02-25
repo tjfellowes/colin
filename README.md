@@ -159,8 +159,8 @@ Creates a container with the following fields.
 * `signal_word` - string - GHS signal word
 * `haz_stats` - string - GHS hazard statement code <https://unece.org/sites/default/files/2021-09/GHS_Rev9E_0.pdf>. can be passed multiple times as an array `haz_stats[]`
 * `prec_stats` - string - GHS precaution statement code <https://unece.org/sites/default/files/2021-09/GHS_Rev9E_0.pdf>. can be passed multiple times as an array `prec_stats[]`
-* `haz_classes` - string - GHS hazard classification. can be passed multiple times as an array `haz_classes[]`
-* `pictograms` - string - GHS pictograms. can be passed multiple times as an array `pictograms[]`
+* `haz_class_ids` - string - GHS hazard classification. can be passed multiple times as an array `haz_class_ids[]`
+* `pictogram_ids` - string - GHS pictograms. can be passed multiple times as an array `pictogram_ids[]`
 
   
 ## Known Issues

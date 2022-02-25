@@ -16,7 +16,7 @@
         <dt class="col-md-2">Location: </dt>
         <dd class="col-md-6">
         <select class="form-control selectpicker" id="location_id" name="location_id" aria-describedby="location" title="Location" data-live-search="true">      
-            <% Colin::Models::Location.active.each do |location| %>
+            <% Colin::Models::Location.active.can_store_chemicals.each do |location| %>
             <option value="<%= location.id %>"><%= location.location_path %></option>
             <% end %>  
         </select>        
@@ -96,30 +96,28 @@
         </select>
         </dd>
         <dt class="col-md-2">Hazard classification:</dt>
-        <dd class="col-md-4">
-        <select class="form-control selectpicker" multiple title="Hazard classifications" id="haz_classes" name="haz_class_ids[]" aria-describedby="haz_classes" data-live-search="true">
-            <% Colin::Models::HazClass.all.each do |hazclass| %>
+        <dd class="col-md-10">
+        <select class="form-control selectpicker mb-2" multiple title="Hazard classifications" id="haz_classes" aria-describedby="haz_classes" data-live-search="true">
+            <% Colin::Models::HazClass.toplevel.each do |hazclass| %>
                 <option value="<%= hazclass.id %>"><%= hazclass.description %></option>
             <% end %>  
         </select>
-        </dd>
-        <dt class="col-md-2">Hazard category:</dt>
-        <dd class="col-md-4">
-            <input class="form-control" id="category" name="category" placeholder="Category" aria-describedby="category">
+        <dl id="haz_class_categories" class="row mb-0" style="display:none;">            
+        </dl>
         </dd>
         <dt class="col-md-2">Pictogram:</dt>
         <dd class="col-md-4">
              <select class="form-control selectpicker" multiple title="Pictogram" id="pictograms" name="pictogram_ids[]" aria-describedby="pictograms" data-live-search="true">
             <% Colin::Models::Pictogram.all.each do |pictogram| %>
-                <option value="<%= pictogram.id %>" data-content="<img class='img-thumbnail img-fluid' style='width:50px;height:50px;' src='/api/image/pictogram/<%= pictogram.id %>'>&nbsp;<%= pictogram.name %>"></option>
+                <option value="<%= pictogram.id %>" data-content="<img class='img-thumbnail img-fluid' style='width:50px;height:50px;' src='/api/pictogram/image/id/<%= pictogram.id %>'>&nbsp;<%= pictogram.name %>"></option>
             <% end %>  
             </select>
         </dd>
         <dt class="col-md-2">Signal word:</dt>
         <dd class="col-md-4">
-            <select class="form-control selectpicker" title="Signal Word" id="signal_word" name="signal_word_id" aria-describedby="signal_word">
+            <select class="form-control selectpicker" title="Signal Word" id="signal_word" name="signal_word" aria-describedby="signal_word">
             <% Colin::Models::SignalWord.all.each do |signalword| %>
-                <option value="<%= signalword.id %>"><%= signalword.name %></option>
+                <option value="<%= signalword.name %>"><%= signalword.name %></option>
             <% end %>  
             </select>
         </dd>
@@ -145,7 +143,37 @@
 <script src="/js/cas_autocomplete.js"></script>
 <script>
 $(document).ready(function () {
+    $('#haz_classes').on('hide.bs.select', function () {
+        $('#haz_class_categories').empty().show()
+        for (i of $('#haz_classes').val()) {
+            $.ajax({
+                type: "GET",
+                url: "/api/haz_class/id/" + i,
+                data: {},
+                dataType: "json",
+                success: function (response) {
+                    var selector = '<select class="form-control selectpicker" title="Category" id="haz_class_' + response['id'] + '"></select>'
+
+                    $('#haz_class_categories').append('<dt class="col-md-2">' + response['description'] + '</dt>').append('<dd class="col-md-10">' + selector + '</dd>');
+
+                    for (j of response['subclasses']) {
+                        $('#haz_class_' + response['id']).append('<option value="' + j['id'] + '">' + j['description'] + '</option>');
+                    }
+
+                    $('#haz_class_' + response['id']).selectpicker('refresh');
+                }
+            });
+        }
+    });
+});
+</script>
+<script>
+$(document).ready(function () {
   $("#submit").click(function () {
+    $('#haz_class_categories').append("<select multiple hidden name='haz_class_ids[]'></select>")
+    for (i of $('#haz_classes').val()) {
+        $("[name='haz_class_ids[]']").append("<option selected value=" + $('#haz_class_' + i).val() + ">item</option>")
+    }
     $.ajax({
       type: "POST",
       url: "/api/container",
@@ -172,7 +200,7 @@ $(document).ready(function () {
         pictogram_ids: $("[name='pictogram_ids[]']").val(),
         haz_class_ids: $("[name='haz_class_ids[]']").val(),
         category: $("[name='category']").val(),
-        signal_word_id: $("[name='signal_word_id']").val(),
+        signal_word: $("[name='signal_word']").val(),
         un_number: $("[name='un_number']").val(),
         un_proper_shipping_name: $("[name='un_proper_shipping_name']").val(),
         dg_class: $("[name='dg_class']").val(),

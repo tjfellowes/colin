@@ -18,7 +18,6 @@ ActiveRecord::Schema.define(version: 2022_02_04_175416) do
   create_table "chemical_haz_classes", force: :cascade do |t|
     t.bigint "chemical_id"
     t.bigint "haz_class_id"
-    t.string "category"
     t.index ["chemical_id"], name: "index_chemical_haz_classes_on_chemical_id"
     t.index ["haz_class_id"], name: "index_chemical_haz_classes_on_haz_class_id"
   end
@@ -124,6 +123,8 @@ ActiveRecord::Schema.define(version: 2022_02_04_175416) do
 
   create_table "haz_classes", force: :cascade do |t|
     t.string "description"
+    t.bigint "superclass_id"
+    t.index ["superclass_id"], name: "index_haz_classes_on_superclass_id"
   end
 
   create_table "haz_stats", force: :cascade do |t|
@@ -160,6 +161,7 @@ ActiveRecord::Schema.define(version: 2022_02_04_175416) do
 
   create_table "pictograms", force: :cascade do |t|
     t.string "name"
+    t.string "code"
     t.binary "picture"
   end
 

@@ -129,6 +129,7 @@ class Colin::Routes::Container < Colin::BaseWebApp
             haz_substance: haz_substance, 
             un_number: params[:un_number], 
             un_proper_shipping_name: params[:un_proper_shipping_name],
+            signal_word: signal_word,
             dg_class_1: dg_class_1, 
             dg_class_2: dg_class_2, 
             dg_class_3: dg_class_3, 
@@ -151,7 +152,7 @@ class Colin::Routes::Container < Colin::BaseWebApp
           if params[:haz_stats].blank?
             #Nothing to do here!
           else
-            for i in params[:haz_stats]
+            for i in Array(params[:haz_stats])
               if Colin::Models::HazStat.exists?(code: i)
                 haz_stat = Colin::Models::HazStat.where(code: i).take
                 Colin::Models::ChemicalHazStat.create!(chemical_id: chemical.id, haz_stat_id: haz_stat.id)
@@ -160,11 +161,11 @@ class Colin::Routes::Container < Colin::BaseWebApp
               end
             end
           end
-    
+
           if params[:prec_stats].blank?
             #Nothing to do here!
           else
-            for i in params[:prec_stats]
+            for i in Array(params[:prec_stats])
               if Colin::Models::PrecStat.exists?(code: i.split(',')[0])
                 prec_stat = Colin::Models::PrecStat.where(code: i.split(',')[0]).take
                 chemical_prec_stat = Colin::Models::ChemicalPrecStat.create!(chemical_id: chemical.id, prec_stat_id: prec_stat.id)
@@ -178,27 +179,27 @@ class Colin::Routes::Container < Colin::BaseWebApp
               end
             end
           end
-    
-          if params[:haz_class_ids].blank?
-            #Nothing to do here!
-          else
-            for i in params[:haz_class_ids]
-              if Colin::Models::HazClass.exists?(id: i)
-                chemical_haz_class = Colin::Models::ChemicalHazClass.create!(chemical_id: chemical.id, haz_class_id: i, category: params[:category])
-              else
-                throw(:halt, [422, "Invalid hazard classification id."])
-              end
-            end
-          end
-    
+
           if params[:pictogram_ids].blank?
             #Nothing to do here!
           else
-            for i in params[:pictogram_ids]
+            for i in Array(params[:pictogram_ids])
               if Colin::Models::Pictogram.exists?(id: i)
                 Colin::Models::ChemicalPictogram.create!(chemical_id: chemical.id, pictogram_id: i)
               else
                 throw(:halt, [422, "Invalid pictogram id."])
+              end
+            end
+          end
+
+          if params[:haz_class_ids].blank?
+            #Nothing to do here!
+          else
+            for i in Array(params[:haz_class_ids])
+              if Colin::Models::HazClass.exists?(id: i)
+                Colin::Models::ChemicalHazClass.create!(chemical_id: chemical.id, haz_class_id: i)
+              else
+                throw(:halt, [422, "Invalid hazard class id " + i.to_s])
               end
             end
           end
@@ -228,7 +229,7 @@ class Colin::Routes::Container < Colin::BaseWebApp
       if !params[:barcode].blank?
         barcode = params[:barcode]
       else
-        barcode = Colin::Models::Container.all.select(:barcode).map{|i| i.barcode.to_i}.max + 1
+        barcode = Colin::Models::Container.unscoped.all.select(:barcode).map{|i| i.barcode.to_i}.max + 1
       end
 
       container = Colin::Models::Container.create(barcode: barcode, description: params[:description], container_size: container_size, size_unit: size_unit, date_purchased: Time.now.utc.iso8601, chemical_id: chemical.id, supplier_id: supplier_id, product_number: params[:product_number], lot_number: params[:lot_number], owner_id: params[:owner_id], user_id: current_user.id)

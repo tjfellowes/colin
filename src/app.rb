@@ -43,7 +43,8 @@ module Colin
       Colin::Routes::Container,
       Colin::Routes::Location,
       Colin::Routes::LocationType,
-      Colin::Routes::Image
+      Colin::Routes::Pictogram,
+      Colin::Routes::HazClass
     ]
   end
 
@@ -209,6 +210,10 @@ module Colin
         halt(403, "Not authorised!")
       end
     end 
+
+    get '/waste/special' do
+      erb :"/waste/new.html"
+    end
 
     get '/waste/special/label' do
       erb :"/waste/special_waste_label.html", layout: false

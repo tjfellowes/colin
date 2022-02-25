@@ -6,16 +6,17 @@ class AddExtraSafetyInformation < ActiveRecord::Migration[5.2]
 
     create_table :haz_classes do |t|
       t.string :description
+      t.references  :superclass,  references: :haz_classes
     end
 
     create_table :chemical_haz_classes do |t|
       t.references :chemical, index: true
       t.references :haz_class, index: true
-      t.string :category
     end
 
     create_table :pictograms do |t|
       t.string :name
+      t.string :code
       t.binary :picture
     end
 

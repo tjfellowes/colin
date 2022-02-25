@@ -327,6 +327,7 @@ class Colin::Routes::Chemical < Colin::BaseWebApp
         dg_class_3: dg_class_3, 
         schedule: schedule, 
         packing_group: packing_group,
+        signal_word: signal_word,
         storage_temperature_min: storage_temperature_min, 
         storage_temperature_max: storage_temperature_max, 
         inchi: params[:inchi],
@@ -372,40 +373,37 @@ class Colin::Routes::Chemical < Colin::BaseWebApp
         end
       end
 
-      if params[:haz_classes].blank?
+      if params[:pictogram_ids].blank?
         #Nothing to do here!
       else
-        Colin::Models::ChemicalHazClass.where(chemical_id: chemical.id).delete_all
-        for i in params[:haz_class]
-          if Colin::Models::HazClass.exists?(description: i.strip.split(',')[0])
-            haz_class = Colin::Models::HazClass.where(description: i.strip.split(',')[0]).take
-            category = i.strip.split(',')[1]
-            chemical_haz_class = Colin::Models::ChemicalHazClass.create!(chemical_id: chemical.id, haz_class_id: haz_class.id, category: category)
+        Colin::Models::ChemicalPictogram.where(chemical_id: chemical.id).delete_all
+        for i in Array(params[:pictogram_ids])
+          if Colin::Models::Pictogram.exists?(id: i)
+            Colin::Models::ChemicalPictogram.create!(chemical_id: chemical.id, pictogram_id: i)
           else
-            throw(:halt, [422, "Invalid hazard classification #{i.strip.split(',')[0]}."])
+            throw(:halt, [422, "Invalid pictogram id."])
           end
         end
       end
 
-      if params[:pictograms].blank?
+      if params[:haz_class_ids].blank?
         #Nothing to do here!
       else
-        Colin::Models::ChemicalPictogram.where(chemical_id: chemical.id).delete_all
-        for i in params[:pictogram]
-          if Colin::Models::Pictogram.exists?(name: i.strip)
-            pictogram = Colin::Models::Pictogram.where(code: i.strip).take
-            Colin::Models::ChemicalPictogram.create!(chemical_id: chemical.id, pictogram_id: pictogram.id)
+        Colin::Models::ChemicalHazClass.where(chemical_id: chemical.id).delete_all
+        for i in Array(params[:haz_class_ids])
+          if Colin::Models::HazClass.exists?(id: i)
+            Colin::Models::ChemicalHazClass.create!(chemical_id: chemical.id, haz_class_id: i)
           else
-            throw(:halt, [422, "Invalid pictogram name #{i.strip}."])
+            throw(:halt, [422, "Invalid hazard class id."])
           end
         end
       end
       #The chemical has now been updated!
+      chemical.to_json()
 
     else
       throw(:halt, [404, "Chemical with CAS #{params[:cas]} not found"])
       #Now that we have an instance of the chemical, we can deal with foreign key
     end
-    redirect to '/container/search?query=' + params[:new_cas].to_s
   end
 end
