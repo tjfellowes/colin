@@ -1,7 +1,7 @@
 <div class="jumbotron w-50" > 
 <h1>Add location</h1>
   <div class="form-group">
-    <select class="form-control selectpicker" id="parent_id" name="parent_id" aria-describedby="parent" title="Parent Location" data-live-search="true">      
+    <select class="form-control selectpicker" id="parent_id" name="parent_id" title="Parent Location" data-live-search="true">      
           <% Colin::Models::Location.active.each do |location| %>
           <option value="<%= location.id %>"><%= location.location_path %></option>
           <% end %>  

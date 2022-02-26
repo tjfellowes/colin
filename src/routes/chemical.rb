@@ -36,7 +36,7 @@ class Colin::Routes::Chemical < Colin::BaseWebApp
       halt(422, 'Must provide a CAS number for chemical.')
 
     elsif Colin::Models::Chemical.where("cas ILIKE :cas", { cas: "%"+params[:cas]+"%"}).count > 1
-      Colin::Models::Chemical.where("cas ILIKE :cas", { cas: "%"+params[:cas]+"%"}).select(:id, :cas).to_json()
+      Colin::Models::Chemical.where("cas ILIKE :cas", { cas: "%"+params[:cas]+"%"}).select(:id, :prefix, :name, :cas).to_json()
 
     elsif Colin::Models::Chemical.where("cas ILIKE :cas", { cas: "%"+params[:cas]+"%"}).count == 1
       Colin::Models::Chemical.where("cas ILIKE :cas", { cas: "%"+params[:cas]+"%"}).to_json(include: {

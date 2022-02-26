@@ -3,7 +3,7 @@
 
   <form id="location_select" class="form-group w-50 px-2">
     <fieldset id="location_fieldset">
-    <select class="form-control selectpicker" id="location_id" name="location_id" aria-describedby="location" title="Location" data-live-search="true">      
+    <select class="form-control selectpicker" id="location_id" name="location_id" title="Location" data-live-search="true">      
       <% Colin::Models::Location.active.each do |location| %>
       <option value="<%= location.id %>"><%= location.location_path %></option>
       <% end %>  

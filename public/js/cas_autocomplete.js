@@ -5,10 +5,9 @@ $( "#cas" ).autocomplete({
             type: "GET",
             dataType: "json",
             success: function (data) {
-                chemicals = data;
-                response($.map(chemicals, function(item) {
+                response($.map(data, function (item) {
                     return {
-                        label: item.cas,
+                        label: item.cas + ' - ' + item.name,
                         value: item.cas
                     };
                 }
@@ -54,8 +53,11 @@ $( "#cas" ).autocomplete({
                     $("#density").val('').attr('disabled', false);
                     $("#melting_point").val('').attr('disabled', false);
                     $("#boiling_point").val('').attr('disabled', false);
+                    $("#haz_classes").val('').attr('disabled', false);
                     $("#haz_stats").val('').attr('disabled', false);
                     $("#prec_stats").val('').attr('disabled', false);
+                    $("#signal_word").val('').attr('disabled', false);
+                    $("#pictograms").val('').attr('disabled', false);
                     $("#un_number").val('').attr('disabled', false);
                     $("#un_proper_shipping_name").val('').attr('disabled', false);
                     $("#dg_class").val('').attr('disabled', false);

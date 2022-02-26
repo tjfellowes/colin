@@ -71,6 +71,16 @@
         container.chemical.boiling_point.to_s + ' &#8451;' end %></dd>
         <hr class="w-100"/>
 
+        <dt class="col-md-2 mb-3">Hazard classification:</dt>
+        <dd class="col-md-10">
+            <dl class="row">
+                <% if !container.chemical.haz_class.nil? 
+                container.chemical.haz_class.each do |haz_class|%>
+                <dd class="col-md-12"><%= haz_class.superclass.description %> (<%= haz_class.description %>)</dd>
+                <%end 
+                end%>
+            </dl>
+        </dd>
         <dt class="col-md-2 mb-3">Hazard statements:</dt>
         <dd class="col-md-10">
             <dl class="row">
@@ -94,16 +104,6 @@
             </dl>
         </dd>
 
-        <dt class="col-md-2 mb-3">Hazard classification:</dt>
-        <dd class="col-md-10">
-            <dl class="row">
-                <% if !container.chemical.haz_class.nil? 
-                container.chemical.haz_class.each do |haz_class|%>
-                <dd class="col-md-12"><%= haz_class.superclass.description %> (<%= haz_class.description %>)</dd>
-                <%end 
-                end%>
-            </dl>
-        </dd>
         <dt class="col-md-2 mb-3">Pictogram:</dt>
         <dd class="col-md-4">
             <% if !container.chemical.pictogram.nil? 

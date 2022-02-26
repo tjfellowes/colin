@@ -4,7 +4,7 @@
     <input hidden type="text" name="location_id" id="location_id" value="<%= params[:location_id] %>"/>
     <div class="form-group">
         <label for="parent_id">Parent location</label>
-        <select class="form-control selectpicker" id="parent_id" name="parent_id" aria-describedby="parent" title="Parent Location" data-live-search="true">      
+        <select class="form-control selectpicker" id="parent_id" name="parent_id" title="Parent Location" data-live-search="true">      
             <% Colin::Models::Location.active.each do |parent_location| %>
             <option <%= 'selected' if location.parent_id == parent_location.id %> value="<%= parent_location.id %>"><%= parent_location.location_path %></option>
             <% end %>  

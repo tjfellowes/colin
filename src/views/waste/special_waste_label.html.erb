@@ -34,12 +34,12 @@ name = current_user.name
 date = Time.now.utc.strftime("%d/%m/%Y")
 description = params[:description]
 components = params[:component].map{ |i| 
-    if @chemical = Colin::Models::Chemical.where(cas: i)
-        @chemical.take
+    if @container = Colin::Models::Container.joins('INNER JOIN chemicals ON containers.chemical_id = chemicals.id').where("barcode LIKE :query OR chemicals.cas LIKE :query", { query: i})
+        @container.take
     end
     }.compact
 
-hazards  = components.map{ |i| i.haz_class.map{ |j| j.description} + i.haz_stat.map{ |j| j.code.split('+')} + i.pictogram.map{ |k| k.code}}.flatten
+hazards  = components.map{ |i| i.chemical.haz_class.map{ |j| j.description} + i.chemical.haz_stat.map{ |j| j.code.split('+')} + i.chemical.pictogram.map{ |k| k.code}}.flatten
 %>
 <% explosive, carcinogenic, release_gas, oxidising, corrosive, flammable, infectious, sensitising, irritant, reprotoxic, ecotoxic, harmful, mutagenic, other, toxic, pops = false
 
@@ -71,7 +71,7 @@ toxic = true if (hazards & ['Acute toxicity', 'Germ cell mutagenicity', 'Carcino
     <p><strong>Description of Waste</strong></p>
     <%= description %>
     <p><strong>List all components, including concentrations (if known):</strong></p>
-    <%= components.map{ |i| [i.prefix, i.name].join('')}.join(', ') %>
+    <%= components.map{ |i| [i.chemical.prefix, i.chemical.name].join('')}.join(', ') %>
 </td>
 </tr>
 <tr>
@@ -79,7 +79,7 @@ toxic = true if (hazards & ['Acute toxicity', 'Germ cell mutagenicity', 'Carcino
 </tr>
 <tr>
 <td colspan="3"><strong>Hazard Statements/Properties (write all Hazard Statement in the box and tick all relevant Hazard Properties):</strong><br>
-    <%= components.map{ |i| i.haz_stat.map{ |j| j.code + ' - ' + j.description}}.join('<br>') %>
+    <%= components.map{ |i| i.chemical.haz_stat.map{ |j| j.code + ' - ' + j.description}}.join('<br>') %>
 </td>
 </tr>
 <tr class="hazards">

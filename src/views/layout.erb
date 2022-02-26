@@ -29,6 +29,7 @@
 </head>
 
 <body>
+  <% active_user = current_user %>
   <div class="container">
     <nav class="navbar navbar-toggleable-sm navbar-light bg-faded">
         <ul class="navbar-nav ms-auto">
@@ -66,22 +67,22 @@
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="chemicalsDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Chemicals</a>
             <div class="dropdown-menu" aria-labelledby="chemicalsDropdown">
-              <% if current_user.can_create_container? %>
+              <% if active_user.can_create_container? %>
               <a class="dropdown-item" href="/container/new">Add Chemical</a>
               <% end %>
               <a class="dropdown-item" href="/container">List Chemicals</a>
             </div>
           </li>
 
-          <% if current_user.can_create_location? || current_user.can_edit_location? || current_user.can_edit_container? %>
+          <% if active_user.can_create_location? || active_user.can_edit_location? || active_user.can_edit_container? %>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="locationsDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Locations</a>
             <div class="dropdown-menu" aria-labelledby="locationsDropdown">
-              <% if current_user.can_edit_container? %>
+              <% if active_user.can_edit_container? %>
               <a class="dropdown-item" href="/location/stocktake">Stocktake</a>
               <% end %>
               <div class="dropdown-divider"></div>
-              <% if current_user.can_create_location? %>
+              <% if active_user.can_create_location? %>
               <a class="dropdown-item" href="/location/new">Add Location</a>
               <% end %>
               <a class="dropdown-item" href="/location">List Locations</a> 
@@ -89,14 +90,14 @@
           </li>
           <% end %>
 
-          <% if current_user.can_create_user? || current_user.can_edit_user? %>
+          <% if active_user.can_create_user? || active_user.can_edit_user? %>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#"id="managementDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Users</a>
             <div class="dropdown-menu" style="width: 300px;" aria-labelledby="managementDropdown">
-              <% if current_user.can_create_user? %>
+              <% if active_user.can_create_user? %>
               <a class="dropdown-item" href="/user/new">Add User</a>
               <% end %>
-              <% if current_user.can_edit_user? %>
+              <% if active_user.can_edit_user? %>
               <a class="dropdown-item" href="/user">List Users</a>
               <% end %>
             </div>
@@ -113,7 +114,7 @@
         </ul>
         <ul class="navbar-nav ml-auto justify-content-end">
           <li class="nav-item"> 
-            <a class="nav-link" href="/user/edit">Logged in as <%= current_user.name %></a>
+            <a class="nav-link" href="/user/edit">Logged in as <%= active_user.name %></a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/user/logout">Logout</a>
