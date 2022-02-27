@@ -15,7 +15,7 @@ class Colin::Models::Location < ActiveRecord::Base
   has_many :location_standard
   has_many :standard, through: :location_standards, class_name: "Standard"
 
-  def location_path 
+  def location_path_slow
     path = []
     if Colin::Models::LocationType.where(name: ['Building', 'Room']).include?(self.location_type)
       self.path_ids.each do |location_id|
@@ -32,5 +32,10 @@ class Colin::Models::Location < ActiveRecord::Base
       end 
       return path.join('/')
     end
+  end
+
+  def location_path
+    hidden = ['Building', 'Room']
+    return self.ancestors.includes(:location_type).map{ |i| i.name unless hidden.include?(i.location_type.name) }.append(self.name).compact().join('/')
   end
 end
