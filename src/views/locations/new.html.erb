@@ -1,11 +1,8 @@
 <div class="jumbotron w-50" > 
 <h1>Add location</h1>
   <div class="form-group">
-    <select class="form-control selectpicker" id="parent_id" name="parent_id" title="Parent Location" data-live-search="true">      
-          <% Colin::Models::Location.active.each do |location| %>
-          <option value="<%= location.id %>"><%= location.location_path %></option>
-          <% end %>  
-      </select>
+    <select class="form-control selectpicker" id="location_list" name="parent_id" title="Parent Location" data-live-search="true">      
+    </select>
   </div>
   <div class="form-group">
     <input type="text" name="name" placeholder="Name" class="form-control"/>
@@ -37,13 +34,14 @@
     Monitored?
   </label>
   </div>
-  <button id="submit" class="btn btn-primary">Create Location</button> 
+  <button id="create_location" class="btn btn-primary">Create Location</button> 
   <button class="btn btn-secondary" id="cancel">Cancel</button>
 </div>
 
 <script>
 $(document).ready(function () {
-  $("#submit").click(function () {
+  PopulateLocationList("#location_list");
+  $("#create_location").click(function () {
     $.ajax({
       type: "POST",
       url: "/api/location",

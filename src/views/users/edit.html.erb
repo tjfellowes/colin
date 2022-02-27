@@ -80,14 +80,14 @@
     </div>
   </div>
 
-  <button id="submit" class="btn btn-primary">Update User</button> 
+  <button id="update_user" class="btn btn-primary">Update User</button> 
   <button class="btn btn-secondary" id="cancel">Cancel</button>
 
 </div>
 
 <script>
 $(document).ready(function () {
-  $("#submit").click(function (e) {
+  $("#update_user").click(function (e) {
     $.ajax({
       type: "PUT",
       url: "/api/user/username/" + $("[name='username']").val(),

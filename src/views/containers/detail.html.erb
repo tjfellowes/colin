@@ -13,7 +13,7 @@
     <div class="alert alert-warning w-50" role="alert">
         Container was deleted <%= container.date_disposed.strftime("%a %d/%m/%Y at %I:%M %p") %>.
         <input hidden name="barcode" value="<%=container.barcode%>">
-        <a class="btn btn-outline-dark btn-lg btn-block my-3" role="button" id="undo">Undo</a>
+        <a class="btn btn-outline-dark btn-lg btn-block my-3" role="button" id="undelete">Undo</a>
     </div>
     <% end %>
 
@@ -154,7 +154,7 @@
 
 <script>
 $(document).ready(function () {
-  $("#undo").click(function () {
+  $("#undelete").click(function () {
     $.ajax({
       type: "POST",
       url: "/api/container/barcode/" + $("[name=barcode]").val(),

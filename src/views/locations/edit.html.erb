@@ -4,10 +4,7 @@
     <input hidden type="text" name="location_id" id="location_id" value="<%= params[:location_id] %>"/>
     <div class="form-group">
         <label for="parent_id">Parent location</label>
-        <select class="form-control selectpicker" id="parent_id" name="parent_id" title="Parent Location" data-live-search="true">      
-            <% Colin::Models::Location.active.each do |parent_location| %>
-            <option <%= 'selected' if location.parent_id == parent_location.id %> value="<%= parent_location.id %>"><%= parent_location.location_path %></option>
-            <% end %>  
+        <select class="form-control selectpicker" id="location_list" name="parent_id" title="Parent Location" data-live-search="true">      
         </select>
     </div>
     <div class="form-group">
@@ -44,15 +41,16 @@
       Monitored?
     </label>
     </div>-->
-    <button id="submit" class="btn btn-primary">Update Location</button> 
+    <button class="btn btn-primary" id="update_location" >Update Location</button> 
     <button class="btn btn-secondary" id="cancel">Cancel</button>
-    <button class="btn btn-danger" id="delete">Delete</button>
+    <button class="btn btn-danger" id="delete_location">Delete</button>
 
 </div>
 
 <script>
 $(document).ready(function () {
-  $("#submit").click(function () {
+  PopulateLocationList("#location_list");
+  $("#update_location").click(function () {
     $.ajax({
       type: "PUT",
       url: "/api/location/id/" + $("[name=location_id]").val(),
@@ -69,7 +67,7 @@ $(document).ready(function () {
     });
   });
   $("#cancel").click(function () {window.location.href = "/";});
-  $("#delete").click(function () {
+  $("#delete_location").click(function () {
     $.ajax({
       type: "DELETE",
       url: "/api/location/id/" + $("[name=location_id]").val(),

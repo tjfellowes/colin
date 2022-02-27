@@ -136,7 +136,7 @@
         <dt class="col-md-2">Schedule:</dt>
         <dd class="col-md-2"><input class="form-control" id="schedule" name="schedule"></dd>
     </dl>
-    <button class="btn btn-primary btn-lg btn-block" id="submit">Save</button>
+    <button class="btn btn-primary btn-lg btn-block" id="create_container">Save</button>
     <button class="btn btn-secondary btn-lg btn-block" id="cancel">Cancel</button>
 </div>
 
@@ -169,7 +169,7 @@ $(document).ready(function () {
 </script>
 <script>
 $(document).ready(function () {
-  $("#submit").click(function () {
+  $("#create_container").click(function () {
     $('#haz_class_categories').append("<select multiple hidden name='haz_class_ids[]'></select>")
     for (i of $('#haz_classes').val()) {
         $("[name='haz_class_ids[]']").append("<option selected value=" + $('#haz_class_' + i).val() + ">item</option>")

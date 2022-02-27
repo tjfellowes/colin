@@ -161,12 +161,11 @@
         <dd class="col-md-2"><input class="form-control" id="schedule" name="schedule" value="<%=  
         chemical.schedule.number if !chemical.schedule.nil?%>"></dd>
     </dl>
-    <button class="btn btn-primary btn-lg btn-block" id="submit">Save</button>
+    <button class="btn btn-primary btn-lg btn-block" id="update_chemical">Save</button>
     <button class="btn btn-secondary btn-lg btn-block" id="cancel">Cancel</button>
 </div>
 
 <script>
-var test
 $(document).ready(function () {
     $('#haz_classes').on('hide.bs.select', function () {
         $('#haz_class_categories').empty().show()
@@ -202,40 +201,40 @@ $(document).ready(function () {
 
 <script>
 $(document).ready(function () {
-  $("#submit").click(function () {
-    $('#haz_class_categories').append("<select multiple hidden name='haz_class_ids[]'></select>")
-    for (i of $('#haz_classes').val()) {
-        $("[name='haz_class_ids[]']").append("<option selected value=" + $('#haz_class_' + i).val() + ">item</option>")
-    }
-    $.ajax({
-      type: "PUT",
-      url: "/api/chemical/cas/" + $("[name='new_cas']").val(),
-      data: {
-        new_cas: $("[name='new_cas']").val(),
-        name: $("[name='name']").val(),
-        prefix: $("[name='prefix']").val(),
-        inchi: $("[name='inchi']").val(),
-        smiles: $("[name='smiles']").val(),
-        pubchem: $("[name='pubchem']").val(),
-        density: $("[name='density']").val(),
-        melting_point: $("[name='melting_point']").val(),
-        boiling_point: $("[name='boiling_point']").val(),
-        haz_stats: $("[name='haz_stats[]']").val(),
-        prec_stats: $("[name='prec_stats[]']").val(),
-        pictogram_ids: $("[name='pictogram_ids[]']").val(),
-        haz_class_ids: $("[name='haz_class_ids[]']").val(),
-        category: $("[name='category']").val(),
-        signal_word: $("[name='signal_word']").val(),
-        un_number: $("[name='un_number']").val(),
-        un_proper_shipping_name: $("[name='un_proper_shipping_name']").val(),
-        dg_class: $("[name='dg_class']").val(),
-        packing_group: $("[name='packing_group']").val(),
-        schedule: $("[name='schedule']").val()
-      },
-      dataType: "json",
-      success: function () {window.location.href = "/";}
+    $("#update_chemical").click(function () {
+        $('#haz_class_categories').append("<select multiple hidden name='haz_class_ids[]'></select>")
+        for (i of $('#haz_classes').val()) {
+            $("[name='haz_class_ids[]']").append("<option selected value=" + $('#haz_class_' + i).val() + ">item</option>")
+        }
+        $.ajax({
+            type: "PUT",
+            url: "/api/chemical/cas/" + $("[name='new_cas']").val(),
+            data: {
+                new_cas: $("[name='new_cas']").val(),
+                name: $("[name='name']").val(),
+                prefix: $("[name='prefix']").val(),
+                inchi: $("[name='inchi']").val(),
+                smiles: $("[name='smiles']").val(),
+                pubchem: $("[name='pubchem']").val(),
+                density: $("[name='density']").val(),
+                melting_point: $("[name='melting_point']").val(),
+                boiling_point: $("[name='boiling_point']").val(),
+                haz_stats: $("[name='haz_stats[]']").val(),
+                prec_stats: $("[name='prec_stats[]']").val(),
+                pictogram_ids: $("[name='pictogram_ids[]']").val(),
+                haz_class_ids: $("[name='haz_class_ids[]']").val(),
+                category: $("[name='category']").val(),
+                signal_word: $("[name='signal_word']").val(),
+                un_number: $("[name='un_number']").val(),
+                un_proper_shipping_name: $("[name='un_proper_shipping_name']").val(),
+                dg_class: $("[name='dg_class']").val(),
+                packing_group: $("[name='packing_group']").val(),
+                schedule: $("[name='schedule']").val()
+            },
+            dataType: "json",
+            success: function () {window.location.href = "/";}
+        });
     });
-  });
-  $("#cancel").click(function () {window.location.href = "/";});
+    $("#cancel").click(function () {window.location.href = "/";});
 });
 </script>

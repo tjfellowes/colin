@@ -158,13 +158,13 @@
         <dd class="col-md-2"><input class="form-control" id="schedule" name="schedule" value="<%=  
         container.chemical.schedule.number if !container.chemical.schedule.nil?%>" readonly></dd>
     </dl>
-    <button class="btn btn-primary btn-lg btn-block" id="submit">Save</button>
+    <button class="btn btn-primary btn-lg btn-block" id="update_container">Save</button>
     <button class="btn btn-secondary btn-lg btn-block" id="cancel">Cancel</button>
-    <button class="btn btn-outline-danger btn-lg btn-block mt-2" id="delete">Delete</button>
+    <button class="btn btn-outline-danger btn-lg btn-block mt-2" id="delete_container">Delete</button>
 </div>
 <script>
 $(document).ready(function () {
-  $("#submit").click(function () {
+  $("#update_container").click(function () {
     $.ajax({
       type: "PUT",
       url: "/api/container/barcode/" + $("[name=barcode]").val(),
@@ -184,7 +184,7 @@ $(document).ready(function () {
     });
   });
   $("#cancel").click(function () {window.location.href = "/";});
-  $("#delete").click(function () {
+  $("#delete_container").click(function () {
     $.ajax({
       type: "DELETE",
       url: "/api/container/barcode/" + $("[name=barcode]").val(),
