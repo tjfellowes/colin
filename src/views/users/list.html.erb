@@ -13,7 +13,7 @@
     if current_user.id == 1
         @pagy, @users = pagy(Colin::Models::User.all) 
     else
-        @pagy, @users = pagy(Colin::Models::User.active.where(hidden: false)) 
+        @pagy, @users = pagy(Colin::Models::User.active.where(hidden: false).order(:id)) 
     end
     %>
     <% @users.each do |user| %>
