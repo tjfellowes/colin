@@ -43,7 +43,7 @@ components = params[:component].map{ |i|
     if @container = Colin::Models::Container.joins('INNER JOIN chemicals ON containers.chemical_id = chemicals.id').where("barcode LIKE :query OR chemicals.cas LIKE :query", { query: i})
         @container.take
     end
-    }.compact
+    }.uniq.compact
 
 hazards  = components.map{ |i| i.chemical.haz_class.map{ |j| j.description} + i.chemical.haz_stat.map{ |j| j.code.split('+')} + i.chemical.pictogram.map{ |k| k.code}}.flatten
 %>
