@@ -178,7 +178,7 @@ $(document).ready(function () {
                 success: function (response) {
                     var selector = '<select class="form-control selectpicker" title="Category" id="haz_class_' + response['id'] + '"></select>'
 
-                    $('#haz_class_categories').append('<dt class="col-md-8">' + response['description'] + '</dt>').append('<dd class="col-md-4">' + selector + '</dd>');
+                    $('#haz_class_categories').append('<dt class="col-md-8 text-left">' + response['description'] + '</dt>').append('<dd class="col-md-4">' + selector + '</dd>');
 
                     for (j of response['subclasses']) {
                         test = j['id']
