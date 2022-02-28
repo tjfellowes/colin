@@ -154,7 +154,7 @@ $(document).ready(function () {
                 success: function (response) {
                     var selector = '<select class="form-control selectpicker" title="Category" id="haz_class_' + response['id'] + '"></select>'
 
-                    $('#haz_class_categories').append('<dt class="col-md-2">' + response['description'] + '</dt>').append('<dd class="col-md-10">' + selector + '</dd>');
+                    $('#haz_class_categories').append('<dt class="col-md-8">' + response['description'] + '</dt>').append('<dd class="col-md-4">' + selector + '</dd>');
 
                     for (j of response['subclasses']) {
                         $('#haz_class_' + response['id']).append('<option value="' + j['id'] + '">' + j['description'] + '</option>');
