@@ -85,7 +85,7 @@ toxic = true if (hazards & ['Acute toxicity', 'Germ cell mutagenicity', 'Carcino
 </tr>
 <tr>
 <td colspan="3"><strong>Hazard Statements/Properties (write all Hazard Statement in the box and tick all relevant Hazard Properties):</strong><br>
-    <textarea style="height:3.5cm;"><%= components.map{ |i| i.chemical.haz_stat.map{ |j| j.code + ' - ' + j.description}}.join(', ') %></textarea>
+    <textarea style="height:3cm;"><%= components.map{ |i| i.chemical.haz_stat.map{ |j| j.code + ' - ' + j.description}}.join(', ') %></textarea>
 </td>
 </tr>
 <tr class="hazards">

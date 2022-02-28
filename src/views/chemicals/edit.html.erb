@@ -85,8 +85,8 @@
         </dd>
         <hr class="w-100"/>
 
-        <dt class="col-md-8">Hazard classification:</dt>
-        <dd class="col-md-4">
+        <dt class="col-md-2">Hazard classification:</dt>
+        <dd class="col-md-10">
         <select class="form-control selectpicker mb-2" multiple title="Hazard classifications" id="haz_classes" data-live-search="true">
             <% Colin::Models::HazClass.toplevel.each do |hazclass| %>
                 <option <%= "selected" if chemical.haz_class.each.map{|h| h.superclass_id}.include? hazclass.id %> value="<%= hazclass.id %>"><%= hazclass.description %></option>
@@ -178,7 +178,7 @@ $(document).ready(function () {
                 success: function (response) {
                     var selector = '<select class="form-control selectpicker" title="Category" id="haz_class_' + response['id'] + '"></select>'
 
-                    $('#haz_class_categories').append('<dt class="col-md-2">' + response['description'] + '</dt>').append('<dd class="col-md-10">' + selector + '</dd>');
+                    $('#haz_class_categories').append('<dt class="col-md-8">' + response['description'] + '</dt>').append('<dd class="col-md-4">' + selector + '</dd>');
 
                     for (j of response['subclasses']) {
                         test = j['id']
