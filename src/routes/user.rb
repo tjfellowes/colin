@@ -31,7 +31,7 @@ class Colin::Routes::User < Colin::BaseWebApp
             halt(422, "Username not supplied.")
         elsif Colin::Models::User.where(username: params[:username]).exists?
             user = Colin::Models::User.where(username: params[:username]).take
-            if !params[:password].blank? 
+            unless params[:password].blank? 
                 if user.authenticate(params[:old_password]) || current_user.can_edit_user
                     if params[:password] == params[:password_confirmation]
                         user.update(password: params[:password], password_confirmation: params[:password_confirmation])
@@ -55,7 +55,9 @@ class Colin::Routes::User < Colin::BaseWebApp
                 user.update(supervisor_id: params[:supervisor_id])
             end
 
-            user.update(can_create_container: params[:can_create_container], can_edit_container: params[:can_edit_container], can_create_location: params[:can_create_location], can_edit_location: params[:can_edit_location], can_create_user: params[:can_create_user], can_edit_user: params[:can_edit_user])
+            if current_user.can_edit_user
+                user.update(can_create_container: params[:can_create_container], can_edit_container: params[:can_edit_container], can_create_location: params[:can_create_location], can_edit_location: params[:can_edit_location], can_create_user: params[:can_create_user], can_edit_user: params[:can_edit_user])
+            end
 
             user.to_json()
         else
