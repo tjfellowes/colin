@@ -45,7 +45,7 @@ components = params[:component].map{ |i|
     end
     }.uniq.compact
 
-hazards  = components.map{ |i| i.chemical.haz_class.map{ |j| j.description} + i.chemical.haz_stat.map{ |j| j.code.split('+')} + i.chemical.pictogram.map{ |k| k.code}}.flatten
+hazards  = components.map{ |i| i.chemical.haz_class.map{ |j| j.description} + i.chemical.haz_stat.map{ |j| j.code.split('+')} + i.chemical.pictogram.map{ |k| k.code}}.flatten.uniq.compact
 %>
 <% explosive, carcinogenic, release_gas, oxidising, corrosive, flammable, infectious, sensitising, irritant, reprotoxic, ecotoxic, harmful, mutagenic, other, toxic, pops = false
 
