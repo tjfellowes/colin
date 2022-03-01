@@ -45,7 +45,7 @@ components = params[:component].map{ |i|
     end
     }.uniq.compact
 
-hazards  = components.map{ |i| i.chemical.haz_class.map{ |j| j.description} + i.chemical.haz_stat.map{ |j| j.code.split('+')} + i.chemical.pictogram.map{ |k| k.code}}.flatten.uniq.compact
+hazards  = components.map{ |i| i.chemical.haz_class.map{ |j| j.description} + i.chemical.haz_stat.map{ |j| j.code.split('+')} + i.chemical.pictogram.map{ |k| k.code}}.flatten
 %>
 <% explosive, carcinogenic, release_gas, oxidising, corrosive, flammable, infectious, sensitising, irritant, reprotoxic, ecotoxic, harmful, mutagenic, other, toxic, pops = false
 
@@ -85,7 +85,7 @@ toxic = true if (hazards & ['Acute toxicity', 'Germ cell mutagenicity', 'Carcino
 </tr>
 <tr>
 <td colspan="3"><strong>Hazard Statements/Properties (write all Hazard Statement in the box and tick all relevant Hazard Properties):</strong><br>
-    <textarea style="height:3cm;"><%= components.map{ |i| i.chemical.haz_stat.map{ |j| j.code + ' - ' + j.description}}.join(', ') %></textarea>
+    <textarea style="height:3cm;"><%= components.map{ |i| i.chemical.haz_stat.map{ |j| j.code + ' - ' + j.description}}.flatten.uniq.compact.join(', ') %></textarea>
 </td>
 </tr>
 <tr class="hazards">
