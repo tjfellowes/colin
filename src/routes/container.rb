@@ -288,7 +288,7 @@ class Colin::Routes::Container < Colin::BaseWebApp
         },
         supplier: {},
         container_location: {include: {location: { include: :parent }}},
-        current_location: {}
+        current_location: {include: {location: { include: :parent }}}
       })
     else
       halt(404, "Container with barcode #{params[:barcode]} not found.")
