@@ -18,10 +18,47 @@ class Colin::Routes::Container < Colin::BaseWebApp
 
     #Gets all the containers including chemical info
     Colin::Models::Container.limit(params[:limit]).offset(params[:offset]).to_json(include: {
-      chemical: {},
+      chemical: {include: {container_chemical: {}}},
       supplier: {},
-      current_location: {}
+      container_location: {include: {location: { include: :parent }}}
     })
+  end
+
+  # Gets a specific container by barcode
+  get '/api/container/barcode/:barcode' do
+    content_type :json
+    # Must provide an integer ID. Otherwise respond with 422 (https://restpatterns.mindtouch.us/HTTP_Status_Codes/422_-_Unprocessable_Entity)
+    # which means invalid data provided from user.
+
+    unless session[:authorized]
+      halt(403, 'Not authorised.')
+    end
+
+    if params[:barcode].blank?
+      halt(422, 'Must provide a barcode for container.')
+    elsif Colin::Models::Container.unscoped.exists?(barcode: params[:barcode])
+      Colin::Models::Container.unscoped.where("barcode = ?", params[:barcode]).to_json(include: {
+        chemical: {
+          include: {
+            schedule: {},
+            packing_group: {},
+            signal_word: {},
+            chemical_haz_class: { include: :haz_class },
+            chemical_pictogram: { include: { pictogram: {except: :picture} } },
+            chemical_haz_stat: { include: :haz_stat },
+            chemical_prec_stat: { include: :prec_stat },
+            dg_class_1: { include: :superclass },
+            dg_class_2: { include: :superclass },
+            dg_class_3: { include: :superclass },
+            container_chemical: {}
+          }
+        },
+        supplier: {},
+        container_location: {include: {location: { include: :parent }}}
+      })
+    else
+      halt(404, "Container with barcode #{params[:barcode]} not found.")
+    end
   end
 
   # Create a new container
@@ -39,7 +76,6 @@ class Colin::Routes::Container < Colin::BaseWebApp
       if Colin::Models::Chemical.exists?(cas: params[:cas])
         chemical = Colin::Models::Chemical.where(cas: params[:cas]).take
       else
-
         if params[:cas].blank?
           throw(:halt, [422, 'Must provide a CAS for the chemical.'])
         elsif Colin::Models::Chemical.exists?(cas: params[:cas])
@@ -88,30 +124,6 @@ class Colin::Routes::Container < Colin::BaseWebApp
             throw(:halt, [422, 'Invalid dangerous goods subsubclass.'])
           end
     
-          if params[:schedule].blank?
-            #Nothing to do here!
-          elsif Colin::Models::Schedule.exists?(number: params[:schedule])
-            schedule = Colin::Models::Schedule.where(number: params[:schedule]).take
-          else
-            throw(:halt, [422, 'Invalid schedule.'])
-          end
-    
-          if params[:packing_group].blank?
-            #Nothing to do here!
-          elsif Colin::Models::PackingGroup.exists?(name: params[:packing_group])
-            packing_group = Colin::Models::PackingGroup.where(name: params[:packing_group]).take
-          else
-            throw(:halt, [422, 'Invalid packing group.'])
-          end
-    
-          if params[:signal_word].blank?
-            #Nothing to do here!
-          elsif Colin::Models::SignalWord.exists?(name: params[:signal_word])
-            signal_word = Colin::Models::SignalWord.where(name: params[:signal_word]).take
-          else
-            throw(:halt, [422, 'Invalid signal word.'])
-          end
-    
           if params[:storage_temperature].blank?
             #Nothing to do here!
           elsif params[:storage_temperature].split('~').length == 1
@@ -129,12 +141,16 @@ class Colin::Routes::Container < Colin::BaseWebApp
             haz_substance: haz_substance, 
             un_number: params[:un_number], 
             un_proper_shipping_name: params[:un_proper_shipping_name],
-            signal_word: signal_word,
+            signal_word: Colin::Models::SignalWord.find_by(name: params[:signal_word]),
+            haz_class: Colin::Models::HazClass.where(id: params[:haz_class_ids]),
+            pictogram: Colin::Models::Pictogram.where(id: params[:pictogram_ids]),
+            haz_stat: Colin::Models::HazStat.where(code: params[:haz_stats]),
+            prec_stat: Colin::Models::PrecStat.where(code: params[:prec_stats]),
             dg_class_1: dg_class_1, 
             dg_class_2: dg_class_2, 
             dg_class_3: dg_class_3, 
-            schedule: schedule, 
-            packing_group: packing_group,
+            schedule: Colin::Models::Schedule.find_by(number: params[:schedule]),
+            packing_group: Colin::Models::PackingGroup.find_by(name: params[:packing_group]),
             storage_temperature_min: storage_temperature_min, 
             storage_temperature_max: storage_temperature_max, 
             inchi: params[:inchi],
@@ -145,70 +161,10 @@ class Colin::Routes::Container < Colin::BaseWebApp
             boiling_point: params[:boiling_point],
             sds: params[:sds],
             created_at: Time.now.utc.iso8601, updated_at: Time.now.utc.iso8601
-          )
-    
-          #Now that we have an instance of the chemical, we can deal with foreign keys
-    
-          if params[:haz_stats].blank?
-            #Nothing to do here!
-          else
-            for i in Array(params[:haz_stats])
-              if Colin::Models::HazStat.exists?(code: i)
-                haz_stat = Colin::Models::HazStat.where(code: i).take
-                Colin::Models::ChemicalHazStat.create!(chemical_id: chemical.id, haz_stat_id: haz_stat.id)
-              else
-                throw(:halt, [422, "Invalid H statement code #{i}."])
-              end
-            end
-          end
-
-          if params[:prec_stats].blank?
-            #Nothing to do here!
-          else
-            for i in Array(params[:prec_stats])
-              if Colin::Models::PrecStat.exists?(code: i.split(',')[0])
-                prec_stat = Colin::Models::PrecStat.where(code: i.split(',')[0]).take
-                chemical_prec_stat = Colin::Models::ChemicalPrecStat.create!(chemical_id: chemical.id, prec_stat_id: prec_stat.id)
-                n = 1
-                for j in i.split(',').drop(1)
-                  Colin::Models::ChemicalPrecStatSupp.create!(chemical_prec_stat_id: chemical_prec_stat.id, position: n, information: j)
-                  n=n+1
-                end
-              else
-                throw(:halt, [422, "Invalid P statement code #{i.split(',')[0]}"])
-              end
-            end
-          end
-
-          if params[:pictogram_ids].blank?
-            #Nothing to do here!
-          else
-            for i in Array(params[:pictogram_ids])
-              if Colin::Models::Pictogram.exists?(id: i)
-                Colin::Models::ChemicalPictogram.create!(chemical_id: chemical.id, pictogram_id: i)
-              else
-                throw(:halt, [422, "Invalid pictogram id."])
-              end
-            end
-          end
-
-          if params[:haz_class_ids].blank?
-            #Nothing to do here!
-          else
-            for i in Array(params[:haz_class_ids])
-              if Colin::Models::HazClass.exists?(id: i)
-                Colin::Models::ChemicalHazClass.create!(chemical_id: chemical.id, haz_class_id: i)
-              else
-                throw(:halt, [422, "Invalid hazard class id " + i.to_s])
-              end
-            end
-          end
+          )    
+        
           #The chemical has now been created!
         end
-      end
-
-      if params[:location_id].blank?
-        halt(422, 'Must provide a location for the container.')
       end
 
       if params[:supplier].blank?
@@ -232,9 +188,20 @@ class Colin::Routes::Container < Colin::BaseWebApp
         barcode = Colin::Models::Container.unscoped.all.select(:barcode).map{|i| i.barcode.to_i}.max + 1
       end
 
-      container = Colin::Models::Container.create(barcode: barcode, description: params[:description], container_size: container_size, size_unit: size_unit, date_purchased: Time.now.utc.iso8601, chemical_id: chemical.id, supplier_id: supplier_id, product_number: params[:product_number], lot_number: params[:lot_number], owner_id: params[:owner_id], user_id: current_user.id)
-
-      Colin::Models::ContainerLocation.create(created_at: Time.now.utc.iso8601, updated_at: Time.now.utc.iso8601, container_id: container.id, location_id: params[:location_id])
+      container = Colin::Models::Container.create(
+        barcode: barcode, 
+        description: params[:description], 
+        container_size: container_size, 
+        size_unit: size_unit, 
+        date_purchased: Time.now.utc.iso8601, 
+        chemical: Array(chemical), 
+        supplier_id: supplier_id, 
+        product_number: params[:product_number], 
+        lot_number: params[:lot_number], 
+        owner_id: params[:owner_id], 
+        user_id: current_user.id,
+        location: Array(Colin::Models::Location.find(params[:location_id]))
+      )
 
       container.to_json(include: {
         chemical: {
@@ -258,42 +225,6 @@ class Colin::Routes::Container < Colin::BaseWebApp
     end
   end
 
-  # Gets a specific container by barcode
-  get '/api/container/barcode/:barcode' do
-    content_type :json
-    # Must provide an integer ID. Otherwise respond with 422 (https://restpatterns.mindtouch.us/HTTP_Status_Codes/422_-_Unprocessable_Entity)
-    # which means invalid data provided from user.
-
-    unless session[:authorized]
-      halt(403, 'Not authorised.')
-    end
-
-    if params[:barcode].blank?
-      halt(422, 'Must provide a barcode for container.')
-    elsif Colin::Models::Container.unscoped.exists?(barcode: params[:barcode])
-      Colin::Models::Container.unscoped.where("barcode = ?", params[:barcode]).to_json(include: {
-        chemical: {
-          include: {
-            schedule: {},
-            packing_group: {},
-            signal_word: {},
-            chemical_haz_class: { include: :haz_class },
-            chemical_pictogram: { include: { pictogram: {except: :picture} } },
-            chemical_haz_stat: { include: :haz_stat },
-            chemical_prec_stat: { include: :prec_stat },
-            dg_class_1: { include: :superclass },
-            dg_class_2: { include: :superclass },
-            dg_class_3: { include: :superclass }
-          }
-        },
-        supplier: {},
-        container_location: {include: {location: { include: :parent }}},
-        current_location: {include: {location: { include: :parent }}}
-      })
-    else
-      halt(404, "Container with barcode #{params[:barcode]} not found.")
-    end
-  end
 
   # Gets containers in a given location id
   get '/api/container/location_id/:location_id' do

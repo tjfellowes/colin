@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_04_175416) do
+ActiveRecord::Schema.define(version: 2022_03_03_094850) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -83,6 +83,15 @@ ActiveRecord::Schema.define(version: 2022_02_04_175416) do
     t.index ["signal_word_id"], name: "index_chemicals_on_signal_word_id"
   end
 
+  create_table "container_chemicals", force: :cascade do |t|
+    t.bigint "container_id"
+    t.bigint "chemical_id"
+    t.float "quantity"
+    t.string "quantity_unit"
+    t.index ["chemical_id"], name: "index_container_chemicals_on_chemical_id"
+    t.index ["container_id"], name: "index_container_chemicals_on_container_id"
+  end
+
   create_table "container_locations", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -100,7 +109,6 @@ ActiveRecord::Schema.define(version: 2022_02_04_175416) do
     t.datetime "date_purchased", null: false
     t.datetime "expiry_date"
     t.datetime "date_disposed"
-    t.bigint "chemical_id", null: false
     t.bigint "supplier_id"
     t.string "description"
     t.string "product_number"
@@ -108,7 +116,6 @@ ActiveRecord::Schema.define(version: 2022_02_04_175416) do
     t.bigint "user_id"
     t.bigint "owner_id"
     t.binary "picture"
-    t.index ["chemical_id"], name: "index_containers_on_chemical_id"
     t.index ["owner_id"], name: "index_containers_on_owner_id"
     t.index ["supplier_id"], name: "index_containers_on_supplier_id"
     t.index ["user_id"], name: "index_containers_on_user_id"

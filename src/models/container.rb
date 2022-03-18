@@ -6,14 +6,16 @@ class Colin::Models::Container < ActiveRecord::Base
 
   # Validate the presence of the non-NULLable fields.
 
-  validates_presence_of :chemical_id, :date_purchased
+  validates_presence_of :date_purchased
 
   has_many :container_location, class_name: "ContainerLocation"
   has_many :location, through: :container_location, class_name: "Location"
 
+  has_many :container_chemical, class_name: "ContainerChemical"
+  has_many :chemical, through: :container_chemical, class_name: "Chemical"
+
   # Foreign key relationships
   belongs_to :supplier
-  belongs_to :chemical
   belongs_to :user
   belongs_to :owner, class_name: "User"
 

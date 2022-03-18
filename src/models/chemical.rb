@@ -3,7 +3,7 @@
 #
 class Colin::Models::Chemical < ActiveRecord::Base
   # Validate the presence of the non-NULLable fields.
-  validates_presence_of :cas, :name, :created_at, :updated_at
+  validates_presence_of :cas, :name
   validates_inclusion_of :haz_substance, in: [true, false]
 
   # Validate that sds_url is actually a standard URL.
@@ -29,5 +29,6 @@ class Colin::Models::Chemical < ActiveRecord::Base
   has_many :haz_stat, through: :chemical_haz_stat, class_name: "HazStat"
   has_many :prec_stat, through: :chemical_prec_stat, class_name: "PrecStat"
 
-  has_many :containers, class_name: "Container"
+  has_many :container_chemical, class_name: "ContainerChemical"
+  has_many :container, through: :container_chemical, class_name: "Container"
 end

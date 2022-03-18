@@ -49,7 +49,8 @@ class Colin::Routes::Chemical < Colin::BaseWebApp
         chemical_prec_stat: { include: :prec_stat },
         dg_class_1: { include: :superclass },
         dg_class_2: { include: :superclass },
-        dg_class_3: { include: :superclass }
+        dg_class_3: { include: :superclass },
+        container: {}
       })
 
     else
