@@ -161,13 +161,13 @@ Creates a container with the following fields.
     * `melting_point` - string - melting point in degrees Celsius
     * `boiling_point` - string - boiling point in degrees Celsius
     * `signal_word_id` - string - GHS signal word. Can be found using the GET `/api/signal_word` endpoint.
-    * `haz_stat` - hash - GHS hazard statement code <https://unece.org/sites/default/files/2021-09/GHS_Rev9E_0.pdf>. 
+    * `haz_stat` - array of hashes - GHS hazard statement code <https://unece.org/sites/default/files/2021-09/GHS_Rev9E_0.pdf>. 
         * `id` - ID of the GHS hazard statement code Can be found using the GET `/api/haz_stat` endpoint.
-    * `prec_stat` - hash - GHS precaution statement code <https://unece.org/sites/default/files/2021-09/GHS_Rev9E_0.pdf>. 
+    * `prec_stat` - array of hashes - GHS precaution statement code <https://unece.org/sites/default/files/2021-09/GHS_Rev9E_0.pdf>. 
         * `id` - ID of the GHS precaution statement code Can be found using the GET `/api/prec_stat` endpoint.
-    * `haz_class` - hash - GHS hazard classification. 
+    * `haz_class` - array of hashes - GHS hazard classification. 
         * `id` - ID of the GHS hazard classification. Can be found using the GET `/api/haz_class` endpoint.
-    * `pictogram` - hash - GHS pictograms.
+    * `pictogram` - array of hashes - GHS pictograms.
         * `id` - ID of the GHS pictogram. Can be found using the GET `/api/pictogram` endpoint.
 
 The following fields default to those of the first component in the components JSON string, but can also be supplied separately.
@@ -189,10 +189,10 @@ The following fields default to those of the first component in the components J
 * `boiling_point` - string - boiling point in degrees Celsius
 * `sds` - binary - a PDF of the SDS
 * `signal_word_id` - string - GHS signal word. Can be found using the GET `/api/signal_word` endpoint.
-* `haz_stat_ids` - array - GHS hazard statement code <https://unece.org/sites/default/files/2021-09/GHS_Rev9E_0.pdf>. Can be found using the GET `/api/haz_stat` endpoint.
-* `prec_stat_ids` - array - GHS precaution statement code <https://unece.org/sites/default/files/2021-09/GHS_Rev9E_0.pdf>. Can be found using the GET `/api/prec_stat` endpoint.
-* `haz_class_ids` - array - GHS hazard classification. Can be found using the GET `/api/haz_class` endpoint.
-* `pictogram_ids` - array - GHS pictograms. Can be found using the GET `/api/pictogram` endpoint.
+* `haz_stat` - array of hashes - GHS hazard statement code <https://unece.org/sites/default/files/2021-09/GHS_Rev9E_0.pdf>. Can be found using the GET `/api/haz_stat` endpoint.
+* `prec_stat` - array of hashes - GHS precaution statement code <https://unece.org/sites/default/files/2021-09/GHS_Rev9E_0.pdf>. Can be found using the GET `/api/prec_stat` endpoint.
+* `haz_class` - array of hashes - GHS hazard classification. Can be found using the GET `/api/haz_class` endpoint.
+* `pictogram` - array of hashes - GHS pictograms. Can be found using the GET `/api/pictogram` endpoint.
   
 ## Roadmap
 * Sort chemical list

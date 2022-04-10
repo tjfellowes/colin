@@ -20,12 +20,15 @@ class Colin::Routes::Container < Colin::BaseWebApp
     Colin::Models::Container.limit(params[:limit]).offset(params[:offset]).includes(:container_content, :chemical, :supplier, :container_location, :location).to_json(include: {
       container_content: {
         include: {
-          chemical: {
-          }
+          chemical: {}
         }
       },
       supplier: {},
-      container_location: {include: {location: {}}}
+      container_location: {
+        include: {
+          location: {}
+        }
+      }
     })
   end
 
@@ -47,21 +50,29 @@ class Colin::Routes::Container < Colin::BaseWebApp
           include: {
             chemical: {
               include: {
+                dg_class_1: {},
+                dg_class_2: {},
+                dg_class_3: {},
                 schedule: {},
-                packing_group: {},
                 signal_word: {},
-                chemical_haz_class: { include: :haz_class },
-                chemical_pictogram: { include: { pictogram: {except: :picture} } },
-                chemical_haz_stat: { include: :haz_stat },
-                chemical_prec_stat: { include: :prec_stat },
-                dg_class_1: { include: :superclass },
-                dg_class_2: { include: :superclass },
-                dg_class_3: { include: :superclass }
+                haz_class: {include: :superclass},
+                haz_stat: {},
+                prec_stat: {},
+                pictogram: {except: :picture}
               }
             }
           }
         },
         supplier: {},
+        dg_class_1: {},
+        dg_class_2: {},
+        dg_class_3: {},
+        schedule: {},
+        signal_word: {},
+        haz_class: {include: :superclass},
+        haz_stat: {},
+        prec_stat: {},
+        pictogram: {except: :picture},
         container_location: {include: {location: { include: :parent }}}
       })
     else
@@ -78,10 +89,14 @@ class Colin::Routes::Container < Colin::BaseWebApp
     content_type :json
 
     components = JSON.parse(params[:components])
+    
+    #Maybe validate some fields???
 
     #Check if chemicals with the given cas numbers exist already, if not, create them
     for component in components
       unless Colin::Models::Chemical.where(cas: component['cas']).exists?
+
+        #Parse the storage temperature into a max and min
         if component['storage_temperature'].blank?
           #Nothing to do here!
         elsif component['storage_temperature'].split('~').length == 1
@@ -92,18 +107,18 @@ class Colin::Routes::Container < Colin::BaseWebApp
           storage_temperature_max = component['storage_temperature'].split('~').max
         end
 
-        Colin::Models::Chemical.create(
+        chemical = Colin::Models::Chemical.create(
           cas: component['cas'],
           name: component['name'],
           prefix: component['prefix'],
           haz_substance: component['haz_substance'],
-          dg_class_1: Colin::Models::DgClass.find(component['dg_class_1_id']),
-          dg_class_2: Colin::Models::DgClass.find(component['dg_class_2_id']),
-          dg_class_3: Colin::Models::DgClass.find(component['dg_class_3_id']),
-          packing_group: Colin::Models::PackingGroup.find(component['packing_group_id']),
+          dg_class_1: Colin::Models::DgClass.find_by_id(component['dg_class_1_id']),
+          dg_class_2: Colin::Models::DgClass.find_by_id(component['dg_class_2_id']),
+          dg_class_3: Colin::Models::DgClass.find_by_id(component['dg_class_3_id']),
+          packing_group: Colin::Models::PackingGroup.find_by_id(component['packing_group_id']),
           un_number: component['un_number'],
           un_proper_shipping_name: component['un_proper_shipping_name'],
-          schedule: Colin::Models::Schedule.find(component['schedule_id']),
+          schedule: Colin::Models::Schedule.find_by_id(component['schedule_id']),
           storage_temperature_min: storage_temperature_min,
           storage_temperature_max: storage_temperature_max,
           inchi: component['inchi'],
@@ -112,12 +127,25 @@ class Colin::Routes::Container < Colin::BaseWebApp
           density: component['density'],
           melting_point: component['melting_point'],
           boiling_point: component['boiling_point'],
-          signal_word: Colin::Models::SignalWord.find(component['signal_word_id']),
-          haz_stat: Colin::Models::HazStat.find(component['haz_stat'].map{ |i| i['id']}),
-          prec_stat: Colin::Models::PrecStat.find(component['prec_stat'].map{ |i| i['id']}),
-          haz_class: Colin::Models::HazClass.find(component['haz_class'].map{ |i| i['id']}),
-          pictogram: Colin::Models::Pictogram.find(component['pictogram'].map{ |i| i['id']})
+          signal_word: Colin::Models::SignalWord.find_by_id(component['signal_word_id'])
         )
+
+        unless component['haz_stat'].blank?
+          chemical.update(haz_stat: Array(Colin::Models::HazStat.find(Array(component['haz_stat']).map{ |i| i['id']})))
+        end
+    
+        unless component['prec_stat'].blank?
+          chemical.update(prec_stat: Array(Colin::Models::PrecStat.find(Array(component['prec_stat']).map{ |i| i['id']})))
+        end
+    
+        unless component['haz_class'].blank?
+          chemical.update(haz_class: Array(Colin::Models::HazClass.find(Array(component['haz_class']).map{ |i| i['id']})))
+        end
+    
+        unless component['pictogram'].blank?
+          chemical.update(pictogram: Array(Colin::Models::Pictogram.find(Array(component['pictogram']).map{ |i| i['id']})))
+        end
+
       end
     end
 
@@ -239,6 +267,10 @@ class Colin::Routes::Container < Colin::BaseWebApp
     else
       signal_word_id = first_chemical.signal_word_id
     end
+
+    unless params[:haz_stat].blank?
+      haz_stat = JSON.parse(params[:haz_stat])
+    end
     
 
     #Create the container
@@ -271,21 +303,70 @@ class Colin::Routes::Container < Colin::BaseWebApp
       boiling_point: boiling_point,
       sds: params[:sds],
       signal_word: Colin::Models::SignalWord.find_by_id(signal_word_id),
-      # haz_stat: Colin::Models::HazStat.find_by_id(Array(params[:haz_stat]).map{ |i| i['id']}),
-      # prec_stat: Colin::Models::PrecStat.find_by_id(Array(params[:prec_stat]).map{ |i| i['id']}),
-      # haz_class: Colin::Models::HazClass.find_by_id(Array(params[:haz_class]).map{ |i| i['id']}),
-      # pictogram: Colin::Models::Pictogram.find_by_id(Array(params[:pictogram]).map{ |i| i['id']}),
       chemical: Colin::Models::Chemical.where(cas: Array(components.map{ |i| i['cas']}))
     )
+
+    unless params[:haz_stat].blank?
+      container.update(haz_stat: Array(Colin::Models::HazStat.find(Array(JSON.parse(params[:haz_stat])).map{ |i| i['id']})))
+    else
+      unless first_chemical.haz_stat.blank?
+        container.update(haz_stat: Array(Colin::Models::HazStat.find(first_chemical.haz_stat.map{ |i| i['id']})))
+      end
+    end
+
+    unless params[:prec_stat].blank?
+      container.update(prec_stat: Array(Colin::Models::PrecStat.find(Array(JSON.parse(params[:prec_stat])).map{ |i| i['id']})))
+    else
+      unless first_chemical.prec_stat.blank?
+        container.update(prec_stat: Array(Colin::Models::PrecStat.find(first_chemical.prec_stat.map{ |i| i['id']})))
+      end
+    end
+
+    unless params[:haz_class].blank?
+      container.update(haz_class: Array(Colin::Models::HazClass.find(Array(JSON.parse(params[:haz_class])).map{ |i| i['id']})))
+    else
+      unless first_chemical.haz_class.blank?
+        container.update(haz_class: Array(Colin::Models::HazClass.find(first_chemical.haz_class.map{ |i| i['id']})))
+      end
+    end
+
+    unless params[:pictogram].blank?
+      container.update(pictogram: Array(Colin::Models::Pictogram.find(Array(JSON.parse(params[:pictogram])).map{ |i| i['id']})))
+    else
+      unless first_chemical.pictogram.blank?
+        container.update(pictogram: Array(Colin::Models::Pictogram.find(first_chemical.pictogram.map{ |i| i['id']})))
+      end
+    end
 
     #Return the container as a JSON string
     container.to_json(include: {
       container_content: {
         include: {
-          chemical: {}
+          chemical: {
+            include: {
+              dg_class_1: {},
+              dg_class_2: {},
+              dg_class_3: {},
+              schedule: {},
+              signal_word: {},
+              haz_class: {include: :superclass},
+              haz_stat: {},
+              prec_stat: {},
+              pictogram: {except: :picture}
+            }
+          }
         }
       },
       supplier: {},
+      dg_class_1: {},
+      dg_class_2: {},
+      dg_class_3: {},
+      schedule: {},
+      signal_word: {},
+      haz_class: {include: :superclass},
+      haz_stat: {},
+      prec_stat: {},
+      pictogram: {except: :picture},
       container_location: {include: {location: { include: :parent }}},
       current_location: {include: {location: { include: :parent }}}
     })
