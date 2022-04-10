@@ -12,7 +12,7 @@ from requests import status_codes
 url = 'http://localhost:9292'
 #url = 'https://colin-uol.herokuapp.com'
 
-tsv_file = 'aic_locations.tsv'
+tsv_file = 'jmw_locations.tsv'
 
 headers = {'User-Agent': 'Mozilla/5.0'}
 payload = {'username':'root','password':'root'}

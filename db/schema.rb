@@ -10,44 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_03_094850) do
+ActiveRecord::Schema.define(version: 2022_04_10_114232) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "chemical_haz_classes", force: :cascade do |t|
-    t.bigint "chemical_id"
-    t.bigint "haz_class_id"
-    t.index ["chemical_id"], name: "index_chemical_haz_classes_on_chemical_id"
-    t.index ["haz_class_id"], name: "index_chemical_haz_classes_on_haz_class_id"
-  end
-
-  create_table "chemical_haz_stats", force: :cascade do |t|
-    t.bigint "chemical_id"
-    t.bigint "haz_stat_id"
-    t.index ["chemical_id"], name: "index_chemical_haz_stats_on_chemical_id"
-    t.index ["haz_stat_id"], name: "index_chemical_haz_stats_on_haz_stat_id"
-  end
-
-  create_table "chemical_pictograms", force: :cascade do |t|
-    t.bigint "chemical_id"
-    t.bigint "pictogram_id"
-    t.index ["chemical_id"], name: "index_chemical_pictograms_on_chemical_id"
-    t.index ["pictogram_id"], name: "index_chemical_pictograms_on_pictogram_id"
-  end
 
   create_table "chemical_prec_stat_supps", force: :cascade do |t|
     t.bigint "chemical_prec_stat_id"
     t.integer "position", null: false
     t.string "information", null: false
     t.index ["chemical_prec_stat_id"], name: "index_chemical_prec_stat_supps_on_chemical_prec_stat_id"
-  end
-
-  create_table "chemical_prec_stats", force: :cascade do |t|
-    t.bigint "chemical_id"
-    t.bigint "prec_stat_id"
-    t.index ["chemical_id"], name: "index_chemical_prec_stats_on_chemical_id"
-    t.index ["prec_stat_id"], name: "index_chemical_prec_stats_on_prec_stat_id"
   end
 
   create_table "chemicals", force: :cascade do |t|
@@ -83,13 +55,43 @@ ActiveRecord::Schema.define(version: 2022_03_03_094850) do
     t.index ["signal_word_id"], name: "index_chemicals_on_signal_word_id"
   end
 
-  create_table "container_chemicals", force: :cascade do |t|
+  create_table "chemicals_haz_classes", force: :cascade do |t|
+    t.bigint "chemical_id"
+    t.bigint "haz_class_id"
+    t.index ["chemical_id"], name: "index_chemicals_haz_classes_on_chemical_id"
+    t.index ["haz_class_id"], name: "index_chemicals_haz_classes_on_haz_class_id"
+  end
+
+  create_table "chemicals_haz_stats", force: :cascade do |t|
+    t.bigint "chemical_id"
+    t.bigint "haz_stat_id"
+    t.index ["chemical_id"], name: "index_chemicals_haz_stats_on_chemical_id"
+    t.index ["haz_stat_id"], name: "index_chemicals_haz_stats_on_haz_stat_id"
+  end
+
+  create_table "chemicals_pictograms", force: :cascade do |t|
+    t.bigint "chemical_id"
+    t.bigint "pictogram_id"
+    t.index ["chemical_id"], name: "index_chemicals_pictograms_on_chemical_id"
+    t.index ["pictogram_id"], name: "index_chemicals_pictograms_on_pictogram_id"
+  end
+
+  create_table "chemicals_prec_stats", force: :cascade do |t|
+    t.bigint "chemical_id"
+    t.bigint "prec_stat_id"
+    t.index ["chemical_id"], name: "index_chemicals_prec_stats_on_chemical_id"
+    t.index ["prec_stat_id"], name: "index_chemicals_prec_stats_on_prec_stat_id"
+  end
+
+  create_table "container_contents", force: :cascade do |t|
     t.bigint "container_id"
     t.bigint "chemical_id"
     t.float "quantity"
     t.string "quantity_unit"
-    t.index ["chemical_id"], name: "index_container_chemicals_on_chemical_id"
-    t.index ["container_id"], name: "index_container_chemicals_on_container_id"
+    t.float "concentration"
+    t.string "concentration_unit"
+    t.index ["chemical_id"], name: "index_container_contents_on_chemical_id"
+    t.index ["container_id"], name: "index_container_contents_on_container_id"
   end
 
   create_table "container_locations", force: :cascade do |t|
@@ -104,8 +106,8 @@ ActiveRecord::Schema.define(version: 2022_03_03_094850) do
 
   create_table "containers", force: :cascade do |t|
     t.string "barcode"
-    t.float "container_size"
-    t.string "size_unit"
+    t.float "container_size_number"
+    t.string "container_size_unit"
     t.datetime "date_purchased", null: false
     t.datetime "expiry_date"
     t.datetime "date_disposed"
@@ -116,9 +118,60 @@ ActiveRecord::Schema.define(version: 2022_03_03_094850) do
     t.bigint "user_id"
     t.bigint "owner_id"
     t.binary "picture"
+    t.string "prefix"
+    t.string "name"
+    t.boolean "haz_substance"
+    t.bigint "dg_class_1_id"
+    t.bigint "dg_class_2_id"
+    t.bigint "dg_class_3_id"
+    t.bigint "packing_group_id"
+    t.string "un_number"
+    t.string "un_proper_shipping_name"
+    t.bigint "schedule_id"
+    t.bigint "signal_word_id"
+    t.string "storage_temperature_min"
+    t.string "storage_temperature_max"
+    t.string "density"
+    t.string "melting_point"
+    t.string "boiling_point"
+    t.binary "sds"
+    t.index ["dg_class_1_id"], name: "index_containers_on_dg_class_1_id"
+    t.index ["dg_class_2_id"], name: "index_containers_on_dg_class_2_id"
+    t.index ["dg_class_3_id"], name: "index_containers_on_dg_class_3_id"
     t.index ["owner_id"], name: "index_containers_on_owner_id"
+    t.index ["packing_group_id"], name: "index_containers_on_packing_group_id"
+    t.index ["schedule_id"], name: "index_containers_on_schedule_id"
+    t.index ["signal_word_id"], name: "index_containers_on_signal_word_id"
     t.index ["supplier_id"], name: "index_containers_on_supplier_id"
     t.index ["user_id"], name: "index_containers_on_user_id"
+  end
+
+  create_table "containers_haz_classes", id: false, force: :cascade do |t|
+    t.bigint "container_id", null: false
+    t.bigint "haz_class_id", null: false
+    t.index ["container_id"], name: "index_containers_haz_classes_on_container_id"
+    t.index ["haz_class_id"], name: "index_containers_haz_classes_on_haz_class_id"
+  end
+
+  create_table "containers_haz_stats", id: false, force: :cascade do |t|
+    t.bigint "container_id", null: false
+    t.bigint "haz_stat_id", null: false
+    t.index ["container_id"], name: "index_containers_haz_stats_on_container_id"
+    t.index ["haz_stat_id"], name: "index_containers_haz_stats_on_haz_stat_id"
+  end
+
+  create_table "containers_pictograms", id: false, force: :cascade do |t|
+    t.bigint "container_id", null: false
+    t.bigint "pictogram_id", null: false
+    t.index ["container_id"], name: "index_containers_pictograms_on_container_id"
+    t.index ["pictogram_id"], name: "index_containers_pictograms_on_pictogram_id"
+  end
+
+  create_table "containers_prec_stats", id: false, force: :cascade do |t|
+    t.bigint "container_id", null: false
+    t.bigint "prec_stat_id", null: false
+    t.index ["container_id"], name: "index_containers_prec_stats_on_container_id"
+    t.index ["prec_stat_id"], name: "index_containers_prec_stats_on_prec_stat_id"
   end
 
   create_table "dg_classes", force: :cascade do |t|

@@ -17,10 +17,15 @@ class Colin::Routes::Container < Colin::BaseWebApp
     end
 
     #Gets all the containers including chemical info
-    Colin::Models::Container.limit(params[:limit]).offset(params[:offset]).to_json(include: {
-      chemical: {include: {container_chemical: {}}},
+    Colin::Models::Container.limit(params[:limit]).offset(params[:offset]).includes(:container_content, :chemical, :supplier, :container_location, :location).to_json(include: {
+      container_content: {
+        include: {
+          chemical: {
+          }
+        }
+      },
       supplier: {},
-      container_location: {include: {location: { include: :parent }}}
+      container_location: {include: {location: {}}}
     })
   end
 
@@ -38,19 +43,22 @@ class Colin::Routes::Container < Colin::BaseWebApp
       halt(422, 'Must provide a barcode for container.')
     elsif Colin::Models::Container.unscoped.exists?(barcode: params[:barcode])
       Colin::Models::Container.unscoped.where("barcode = ?", params[:barcode]).to_json(include: {
-        chemical: {
+        container_content: {
           include: {
-            schedule: {},
-            packing_group: {},
-            signal_word: {},
-            chemical_haz_class: { include: :haz_class },
-            chemical_pictogram: { include: { pictogram: {except: :picture} } },
-            chemical_haz_stat: { include: :haz_stat },
-            chemical_prec_stat: { include: :prec_stat },
-            dg_class_1: { include: :superclass },
-            dg_class_2: { include: :superclass },
-            dg_class_3: { include: :superclass },
-            container_chemical: {}
+            chemical: {
+              include: {
+                schedule: {},
+                packing_group: {},
+                signal_word: {},
+                chemical_haz_class: { include: :haz_class },
+                chemical_pictogram: { include: { pictogram: {except: :picture} } },
+                chemical_haz_stat: { include: :haz_stat },
+                chemical_prec_stat: { include: :prec_stat },
+                dg_class_1: { include: :superclass },
+                dg_class_2: { include: :superclass },
+                dg_class_3: { include: :superclass }
+              }
+            }
           }
         },
         supplier: {},
@@ -69,160 +77,218 @@ class Colin::Routes::Container < Colin::BaseWebApp
 
     content_type :json
 
-    if params[:cas].blank?
-      halt(422, 'Must provide a CAS for the chemical in the container.')
-    else
-      #Does the chemical in the container exist already in the database? Identified by CAS
-      if Colin::Models::Chemical.exists?(cas: params[:cas])
-        chemical = Colin::Models::Chemical.where(cas: params[:cas]).take
-      else
-        if params[:cas].blank?
-          throw(:halt, [422, 'Must provide a CAS for the chemical.'])
-        elsif Colin::Models::Chemical.exists?(cas: params[:cas])
-          chemical = Colin::Models::Chemical.where(cas: params[:cas]).take
+    components = JSON.parse(params[:components])
+
+    #Check if chemicals with the given cas numbers exist already, if not, create them
+    for component in components
+      unless Colin::Models::Chemical.where(cas: component['cas']).exists?
+        if component['storage_temperature'].blank?
+          #Nothing to do here!
+        elsif component['storage_temperature'].split('~').length == 1
+          storage_temperature_min = component['storage_temperature']
+          storage_temperature_max = component['storage_temperature']
         else
-          #If not, get the safety information supplied and use it to create a new chemical
-    
-          if params[:name].blank?
-            throw(:halt, [422, 'Must provide a name for the chemical.'])
-          end
-    
-          if params[:haz_substance].blank? || params[:haz_substance] == 'false'
-            haz_substance = false
-          elsif params[:haz_substance] == 'true'
-            haz_substance = true
-          else
-            throw(:halt, [422, 'Invalid hazardous substance value.'])
-          end
-    
-          #Parse the DG class string into dg_class_1, 2 and 3
-          if !params[:dg_class].blank?
-            dg_class_1, dg_class_2, dg_class_3 = params[:dg_class].strip.split(/ *\( *| *, *| *\) *| +/).map { |number| Colin::Models::DgClass.where(number: number).take if !number.nil? && Colin::Models::DgClass.exists?(number: number)}
-          end
-    
-          if params[:dg_class_1].blank?
-            #Nothing to do here!
-          elsif Colin::Models::DgClass.exists?(number: params[:dg_class_1])
-            dg_class_1 = Colin::Models::DgClass.where(number: params[:dg_class_1]).take
-          else
-            throw(:halt, [422, 'Invalid dangerous goods class.'])
-          end
-    
-          if params[:dg_class_2].blank?
-            #Nothing to do here!
-          elsif Colin::Models::DgClass.exists?(number: params[:dg_class_2])
-            dg_class_2 = Colin::Models::DgClass.where(number: params[:dg_class_2]).take
-          else
-            throw(:halt, [422, 'Invalid dangerous goods subclass.'])
-          end
-    
-          if params[:dg_class_3].blank?
-            #Nothing to do here!
-          elsif Colin::Models::DgClass.exists?(number: params[:dg_class_3])
-            dg_class_3 = Colin::Models::DgClass.where(number: params[:dg_class_3]).take
-          else
-            throw(:halt, [422, 'Invalid dangerous goods subsubclass.'])
-          end
-    
-          if params[:storage_temperature].blank?
-            #Nothing to do here!
-          elsif params[:storage_temperature].split('~').length == 1
-            storage_temperature_min = params[:storage_temperature]
-            storage_temperature_max = params[:storage_temperature]
-          else
-            storage_temperature_min = params[:storage_temperature].split('~').min
-            storage_temperature_max = params[:storage_temperature].split('~').max
-          end
-    
-          chemical = Colin::Models::Chemical.create(
-            cas: params[:cas], 
-            prefix: params[:prefix], 
-            name: params[:name], 
-            haz_substance: haz_substance, 
-            un_number: params[:un_number], 
-            un_proper_shipping_name: params[:un_proper_shipping_name],
-            signal_word: Colin::Models::SignalWord.find_by(name: params[:signal_word]),
-            haz_class: Colin::Models::HazClass.where(id: params[:haz_class_ids]),
-            pictogram: Colin::Models::Pictogram.where(id: params[:pictogram_ids]),
-            haz_stat: Colin::Models::HazStat.where(code: params[:haz_stats]),
-            prec_stat: Colin::Models::PrecStat.where(code: params[:prec_stats]),
-            dg_class_1: dg_class_1, 
-            dg_class_2: dg_class_2, 
-            dg_class_3: dg_class_3, 
-            schedule: Colin::Models::Schedule.find_by(number: params[:schedule]),
-            packing_group: Colin::Models::PackingGroup.find_by(name: params[:packing_group]),
-            storage_temperature_min: storage_temperature_min, 
-            storage_temperature_max: storage_temperature_max, 
-            inchi: params[:inchi],
-            smiles: params[:smiles],
-            pubchem: params[:pubchem],
-            density: params[:density],
-            melting_point: params[:melting_point],
-            boiling_point: params[:boiling_point],
-            sds: params[:sds],
-            created_at: Time.now.utc.iso8601, updated_at: Time.now.utc.iso8601
-          )    
-        
-          #The chemical has now been created!
+          storage_temperature_min = component['storage_temperature'].split('~').min
+          storage_temperature_max = component['storage_temperature'].split('~').max
         end
+
+        Colin::Models::Chemical.create(
+          cas: component['cas'],
+          name: component['name'],
+          prefix: component['prefix'],
+          haz_substance: component['haz_substance'],
+          dg_class_1: Colin::Models::DgClass.find(component['dg_class_1_id']),
+          dg_class_2: Colin::Models::DgClass.find(component['dg_class_2_id']),
+          dg_class_3: Colin::Models::DgClass.find(component['dg_class_3_id']),
+          packing_group: Colin::Models::PackingGroup.find(component['packing_group_id']),
+          un_number: component['un_number'],
+          un_proper_shipping_name: component['un_proper_shipping_name'],
+          schedule: Colin::Models::Schedule.find(component['schedule_id']),
+          storage_temperature_min: storage_temperature_min,
+          storage_temperature_max: storage_temperature_max,
+          inchi: component['inchi'],
+          smiles: component['smiles'],
+          pubchem: component['pubchem'],
+          density: component['density'],
+          melting_point: component['melting_point'],
+          boiling_point: component['boiling_point'],
+          signal_word: Colin::Models::SignalWord.find(component['signal_word_id']),
+          haz_stat: Colin::Models::HazStat.find(component['haz_stat'].map{ |i| i['id']}),
+          prec_stat: Colin::Models::PrecStat.find(component['prec_stat'].map{ |i| i['id']}),
+          haz_class: Colin::Models::HazClass.find(component['haz_class'].map{ |i| i['id']}),
+          pictogram: Colin::Models::Pictogram.find(component['pictogram'].map{ |i| i['id']})
+        )
       end
-
-      if params[:supplier].blank?
-        #Nothing to do here!
-      elsif Colin::Models::Supplier.exists?(name: params[:supplier])
-        supplier_id = Colin::Models::Supplier.where(name: params[:supplier]).take.id
-      else
-        supplier_id = Colin::Models::Supplier.create(name: params[:supplier]).id
-      end
-
-      # Parse the quantity into numbers and units
-      if !params[:quantity].blank?
-        container_size, size_unit = params[:quantity].strip.split(/(?: +|(?:(?<=\d)(?=[a-z]))|(?:(?<=[a-z])(?=\d)))/)
-      else
-        container_size, size_unit = params[:container_size], params[:size_unit]
-      end
-
-      if !params[:barcode].blank?
-        barcode = params[:barcode]
-      else
-        barcode = Colin::Models::Container.unscoped.all.select(:barcode).map{|i| i.barcode.to_i}.max + 1
-      end
-
-      container = Colin::Models::Container.create(
-        barcode: barcode, 
-        description: params[:description], 
-        container_size: container_size, 
-        size_unit: size_unit, 
-        date_purchased: Time.now.utc.iso8601, 
-        chemical: Array(chemical), 
-        supplier_id: supplier_id, 
-        product_number: params[:product_number], 
-        lot_number: params[:lot_number], 
-        owner_id: params[:owner_id], 
-        user_id: current_user.id,
-        location: Array(Colin::Models::Location.find(params[:location_id]))
-      )
-
-      container.to_json(include: {
-        chemical: {
-          include: {
-            schedule: {},
-            packing_group: {},
-            signal_word: {},
-            chemical_haz_class: { include: :haz_class },
-            chemical_pictogram: { include: { pictogram: {except: :picture} } },
-            chemical_haz_stat: { include: :haz_stat },
-            chemical_prec_stat: { include: :prec_stat },
-            dg_class_1: { include: :superclass },
-            dg_class_2: { include: :superclass },
-            dg_class_3: { include: :superclass }
-          }
-        },
-        supplier: {},
-        container_location: {include: {location: { include: :parent }}},
-        current_location: {include: {location: { include: :parent }}}
-      })
     end
+
+    first_chemical = Colin::Models::Chemical.where(cas: components[0]['cas']).take
+
+    # Parse the quantity into numbers and units
+    unless params[:container_size].blank?
+      container_size_number, container_size_unit = params[:quantity].strip.split(/(?: +|(?:(?<=\d)(?=[a-z]))|(?:(?<=[a-z])(?=\d)))/)
+    else
+      container_size_number, container_size_unit = params[:container_size_number], params[:container_size_unit]
+    end
+
+    #Generate a barcode if one is not supplied
+    unless params[:barcode].blank?
+      barcode = params[:barcode]
+    else
+      barcode = Colin::Models::Container.unscoped.all.select(:barcode).map{|i| i.barcode.to_i}.max + 1
+    end
+
+    unless params[:storage_temperature].blank?
+      if params[:storage_temperature].split('~').length == 1
+        storage_temperature_min = params[:storage_temperature]
+        storage_temperature_max = params[:storage_temperature]
+      else
+        storage_temperature_min = params[:storage_temperature].split('~').min
+        storage_temperature_max = params[:storage_temperature].split('~').max
+      end
+    else
+      storage_temperature_min = first_chemical.storage_temperature_min
+      storage_temperature_max = first_chemical.storage_temperature_max
+    end
+
+    unless params[:name].blank?
+      name = params[:name]
+    else
+      name = first_chemical.name
+    end
+
+    unless params[:prefix].blank?
+      prefix = params[:prefix]
+    else
+      prefix = first_chemical.prefix
+    end
+
+    unless params[:haz_substance].blank?
+      haz_substance = params[:haz_substance]
+    else
+      haz_substance = first_chemical.haz_substance
+    end
+
+    unless params[:dg_class_1_id].blank?
+      dg_class_1_id = params[:dg_class_1_id]
+    else
+      dg_class_1_id = first_chemical.dg_class_1_id
+    end
+
+    unless params[:dg_class_2_id].blank?
+      dg_class_2_id = params[:dg_class_2_id]
+    else
+      dg_class_2_id = first_chemical.dg_class_2_id
+    end
+
+    unless params[:dg_class_3_id].blank?
+      dg_class_3_id = params[:dg_class_3_id]
+    else
+      dg_class_3_id = first_chemical.dg_class_3_id
+    end
+
+    unless params[:dg_class_3_id].blank?
+      dg_class_3_id = params[:dg_class_3_id]
+    else
+      dg_class_3_id = first_chemical.dg_class_3_id
+    end
+
+    unless params[:packing_group_id].blank?
+      packing_group_id = params[:packing_group_id]
+    else
+      packing_group_id = first_chemical.packing_group_id
+    end
+
+    unless params[:un_number].blank?
+      un_number = params[:un_number]
+    else
+      un_number = first_chemical.un_number
+    end
+
+    unless params[:un_proper_shipping_name].blank?
+      un_proper_shipping_name = params[:un_proper_shipping_name]
+    else
+      un_proper_shipping_name = first_chemical.un_proper_shipping_name
+    end
+
+    unless params[:schedule_id].blank?
+      schedule_id = params[:schedule_id]
+    else
+      schedule_id = first_chemical.schedule_id
+    end
+
+    unless params[:density].blank?
+      density = params[:density]
+    else
+      density = first_chemical.density
+    end
+
+    unless params[:melting_point].blank?
+      melting_point = params[:melting_point]
+    else
+      melting_point = first_chemical.melting_point
+    end
+
+    unless params[:boiling_point].blank?
+      boiling_point = params[:boiling_point]
+    else
+      boiling_point = first_chemical.boiling_point
+    end
+    
+    unless params[:signal_word_id].blank?
+      signal_word_id = params[:signal_word_id]
+    else
+      signal_word_id = first_chemical.signal_word_id
+    end
+    
+
+    #Create the container
+    container = Colin::Models::Container.create(
+      location: Array(Colin::Models::Location.find_by_id(params[:location_id])),
+      supplier: Colin::Models::Supplier.find_by_id(params[:supplier_id]), 
+      container_size_number: container_size_number, 
+      container_size_unit: container_size_unit, 
+      barcode: barcode, 
+      product_number: params[:product_number], 
+      lot_number: params[:lot_number], 
+      owner: Colin::Models::User.find(params[:owner_id]), 
+      date_purchased: Time.now.utc.iso8601, 
+      user_id: current_user.id,
+      name: name,
+      prefix: prefix,
+      description: params[:description], 
+      haz_substance: haz_substance,
+      dg_class_1: Colin::Models::DgClass.find_by_id(dg_class_1_id),
+      dg_class_2: Colin::Models::DgClass.find_by_id(dg_class_2_id),
+      dg_class_3: Colin::Models::DgClass.find_by_id(dg_class_3_id),
+      packing_group: Colin::Models::PackingGroup.find_by_id(packing_group_id),
+      un_number: un_number,
+      un_proper_shipping_name: un_proper_shipping_name,
+      schedule: Colin::Models::Schedule.find_by_id(schedule_id),
+      storage_temperature_min: storage_temperature_min,
+      storage_temperature_max: storage_temperature_max,
+      density: density,
+      melting_point: melting_point,
+      boiling_point: boiling_point,
+      sds: params[:sds],
+      signal_word: Colin::Models::SignalWord.find_by_id(signal_word_id),
+      # haz_stat: Colin::Models::HazStat.find_by_id(Array(params[:haz_stat]).map{ |i| i['id']}),
+      # prec_stat: Colin::Models::PrecStat.find_by_id(Array(params[:prec_stat]).map{ |i| i['id']}),
+      # haz_class: Colin::Models::HazClass.find_by_id(Array(params[:haz_class]).map{ |i| i['id']}),
+      # pictogram: Colin::Models::Pictogram.find_by_id(Array(params[:pictogram]).map{ |i| i['id']}),
+      chemical: Colin::Models::Chemical.where(cas: Array(components.map{ |i| i['cas']}))
+    )
+
+    #Return the container as a JSON string
+    container.to_json(include: {
+      container_content: {
+        include: {
+          chemical: {}
+        }
+      },
+      supplier: {},
+      container_location: {include: {location: { include: :parent }}},
+      current_location: {include: {location: { include: :parent }}}
+    })
   end
 
 
@@ -241,10 +307,14 @@ class Colin::Routes::Container < Colin::BaseWebApp
     elsif Colin::Models::Location.exists?(id: params[:location_id])
       Colin::Models::Container.joins('LEFT JOIN container_locations i ON i.container_id = containers.id AND
         i.id = (SELECT MAX(id) FROM container_locations WHERE container_locations.container_id = i.container_id)
-        INNER JOIN chemicals ON containers.chemical_id = chemicals.id').where("i.location_id = ?", params[:location_id]).to_json(include: {
-          chemical: {},
+        INNER JOIN chemicals ON containers.chemical_id = chemicals.id').where("i.location_id = ?", params[:location_id]).includes(:container_content, :chemical, :supplier, :container_location, :location).to_json(include: {
+          container_content: {
+            include: {
+              chemical: {}
+            }
+          },
           supplier: {},
-          current_location: {}
+          container_location: {include: {location: {}}}
         })
     else
       halt(404, "Location with location_id #{params[:location_id]} not found.")
@@ -299,23 +369,26 @@ class Colin::Routes::Container < Colin::BaseWebApp
       Colin::Models::ContainerLocation.create(created_at: Time.now.utc.iso8601, updated_at: Time.now.utc.iso8601, container_id: container.id, location_id: params[:location_id])
 
       container.to_json(include: {
-        chemical: {
+        container_content: {
           include: {
-            schedule: {},
-            packing_group: {},
-            signal_word: {},
-            chemical_haz_class: { include: :haz_class },
-            chemical_pictogram: { include: { pictogram: {except: :picture} } },
-            chemical_haz_stat: { include: :haz_stat },
-            chemical_prec_stat: { include: :prec_stat },
-            dg_class_1: { include: :superclass },
-            dg_class_2: { include: :superclass },
-            dg_class_3: { include: :superclass }
+            chemical: {
+              include: {
+                schedule: {},
+                packing_group: {},
+                signal_word: {},
+                chemical_haz_class: { include: :haz_class },
+                chemical_pictogram: { include: { pictogram: {except: :picture} } },
+                chemical_haz_stat: { include: :haz_stat },
+                chemical_prec_stat: { include: :prec_stat },
+                dg_class_1: { include: :superclass },
+                dg_class_2: { include: :superclass },
+                dg_class_3: { include: :superclass }
+              }
+            }
           }
         },
         supplier: {},
-        container_location: {include: {location: { include: :parent }}},
-        current_location: {include: {location: { include: :parent }}}
+        container_location: {include: {location: { include: :parent }}}
       })
     else
       halt(404, "Container with barcode #{params[:barcode]} not found.")
@@ -362,11 +435,7 @@ class Colin::Routes::Container < Colin::BaseWebApp
     end
 
     content_type :json
-    Colin::Models::Container.joins('LEFT JOIN container_locations i ON i.container_id = containers.id AND i.id = (SELECT MAX(id) FROM container_locations WHERE container_locations.container_id = i.container_id) INNER JOIN chemicals ON containers.chemical_id = chemicals.id').where("CONCAT(chemicals.prefix, chemicals.name) ILIKE :query OR barcode LIKE :query OR chemicals.cas LIKE :query", { query: "%"+params[:query]+"%"}).limit(params[:limit]).offset(params[:offset]).to_json(include: {
-      chemical: {},
-      supplier: {},
-      current_location: {}
-    })
+    Colin::Models::Container.joins('LEFT JOIN container_locations i ON i.container_id = containers.id AND i.id = (SELECT MAX(id) FROM container_locations WHERE container_locations.container_id = i.container_id) INNER JOIN container_contents ON container_contents.container_id = containers.id INNER JOIN chemicals ON container_contents.chemical_id = chemicals.id').where("CONCAT(chemicals.prefix, chemicals.name) ILIKE :query OR barcode LIKE :query OR chemicals.cas LIKE :query", { query: "%"+params[:query]+"%"})
   end
 
 end

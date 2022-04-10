@@ -19,9 +19,9 @@
 
     <dl class="row mt-5"> 
         <dt class="col-md-2">CAS:</dt>
-        <dd class="col-md-2"><%= container.chemical.cas %></dd>
+        <dd class="col-md-2"><%= container.chemical[0].cas %></dd>
         <dt class="col-md-2">Name:</dt>
-        <dd class="col-md-6 text-truncate"><%= container.chemical.prefix.to_s + container.chemical.name %></dd>
+        <dd class="col-md-6 text-truncate"><%= container.chemical[0].prefix.to_s + container.chemical[0].name %></dd>
         <dt class="col-md-2">Barcode:</dt>
         <dd class="col-md-2"><%= container.barcode %></dd>
         <dt class="col-md-2">Location: </dt>
@@ -52,30 +52,30 @@
         <hr class="w-100"/>
 
         <dt class="col-md-2 mb-3">InChI:</dt>
-        <dd class="col-md-4"><%= if !container.chemical.inchi.nil? 
-        container.chemical.inchi end %></dd>
+        <dd class="col-md-4"><%= if !container.chemical[0].inchi.nil? 
+        container.chemical[0].inchi end %></dd>
         <dt class="col-md-2 mb-3">SMILES:</dt>
-        <dd class="col-md-4"><%= if !container.chemical.smiles.nil? 
-        container.chemical.smiles end %></dd>
+        <dd class="col-md-4"><%= if !container.chemical[0].smiles.nil? 
+        container.chemical[0].smiles end %></dd>
         <dt class="col-md-2 mb-3">PubChem ID:</dt>
-        <dd class="col-md-4"><%= if !container.chemical.pubchem.nil? 
-        container.chemical.pubchem end %></dd>
+        <dd class="col-md-4"><%= if !container.chemical[0].pubchem.nil? 
+        container.chemical[0].pubchem end %></dd>
         <dt class="col-md-2 mb-3">Density:</dt>
-        <dd class="col-md-4"><%= if !container.chemical.density.nil? 
-        container.chemical.density.to_s + ' g/mL' end %></dd>
+        <dd class="col-md-4"><%= if !container.chemical[0].density.nil? 
+        container.chemical[0].density.to_s + ' g/mL' end %></dd>
         <dt class="col-md-2 mb-3">Melting point:</dt>
-        <dd class="col-md-4"><%= if !container.chemical.melting_point.nil? 
-        container.chemical.melting_point.to_s + ' &#8451;' end %></dd>
+        <dd class="col-md-4"><%= if !container.chemical[0].melting_point.nil? 
+        container.chemical[0].melting_point.to_s + ' &#8451;' end %></dd>
         <dt class="col-md-2 mb-3">Boiling point:</dt>
-        <dd class="col-md-4"><%= if !container.chemical.boiling_point.nil? 
-        container.chemical.boiling_point.to_s + ' &#8451;' end %></dd>
+        <dd class="col-md-4"><%= if !container.chemical[0].boiling_point.nil? 
+        container.chemical[0].boiling_point.to_s + ' &#8451;' end %></dd>
         <hr class="w-100"/>
 
         <dt class="col-md-2 mb-3">Hazard classification:</dt>
         <dd class="col-md-10">
             <dl class="row">
-                <% if !container.chemical.haz_class.nil? 
-                container.chemical.haz_class.each do |haz_class|%>
+                <% if !container.chemical[0].haz_class.nil? 
+                container.chemical[0].haz_class.each do |haz_class|%>
                 <dd class="col-md-12"><%= haz_class.superclass.description %> (<%= haz_class.description %>)</dd>
                 <%end 
                 end%>
@@ -84,8 +84,8 @@
         <dt class="col-md-2 mb-3">Hazard statements:</dt>
         <dd class="col-md-10">
             <dl class="row">
-                <% if !container.chemical.haz_stat.nil? 
-                container.chemical.haz_stat.each do |haz_stat|%>
+                <% if !container.chemical[0].haz_stat.nil? 
+                container.chemical[0].haz_stat.each do |haz_stat|%>
                 <dt class="col-md-2"><%= haz_stat.code %></dt>
                 <dd class="col-md-10"><%= haz_stat.description %></dd>
                 <%end 
@@ -95,8 +95,8 @@
         <dt class="col-md-2 mb-3">Precaution statements:</dt>
         <dd class="col-md-10">
             <dl class="row">
-                <% if !container.chemical.prec_stat.nil? 
-                container.chemical.prec_stat.each do |prec_stat|%>
+                <% if !container.chemical[0].prec_stat.nil? 
+                container.chemical[0].prec_stat.each do |prec_stat|%>
                 <dt class="col-md-2"><%= prec_stat.code %></dt>
                 <dd class="col-md-10"><%= prec_stat.description %></dd>
                 <%end 
@@ -106,8 +106,8 @@
 
         <dt class="col-md-2 mb-3">Pictogram:</dt>
         <dd class="col-md-4">
-            <% if !container.chemical.pictogram.nil? 
-                container.chemical.pictogram.each do |pictogram|%>
+            <% if !container.chemical[0].pictogram.nil? 
+                container.chemical[0].pictogram.each do |pictogram|%>
                 <img class='img-fluid' style='width:50px;height:50px;' src='/api/pictogram/image/id/<%= pictogram.id %>'>
                 <%end 
                 end%>
@@ -115,8 +115,8 @@
         <dt class="col-md-2 mb-3">Signal word:</dt>
         <dd class="col-md-4">
             <dl class="row">
-                <% if !container.chemical.signal_word.nil? %>
-                <dd class="col-md-12"><%= container.chemical.signal_word.name %></dd>
+                <% if !container.chemical[0].signal_word.nil? %>
+                <dd class="col-md-12"><%= container.chemical[0].signal_word.name %></dd>
                 <%end%>
             </dl>
         </dd>
@@ -125,27 +125,27 @@
         <hr class="w-100"/>
 
         <dt class="col-md-2">UN number:</dt>
-        <dd class="col-md-2"><%= if !container.chemical.un_number.nil? 
-        container.chemical.un_number.to_s end %></dd>
+        <dd class="col-md-2"><%= if !container.chemical[0].un_number.nil? 
+        container.chemical[0].un_number.to_s end %></dd>
         <dt class="col-md-2">UN proper shipping name:</dt>
-        <dd class="col-md-6"><%= if !container.chemical.un_proper_shipping_name.nil? 
-        container.chemical.un_proper_shipping_name.to_s end %></dd>
+        <dd class="col-md-6"><%= if !container.chemical[0].un_proper_shipping_name.nil? 
+        container.chemical[0].un_proper_shipping_name.to_s end %></dd>
         <dt class="col-md-2">Transport class:</dt>
         <dd class="col-md-2">
-        <%= if !container.chemical.dg_class_1.nil? && container.chemical.dg_class_2.nil? && container.chemical.dg_class_3.nil?
-        container.chemical.dg_class_1.number.to_s 
-        elsif !container.chemical.dg_class_1.nil? && !container.chemical.dg_class_2.nil? && container.chemical.dg_class_3.nil?
-        container.chemical.dg_class_1.number.to_s + ' (' + container.chemical.dg_class_2.number.to_s + ')'
-        elsif !container.chemical.dg_class_1.nil? && !container.chemical.dg_class_2.nil? && !container.chemical.dg_class_3.nil?
-        container.chemical.dg_class_1.number.to_s + ' (' + container.chemical.dg_class_2.number.to_s + ', ' + container.chemical.dg_class_3.number.to_s + ')'
+        <%= if !container.chemical[0].dg_class_1.nil? && container.chemical[0].dg_class_2.nil? && container.chemical[0].dg_class_3.nil?
+        container.chemical[0].dg_class_1.number.to_s 
+        elsif !container.chemical[0].dg_class_1.nil? && !container.chemical[0].dg_class_2.nil? && container.chemical[0].dg_class_3.nil?
+        container.chemical[0].dg_class_1.number.to_s + ' (' + container.chemical[0].dg_class_2.number.to_s + ')'
+        elsif !container.chemical[0].dg_class_1.nil? && !container.chemical[0].dg_class_2.nil? && !container.chemical[0].dg_class_3.nil?
+        container.chemical[0].dg_class_1.number.to_s + ' (' + container.chemical[0].dg_class_2.number.to_s + ', ' + container.chemical[0].dg_class_3.number.to_s + ')'
         end %> 
        </dd>
         <dt class="col-md-2">Packing group:</dt>
-        <dd class="col-md-2"><%= if !container.chemical.packing_group.nil? 
-        container.chemical.packing_group.name.to_s end %></dd>
+        <dd class="col-md-2"><%= if !container.chemical[0].packing_group.nil? 
+        container.chemical[0].packing_group.name.to_s end %></dd>
         <dt class="col-md-2">Schedule:</dt>
-        <dd class="col-md-2"><%= if !container.chemical.schedule.nil? 
-        container.chemical.schedule.number.to_s end %></dd>
+        <dd class="col-md-2"><%= if !container.chemical[0].schedule.nil? 
+        container.chemical[0].schedule.number.to_s end %></dd>
     </dl>
     <% if !container.date_disposed? %>
     <a class="btn btn-primary btn-lg btn-block" role="button" href="/container/edit/barcode/<%= container.barcode %>">Edit</a>

@@ -1,5 +1,5 @@
 class DeleteContainerChemicalIdColumn < ActiveRecord::Migration[5.2]
   def change
-    remove_column :containers, :chemical_id
+    remove_reference :containers, :chemical, index: true
   end
 end

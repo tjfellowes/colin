@@ -35,18 +35,15 @@ class Colin::Routes::Chemical < Colin::BaseWebApp
     if params[:cas].nil?
       halt(422, 'Must provide a CAS number for chemical.')
 
-    elsif Colin::Models::Chemical.where("cas ILIKE :cas", { cas: "%"+params[:cas]+"%"}).count > 1
-      Colin::Models::Chemical.where("cas ILIKE :cas", { cas: "%"+params[:cas]+"%"}).select(:id, :prefix, :name, :cas).to_json()
-
-    elsif Colin::Models::Chemical.where("cas ILIKE :cas", { cas: "%"+params[:cas]+"%"}).count == 1
-      Colin::Models::Chemical.where("cas ILIKE :cas", { cas: "%"+params[:cas]+"%"}).to_json(include: {
+    elsif Colin::Models::Chemical.where(cas: params[:cas]).exists?
+      Colin::Models::Chemical.where(cas: params[:cas]).to_json(include: {
         schedule: {},
         packing_group: {},
         signal_word: {},
-        chemical_haz_class: { include: :haz_class },
-        chemical_pictogram: { include: { pictogram: {except: :picture} } },
-        chemical_haz_stat: { include: :haz_stat },
-        chemical_prec_stat: { include: :prec_stat },
+        haz_class: {},
+        pictogram: {except: :picture},
+        haz_stat: {},
+        prec_stat: {},
         dg_class_1: { include: :superclass },
         dg_class_2: { include: :superclass },
         dg_class_3: { include: :superclass },

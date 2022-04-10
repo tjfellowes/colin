@@ -45,7 +45,14 @@ module Colin
       Colin::Routes::Location,
       Colin::Routes::LocationType,
       Colin::Routes::Pictogram,
-      Colin::Routes::HazClass
+      Colin::Routes::HazClass,
+      Colin::Routes::DgClass,
+      Colin::Routes::HazStat,
+      Colin::Routes::PrecStat,
+      Colin::Routes::Schedule,
+      Colin::Routes::PackingGroup,
+      Colin::Routes::Supplier,
+      Colin::Routes::SignalWord
     ]
   end
 
