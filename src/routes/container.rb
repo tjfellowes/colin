@@ -372,7 +372,6 @@ class Colin::Routes::Container < Colin::BaseWebApp
     })
   end
 
-
   # Gets containers in a given location id
   get '/api/container/location_id/:location_id' do
     content_type :json

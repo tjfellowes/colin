@@ -1,4 +1,14 @@
 class Colin::Routes::User < Colin::BaseWebApp
+
+    get "/api/user" do
+        unless session[:authorized]
+            halt(403, 'Not authorised.')
+        end
+
+        content_type :json
+
+        Colin::Models::User.active.visible.limit(params[:limit]).offset(params[:offset]).select(:id, :name, :username).to_json()
+    end
     
     post "/api/user" do 
 

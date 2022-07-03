@@ -563,15 +563,15 @@ def create_haz_classes
 end
 
 def create_pictograms
-  Pictogram.create!(code: 'GHS04', name: 'Compressed gas', picture: File.open("db/seeds/images/compressed_gas.jpg", "rb").read)
-  Pictogram.create!(code: 'GHS05', name: 'Corrosive', picture: File.open("db/seeds/images/corrosive.jpg", "rb").read)
-  Pictogram.create!(code: 'GHS09', name: 'Ecotoxic', picture: File.open("db/seeds/images/ecotoxic.jpg", "rb").read)
-  Pictogram.create!(code: 'GHS01', name: 'Explosive', picture: File.open("db/seeds/images/explosive.jpg", "rb").read)
-  Pictogram.create!(code: 'GHS02', name: 'Flammable', picture: File.open("db/seeds/images/flammable.jpg", "rb").read)
-  Pictogram.create!(code: 'GHS08', name: 'Harmful', picture: File.open("db/seeds/images/harmful.jpg", "rb").read)
-  Pictogram.create!(code: 'GHS07', name: 'Irritant', picture: File.open("db/seeds/images/irritant.jpg", "rb").read)
-  Pictogram.create!(code: 'GHS03', name: 'Oxidant', picture: File.open("db/seeds/images/oxidant.jpg", "rb").read)
-  Pictogram.create!(code: 'GHS06', name: 'Toxic', picture: File.open("db/seeds/images/toxic.jpg", "rb").read)
+  Pictogram.create!(code: 'GHS04', name: 'Compressed gas', picture: Base64.encode64(File.open("db/seeds/images/compressed_gas.jpg", "rb").read))
+  Pictogram.create!(code: 'GHS05', name: 'Corrosive', picture: Base64.encode64(File.open("db/seeds/images/corrosive.jpg", "rb").read))
+  Pictogram.create!(code: 'GHS09', name: 'Ecotoxic', picture: Base64.encode64(File.open("db/seeds/images/ecotoxic.jpg", "rb").read))
+  Pictogram.create!(code: 'GHS01', name: 'Explosive', picture: Base64.encode64(File.open("db/seeds/images/explosive.jpg", "rb").read))
+  Pictogram.create!(code: 'GHS02', name: 'Flammable', picture: Base64.encode64(File.open("db/seeds/images/flammable.jpg", "rb").read))
+  Pictogram.create!(code: 'GHS08', name: 'Harmful', picture: Base64.encode64(File.open("db/seeds/images/harmful.jpg", "rb").read))
+  Pictogram.create!(code: 'GHS07', name: 'Irritant', picture: Base64.encode64(File.open("db/seeds/images/irritant.jpg", "rb").read))
+  Pictogram.create!(code: 'GHS03', name: 'Oxidant', picture: Base64.encode64(File.open("db/seeds/images/oxidant.jpg", "rb").read))
+  Pictogram.create!(code: 'GHS06', name: 'Toxic', picture: Base64.encode64(File.open("db/seeds/images/toxic.jpg", "rb").read))
 end
 
 def create_signal_words

@@ -15,11 +15,8 @@
         <dd class="col-md-2"><input class="form-control" id="barcode" name="barcode"></dd>
         <dt class="col-md-2">Location: </dt>
         <dd class="col-md-6">
-        <select class="form-control selectpicker" id="location_id" name="location_id" title="Location" data-live-search="true">      
-            <% Colin::Models::Location.active.can_store_chemicals.each do |location| %>
-            <option value="<%= location.id %>"><%= location.location_path %></option>
-            <% end %>  
-        </select>        
+            <select class="form-control selectpicker" id="locations" name="location_id" title="Location" data-live-search="true">      
+            </select>        
         </dd>
         <hr class="w-100"/>
 
@@ -33,10 +30,7 @@
         <dd class="col-md-4"><input class="form-control" id="quantity" name="quantity"></dd>
         <dt class="col-md-2">Owner:</dt>
         <dd class="col-md-4">
-            <select class="form-control selectpicker" id="owner_id" name="owner_id" title="Owner" data-live-search="true">      
-                <% Colin::Models::User.active.where(hidden: false).each do |user| %>
-                <option value="<%= user.id %>"><%= user.name %></option>
-                <% end %>  
+            <select class="form-control selectpicker" id="owners" name="owner_id" title="Owner" data-live-search="true">      
             </select>
         </dd>
         <dt class="col-md-2">Last modified by:</dt>
@@ -81,9 +75,6 @@
         <dt class="col-md-2">Hazard classification:</dt>
         <dd class="col-md-10">
         <select class="form-control selectpicker mb-2" multiple title="Hazard classifications" id="haz_classes" data-live-search="true">
-            <% Colin::Models::HazClass.toplevel.each do |hazclass| %>
-                <option value="<%= hazclass.id %>"><%= hazclass.description %></option>
-            <% end %>  
         </select>
         <dl id="haz_class_categories" class="row mb-0" style="display:none;">            
         </dl>
@@ -91,34 +82,22 @@
         <dt class="col-md-2">Hazard statements:</dt>
         <dd class="col-md-10">
         <select class="form-control selectpicker" multiple title="H statements" id="haz_stats" name="haz_stats[]" data-live-search="true">
-            <% Colin::Models::HazStat.all.each do |hazstat| %>
-                <option value="<%= hazstat.code %>"><%= hazstat.code + " - " + hazstat.description %></option>
-            <% end %>  
         </select>
         </dd>
         <dt class="col-md-2">Precaution statements:</dt>
         <dd class="col-md-10">
         <select class="form-control selectpicker" multiple title="P statements" id="prec_stats" name="prec_stats[]" data-live-search="true">
-            <% Colin::Models::PrecStat.all.each do |precstat| %>
-                <option value="<%= precstat.code %>"><%= precstat.code + " - " + precstat.description %></option>
-            <% end %>  
         </select>
         </dd>
         
         <dt class="col-md-2">Pictogram:</dt>
         <dd class="col-md-4">
              <select class="form-control selectpicker" multiple title="Pictogram" id="pictograms" name="pictogram_ids[]" data-live-search="true">
-            <% Colin::Models::Pictogram.all.each do |pictogram| %>
-                <option value="<%= pictogram.id %>" data-content="<img class='img-thumbnail img-fluid' style='width:50px;height:50px;' src='/api/pictogram/image/id/<%= pictogram.id %>'>&nbsp;<%= pictogram.name %>"></option>
-            <% end %>  
             </select>
         </dd>
         <dt class="col-md-2">Signal word:</dt>
         <dd class="col-md-4">
             <select class="form-control selectpicker" title="Signal Word" id="signal_word" name="signal_word">
-            <% Colin::Models::SignalWord.all.each do |signalword| %>
-                <option value="<%= signalword.name %>"><%= signalword.name %></option>
-            <% end %>  
             </select>
         </dd>
         
@@ -141,6 +120,19 @@
 </div>
 
 <script src="/js/cas_autocomplete.js"></script>
+
+<script>
+$(document).ready(
+    PopulateLocationList('#locations'),
+    PopulateUserList('#owners'),
+    PopulateHazClassList('#haz_classes'),
+    PopulateHazStatList('#haz_stats'),
+    PopulatePrecStatList('#prec_stats'),
+    PopulatePictogramList('#pictograms'),
+    PopulateSignalWordList('#signal_word')
+)
+</script>
+
 <script>
 $(document).ready(function () {
     $('#haz_classes').on('hide.bs.select', function () {
