@@ -13,9 +13,6 @@
 
   <div class="form-group">
     <select class="form-control selectpicker" id="location_type_id" name="location_type_id" title="Location Type">   
-      <% Colin::Models::LocationType.all.each do |location_type| %>
-        <option value="<%= location_type.id %>"><%= location_type.name %></option>
-      <% end %>  
     </select>
   </div>
 
@@ -28,19 +25,39 @@
       </div>
   </div>
 
-  <div class="form-group">
+  <!--<div class="form-group">
   <input class="form-check-input" type="checkbox" value="true" name ="monitored" id="monitored">
   <label class="form-check-label" for="monitored">
     Monitored?
   </label>
-  </div>
+  </div>-->
   <button id="create_location" class="btn btn-primary">Create Location</button> 
   <button class="btn btn-secondary" id="cancel">Cancel</button>
+</div>
+
+<!-- Modal -->
+<div class="modal" id="feedbackModal" tabindex="-1" aria-labelledby="feedbackModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="feedbackModalTitle"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="feedbackModalBody">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 <script>
 $(document).ready(function () {
   PopulateLocationList("#location_list");
+  PopulateLocationTypeList("#location_type_id");
   $("#create_location").click(function () {
     $.ajax({
       type: "POST",
@@ -54,7 +71,17 @@ $(document).ready(function () {
         monitored: $("[name='monitored']").prop("checked")
       },
       dataType: "json",
-      success: function () {window.location.href = "/";}
+      success: function () {
+        $('#feedbackModalTitle').html('Location created');
+        $('#feedbackModalBody').html('Location ' + $("[name='name']").val() + ' successfully created.');
+        $('#feedbackModal').modal();
+      },
+      error: function (xhr, status, error) {
+        $('#feedbackModalTitle').html('Error');
+        console.log(xhr);
+        $('#feedbackModalBody').html(xhr['responseText']);
+        $('#feedbackModal').modal();
+      }
     });
   });
   $("#cancel").click(function () {window.location.href = "/";});

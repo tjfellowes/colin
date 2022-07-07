@@ -82,11 +82,15 @@
               <% if active_user.can_edit_container? %>
               <a class="dropdown-item" href="/location/stocktake">Stocktake</a>
               <% end %>
+              <% if active_user.can_edit_container? && ( active_user.can_create_location? || active_user.can_edit_location?)%>
               <div class="dropdown-divider"></div>
+              <% end %>
               <% if active_user.can_create_location? %>
               <a class="dropdown-item" href="/location/new">Add Location</a>
               <% end %>
+              <% if active_user.can_edit_location? %>
               <a class="dropdown-item" href="/location">List Locations</a> 
+              <% end %>
             </div>
           </li>
           <% end %>
@@ -115,7 +119,7 @@
         </ul>
         <ul class="navbar-nav ml-auto justify-content-end">
           <li class="nav-item"> 
-            <p class="nav-link">Logged in as <%= active_user.name %></p>
+            <a class="nav-link" href="/user/username/edit/<%= active_user.username %>">Logged in as <%= active_user.name %></a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/user/logout">Logout</a>

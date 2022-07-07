@@ -12,7 +12,8 @@ class Colin::Routes::Location < Colin::BaseWebApp
       halt(403, 'Not authorised.')
     end
     content_type :json
-    Colin::Models::Location.all.to_json(methods: :location_path)
+    locations = Colin::Models::Location.active
+    Colin::Models::Location.sort_by_ancestry(locations).to_json(methods: :location_path, include: :location_type)
   end
 
   get '/api/location/id/:id' do 
@@ -69,6 +70,12 @@ class Colin::Routes::Location < Colin::BaseWebApp
 
     if params[:name].blank?
       halt(422, 'Must provide a name for the location.')
+    elsif params[:location_type_id].blank?
+      halt(422, 'Must provide a location type for the location.')
+    elsif !params[:barcode].blank? && Colin::Models::Location.exists?(barcode: params[:barcode])
+      halt(422, 'Location with barcode ' + params[:barcode] + ' already exists.')
+    elsif !params[:parent_id].blank? && Colin::Models::Location.children_of(params[:parent_id]).exists?(name: params[:name])
+      halt(422, 'Location ' + params[:name] + ' in ' + Colin::Models::Location.find(params[:parent_id]).name + ' already exists.')
     elsif params[:parent_id].present?
       location_type = Colin::Models::LocationType.find(params[:location_type_id])
       parent = Colin::Models::Location.find(params[:parent_id])

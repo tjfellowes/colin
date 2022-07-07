@@ -1,4 +1,4 @@
-function PopulateLocationList(location_list_id) {
+function PopulateLocationList(location_list_id, selected_id) {
     $.ajax({
         type: "GET",
         url: "/api/location",
@@ -6,13 +6,17 @@ function PopulateLocationList(location_list_id) {
         dataType: "json",
         success: function (response) {
             for (i of response) {
-                $(location_list_id).append('<option value="' + i.id + '">' + i.location_path + '</option>');
+                if (i.id == selected_id) {
+                    $(location_list_id).append('<option selected value="' + i.id + '">' + i.location_path + '</option>');
+                } else {
+                    $(location_list_id).append('<option value="' + i.id + '">' + i.location_path + '</option>');
+                }
             }
             $(location_list_id).selectpicker('refresh');
         }
     })
 }
-function PopulateUserList(user_list_id) {
+function PopulateUserList(user_list_id, selected_id) {
     $.ajax({
         type: "GET",
         url: "/api/user",
@@ -20,7 +24,11 @@ function PopulateUserList(user_list_id) {
         dataType: "json",
         success: function (response) {
             for (i of response) {
-                $(user_list_id).append('<option value="' + i.id + '">' + i.name + '</option>');
+                if (i.id == selected_id) {
+                    $(user_list_id).append('<option selected value="' + i.id + '">' + i.name + '</option>');
+                } else {
+                    $(user_list_id).append('<option value="' + i.id + '">' + i.name + '</option>');
+                }
             }
             $(user_list_id).selectpicker('refresh');
         }
@@ -95,6 +103,24 @@ function PopulateSignalWordList(signal_word_list_id) {
                 $(signal_word_list_id).append('<option value="' + i.name +'">' + i.name +'</option>');
             }
             $(signal_word_list_id).selectpicker('refresh');
+        }
+    })
+}
+function PopulateLocationTypeList(location_type_list_id, selected_id) {
+    $.ajax({
+        type: "GET",
+        url: "/api/locationtype",
+        data: {},
+        dataType: "json",
+        success: function (response) {
+            for (i of response) {
+                if (i.id == selected_id) {
+                    $(location_type_list_id).append('<option selected value="' + i.id + '">' + i.name + '</option>');
+                } else {
+                    $(location_type_list_id).append('<option value="' + i.id + '">' + i.name + '</option>');
+                }
+            }
+            $(location_type_list_id).selectpicker('refresh');
         }
     })
 }
