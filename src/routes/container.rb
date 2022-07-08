@@ -96,9 +96,14 @@ class Colin::Routes::Container < Colin::BaseWebApp
     for component in components
       unless Colin::Models::Chemical.where(cas: component['cas']).exists?
 
+        for i in component
+          puts(i)
+        end
+
         #Parse the storage temperature into a max and min
         if component['storage_temperature'].blank?
-          #Nothing to do here!
+          storage_temperature_min = 25
+          storage_temperature_max = 25
         elsif component['storage_temperature'].split('~').length == 1
           storage_temperature_min = component['storage_temperature']
           storage_temperature_max = component['storage_temperature']
@@ -130,20 +135,22 @@ class Colin::Routes::Container < Colin::BaseWebApp
           signal_word: Colin::Models::SignalWord.find_by_id(component['signal_word_id'])
         )
 
-        unless component['haz_stat'].blank?
-          chemical.update(haz_stat: Array(Colin::Models::HazStat.find(Array(component['haz_stat']).map{ |i| i['id']})))
+        puts(chemical.take)
+
+        unless component['haz_stats'].blank?
+          chemical.update(haz_stat: Array(Colin::Models::HazStat.find(Array(component['haz_stats']).map{ |i| i['id']})))
         end
     
-        unless component['prec_stat'].blank?
-          chemical.update(prec_stat: Array(Colin::Models::PrecStat.find(Array(component['prec_stat']).map{ |i| i['id']})))
+        unless component['prec_stats'].blank?
+          chemical.update(prec_stat: Array(Colin::Models::PrecStat.find(Array(component['prec_stats']).map{ |i| i['id']})))
         end
     
-        unless component['haz_class'].blank?
-          chemical.update(haz_class: Array(Colin::Models::HazClass.find(Array(component['haz_class']).map{ |i| i['id']})))
+        unless component['haz_class_ids'].blank?
+          chemical.update(haz_class: Array(Colin::Models::HazClass.find(Array(component['haz_class_ids']).map{ |i| i['id']})))
         end
     
-        unless component['pictogram'].blank?
-          chemical.update(pictogram: Array(Colin::Models::Pictogram.find(Array(component['pictogram']).map{ |i| i['id']})))
+        unless component['pictograms'].blank?
+          chemical.update(pictogram: Array(Colin::Models::Pictogram.find(Array(component['pictograms']).map{ |i| i['id']})))
         end
 
       end
@@ -165,7 +172,7 @@ class Colin::Routes::Container < Colin::BaseWebApp
       barcode = Colin::Models::Container.unscoped.all.select(:barcode).map{|i| i.barcode.to_i}.max + 1
     end
 
-    unless params[:storage_temperature].blank?
+    if !params[:storage_temperature].blank?
       if params[:storage_temperature].split('~').length == 1
         storage_temperature_min = params[:storage_temperature]
         storage_temperature_max = params[:storage_temperature]
@@ -173,9 +180,17 @@ class Colin::Routes::Container < Colin::BaseWebApp
         storage_temperature_min = params[:storage_temperature].split('~').min
         storage_temperature_max = params[:storage_temperature].split('~').max
       end
+    elsif !first_chemical['storage_temperature'].blank?
+      if first_chemical['storage_temperature'].split('~').length == 1
+        storage_temperature_min = first_chemical['storage_temperature']
+        storage_temperature_max = first_chemical['storage_temperature']
+      else
+        storage_temperature_min = first_chemical['storage_temperature'].split('~').min
+        storage_temperature_max = first_chemical['storage_temperature'].split('~').max
+      end
     else
-      storage_temperature_min = first_chemical.storage_temperature_min
-      storage_temperature_max = first_chemical.storage_temperature_max
+      storage_temperature_min = 25
+      storage_temperature_max = 25
     end
 
     unless params[:name].blank?

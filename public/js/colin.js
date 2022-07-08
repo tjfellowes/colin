@@ -1,3 +1,7 @@
+$(document).ready(function () {
+    bsCustomFileInput.init()
+})
+
 function PopulateLocationList(location_list_id, selected_id) {
     $.ajax({
         type: "GET",

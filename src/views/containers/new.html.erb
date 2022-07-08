@@ -1,128 +1,73 @@
 <div class="container"> 
-<style>dt { text-align: right !important } dd { text-align: left !important }</style>
-<h1>Add chemical</h1>
-    <dl class="row mt-5">
-        <dt class="col-md-2">CAS:</dt>
-        <dd class="col-md-2"><input class="form-control" id="cas" name="cas"></dd>
-        <dt class="col-md-2">Name:</dt>
-        <dd class="col-md-6 text-truncate">
+<style></style>
+<h1>Add container</h1>
+<form class="form-newchemical mt-5 mx-4">
+    <div class="form-row">
+        <div class="form-group col-md-8">
+            <label for="name">Container name</label>
             <div class="input-group">
                 <input type="text" class="form-control w-25" id="prefix" name="prefix" placeholder="Prefix">
                 <input type="text" class="form-control w-75" id="name" name="name" placeholder="Name">
             </div>
-        </dd>
-        <dt class="col-md-2">Barcode:</dt>
-        <dd class="col-md-2"><input class="form-control" id="barcode" name="barcode"></dd>
-        <dt class="col-md-2">Location: </dt>
-        <dd class="col-md-6">
-            <select class="form-control selectpicker" id="locations" name="location_id" title="Location" data-live-search="true">      
-            </select>        
-        </dd>
-        <hr class="w-100"/>
-
-        <dt class="col-md-2">Supplier:</dt>
-        <dd class="col-md-4"><input class="form-control" id="supplier" name="supplier"></dd>
-        <dt class="col-md-2">Product number:</dt>
-        <dd class="col-md-4"><input class="form-control" id="product_number" name="product_number"></dd>
-        <dt class="col-md-2">Lot number:</dt>
-        <dd class="col-md-4"><input class="form-control" id="lot_number" name="lot_number"></dd>
-        <dt class="col-md-2">Quantity:</dt>
-        <dd class="col-md-4"><input class="form-control" id="quantity" name="quantity"></dd>
-        <dt class="col-md-2">Owner:</dt>
-        <dd class="col-md-4">
+        </div>
+        <div class="form-group col-md-4">
+            <label for="barcode">Barcode</label>
+            <input type="text" class="form-control" id="barcode" placeholder="Barcode">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="locations">Storage location</label>
+        <select class="form-control selectpicker" id="locations" name="location_id" title="Location" data-live-search="true"></select>  
+    </div>
+    <hr class="w-100"/>
+    <div class="form-row">
+        <div class="form-group col-md-4">
+            <label for="supplier">Supplier</label>
+            <input type="text" class="form-control" id="supplier" placeholder="Supplier">
+        </div>
+        <div class="form-group col-md-4">
+            <label for="owner">Owner</label>
             <select class="form-control selectpicker" id="owners" name="owner_id" title="Owner" data-live-search="true">      
             </select>
-        </dd>
-        <dt class="col-md-2">Last modified by:</dt>
-        <dd class="col-md-4"><input class="form-control" id="user" name="user" value="<%= current_user.name%>" readonly></dd>
-        <hr class="w-100"/>
-
-        <dt class="col-md-2">InChI:</dt>
-        <dd class="col-md-4"><input class="form-control" id="inchi" name="inchi"></dd>
-        <dt class="col-md-2">SMILES:</dt>
-        <dd class="col-md-4"><input class="form-control" id="smiles" name="smiles"></dd>
-        <dt class="col-md-2">PubChem ID:</dt>
-        <dd class="col-md-4"><input class="form-control" id="pubchem" name="pubchem"></dd>
-        <dt class="col-md-2">Density:</dt>
-        <dd class="col-md-4">
-            <div class="input-group">
-                <input type="text" class="form-control w-75" id="density" name="density">
-                <div class="input-group-append">
-                    <div class="input-group-text"> g/mL</div>
-                </div>
+        </div>
+        <div class="form-group col-md-4">
+            <label for="user">Last modified by</label>
+            <input class="form-control" id="user" name="user" value="<%= current_user.name%>" readonly>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-4">
+            <label for="product_number">Product Number</label>
+            <input type="text" class="form-control" id="product_number">
+        </div>
+        <div class="form-group col-md-4">
+            <label for="lot_number">Lot number</label>
+            <input type="text" class="form-control" id="lot_number">
+        </div>
+        <div class="form-group col-md-4">
+            <label for="container_image">Image</label>
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" id="customFile">
+                <label class="custom-file-label" for="customFile">Choose file</label>
             </div>
-        </dd>
-        <dt class="col-md-2">Melting point:</dt>
-        <dd class="col-md-4">
-            <div class="input-group">
-                <input type="text" class="form-control w-75" id="melting_point" name="melting_point">
-                <div class="input-group-append">
-                    <div class="input-group-text"> &#8451;</div>
-                </div>
-            </div>
-        </dd>
-        <dt class="col-md-2">Boiling point:</dt>
-        <dd class="col-md-4">
-            <div class="input-group">
-                <input type="text" class="form-control w-75" id="boiling_point" name="boiling_point">
-                <div class="input-group-append">
-                    <div class="input-group-text"> &#8451;</div>
-                </div>
-            </div>
-        </dd>
-        <hr class="w-100"/>
-
-        <dt class="col-md-2">Hazard classification:</dt>
-        <dd class="col-md-10">
-        <select class="form-control selectpicker mb-2" multiple title="Hazard classifications" id="haz_classes" data-live-search="true">
-        </select>
-        <dl id="haz_class_categories" class="row mb-0" style="display:none;">            
-        </dl>
-        </dd>
-        <dt class="col-md-2">Hazard statements:</dt>
-        <dd class="col-md-10">
-        <select class="form-control selectpicker" multiple title="H statements" id="haz_stats" name="haz_stats[]" data-live-search="true">
-        </select>
-        </dd>
-        <dt class="col-md-2">Precaution statements:</dt>
-        <dd class="col-md-10">
-        <select class="form-control selectpicker" multiple title="P statements" id="prec_stats" name="prec_stats[]" data-live-search="true">
-        </select>
-        </dd>
-        
-        <dt class="col-md-2">Pictogram:</dt>
-        <dd class="col-md-4">
-             <select class="form-control selectpicker" multiple title="Pictogram" id="pictograms" name="pictogram_ids[]" data-live-search="true">
-            </select>
-        </dd>
-        <dt class="col-md-2">Signal word:</dt>
-        <dd class="col-md-4">
-            <select class="form-control selectpicker" title="Signal Word" id="signal_word" name="signal_word">
-            </select>
-        </dd>
-        
-        <hr class="w-100"/>
-
-        <dt class="col-md-2">UN number:</dt>
-        <dd class="col-md-2"><input class="form-control" id="un_number" name="un_number"></dd>
-        <dt class="col-md-2">UN proper shipping name:</dt>
-        <dd class="col-md-6"><input class="form-control" id="un_proper_shipping_name" name="un_proper_shipping_name"></dd>
-        <dt class="col-md-2">Transport class:</dt>
-        <dd class="col-md-2"><input class="form-control" id="dg_class" name="dg_class">
-        </dd>
-        <dt class="col-md-2">Packing group:</dt>
-        <dd class="col-md-2"><input class="form-control" id="packing_group" name="packing_group"></dd>
-        <dt class="col-md-2">Schedule:</dt>
-        <dd class="col-md-2"><input class="form-control" id="schedule" name="schedule"></dd>
-    </dl>
-    <button class="btn btn-primary btn-lg btn-block" id="create_container">Save</button>
-    <button class="btn btn-secondary btn-lg btn-block" id="cancel">Cancel</button>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="gridCheck">
+            <label class="form-check-label" for="gridCheck">
+                Check me out
+            </label>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Sign in</button>
+</form>
 </div>
 
 <script src="/js/cas_autocomplete.js"></script>
 
 <script>
-$(document).ready(
+$(document).ready(function () {
     PopulateLocationList('#locations'),
     PopulateUserList('#owners'),
     PopulateHazClassList('#haz_classes'),
@@ -130,11 +75,6 @@ $(document).ready(
     PopulatePrecStatList('#prec_stats'),
     PopulatePictogramList('#pictograms'),
     PopulateSignalWordList('#signal_word')
-)
-</script>
-
-<script>
-$(document).ready(function () {
     $('#haz_classes').on('hide.bs.select', function () {
         $('#haz_class_categories').empty().show()
         for (i of $('#haz_classes').val()) {
@@ -157,51 +97,51 @@ $(document).ready(function () {
             });
         }
     });
-});
-</script>
-<script>
-$(document).ready(function () {
-  $("#create_container").click(function () {
-    $('#haz_class_categories').append("<select multiple hidden name='haz_class_ids[]'></select>")
-    for (i of $('#haz_classes').val()) {
-        $("[name='haz_class_ids[]']").append("<option selected value=" + $('#haz_class_' + i).val() + ">item</option>")
-    }
-    $.ajax({
-      type: "POST",
-      url: "/api/container",
-      data: {
-        cas: $("[name='cas']").val(),
-        name: $("[name='name']").val(),
-        prefix: $("[name='prefix']").val(),
-        barcode: $("[name='barcode']").val(),
-        location_id: $("[name='location_id']").val(),
-        supplier: $("[name='supplier']").val(),
-        product_number: $("[name='product_number']").val(),
-        lot_number: $("[name='lot_number']").val(),
-        quantity: $("[name='quantity']").val(),
-        owner_id: $("[name='owner_id']").val(),
-        user: $("[name='user']").val(),
-        inchi: $("[name='inchi']").val(),
-        smiles: $("[name='smiles']").val(),
-        pubchem: $("[name='pubchem']").val(),
-        density: $("[name='density']").val(),
-        melting_point: $("[name='melting_point']").val(),
-        boiling_point: $("[name='boiling_point']").val(),
-        haz_stats: $("[name='haz_stats[]']").val(),
-        prec_stats: $("[name='prec_stats[]']").val(),
-        pictogram_ids: $("[name='pictogram_ids[]']").val(),
-        haz_class_ids: $("[name='haz_class_ids[]']").val(),
-        signal_word: $("[name='signal_word']").val(),
-        un_number: $("[name='un_number']").val(),
-        un_proper_shipping_name: $("[name='un_proper_shipping_name']").val(),
-        dg_class: $("[name='dg_class']").val(),
-        packing_group: $("[name='packing_group']").val(),
-        schedule: $("[name='schedule']").val()
-      },
-      dataType: "json",
-      success: function () {window.location.href = "/";}
+    $("#create_container").click(function () {
+        $('#haz_class_categories').append("<select multiple hidden name='haz_class_ids[]'></select>")
+        for (i of $('#haz_classes').val()) {
+            $("[name='haz_class_ids[]']").append("<option selected value=" + $('#haz_class_' + i).val() + ">item</option>")
+        }
+        components = JSON.stringify([{
+            cas: $("[name='cas']").val(),
+            name: $("[name='name']").val(),
+            prefix: $("[name='prefix']").val(),
+            inchi: $("[name='inchi']").val(),
+            smiles: $("[name='smiles']").val(),
+            pubchem: $("[name='pubchem']").val(),
+            density: $("[name='density']").val(),
+            melting_point: $("[name='melting_point']").val(),
+            boiling_point: $("[name='boiling_point']").val(),
+            haz_stats: $("[name='haz_stats[]']").val(),
+            prec_stats: $("[name='prec_stats[]']").val(),
+            pictogram_ids: $("[name='pictogram_ids[]']").val(),
+            haz_class_ids: $("[name='haz_class_ids[]']").val(),
+            signal_word: $("[name='signal_word']").val(),
+            un_number: $("[name='un_number']").val(),
+            un_proper_shipping_name: $("[name='un_proper_shipping_name']").val(),
+            dg_class: $("[name='dg_class']").val(),
+            packing_group: $("[name='packing_group']").val(),
+            schedule: $("[name='schedule']").val(),
+
+        }])
+        $.ajax({
+            type: "POST",
+            url: "/api/container",
+            data: {
+                components: components,
+                barcode: $("[name='barcode']").val(),
+                location_id: $("[name='location_id']").val(),
+                supplier: $("[name='supplier']").val(),
+                product_number: $("[name='product_number']").val(),
+                lot_number: $("[name='lot_number']").val(),
+                quantity: $("[name='quantity']").val(),
+                owner_id: $("[name='owner_id']").val(),
+                user: $("[name='user']").val()
+            },
+            dataType: "json",
+            success: function () {window.location.href = "/";}
+        });
     });
-  });
-  $("#cancel").click(function () {window.location.href = "/";});
+    $("#cancel").click(function () {window.location.href = "/";});
 });
 </script>

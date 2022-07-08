@@ -78,6 +78,8 @@ module Colin
       set :sessions, true
       set :session_secret, ENV['SESSION_SECRET']
 
+      set :server_settings, :Verbose => true
+
       use Rack::Flash
     end
 

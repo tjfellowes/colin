@@ -1,0 +1,12 @@
+.form-newchemical div {
+    text-align: left;
+}
+
+.form-newchemical label {
+    font-weight: bold;
+}
+
+.form-newchemical .custom-file label {
+    font-weight: 400;
+}
+
