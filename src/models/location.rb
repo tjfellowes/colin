@@ -4,11 +4,11 @@
 require 'ancestry'
 
 class Colin::Models::Location < ActiveRecord::Base
-  scope :active, -> {where("date_deleted IS NULL OR date_deleted > ?",Time.now )}
   scope :can_store_chemicals, -> {where(location_type: Colin::Models::LocationType.where.not(name: ['Building', 'Room']))}
 
   has_ancestry
   validates_presence_of :name
+  validates_inclusion_of :monitored, in: [true, false]
   has_many :container_location
   has_many :container, through: :container_locations, class_name: "Container"
   belongs_to :location_type

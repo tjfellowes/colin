@@ -6,6 +6,7 @@ class Colin::Models::Chemical < ActiveRecord::Base
   validates_presence_of :cas, :name
   validates_inclusion_of :haz_substance, in: [true, false]
 
+
   # Validate that sds_url is actually a standard URL.
   # validates :sds_url,
   #           format: { with: URI::DEFAULT_PARSER.make_regexp },

@@ -36,13 +36,10 @@ paths:
               items:
                 type: object
                 required:
-                  - id
                   - cas
                   - name
                   - haz_substance
                 properties:
-                  id:
-                    type: integer
                   cas:
                     type: string
                   prefix:
@@ -153,13 +150,10 @@ paths:
             schema:
               type: object
               required:
-                - id
                 - cas
                 - name
                 - haz_substance
               properties:
-                id:
-                  type: integer
                 cas:
                   type: string
                 prefix:
@@ -356,6 +350,131 @@ paths:
                   $ref: "#/components/schemas/Location"
         "401":
           $ref: "#/components/responses/401Error"
+    post:
+      description: creates a new location
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: object
+                required:
+                  - id
+                properties:
+                  id:
+                    type: integer
+      responses:
+        "200":
+          description: successfully created the locations, returns an array of the locations which were created
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Location"
+        "401":
+          $ref: "#/components/responses/401Error"
+        "422":
+          $ref: "#/components/responses/422Error"
+ 
+  /location/id/{id}:
+    get:
+      description: returns the location with the specified id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: successful response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Location"
+        "401":
+          $ref: "#/components/responses/401Error"
+    put:
+      description: updates the details of the location with the specified id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - name
+                - monitored
+                - location_type_id
+              properties:
+                name:
+                  type: string
+                code:
+                  type: string
+                barcode:
+                  type: string
+                location_type_id:
+                  type: integer
+                temperature:
+                  type: number
+                monitored:
+                  type: boolean
+                parent_id:
+                  type: integer
+      responses:
+        "200":
+          description: location successfully updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Location"
+        "401":
+          $ref: "#/components/responses/401Error"
+        "422":
+          $ref: "#/components/responses/422Error"
+    delete:
+      description: deletes the location with the specified id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "204":
+          description: location successfully deleted            
+        "401":
+          $ref: "#/components/responses/401Error"
+        "422":
+          $ref: "#/components/responses/422Error"
+    patch: 
+      description: undeletes a previously deleted location with the specified id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses: 
+        "200":
+          description: location successfully restored   
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Location"         
+        "401":
+          $ref: "#/components/responses/401Error"
+        "422":
+          $ref: "#/components/responses/422Error"
 
 components:
   securitySchemes:
