@@ -2,8 +2,6 @@
 # Container model class.
 #
 class Colin::Models::Container < ActiveRecord::Base
-  default_scope {where("date_disposed IS NULL OR date_disposed > ?",Time.now )}
-
   # Foreign key relationships
   belongs_to :supplier
   belongs_to :user
@@ -30,6 +28,8 @@ class Colin::Models::Container < ActiveRecord::Base
   def current_location
     Colin::Models::ContainerLocation.where(container_id: id).order(:created_at).last
   end
+
+  acts_as_paranoid
 
 end
 

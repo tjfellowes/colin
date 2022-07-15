@@ -27,4 +27,6 @@ class Colin::Models::Chemical < ActiveRecord::Base
   has_many :container_content
   has_many :container, through: :container_content
 
+  acts_as_paranoid
+
 end

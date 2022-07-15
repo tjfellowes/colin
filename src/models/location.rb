@@ -15,6 +15,8 @@ class Colin::Models::Location < ActiveRecord::Base
   has_many :location_standard
   has_many :standard, through: :location_standards, class_name: "Standard"
 
+  acts_as_paranoid
+
   def location_path_slow
     path = []
     if Colin::Models::LocationType.where(name: ['Building', 'Room']).include?(self.location_type)

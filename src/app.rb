@@ -11,6 +11,7 @@ require 'rack-flash'
 require 'open-uri'
 require 'pagy'
 require 'pagy/extras/bootstrap'
+require 'paranoia'
 #
 # The base module for CoLIN includes all routes (endpoints)
 # and Models (data ORM).
@@ -236,6 +237,7 @@ module Colin
 
       include Pagy::Frontend
 
+
       def https_required!
         #if settings.production? && request.scheme == 'http'
         if request.scheme == 'http' && request.host != 'localhost'
@@ -262,7 +264,7 @@ module Colin
 
     # Route for 404 not found
     #not_found do
-    #  redirect '/404.html'
+    #  #bum
     #end
   end
 end

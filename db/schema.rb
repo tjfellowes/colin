@@ -2,16 +2,15 @@
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
 #
-# Note that this schema.rb definition is the authoritative source for your
-# database schema. If you need to create the application database on another
-# system, you should be using db:schema:load, not running all the migrations
-# from scratch. The latter is a flawed and unsustainable approach (the more migrations
-# you'll amass, the slower it'll run and the greater likelihood for issues).
+# This file is the source Rails uses to define your schema when running `bin/rails
+# db:schema:load`. When creating a new database, `bin/rails db:schema:load` tends to
+# be faster and is potentially less error prone than running all of your
+# migrations from scratch. Old migrations may fail to apply correctly if those
+# migrations use external dependencies or application code.
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_10_114232) do
-
+ActiveRecord::Schema[7.0].define(version: 2022_07_15_091744) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -47,6 +46,7 @@ ActiveRecord::Schema.define(version: 2022_04_10_114232) do
     t.float "density"
     t.float "melting_point"
     t.float "boiling_point"
+    t.datetime "deleted_at"
     t.index ["dg_class_1_id"], name: "index_chemicals_on_dg_class_1_id"
     t.index ["dg_class_2_id"], name: "index_chemicals_on_dg_class_2_id"
     t.index ["dg_class_3_id"], name: "index_chemicals_on_dg_class_3_id"
@@ -90,6 +90,7 @@ ActiveRecord::Schema.define(version: 2022_04_10_114232) do
     t.string "quantity_unit"
     t.float "concentration"
     t.string "concentration_unit"
+    t.datetime "deleted_at"
     t.index ["chemical_id"], name: "index_container_contents_on_chemical_id"
     t.index ["container_id"], name: "index_container_contents_on_container_id"
   end
@@ -100,6 +101,7 @@ ActiveRecord::Schema.define(version: 2022_04_10_114232) do
     t.bigint "container_id", null: false
     t.bigint "location_id"
     t.boolean "temp", default: false, null: false
+    t.datetime "deleted_at"
     t.index ["container_id"], name: "index_container_locations_on_container_id"
     t.index ["location_id"], name: "index_container_locations_on_location_id"
   end
@@ -110,7 +112,7 @@ ActiveRecord::Schema.define(version: 2022_04_10_114232) do
     t.string "container_size_unit"
     t.datetime "date_purchased", null: false
     t.datetime "expiry_date"
-    t.datetime "date_disposed"
+    t.datetime "deleted_at"
     t.bigint "supplier_id"
     t.string "description"
     t.string "product_number"
@@ -135,6 +137,7 @@ ActiveRecord::Schema.define(version: 2022_04_10_114232) do
     t.string "melting_point"
     t.string "boiling_point"
     t.binary "sds"
+    t.index ["deleted_at"], name: "index_containers_on_deleted_at"
     t.index ["dg_class_1_id"], name: "index_containers_on_dg_class_1_id"
     t.index ["dg_class_2_id"], name: "index_containers_on_dg_class_2_id"
     t.index ["dg_class_3_id"], name: "index_containers_on_dg_class_3_id"
@@ -211,7 +214,8 @@ ActiveRecord::Schema.define(version: 2022_04_10_114232) do
     t.string "temperature"
     t.boolean "monitored", default: false, null: false
     t.string "ancestry"
-    t.datetime "date_deleted"
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_locations_on_deleted_at"
     t.index ["location_type_id"], name: "index_locations_on_location_type_id"
   end
 
@@ -247,7 +251,8 @@ ActiveRecord::Schema.define(version: 2022_04_10_114232) do
   create_table "suppliers", force: :cascade do |t|
     t.string "name", null: false
     t.string "website"
-    t.datetime "date_deleted"
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_suppliers_on_deleted_at"
   end
 
   create_table "users", force: :cascade do |t|
@@ -266,7 +271,8 @@ ActiveRecord::Schema.define(version: 2022_04_10_114232) do
     t.boolean "can_edit_location", default: false
     t.boolean "can_create_user", default: false
     t.boolean "can_edit_user", default: false
-    t.datetime "date_deleted"
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_users_on_deleted_at"
     t.index ["supervisor_id"], name: "index_users_on_supervisor_id"
   end
 

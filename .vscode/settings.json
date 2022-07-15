@@ -1,3 +1,6 @@
 {
-  "python.pythonPath": "/usr/local/opt/python/bin/python3.7"
+  "python.pythonPath": "/usr/local/opt/python/bin/python3.7",
+  "yaml.schemas": {
+    "openapi:v3": "file:///mnt/e/Dropbox/postdoc/colin/schema.yml"
+  }
 }

@@ -11,6 +11,8 @@ class Colin::Models::User < ActiveRecord::Base
 
   has_secure_password
 
+  acts_as_paranoid
+
   def slug
     self.username
   end

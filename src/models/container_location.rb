@@ -9,4 +9,6 @@ class Colin::Models::ContainerLocation < ActiveRecord::Base
 
   belongs_to :container
   belongs_to :location, optional: true
+
+  acts_as_paranoid
 end

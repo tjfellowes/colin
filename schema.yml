@@ -1,383 +1,606 @@
 openapi: 3.0.0
 info:
-    version: 0.1.0
-    title: CoLIN API
-    description: API for the Comprehensive Laboratory Information Nexus (CoLIN)
+  version: 0.1.0
+  title: CoLIN API
+  description: API for the Comprehensive Laboratory Information Nexus (CoLIN)
 security:
-    - sessionAuth: []
+  - sessionAuth: []
 servers:
-    - url: localhost:9292/api
+  - url: localhost:9292/api
 paths:
-    /chemical:
-        get:
-            description: returns a list of all chemicals in the database
-            parameters:
-                - $ref: "#/components/parameters/offsetParam"
-                - $ref: "#/components/parameters/limitParam"
-            responses:
-                "200":
-                    description: successful response
-                    content:
-                        application/json:
-                            schema:
-                                type: array
-                                items:
-                                    $ref: "#/components/schemas/Chemical"
-                "401":
-                    $ref: "#/components/responses/401Error"
-        post:
-            description: creates a new chemical
-            requestBody:
-                required: true
-                content:
-                    application/json:
-                        schema:
-                            $ref: "#/components/schemas/Chemical"
-            responses:
-                "200":
-                    description: successfully created the chemical
-                    content:
-                        application/json:
-                            schema:
-                                type: array
-                                items:
-                                    $ref: "#/components/schemas/Chemical"
-                "401":
-                    $ref: "#/components/responses/401Error"
-                "422":
-                    $ref: "#/components/responses/422Error"
-
-    /chemical/id/{id}:
-        get:
-            description: returns the chemical with the specified id
-            parameters:
-                - name: id
-                  in: path
-                  required: true
-                  schema:
+  /chemical:
+    get:
+      description: returns a list of all chemicals in the database
+      parameters:
+        - $ref: "#/components/parameters/offsetParam"
+        - $ref: "#/components/parameters/limitParam"
+      responses:
+        "200":
+          description: successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Chemical"
+        "401":
+          $ref: "#/components/responses/401Error"
+    post:
+      description: creates a new chemical
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: object
+                required:
+                  - id
+                  - cas
+                  - name
+                  - haz_substance
+                properties:
+                  id:
+                    type: integer
+                  cas:
+                    type: string
+                  prefix:
+                    type: string
+                  name:
+                    type: string
+                  inchi:
+                    type: string
+                  smiles:
+                    type: string
+                  pubchem:
+                    type: string
+                  density:
+                    type: number
+                  melting_point:
+                    type: number
+                  boiling_point:
+                    type: number
+                  storage_temperature_min:
+                    type: number
+                  storage_temperature_max:
+                    type: number
+                  haz_substance:
+                    type: boolean
+                  sds_url:
+                    type: string
+                  sds:
+                    type: string
+                    format: binary
+                  dg_class_1_id:
+                    type: integer
+                  dg_class_2_id:
+                    type: integer
+                  dg_class_3_id:
+                    type: integer
+                  schedule_id:
+                    type: integer
+                  packing_group_id:
+                    type: integer
+                  un_number:
+                    type: string
+                  un_proper_shipping_name:
+                    type: string
+                  haz_class_ids:
+                    type: array
+                    items:
                       type: integer
-            responses:
-                "200":
-                    description: successful response
-                    content:
-                        application/json:
-                            schema:
-                                $ref: "#/components/schemas/Chemical"
-                "401":
-                    $ref: "#/components/responses/401Error"
-                "404":
-                    $ref: "#/components/responses/404Error"
-                "422":
-                    $ref: "#/components/responses/422Error"
+                  haz_stat_ids:
+                    type: array
+                    items:
+                      type: integer
+                  prec_stat_ids:
+                    type: array
+                    items:
+                      type: integer
+                  pictogram_ids:
+                    type: array
+                    items:
+                      type: integer
+                  signal_word_id:
+                    type: integer
+      responses:
+        "200":
+          description: successfully created the chemical, returns an array of the chemicals which were created
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Chemical"
+        "401":
+          $ref: "#/components/responses/401Error"
+        "422":
+          $ref: "#/components/responses/422Error"
 
-    /chemical/search/cas/{cas}:
-        get:
-            description: search for a chemical by cas number (partial matches)
-            parameters:
-                - name: cas
-                  in: path
-                  required: true
-                  schema:
-                      type: string
-                - $ref: "#/components/parameters/offsetParam"
-                - $ref: "#/components/parameters/limitParam"
-            responses:
-                "200":
-                    description: successful response
-                    content:
-                        application/json:
-                            schema:
-                                type: array
-                                items:
-                                    $ref: "#/components/schemas/Chemical"
-                "401":
-                    $ref: "#/components/responses/401Error"
-                    
-    /chemical/search/name/{name}:
-        get:
-            description: search for a chemical by name number (partial matches)
-            parameters:
-                - name: name
-                  in: path
-                  required: true
-                  schema:
-                      type: string
-                - $ref: "#/components/parameters/offsetParam"
-                - $ref: "#/components/parameters/limitParam"
-            responses:
-                "200":
-                    description: successful response
-                    content:
-                        application/json:
-                            schema:
-                                type: array
-                                items:
-                                    $ref: "#/components/schemas/Chemical"
-                "401":
-                    $ref: "#/components/responses/401Error"
-
-components:
-    securitySchemes:
-        sessionAuth:
-            type: apiKey
-            in: cookie
-            name: rack.session
-
-    parameters:
-        offsetParam:
-            in: query
-            name: offset
-            required: false
+  /chemical/id/{id}:
+    get:
+      description: returns the chemical with the specified id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: successful response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Chemical"
+        "401":
+          $ref: "#/components/responses/401Error"
+        "422":
+          $ref: "#/components/responses/422Error"
+    put:
+      description: updates the details of the chemical with the specified id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
             schema:
-                type: integer
-                minimum: 0
-            description: The number of items to skip before starting to collect the result set.
-        limitParam:
-            in: query
-            name: limit
-            required: false
-            schema:
-                type: integer
-                minimum: 1
-                maximum: 50
-                default: 20
-            description: The numbers of items to return.
-
-    responses:
-        401Error:
-            description: not authorised
-            content:
-                application/json:
-                    schema:
-                        type: object
-                        properties:
-                            message:
-                                type: string
-        404Error:
-            description: not found
-            content:
-                application/json:
-                    schema:
-                        type: object
-                        properties:
-                            message:
-                                type: string
-        422Error:
-            description: unprocessable entity
-            content:
-                application/json:
-                    schema:
-                        type: object
-                        properties:
-                            message:
-                                type: string
-
-    schemas:
-        Chemical:
-            type: object
-            required:
+              type: object
+              required:
                 - id
                 - cas
                 - name
                 - haz_substance
-            properties:
+              properties:
                 id:
-                    type: integer
+                  type: integer
                 cas:
-                    type: string
+                  type: string
                 prefix:
-                    type: string
+                  type: string
                 name:
-                    type: string
+                  type: string
                 inchi:
-                    type: string
+                  type: string
                 smiles:
-                    type: string
+                  type: string
                 pubchem:
-                    type: string
+                  type: string
                 density:
-                    type: number
+                  type: number
                 melting_point:
-                    type: number
+                  type: number
                 boiling_point:
-                    type: number
+                  type: number
                 storage_temperature_min:
-                    type: number
+                  type: number
                 storage_temperature_max:
-                    type: number
+                  type: number
                 haz_substance:
-                    type: boolean
+                  type: boolean
                 sds_url:
-                    type: string
+                  type: string
                 sds:
-                    type: string
-                    format: binary
-                dg_class_1:
-                    $ref: "#/components/schemas/DgClass"
-                dg_class_2:
-                    $ref: "#/components/schemas/DgClass"
-                dg_class_3:
-                    $ref: "#/components/schemas/DgClass"
-                schedule:
-                    $ref: "#/components/schemas/Schedule"
-                packing_group:
-                    $ref: "#/components/schemas/PackingGroup"
+                  type: string
+                  format: binary
+                dg_class_1_id:
+                  type: integer
+                dg_class_2_id:
+                  type: integer
+                dg_class_3_id:
+                  type: integer
+                schedule_id:
+                  type: integer
+                packing_group_id:
+                  type: integer
                 un_number:
-                    type: string
+                  type: string
                 un_proper_shipping_name:
-                    type: string
-                haz_class:
-                    type: array
-                    items:
-                        $ref: "#/components/schemas/HazClass"
-                haz_stat:
-                    type: array
-                    items:
-                        $ref: "#/components/schemas/HazStat"
-                prec_stat:
-                    type: array
-                    items:
-                        $ref: "#/components/schemas/PrecStat"
-                pictogram:
-                    type: array
-                    items:
-                        $ref: "#/components/schemas/Pictogram"
-                signal_word:
-                    $ref: "#/components/schemas/SignalWord"
+                  type: string
+                haz_class_ids:
+                  type: array
+                  items:
+                    type: integer
+                haz_stat_ids:
+                  type: array
+                  items:
+                    type: integer
+                prec_stat_ids:
+                  type: array
+                  items:
+                    type: integer
+                pictogram_ids:
+                  type: array
+                  items:
+                    type: integer
+                signal_word_id:
+                  type: integer
+      responses:
+        "200":
+          description: chemical successfully updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Chemical"
+        "401":
+          $ref: "#/components/responses/401Error"
+        "422":
+          $ref: "#/components/responses/422Error"
+    delete:
+      description: deletes the chemical with the specified id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "204":
+          description: chemical successfully deleted            
+        "401":
+          $ref: "#/components/responses/401Error"
+        "422":
+          $ref: "#/components/responses/422Error"
+    patch: 
+      description: undeletes a previously deleted chemical with the specified id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses: 
+        "200":
+          description: chemical successfully restored   
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Chemical"         
+        "401":
+          $ref: "#/components/responses/401Error"
+        "422":
+          $ref: "#/components/responses/422Error"
 
-        DgClass:
+  /chemical/search/cas/{cas}:
+    get:
+      description: search for a chemical by cas number (partial matches)
+      parameters:
+        - name: cas
+          in: path
+          required: true
+          schema:
+            type: string
+        - $ref: "#/components/parameters/offsetParam"
+        - $ref: "#/components/parameters/limitParam"
+      responses:
+        "200":
+          description: successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  required:
+                    - id
+                    - cas
+                    - name
+                  properties:
+                    id:
+                      type: integer
+                    cas: 
+                      type: string
+                    prefix:
+                      type: string
+                    name:
+                      type: string
+        "401":
+          $ref: "#/components/responses/401Error"
+
+  /chemical/search/name/{name}:
+    get:
+      description: search for a chemical by name number (partial matches)
+      parameters:
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
+        - $ref: "#/components/parameters/offsetParam"
+        - $ref: "#/components/parameters/limitParam"
+      responses:
+        "200":
+          description: successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  required:
+                    - id
+                    - cas
+                    - name
+                  properties:
+                    id:
+                      type: integer
+                    cas: 
+                      type: string
+                    prefix:
+                      type: string
+                    name:
+                      type: string
+        "401":
+          $ref: "#/components/responses/401Error"
+
+components:
+  securitySchemes:
+    sessionAuth:
+      type: apiKey
+      in: cookie
+      name: rack.session
+
+  parameters:
+    offsetParam:
+      in: query
+      name: offset
+      required: false
+      schema:
+        type: integer
+        minimum: 0
+      description: The number of items to skip before starting to collect the result set.
+    limitParam:
+      in: query
+      name: limit
+      required: false
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 50
+        default: 20
+      description: The numbers of items to return.
+
+  responses:
+    401Error:
+      description: not authorised
+      content:
+        application/json:
+          schema:
             type: object
-            required:
-                - id
-                - number
-                - description
             properties:
-                id:
-                    type: integer
-                number:
-                    type: string
-                description:
-                    type: string
-                superclass:
-                    $ref: "#/components/schemas/DgClass"
-        Schedule:
+              message:
+                type: string
+    404Error:
+      description: not found
+      content:
+        application/json:
+          schema:
             type: object
-            required:
-                - id
-                - number
             properties:
-                id:
-                    type: integer
-                number:
-                    type: string
-                description:
-                    type: string
-        HazClass:
+              message:
+                type: string
+    422Error:
+      description: unprocessable entity
+      content:
+        application/json:
+          schema:
             type: object
-            required:
-                - id
-                - description
             properties:
-                id:
-                    type: integer
-                description:
-                    type: string
-                superclass:
-                    $ref: "#/components/schemas/HazClass"
-        HazStat:
-            type: object
-            required:
-                - id
-                - code
-                - description
-            properties:
-                id:
-                    type: integer
-                code:
-                    type: string
-                description:
-                    type: string
-        PrecStat:
-            type: object
-            required:
-                - id
-                - code
-                - description
-            properties:
-                id:
-                    type: integer
-                code:
-                    type: string
-                description:
-                    type: string
-        LocationType:
-            type: object
-            required:
-                - id
-                - name
-            properties:
-                id:
-                    type: integer
-                name:
-                    type: string
-        Location:
-            type: object
-            required:
-                - id
-                - name
-                - monitored
-            properties:
-                id:
-                    type: integer
-                name:
-                    type: string
-                code:
-                    type: string
-                barcode:
-                    type: string
-                location_type:
-                    $ref: "#/components/schemas/LocationType"
-                temperature:
-                    type: integer
-                monitored:
-                    type: boolean
-                ancestry:
-                    type: string
-                date_deleted:
-                    type: string
-        PackingGroup:
-            type: object
-            required:
-                - id
-                - name
-            properties:
-                id:
-                    type: integer
-                name:
-                    type: string
-        Pictogram:
-            type: object
-            required:
-                - id
-                - name
-                - code
-                - picture
-            properties:
-                id:
-                    type: integer
-                name:
-                    type: string
-                code:
-                    type: string
-                picture:
-                    type: string
-        SignalWord:
-            type: object
-            required:
-                - id
-                - name
-            properties:
-                id:
-                    type: integer
-                name:
-                    type: string
+              message:
+                type: string
+
+  schemas:
+    Chemical:
+      type: object
+      required:
+        - id
+        - cas
+        - name
+        - haz_substance
+      properties:
+        id:
+          type: integer
+        cas:
+          type: string
+        prefix:
+          type: string
+        name:
+          type: string
+        inchi:
+          type: string
+        smiles:
+          type: string
+        pubchem:
+          type: string
+        density:
+          type: number
+        melting_point:
+          type: number
+        boiling_point:
+          type: number
+        storage_temperature_min:
+          type: number
+        storage_temperature_max:
+          type: number
+        haz_substance:
+          type: boolean
+        sds_url:
+          type: string
+        sds:
+          type: string
+          format: binary
+        dg_class_1:
+          $ref: "#/components/schemas/DgClass"
+        dg_class_2:
+          $ref: "#/components/schemas/DgClass"
+        dg_class_3:
+          $ref: "#/components/schemas/DgClass"
+        schedule:
+          $ref: "#/components/schemas/Schedule"
+        packing_group:
+          $ref: "#/components/schemas/PackingGroup"
+        un_number:
+          type: string
+        un_proper_shipping_name:
+          type: string
+        haz_class:
+          type: array
+          items:
+            $ref: "#/components/schemas/HazClass"
+        haz_stat:
+          type: array
+          items:
+            $ref: "#/components/schemas/HazStat"
+        prec_stat:
+          type: array
+          items:
+            $ref: "#/components/schemas/PrecStat"
+        pictogram:
+          type: array
+          items:
+            $ref: "#/components/schemas/Pictogram"
+        signal_word:
+          $ref: "#/components/schemas/SignalWord"
+
+    DgClass:
+      type: object
+      required:
+        - id
+        - number
+        - description
+      properties:
+        id:
+          type: integer
+        number:
+          type: string
+        description:
+          type: string
+        superclass:
+          $ref: "#/components/schemas/DgClass"
+    Schedule:
+      type: object
+      required:
+        - id
+        - number
+      properties:
+        id:
+          type: integer
+        number:
+          type: string
+        description:
+          type: string
+    HazClass:
+      type: object
+      required:
+        - id
+        - description
+      properties:
+        id:
+          type: integer
+        description:
+          type: string
+        superclass:
+          $ref: "#/components/schemas/HazClass"
+    HazStat:
+      type: object
+      required:
+        - id
+        - code
+        - description
+      properties:
+        id:
+          type: integer
+        code:
+          type: string
+        description:
+          type: string
+    PrecStat:
+      type: object
+      required:
+        - id
+        - code
+        - description
+      properties:
+        id:
+          type: integer
+        code:
+          type: string
+        description:
+          type: string
+    LocationType:
+      type: object
+      required:
+        - id
+        - name
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+    Location:
+      type: object
+      required:
+        - id
+        - name
+        - monitored
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        code:
+          type: string
+        barcode:
+          type: string
+        location_type:
+          $ref: "#/components/schemas/LocationType"
+        temperature:
+          type: integer
+        monitored:
+          type: boolean
+        ancestry:
+          type: string
+        date_deleted:
+          type: string
+    PackingGroup:
+      type: object
+      required:
+        - id
+        - name
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+    Pictogram:
+      type: object
+      required:
+        - id
+        - name
+        - code
+        - picture
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        code:
+          type: string
+        picture:
+          type: string
+    SignalWord:
+      type: object
+      required:
+        - id
+        - name
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
