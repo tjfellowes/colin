@@ -1,0 +1,1405 @@
+{
+	"info": {
+		"_postman_id": "ef8909cf-9705-428e-9da3-5fc66b09ca93",
+		"name": "CoLIN API",
+		"description": "API for the Comprehensive Laboratory Information Nexus (CoLIN)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "chemical",
+			"item": [
+				{
+					"name": "id/{id}",
+					"item": [
+						{
+							"name": "/chemical/id/:id",
+							"id": "4862eaa0-07f1-44df-8a22-52d5a84d0737",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/chemical/id/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"chemical",
+										"id",
+										":id"
+									],
+									"variable": [
+										{
+											"id": "66c98c35-8800-45dc-869e-da500198aa31",
+											"key": "id",
+											"value": "-24301160",
+											"description": "(Required) "
+										}
+									]
+								},
+								"description": "returns the chemical with the specified id"
+							},
+							"response": [
+								{
+									"id": "a1a3e8f6-5930-4306-88ae-9a49580e681b",
+									"name": "successful response",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: apikey",
+												"key": "rack.session",
+												"value": "<API Key>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/chemical/id/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"chemical",
+												"id",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "-24301160",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "{\n  \"id\": -89253723,\n  \"cas\": \"fugiat aliquip dolore non\",\n  \"name\": \"nisi eu aliquip cillum\",\n  \"haz_substance\": true,\n  \"prefix\": \"ut cillum ex\",\n  \"inchi\": \"veniam mollit dolore ad elit\",\n  \"smiles\": \"sunt ad minim\",\n  \"pubchem\": \"aliqua velit pariatur ex Lorem\",\n  \"density\": 79557178.76697764,\n  \"melting_point\": 95516997.6403777,\n  \"boiling_point\": 28565129.84182848,\n  \"storage_temperature_min\": 22488635.37764132,\n  \"storage_temperature_max\": -38552898.76716776,\n  \"sds_url\": \"magna ut eiusmod\",\n  \"sds\": \"minim deserunt laboris Lorem nostrud\",\n  \"dg_class_1\": {\n    \"id\": -39231863,\n    \"number\": \"consectetur dolor\",\n    \"description\": \"magna deserunt mollit\",\n    \"superclass\": {\n      \"value\": \"<Circular reference to #/components/schemas/DgClass detected>\"\n    }\n  },\n  \"dg_class_2\": {\n    \"id\": -27009731,\n    \"number\": \"deserunt in laborum\",\n    \"description\": \"aliquip qui dolore\",\n    \"superclass\": {\n      \"value\": \"<Circular reference to #/components/schemas/DgClass detected>\"\n    }\n  },\n  \"dg_class_3\": {\n    \"id\": -90689487,\n    \"number\": \"voluptate do ea\",\n    \"description\": \"velit eu cupidatat cillum nostrud\",\n    \"superclass\": {\n      \"value\": \"<Circular reference to #/components/schemas/DgClass detected>\"\n    }\n  },\n  \"schedule\": {\n    \"id\": -15573323,\n    \"number\": \"sed consectetur reprehenderit\",\n    \"description\": \"cupidatat anim incididunt\"\n  },\n  \"packing_group\": {\n    \"id\": -26394406,\n    \"name\": \"voluptate\"\n  },\n  \"un_number\": \"nostrud labore\",\n  \"un_proper_shipping_name\": \"sunt magna sit culpa\",\n  \"haz_class\": [\n    {\n      \"id\": -17542141,\n      \"description\": \"consectetur Ut magna sit Duis\",\n      \"superclass\": {\n        \"value\": \"<Circular reference to #/components/schemas/HazClass detected>\"\n      }\n    },\n    {\n      \"id\": -32877063,\n      \"description\": \"ipsum in\",\n      \"superclass\": {\n        \"value\": \"<Circular reference to #/components/schemas/HazClass detected>\"\n      }\n    }\n  ],\n  \"haz_stat\": [\n    {\n      \"id\": 42723800,\n      \"code\": \"velit mollit est amet aliqua\",\n      \"description\": \"non dolore\"\n    },\n    {\n      \"id\": 92122908,\n      \"code\": \"aute elit culpa id\",\n      \"description\": \"dolor ut\"\n    }\n  ],\n  \"prec_stat\": [\n    {\n      \"id\": -74596947,\n      \"code\": \"sint\",\n      \"description\": \"est do exercitation\"\n    },\n    {\n      \"id\": 97348638,\n      \"code\": \"anim sunt\",\n      \"description\": \"voluptate\"\n    }\n  ],\n  \"pictogram\": [\n    {\n      \"id\": -39182675,\n      \"name\": \"nisi aliqua consectetur et\",\n      \"code\": \"in est nostrud\",\n      \"picture\": \"incididunt velit exercitation enim\"\n    },\n    {\n      \"id\": 29521610,\n      \"name\": \"exercitation sed in\",\n      \"code\": \"adipisicing Duis ut\",\n      \"picture\": \"deserunt Excepteur\"\n    }\n  ],\n  \"signal_word\": {\n    \"id\": -53190191,\n    \"name\": \"elit laboris\"\n  }\n}"
+								},
+								{
+									"id": "a63ec6af-b226-4637-b34d-b3745aa7c482",
+									"name": "not authorised",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: apikey",
+												"key": "rack.session",
+												"value": "<API Key>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/chemical/id/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"chemical",
+												"id",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "-24301160",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "{\n  \"message\": \"aliquip veniam\"\n}"
+								},
+								{
+									"id": "c04afb0f-b8eb-467e-9e9d-b67ad0bc1e70",
+									"name": "unprocessable entity",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: apikey",
+												"key": "rack.session",
+												"value": "<API Key>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/chemical/id/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"chemical",
+												"id",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "-24301160",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+									"code": 422,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "{\n  \"message\": \"aliquip veniam\"\n}"
+								}
+							]
+						},
+						{
+							"name": "/chemical/id/:id",
+							"id": "cd80bdf8-5bbe-45ff-b6ad-c905ca56c986",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"id\": -35823748,\n  \"cas\": \"dolore proident veniam\",\n  \"name\": \"ea dolor ut\",\n  \"haz_substance\": true,\n  \"prefix\": \"aliquip id Lorem fugiat\",\n  \"inchi\": \"cillum et\",\n  \"smiles\": \"sunt cupidatat sint\",\n  \"pubchem\": \"pariatur exercitation in officia sed\",\n  \"density\": 80493978.33944854,\n  \"melting_point\": -66370083.65506096,\n  \"boiling_point\": 93726518.30286768,\n  \"storage_temperature_min\": 79989709.5758631,\n  \"storage_temperature_max\": -47112902.44844402,\n  \"sds_url\": \"non Ut adipisicing\",\n  \"sds\": \"anim\",\n  \"dg_class_1_id\": 51729903,\n  \"dg_class_2_id\": -31827923,\n  \"dg_class_3_id\": 30017427,\n  \"schedule_id\": -50942573,\n  \"packing_group_id\": 19992460,\n  \"un_number\": \"c\",\n  \"un_proper_shipping_name\": \"culpa tempor\",\n  \"haz_class_ids\": [\n    74217474,\n    87676633\n  ],\n  \"haz_stat_ids\": [\n    -33652439,\n    36219867\n  ],\n  \"prec_stat_ids\": [\n    -46481149,\n    77168749\n  ],\n  \"pictogram_ids\": [\n    97791660,\n    53664843\n  ],\n  \"signal_word_id\": -2706556\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/chemical/id/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"chemical",
+										"id",
+										":id"
+									],
+									"variable": [
+										{
+											"id": "fc1e6ab2-1764-4154-b509-0ac3abab7656",
+											"key": "id",
+											"value": "-24301160",
+											"description": "(Required) "
+										}
+									]
+								},
+								"description": "updates the details of the chemical with the specified id"
+							},
+							"response": [
+								{
+									"id": "6511e75e-3ae4-459e-a531-7147e68c4138",
+									"name": "chemical successfully updated",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: apikey",
+												"key": "rack.session",
+												"value": "<API Key>"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"id\": -2535634,\n  \"cas\": \"id aliquip ipsum\",\n  \"name\": \"sed Ut consequat dolore\",\n  \"haz_substance\": true,\n  \"prefix\": \"incididunt qui pariatur adipisicing\",\n  \"inchi\": \"do cillum dolore in\",\n  \"smiles\": \"incididunt ex aliquip\",\n  \"pubchem\": \"eu laborum occaecat\",\n  \"density\": 48233267.849030256,\n  \"melting_point\": 68293941.24612764,\n  \"boiling_point\": 72627529.16730851,\n  \"storage_temperature_min\": 56749978.18501413,\n  \"storage_temperature_max\": 15403398.137164935,\n  \"sds_url\": \"laboris sint ipsum commodo\",\n  \"sds\": \"dolore Lorem culpa pariatu\",\n  \"dg_class_1_id\": 18998205,\n  \"dg_class_2_id\": -90915038,\n  \"dg_class_3_id\": -48161545,\n  \"schedule_id\": 73054672,\n  \"packing_group_id\": 37682329,\n  \"un_number\": \"ea pariatur Duis et\",\n  \"un_proper_shipping_name\": \"voluptate nisi\",\n  \"haz_class_ids\": [\n    10023867,\n    89995285\n  ],\n  \"haz_stat_ids\": [\n    39647839,\n    -93336401\n  ],\n  \"prec_stat_ids\": [\n    -77986301,\n    84432766\n  ],\n  \"pictogram_ids\": [\n    37079510,\n    1868232\n  ],\n  \"signal_word_id\": 85246632\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/chemical/id/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"chemical",
+												"id",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "-24301160",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "{\n  \"id\": -89253723,\n  \"cas\": \"fugiat aliquip dolore non\",\n  \"name\": \"nisi eu aliquip cillum\",\n  \"haz_substance\": true,\n  \"prefix\": \"ut cillum ex\",\n  \"inchi\": \"veniam mollit dolore ad elit\",\n  \"smiles\": \"sunt ad minim\",\n  \"pubchem\": \"aliqua velit pariatur ex Lorem\",\n  \"density\": 79557178.76697764,\n  \"melting_point\": 95516997.6403777,\n  \"boiling_point\": 28565129.84182848,\n  \"storage_temperature_min\": 22488635.37764132,\n  \"storage_temperature_max\": -38552898.76716776,\n  \"sds_url\": \"magna ut eiusmod\",\n  \"sds\": \"minim deserunt laboris Lorem nostrud\",\n  \"dg_class_1\": {\n    \"id\": -39231863,\n    \"number\": \"consectetur dolor\",\n    \"description\": \"magna deserunt mollit\",\n    \"superclass\": {\n      \"value\": \"<Circular reference to #/components/schemas/DgClass detected>\"\n    }\n  },\n  \"dg_class_2\": {\n    \"id\": -27009731,\n    \"number\": \"deserunt in laborum\",\n    \"description\": \"aliquip qui dolore\",\n    \"superclass\": {\n      \"value\": \"<Circular reference to #/components/schemas/DgClass detected>\"\n    }\n  },\n  \"dg_class_3\": {\n    \"id\": -90689487,\n    \"number\": \"voluptate do ea\",\n    \"description\": \"velit eu cupidatat cillum nostrud\",\n    \"superclass\": {\n      \"value\": \"<Circular reference to #/components/schemas/DgClass detected>\"\n    }\n  },\n  \"schedule\": {\n    \"id\": -15573323,\n    \"number\": \"sed consectetur reprehenderit\",\n    \"description\": \"cupidatat anim incididunt\"\n  },\n  \"packing_group\": {\n    \"id\": -26394406,\n    \"name\": \"voluptate\"\n  },\n  \"un_number\": \"nostrud labore\",\n  \"un_proper_shipping_name\": \"sunt magna sit culpa\",\n  \"haz_class\": [\n    {\n      \"id\": -17542141,\n      \"description\": \"consectetur Ut magna sit Duis\",\n      \"superclass\": {\n        \"value\": \"<Circular reference to #/components/schemas/HazClass detected>\"\n      }\n    },\n    {\n      \"id\": -32877063,\n      \"description\": \"ipsum in\",\n      \"superclass\": {\n        \"value\": \"<Circular reference to #/components/schemas/HazClass detected>\"\n      }\n    }\n  ],\n  \"haz_stat\": [\n    {\n      \"id\": 42723800,\n      \"code\": \"velit mollit est amet aliqua\",\n      \"description\": \"non dolore\"\n    },\n    {\n      \"id\": 92122908,\n      \"code\": \"aute elit culpa id\",\n      \"description\": \"dolor ut\"\n    }\n  ],\n  \"prec_stat\": [\n    {\n      \"id\": -74596947,\n      \"code\": \"sint\",\n      \"description\": \"est do exercitation\"\n    },\n    {\n      \"id\": 97348638,\n      \"code\": \"anim sunt\",\n      \"description\": \"voluptate\"\n    }\n  ],\n  \"pictogram\": [\n    {\n      \"id\": -39182675,\n      \"name\": \"nisi aliqua consectetur et\",\n      \"code\": \"in est nostrud\",\n      \"picture\": \"incididunt velit exercitation enim\"\n    },\n    {\n      \"id\": 29521610,\n      \"name\": \"exercitation sed in\",\n      \"code\": \"adipisicing Duis ut\",\n      \"picture\": \"deserunt Excepteur\"\n    }\n  ],\n  \"signal_word\": {\n    \"id\": -53190191,\n    \"name\": \"elit laboris\"\n  }\n}"
+								},
+								{
+									"id": "2fcd4e45-9bdd-4f2f-b50d-24e3a15849e9",
+									"name": "not authorised",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: apikey",
+												"key": "rack.session",
+												"value": "<API Key>"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"id\": -2535634,\n  \"cas\": \"id aliquip ipsum\",\n  \"name\": \"sed Ut consequat dolore\",\n  \"haz_substance\": true,\n  \"prefix\": \"incididunt qui pariatur adipisicing\",\n  \"inchi\": \"do cillum dolore in\",\n  \"smiles\": \"incididunt ex aliquip\",\n  \"pubchem\": \"eu laborum occaecat\",\n  \"density\": 48233267.849030256,\n  \"melting_point\": 68293941.24612764,\n  \"boiling_point\": 72627529.16730851,\n  \"storage_temperature_min\": 56749978.18501413,\n  \"storage_temperature_max\": 15403398.137164935,\n  \"sds_url\": \"laboris sint ipsum commodo\",\n  \"sds\": \"dolore Lorem culpa pariatu\",\n  \"dg_class_1_id\": 18998205,\n  \"dg_class_2_id\": -90915038,\n  \"dg_class_3_id\": -48161545,\n  \"schedule_id\": 73054672,\n  \"packing_group_id\": 37682329,\n  \"un_number\": \"ea pariatur Duis et\",\n  \"un_proper_shipping_name\": \"voluptate nisi\",\n  \"haz_class_ids\": [\n    10023867,\n    89995285\n  ],\n  \"haz_stat_ids\": [\n    39647839,\n    -93336401\n  ],\n  \"prec_stat_ids\": [\n    -77986301,\n    84432766\n  ],\n  \"pictogram_ids\": [\n    37079510,\n    1868232\n  ],\n  \"signal_word_id\": 85246632\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/chemical/id/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"chemical",
+												"id",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "-24301160",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "{\n  \"message\": \"aliquip veniam\"\n}"
+								},
+								{
+									"id": "3610a85d-7721-45c7-bdc1-25725d24cc54",
+									"name": "unprocessable entity",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: apikey",
+												"key": "rack.session",
+												"value": "<API Key>"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"id\": -2535634,\n  \"cas\": \"id aliquip ipsum\",\n  \"name\": \"sed Ut consequat dolore\",\n  \"haz_substance\": true,\n  \"prefix\": \"incididunt qui pariatur adipisicing\",\n  \"inchi\": \"do cillum dolore in\",\n  \"smiles\": \"incididunt ex aliquip\",\n  \"pubchem\": \"eu laborum occaecat\",\n  \"density\": 48233267.849030256,\n  \"melting_point\": 68293941.24612764,\n  \"boiling_point\": 72627529.16730851,\n  \"storage_temperature_min\": 56749978.18501413,\n  \"storage_temperature_max\": 15403398.137164935,\n  \"sds_url\": \"laboris sint ipsum commodo\",\n  \"sds\": \"dolore Lorem culpa pariatu\",\n  \"dg_class_1_id\": 18998205,\n  \"dg_class_2_id\": -90915038,\n  \"dg_class_3_id\": -48161545,\n  \"schedule_id\": 73054672,\n  \"packing_group_id\": 37682329,\n  \"un_number\": \"ea pariatur Duis et\",\n  \"un_proper_shipping_name\": \"voluptate nisi\",\n  \"haz_class_ids\": [\n    10023867,\n    89995285\n  ],\n  \"haz_stat_ids\": [\n    39647839,\n    -93336401\n  ],\n  \"prec_stat_ids\": [\n    -77986301,\n    84432766\n  ],\n  \"pictogram_ids\": [\n    37079510,\n    1868232\n  ],\n  \"signal_word_id\": 85246632\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/chemical/id/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"chemical",
+												"id",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "-24301160",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+									"code": 422,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "{\n  \"message\": \"aliquip veniam\"\n}"
+								}
+							]
+						},
+						{
+							"name": "/chemical/id/:id",
+							"id": "7dd3a69c-8a8a-4a89-90ce-5433ee0ed334",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/chemical/id/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"chemical",
+										"id",
+										":id"
+									],
+									"variable": [
+										{
+											"id": "01bc9b1f-34dd-4faf-9b97-164772d0082c",
+											"key": "id",
+											"value": "-24301160",
+											"description": "(Required) "
+										}
+									]
+								},
+								"description": "deletes the chemical with the specified id"
+							},
+							"response": [
+								{
+									"id": "f2b50e6c-4b29-4563-85ce-9b6977252989",
+									"name": "chemical successfully deleted",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: apikey",
+												"key": "rack.session",
+												"value": "<API Key>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/chemical/id/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"chemical",
+												"id",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "-24301160",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "No Content",
+									"code": 204,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": ""
+								},
+								{
+									"id": "395d3a51-f34d-470a-a6d4-7fb101308e37",
+									"name": "not authorised",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: apikey",
+												"key": "rack.session",
+												"value": "<API Key>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/chemical/id/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"chemical",
+												"id",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "-24301160",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "{\n  \"message\": \"aliquip veniam\"\n}"
+								},
+								{
+									"id": "a1930f3c-02c0-4cb6-9378-24d31484877a",
+									"name": "unprocessable entity",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: apikey",
+												"key": "rack.session",
+												"value": "<API Key>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/chemical/id/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"chemical",
+												"id",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "-24301160",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+									"code": 422,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "{\n  \"message\": \"aliquip veniam\"\n}"
+								}
+							]
+						},
+						{
+							"name": "/chemical/id/:id",
+							"id": "d6be9172-5cad-4a2b-b2e4-706ef5e10eee",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/chemical/id/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"chemical",
+										"id",
+										":id"
+									],
+									"variable": [
+										{
+											"id": "70a5c8f8-b6d0-4c01-800e-3e80ce830d5a",
+											"key": "id",
+											"value": "-24301160",
+											"description": "(Required) "
+										}
+									]
+								},
+								"description": "undeletes a previously deleted chemical with the specified id"
+							},
+							"response": [
+								{
+									"id": "e23823ad-6fdc-45e7-be54-b17823992495",
+									"name": "chemical successfully restored",
+									"originalRequest": {
+										"method": "PATCH",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: apikey",
+												"key": "rack.session",
+												"value": "<API Key>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/chemical/id/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"chemical",
+												"id",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "-24301160",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "{\n  \"id\": -89253723,\n  \"cas\": \"fugiat aliquip dolore non\",\n  \"name\": \"nisi eu aliquip cillum\",\n  \"haz_substance\": true,\n  \"prefix\": \"ut cillum ex\",\n  \"inchi\": \"veniam mollit dolore ad elit\",\n  \"smiles\": \"sunt ad minim\",\n  \"pubchem\": \"aliqua velit pariatur ex Lorem\",\n  \"density\": 79557178.76697764,\n  \"melting_point\": 95516997.6403777,\n  \"boiling_point\": 28565129.84182848,\n  \"storage_temperature_min\": 22488635.37764132,\n  \"storage_temperature_max\": -38552898.76716776,\n  \"sds_url\": \"magna ut eiusmod\",\n  \"sds\": \"minim deserunt laboris Lorem nostrud\",\n  \"dg_class_1\": {\n    \"id\": -39231863,\n    \"number\": \"consectetur dolor\",\n    \"description\": \"magna deserunt mollit\",\n    \"superclass\": {\n      \"value\": \"<Circular reference to #/components/schemas/DgClass detected>\"\n    }\n  },\n  \"dg_class_2\": {\n    \"id\": -27009731,\n    \"number\": \"deserunt in laborum\",\n    \"description\": \"aliquip qui dolore\",\n    \"superclass\": {\n      \"value\": \"<Circular reference to #/components/schemas/DgClass detected>\"\n    }\n  },\n  \"dg_class_3\": {\n    \"id\": -90689487,\n    \"number\": \"voluptate do ea\",\n    \"description\": \"velit eu cupidatat cillum nostrud\",\n    \"superclass\": {\n      \"value\": \"<Circular reference to #/components/schemas/DgClass detected>\"\n    }\n  },\n  \"schedule\": {\n    \"id\": -15573323,\n    \"number\": \"sed consectetur reprehenderit\",\n    \"description\": \"cupidatat anim incididunt\"\n  },\n  \"packing_group\": {\n    \"id\": -26394406,\n    \"name\": \"voluptate\"\n  },\n  \"un_number\": \"nostrud labore\",\n  \"un_proper_shipping_name\": \"sunt magna sit culpa\",\n  \"haz_class\": [\n    {\n      \"id\": -17542141,\n      \"description\": \"consectetur Ut magna sit Duis\",\n      \"superclass\": {\n        \"value\": \"<Circular reference to #/components/schemas/HazClass detected>\"\n      }\n    },\n    {\n      \"id\": -32877063,\n      \"description\": \"ipsum in\",\n      \"superclass\": {\n        \"value\": \"<Circular reference to #/components/schemas/HazClass detected>\"\n      }\n    }\n  ],\n  \"haz_stat\": [\n    {\n      \"id\": 42723800,\n      \"code\": \"velit mollit est amet aliqua\",\n      \"description\": \"non dolore\"\n    },\n    {\n      \"id\": 92122908,\n      \"code\": \"aute elit culpa id\",\n      \"description\": \"dolor ut\"\n    }\n  ],\n  \"prec_stat\": [\n    {\n      \"id\": -74596947,\n      \"code\": \"sint\",\n      \"description\": \"est do exercitation\"\n    },\n    {\n      \"id\": 97348638,\n      \"code\": \"anim sunt\",\n      \"description\": \"voluptate\"\n    }\n  ],\n  \"pictogram\": [\n    {\n      \"id\": -39182675,\n      \"name\": \"nisi aliqua consectetur et\",\n      \"code\": \"in est nostrud\",\n      \"picture\": \"incididunt velit exercitation enim\"\n    },\n    {\n      \"id\": 29521610,\n      \"name\": \"exercitation sed in\",\n      \"code\": \"adipisicing Duis ut\",\n      \"picture\": \"deserunt Excepteur\"\n    }\n  ],\n  \"signal_word\": {\n    \"id\": -53190191,\n    \"name\": \"elit laboris\"\n  }\n}"
+								},
+								{
+									"id": "079fd8ed-b438-4135-abe1-153340260798",
+									"name": "not authorised",
+									"originalRequest": {
+										"method": "PATCH",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: apikey",
+												"key": "rack.session",
+												"value": "<API Key>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/chemical/id/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"chemical",
+												"id",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "-24301160",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "{\n  \"message\": \"aliquip veniam\"\n}"
+								},
+								{
+									"id": "e574890b-d6ac-41ac-8bab-a22779a14a0b",
+									"name": "unprocessable entity",
+									"originalRequest": {
+										"method": "PATCH",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: apikey",
+												"key": "rack.session",
+												"value": "<API Key>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/chemical/id/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"chemical",
+												"id",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "-24301160",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+									"code": 422,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "{\n  \"message\": \"aliquip veniam\"\n}"
+								}
+							]
+						}
+					],
+					"id": "20928912-26d4-4f77-a388-11c203c76431"
+				},
+				{
+					"name": "search",
+					"item": [
+						{
+							"name": "/chemical/search/cas/:cas",
+							"id": "5b9cc1b7-5be6-4de3-ae31-93b80bab2199",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/chemical/search/cas/:cas?offset=92868792&limit=20",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"chemical",
+										"search",
+										"cas",
+										":cas"
+									],
+									"query": [
+										{
+											"key": "offset",
+											"value": "92868792",
+											"description": "The number of items to skip before starting to collect the result set."
+										},
+										{
+											"key": "limit",
+											"value": "20",
+											"description": "The numbers of items to return."
+										}
+									],
+									"variable": [
+										{
+											"id": "2ecf80db-326b-4ad0-9443-4cc836a45de3",
+											"key": "cas",
+											"value": "ut adipisicing ut ex",
+											"description": "(Required) "
+										}
+									]
+								},
+								"description": "search for a chemical by cas number (partial matches)"
+							},
+							"response": [
+								{
+									"id": "7c41e883-eaf4-43e6-95a8-a38413d44324",
+									"name": "successful response",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: apikey",
+												"key": "rack.session",
+												"value": "<API Key>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/chemical/search/cas/:cas?offset=92868792&limit=20",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"chemical",
+												"search",
+												"cas",
+												":cas"
+											],
+											"query": [
+												{
+													"key": "offset",
+													"value": "92868792"
+												},
+												{
+													"key": "limit",
+													"value": "20"
+												}
+											],
+											"variable": [
+												{
+													"key": "cas",
+													"value": "ut adipisicing ut ex",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "[\n  {\n    \"id\": 82488653,\n    \"cas\": \"cupidatat consequat sed Duis\",\n    \"name\": \"proident minim in\",\n    \"prefix\": \"ullamco\"\n  },\n  {\n    \"id\": -71540895,\n    \"cas\": \"in proident\",\n    \"name\": \"nulla sint\",\n    \"prefix\": \"id\"\n  }\n]"
+								},
+								{
+									"id": "20a780fb-4306-4110-97d5-9cc59a455472",
+									"name": "not authorised",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: apikey",
+												"key": "rack.session",
+												"value": "<API Key>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/chemical/search/cas/:cas?offset=92868792&limit=20",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"chemical",
+												"search",
+												"cas",
+												":cas"
+											],
+											"query": [
+												{
+													"key": "offset",
+													"value": "92868792"
+												},
+												{
+													"key": "limit",
+													"value": "20"
+												}
+											],
+											"variable": [
+												{
+													"key": "cas",
+													"value": "ut adipisicing ut ex",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "{\n  \"message\": \"aliquip veniam\"\n}"
+								}
+							]
+						},
+						{
+							"name": "/chemical/search/name/:name",
+							"id": "f5794cd5-ac79-4398-ab21-0905c88144b9",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/chemical/search/name/:name?offset=92868792&limit=20",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"chemical",
+										"search",
+										"name",
+										":name"
+									],
+									"query": [
+										{
+											"key": "offset",
+											"value": "92868792",
+											"description": "The number of items to skip before starting to collect the result set."
+										},
+										{
+											"key": "limit",
+											"value": "20",
+											"description": "The numbers of items to return."
+										}
+									],
+									"variable": [
+										{
+											"id": "07a8e8c0-680f-46a5-9538-1005abe753c2",
+											"key": "name",
+											"value": "ut adipisicing ut ex",
+											"description": "(Required) "
+										}
+									]
+								},
+								"description": "search for a chemical by name number (partial matches)"
+							},
+							"response": [
+								{
+									"id": "e168cd1d-a3a9-48ba-890e-f6845950d2a1",
+									"name": "successful response",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: apikey",
+												"key": "rack.session",
+												"value": "<API Key>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/chemical/search/name/:name?offset=92868792&limit=20",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"chemical",
+												"search",
+												"name",
+												":name"
+											],
+											"query": [
+												{
+													"key": "offset",
+													"value": "92868792"
+												},
+												{
+													"key": "limit",
+													"value": "20"
+												}
+											],
+											"variable": [
+												{
+													"key": "name",
+													"value": "ut adipisicing ut ex",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "[\n  {\n    \"id\": 82488653,\n    \"cas\": \"cupidatat consequat sed Duis\",\n    \"name\": \"proident minim in\",\n    \"prefix\": \"ullamco\"\n  },\n  {\n    \"id\": -71540895,\n    \"cas\": \"in proident\",\n    \"name\": \"nulla sint\",\n    \"prefix\": \"id\"\n  }\n]"
+								},
+								{
+									"id": "babb8f73-c3a8-47b1-a298-5271d3cee237",
+									"name": "not authorised",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: apikey",
+												"key": "rack.session",
+												"value": "<API Key>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/chemical/search/name/:name?offset=92868792&limit=20",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"chemical",
+												"search",
+												"name",
+												":name"
+											],
+											"query": [
+												{
+													"key": "offset",
+													"value": "92868792"
+												},
+												{
+													"key": "limit",
+													"value": "20"
+												}
+											],
+											"variable": [
+												{
+													"key": "name",
+													"value": "ut adipisicing ut ex",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "{\n  \"message\": \"aliquip veniam\"\n}"
+								}
+							]
+						}
+					],
+					"id": "6378a4f3-d38b-40d5-a59b-ee6ee78d8899"
+				},
+				{
+					"name": "/chemical",
+					"id": "4dc040ca-9b68-489d-923e-b72bb1a501cd",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/chemical?offset=92868792&limit=20",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"chemical"
+							],
+							"query": [
+								{
+									"key": "offset",
+									"value": "92868792",
+									"description": "The number of items to skip before starting to collect the result set."
+								},
+								{
+									"key": "limit",
+									"value": "20",
+									"description": "The numbers of items to return."
+								}
+							]
+						},
+						"description": "returns a list of all chemicals in the database"
+					},
+					"response": [
+						{
+							"id": "6d0ca0de-c5d9-4744-b350-430931e561c2",
+							"name": "successful response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: apikey",
+										"key": "rack.session",
+										"value": "<API Key>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/chemical?offset=92868792&limit=20",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"chemical"
+									],
+									"query": [
+										{
+											"key": "offset",
+											"value": "92868792"
+										},
+										{
+											"key": "limit",
+											"value": "20"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "[\n  {\n    \"id\": 40221620,\n    \"cas\": \"sed dolore esse qui officia\",\n    \"name\": \"consequat dolore sint sed Lorem\",\n    \"haz_substance\": false,\n    \"prefix\": \"nisi aute ea\",\n    \"inchi\": \"ex laboris officia\",\n    \"smiles\": \"officia sint ullamco pariatur magna\",\n    \"pubchem\": \"dolore eu ad\",\n    \"density\": 42915551.52824417,\n    \"melting_point\": 76888228.9485105,\n    \"boiling_point\": 73237259.26000625,\n    \"storage_temperature_min\": 5402332.194453046,\n    \"storage_temperature_max\": 87577513.3973248,\n    \"sds_url\": \"est Lorem velit sed\",\n    \"sds\": \"dolore reprehenderit\",\n    \"dg_class_1\": {\n      \"id\": -16775907,\n      \"number\": \"aute irure esse consequat in\",\n      \"description\": \"esse Lorem ad eu\",\n      \"superclass\": {\n        \"value\": \"<Circular reference to #/components/schemas/DgClass detected>\"\n      }\n    },\n    \"dg_class_2\": {\n      \"id\": -31520534,\n      \"number\": \"magna in consequat incididunt\",\n      \"description\": \"do es\",\n      \"superclass\": {\n        \"value\": \"<Circular reference to #/components/schemas/DgClass detected>\"\n      }\n    },\n    \"dg_class_3\": {\n      \"id\": -59635002,\n      \"number\": \"sint\",\n      \"description\": \"et incididunt\",\n      \"superclass\": {\n        \"value\": \"<Circular reference to #/components/schemas/DgClass detected>\"\n      }\n    },\n    \"schedule\": {\n      \"id\": 41440832,\n      \"number\": \"laborum in\",\n      \"description\": \"in voluptate non anim\"\n    },\n    \"packing_group\": {\n      \"id\": -53377390,\n      \"name\": \"id quis aute\"\n    },\n    \"un_number\": \"cillum ut al\",\n    \"un_proper_shipping_name\": \"sed\",\n    \"haz_class\": [\n      {\n        \"id\": -20212190,\n        \"description\": \"eu elit aliqua Duis\",\n        \"superclass\": {\n          \"value\": \"<Circular reference to #/components/schemas/HazClass detected>\"\n        }\n      },\n      {\n        \"id\": -13968145,\n        \"description\": \"laboru\",\n        \"superclass\": {\n          \"value\": \"<Circular reference to #/components/schemas/HazClass detected>\"\n        }\n      }\n    ],\n    \"haz_stat\": [\n      {\n        \"id\": -89423049,\n        \"code\": \"Ut non reprehenderit ipsum eu\",\n        \"description\": \"\"\n      },\n      {\n        \"id\": -87098882,\n        \"code\": \"aliquip Excepteur Duis commodo\",\n        \"description\": \"minim deserunt\"\n      }\n    ],\n    \"prec_stat\": [\n      {\n        \"id\": -76031128,\n        \"code\": \"irure\",\n        \"description\": \"sunt enim ullamco\"\n      },\n      {\n        \"id\": -31691259,\n        \"code\": \"id dolore\",\n        \"description\": \"qui ut exercitation consequat deserunt\"\n      }\n    ],\n    \"pictogram\": [\n      {\n        \"id\": -72409194,\n        \"name\": \"Excepteur dolore\",\n        \"code\": \"dolor eu culpa fugiat\",\n        \"picture\": \"eu nostrud in\"\n      },\n      {\n        \"id\": -23095688,\n        \"name\": \"quis irure ex\",\n        \"code\": \"enim consequat culpa ad\",\n        \"picture\": \"laborum Ut laboris enim\"\n      }\n    ],\n    \"signal_word\": {\n      \"id\": 17640191,\n      \"name\": \"eu dolor aliqua ex\"\n    }\n  },\n  {\n    \"id\": 87565747,\n    \"cas\": \"eiusmod Duis dolor do\",\n    \"name\": \"incididunt aliqua do \",\n    \"haz_substance\": true,\n    \"prefix\": \"incididunt sed ex mollit eu\",\n    \"inchi\": \"Ut tempor commodo\",\n    \"smiles\": \"ut sed est laboris in\",\n    \"pubchem\": \"ea quis dolore ipsum\",\n    \"density\": -6156058.662666112,\n    \"melting_point\": 96402673.02825981,\n    \"boiling_point\": 56948702.7241787,\n    \"storage_temperature_min\": 80104952.65482587,\n    \"storage_temperature_max\": 39432082.29493958,\n    \"sds_url\": \"et commodo aliqua ex\",\n    \"sds\": \"proident\",\n    \"dg_class_1\": {\n      \"id\": -37354583,\n      \"number\": \"cillum Ut\",\n      \"description\": \"proident reprehenderit in mollit\",\n      \"superclass\": {\n        \"value\": \"<Circular reference to #/components/schemas/DgClass detected>\"\n      }\n    },\n    \"dg_class_2\": {\n      \"id\": -66534204,\n      \"number\": \"voluptate est\",\n      \"description\": \"ut dolore tempor\",\n      \"superclass\": {\n        \"value\": \"<Circular reference to #/components/schemas/DgClass detected>\"\n      }\n    },\n    \"dg_class_3\": {\n      \"id\": 48009288,\n      \"number\": \"ad occaeca\",\n      \"description\": \"qui labore nulla\",\n      \"superclass\": {\n        \"value\": \"<Circular reference to #/components/schemas/DgClass detected>\"\n      }\n    },\n    \"schedule\": {\n      \"id\": -66533018,\n      \"number\": \"in est Lorem l\",\n      \"description\": \"deserunt et Lorem\"\n    },\n    \"packing_group\": {\n      \"id\": 4695233,\n      \"name\": \"anim in fugiat\"\n    },\n    \"un_number\": \"dolor in deserunt quis\",\n    \"un_proper_shipping_name\": \"quis culpa dolore mollit\",\n    \"haz_class\": [\n      {\n        \"id\": 26983827,\n        \"description\": \"fugiat aliquip dolor deserunt\",\n        \"superclass\": {\n          \"value\": \"<Circular reference to #/components/schemas/HazClass detected>\"\n        }\n      },\n      {\n        \"id\": 85518209,\n        \"description\": \"labore Excepteur ea l\",\n        \"superclass\": {\n          \"value\": \"<Circular reference to #/components/schemas/HazClass detected>\"\n        }\n      }\n    ],\n    \"haz_stat\": [\n      {\n        \"id\": -80290531,\n        \"code\": \"des\",\n        \"description\": \"commodo proident culpa nostrud veniam\"\n      },\n      {\n        \"id\": -2508683,\n        \"code\": \"pariatur occaecat incidi\",\n        \"description\": \"consectetur incididunt\"\n      }\n    ],\n    \"prec_stat\": [\n      {\n        \"id\": -87725667,\n        \"code\": \"minim velit id quis ut\",\n        \"description\": \"esse adi\"\n      },\n      {\n        \"id\": -42364812,\n        \"code\": \"t\",\n        \"description\": \"culpa fugiat\"\n      }\n    ],\n    \"pictogram\": [\n      {\n        \"id\": -19366959,\n        \"name\": \"anim\",\n        \"code\": \"ipsum qui est aute\",\n        \"picture\": \"pariatur ullamco\"\n      },\n      {\n        \"id\": 34944805,\n        \"name\": \"in Lorem enim irure\",\n        \"code\": \"cupidatat sint officia est\",\n        \"picture\": \"culpa exercitation amet\"\n      }\n    ],\n    \"signal_word\": {\n      \"id\": 79928781,\n      \"name\": \"ut est Duis\"\n    }\n  }\n]"
+						},
+						{
+							"id": "0743da35-7806-479a-b194-7d703c9d6a11",
+							"name": "not authorised",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: apikey",
+										"key": "rack.session",
+										"value": "<API Key>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/chemical?offset=92868792&limit=20",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"chemical"
+									],
+									"query": [
+										{
+											"key": "offset",
+											"value": "92868792"
+										},
+										{
+											"key": "limit",
+											"value": "20"
+										}
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"message\": \"aliquip veniam\"\n}"
+						}
+					]
+				},
+				{
+					"name": "/chemical",
+					"id": "75e6da33-8cf1-4d4d-9e76-c60a98c6a812",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n  {\n    \"id\": -31228164,\n    \"cas\": \"Lorem et pariatur\",\n    \"name\": \"id minim e\",\n    \"haz_substance\": true,\n    \"prefix\": \"fugiat ut sunt\",\n    \"inchi\": \"adipisicing eiusmod Lorem amet\",\n    \"smiles\": \"laborum laboris minim velit\",\n    \"pubchem\": \"elit\",\n    \"density\": -60817647.60176314,\n    \"melting_point\": -78384486.36676416,\n    \"boiling_point\": 13504271.215243429,\n    \"storage_temperature_min\": 46147633.4109638,\n    \"storage_temperature_max\": 96379827.0214487,\n    \"sds_url\": \"amet adipisicing sit quis\",\n    \"sds\": \"tempor in consequat ut\",\n    \"dg_class_1_id\": -15406542,\n    \"dg_class_2_id\": -87029655,\n    \"dg_class_3_id\": 1763898,\n    \"schedule_id\": -25887216,\n    \"packing_group_id\": -54357470,\n    \"un_number\": \"in ea of\",\n    \"un_proper_shipping_name\": \"nostrud ut\",\n    \"haz_class_ids\": [\n      -69526065,\n      -85147746\n    ],\n    \"haz_stat_ids\": [\n      88647571,\n      -57277223\n    ],\n    \"prec_stat_ids\": [\n      -59087152,\n      -5478023\n    ],\n    \"pictogram_ids\": [\n      -27646478,\n      39562964\n    ],\n    \"signal_word_id\": 14131531\n  },\n  {\n    \"id\": 50329048,\n    \"cas\": \"Lorem\",\n    \"name\": \"amet nostrud ex laborum\",\n    \"haz_substance\": true,\n    \"prefix\": \"Ut consectetur\",\n    \"inchi\": \"qui nostrud mollit\",\n    \"smiles\": \"consectetur adipisicing reprehenderit\",\n    \"pubchem\": \"cillum eu enim aliquip\",\n    \"density\": -26789947.337807223,\n    \"melting_point\": 99681642.2064335,\n    \"boiling_point\": 66977816.59075171,\n    \"storage_temperature_min\": -82033865.0170689,\n    \"storage_temperature_max\": 29754837.392406404,\n    \"sds_url\": \"ipsum\",\n    \"sds\": \"est amet Duis irure\",\n    \"dg_class_1_id\": 44374829,\n    \"dg_class_2_id\": 14112547,\n    \"dg_class_3_id\": 89585752,\n    \"schedule_id\": 30744377,\n    \"packing_group_id\": -86124507,\n    \"un_number\": \"occaeca\",\n    \"un_proper_shipping_name\": \"consequat in do\",\n    \"haz_class_ids\": [\n      -24715359,\n      -61122508\n    ],\n    \"haz_stat_ids\": [\n      47800923,\n      39971702\n    ],\n    \"prec_stat_ids\": [\n      67486476,\n      29602010\n    ],\n    \"pictogram_ids\": [\n      49756693,\n      -62925680\n    ],\n    \"signal_word_id\": -56624978\n  }\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/chemical",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"chemical"
+							]
+						},
+						"description": "creates a new chemical"
+					},
+					"response": [
+						{
+							"id": "c5f4a1e9-90fe-48d9-990c-a65a08439fb0",
+							"name": "successfully created the chemical, returns an array of the chemicals which were created",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: apikey",
+										"key": "rack.session",
+										"value": "<API Key>"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "[\n  {\n    \"id\": 54258469,\n    \"cas\": \"ulla\",\n    \"name\": \"velit cillum\",\n    \"haz_substance\": true,\n    \"prefix\": \"dolore\",\n    \"inchi\": \"ullamco culpa et\",\n    \"smiles\": \"est aliqua proident\",\n    \"pubchem\": \"ullamco exercitati\",\n    \"density\": -65106782.0174088,\n    \"melting_point\": 42465113.218322426,\n    \"boiling_point\": -9701997.257643044,\n    \"storage_temperature_min\": -1817116.768597722,\n    \"storage_temperature_max\": 86402320.34851709,\n    \"sds_url\": \"dolore sunt in adipisicing ullamco\",\n    \"sds\": \"i\",\n    \"dg_class_1_id\": 49799977,\n    \"dg_class_2_id\": 31574279,\n    \"dg_class_3_id\": 57587107,\n    \"schedule_id\": 71255404,\n    \"packing_group_id\": 52912535,\n    \"un_number\": \"Lorem in dolore\",\n    \"un_proper_shipping_name\": \"\",\n    \"haz_class_ids\": [\n      -32993993,\n      61739508\n    ],\n    \"haz_stat_ids\": [\n      65419907,\n      -40563515\n    ],\n    \"prec_stat_ids\": [\n      -59040192,\n      87746707\n    ],\n    \"pictogram_ids\": [\n      -50010631,\n      -13611417\n    ],\n    \"signal_word_id\": 5121673\n  },\n  {\n    \"id\": 6154740,\n    \"cas\": \"cillum aute dolor\",\n    \"name\": \"occaecat aute et e\",\n    \"haz_substance\": true,\n    \"prefix\": \"aliqua\",\n    \"inchi\": \"dolor\",\n    \"smiles\": \"officia\",\n    \"pubchem\": \"proident et reprehenderit occaecat\",\n    \"density\": -6694637.93113257,\n    \"melting_point\": 15177613.091023907,\n    \"boiling_point\": 15595085.957493454,\n    \"storage_temperature_min\": 17415786.81988214,\n    \"storage_temperature_max\": 78416384.67323309,\n    \"sds_url\": \"cupidatat Excepteur ea nostrud\",\n    \"sds\": \"sint ullamco deserunt officia\",\n    \"dg_class_1_id\": 10956705,\n    \"dg_class_2_id\": 57269684,\n    \"dg_class_3_id\": -38489505,\n    \"schedule_id\": -2046953,\n    \"packing_group_id\": 32359489,\n    \"un_number\": \"nisi velit aliquip\",\n    \"un_proper_shipping_name\": \"consequat veniam\",\n    \"haz_class_ids\": [\n      93172922,\n      38102993\n    ],\n    \"haz_stat_ids\": [\n      57120678,\n      -60594031\n    ],\n    \"prec_stat_ids\": [\n      -58152828,\n      95530514\n    ],\n    \"pictogram_ids\": [\n      11951202,\n      -73263044\n    ],\n    \"signal_word_id\": 51097745\n  }\n]",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/chemical",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"chemical"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "[\n  {\n    \"id\": -57782485,\n    \"cas\": \"quis amet anim ipsum\",\n    \"name\": \"in qui ullamco\",\n    \"haz_substance\": false,\n    \"prefix\": \"non nostrud ea\",\n    \"inchi\": \"ullamco nostrud consequat magna\",\n    \"smiles\": \"laboris\",\n    \"pubchem\": \"mollit dolore reprehenderit Ut\",\n    \"density\": -30887926.765748784,\n    \"melting_point\": -95565555.52178238,\n    \"boiling_point\": -98937988.40368415,\n    \"storage_temperature_min\": 59020443.81619537,\n    \"storage_temperature_max\": -27115783.036219418,\n    \"sds_url\": \"non mini\",\n    \"sds\": \"sit aliquip dolore ut\",\n    \"dg_class_1\": {\n      \"id\": 81086831,\n      \"number\": \"velit tempor ea\",\n      \"description\": \"veniam ut\",\n      \"superclass\": {\n        \"value\": \"<Circular reference to #/components/schemas/DgClass detected>\"\n      }\n    },\n    \"dg_class_2\": {\n      \"id\": 84561292,\n      \"number\": \"dolore irure officia\",\n      \"description\": \"aliquip adipisicing mollit ut\",\n      \"superclass\": {\n        \"value\": \"<Circular reference to #/components/schemas/DgClass detected>\"\n      }\n    },\n    \"dg_class_3\": {\n      \"id\": -61988952,\n      \"number\": \"ad\",\n      \"description\": \"Lorem quis\",\n      \"superclass\": {\n        \"value\": \"<Circular reference to #/components/schemas/DgClass detected>\"\n      }\n    },\n    \"schedule\": {\n      \"id\": -45540889,\n      \"number\": \"sed dolore dolore pariatur\",\n      \"description\": \"sit dolor Excepteur Duis\"\n    },\n    \"packing_group\": {\n      \"id\": -90645407,\n      \"name\": \"voluptate sunt laborum Lorem in\"\n    },\n    \"un_number\": \"in cillum\",\n    \"un_proper_shipping_name\": \"in ex in\",\n    \"haz_class\": [\n      {\n        \"id\": 89215954,\n        \"description\": \"sed\",\n        \"superclass\": {\n          \"value\": \"<Circular reference to #/components/schemas/HazClass detected>\"\n        }\n      },\n      {\n        \"id\": 79364063,\n        \"description\": \"consectet\",\n        \"superclass\": {\n          \"value\": \"<Circular reference to #/components/schemas/HazClass detected>\"\n        }\n      }\n    ],\n    \"haz_stat\": [\n      {\n        \"id\": -89349936,\n        \"code\": \"consectetur id\",\n        \"description\": \"magna officia Duis\"\n      },\n      {\n        \"id\": 47498106,\n        \"code\": \"aliqua laborum\",\n        \"description\": \"in adipisicing\"\n      }\n    ],\n    \"prec_stat\": [\n      {\n        \"id\": 20410297,\n        \"code\": \"Ut in Lorem et Duis\",\n        \"description\": \"ullamco cupidatat dolore in ut\"\n      },\n      {\n        \"id\": -64737688,\n        \"code\": \"est aute\",\n        \"description\": \"dolore id incididunt in ut\"\n      }\n    ],\n    \"pictogram\": [\n      {\n        \"id\": -50540202,\n        \"name\": \"nisi aliquip sunt\",\n        \"code\": \"magna adipisicing sunt\",\n        \"picture\": \"ea ad dolor\"\n      },\n      {\n        \"id\": -60919870,\n        \"name\": \"occaecat et qui\",\n        \"code\": \"est\",\n        \"picture\": \"officia\"\n      }\n    ],\n    \"signal_word\": {\n      \"id\": 29370829,\n      \"name\": \"mollit aute do\"\n    }\n  },\n  {\n    \"id\": 66969158,\n    \"cas\": \"in magna\",\n    \"name\": \"quis sed\",\n    \"haz_substance\": false,\n    \"prefix\": \"do fugiat laborum deserunt\",\n    \"inchi\": \"proident in do\",\n    \"smiles\": \"exercitation proident eu enim sunt\",\n    \"pubchem\": \"cillum nulla amet\",\n    \"density\": 96062572.38263202,\n    \"melting_point\": 19892710.857239664,\n    \"boiling_point\": -32295649.425669253,\n    \"storage_temperature_min\": -28340620.653682083,\n    \"storage_temperature_max\": -10042629.740101814,\n    \"sds_url\": \"est ea non\",\n    \"sds\": \"ut fugiat do anim\",\n    \"dg_class_1\": {\n      \"id\": 354819,\n      \"number\": \"ut dolore sunt non\",\n      \"description\": \"laboris adipisicin\",\n      \"superclass\": {\n        \"value\": \"<Circular reference to #/components/schemas/DgClass detected>\"\n      }\n    },\n    \"dg_class_2\": {\n      \"id\": -8355151,\n      \"number\": \"velit commodo labore Duis exercitation\",\n      \"description\": \"pariatur ea\",\n      \"superclass\": {\n        \"value\": \"<Circular reference to #/components/schemas/DgClass detected>\"\n      }\n    },\n    \"dg_class_3\": {\n      \"id\": 13780595,\n      \"number\": \"aliqua officia\",\n      \"description\": \"ea e\",\n      \"superclass\": {\n        \"value\": \"<Circular reference to #/components/schemas/DgClass detected>\"\n      }\n    },\n    \"schedule\": {\n      \"id\": -34064221,\n      \"number\": \"amet nostrud\",\n      \"description\": \"est Excepteur et\"\n    },\n    \"packing_group\": {\n      \"id\": 48123422,\n      \"name\": \"minim dolore culpa\"\n    },\n    \"un_number\": \"adipisicing eu\",\n    \"un_proper_shipping_name\": \"cillum eu magna\",\n    \"haz_class\": [\n      {\n        \"id\": 78576628,\n        \"description\": \"adipisicing ea\",\n        \"superclass\": {\n          \"value\": \"<Circular reference to #/components/schemas/HazClass detected>\"\n        }\n      },\n      {\n        \"id\": 42587304,\n        \"description\": \"sint cupidatat ut\",\n        \"superclass\": {\n          \"value\": \"<Circular reference to #/components/schemas/HazClass detected>\"\n        }\n      }\n    ],\n    \"haz_stat\": [\n      {\n        \"id\": -659523,\n        \"code\": \"sint do dolor\",\n        \"description\": \"in dolore\"\n      },\n      {\n        \"id\": 25512432,\n        \"code\": \"voluptate\",\n        \"description\": \"ad enim aute dolor cillum\"\n      }\n    ],\n    \"prec_stat\": [\n      {\n        \"id\": -73440116,\n        \"code\": \"non\",\n        \"description\": \"reprehenderit eiusmod Lorem minim tempor\"\n      },\n      {\n        \"id\": -99272400,\n        \"code\": \"proident exercitation\",\n        \"description\": \"consectetu\"\n      }\n    ],\n    \"pictogram\": [\n      {\n        \"id\": -11579101,\n        \"name\": \"irure esse\",\n        \"code\": \"laboris\",\n        \"picture\": \"voluptate Lorem quis ipsum ad\"\n      },\n      {\n        \"id\": 1176486,\n        \"name\": \"occaecat dolore in do\",\n        \"code\": \"voluptate officia ut\",\n        \"picture\": \"culpa ea magna laborum non\"\n      }\n    ],\n    \"signal_word\": {\n      \"id\": 36589206,\n      \"name\": \"deserunt aute in\"\n    }\n  }\n]"
+						},
+						{
+							"id": "bb57a1ae-6923-408d-bc8f-e99547e58618",
+							"name": "not authorised",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: apikey",
+										"key": "rack.session",
+										"value": "<API Key>"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "[\n  {\n    \"id\": 54258469,\n    \"cas\": \"ulla\",\n    \"name\": \"velit cillum\",\n    \"haz_substance\": true,\n    \"prefix\": \"dolore\",\n    \"inchi\": \"ullamco culpa et\",\n    \"smiles\": \"est aliqua proident\",\n    \"pubchem\": \"ullamco exercitati\",\n    \"density\": -65106782.0174088,\n    \"melting_point\": 42465113.218322426,\n    \"boiling_point\": -9701997.257643044,\n    \"storage_temperature_min\": -1817116.768597722,\n    \"storage_temperature_max\": 86402320.34851709,\n    \"sds_url\": \"dolore sunt in adipisicing ullamco\",\n    \"sds\": \"i\",\n    \"dg_class_1_id\": 49799977,\n    \"dg_class_2_id\": 31574279,\n    \"dg_class_3_id\": 57587107,\n    \"schedule_id\": 71255404,\n    \"packing_group_id\": 52912535,\n    \"un_number\": \"Lorem in dolore\",\n    \"un_proper_shipping_name\": \"\",\n    \"haz_class_ids\": [\n      -32993993,\n      61739508\n    ],\n    \"haz_stat_ids\": [\n      65419907,\n      -40563515\n    ],\n    \"prec_stat_ids\": [\n      -59040192,\n      87746707\n    ],\n    \"pictogram_ids\": [\n      -50010631,\n      -13611417\n    ],\n    \"signal_word_id\": 5121673\n  },\n  {\n    \"id\": 6154740,\n    \"cas\": \"cillum aute dolor\",\n    \"name\": \"occaecat aute et e\",\n    \"haz_substance\": true,\n    \"prefix\": \"aliqua\",\n    \"inchi\": \"dolor\",\n    \"smiles\": \"officia\",\n    \"pubchem\": \"proident et reprehenderit occaecat\",\n    \"density\": -6694637.93113257,\n    \"melting_point\": 15177613.091023907,\n    \"boiling_point\": 15595085.957493454,\n    \"storage_temperature_min\": 17415786.81988214,\n    \"storage_temperature_max\": 78416384.67323309,\n    \"sds_url\": \"cupidatat Excepteur ea nostrud\",\n    \"sds\": \"sint ullamco deserunt officia\",\n    \"dg_class_1_id\": 10956705,\n    \"dg_class_2_id\": 57269684,\n    \"dg_class_3_id\": -38489505,\n    \"schedule_id\": -2046953,\n    \"packing_group_id\": 32359489,\n    \"un_number\": \"nisi velit aliquip\",\n    \"un_proper_shipping_name\": \"consequat veniam\",\n    \"haz_class_ids\": [\n      93172922,\n      38102993\n    ],\n    \"haz_stat_ids\": [\n      57120678,\n      -60594031\n    ],\n    \"prec_stat_ids\": [\n      -58152828,\n      95530514\n    ],\n    \"pictogram_ids\": [\n      11951202,\n      -73263044\n    ],\n    \"signal_word_id\": 51097745\n  }\n]",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/chemical",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"chemical"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"message\": \"aliquip veniam\"\n}"
+						},
+						{
+							"id": "ff8803b3-2f2b-4351-a84e-2262db354dbc",
+							"name": "unprocessable entity",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: apikey",
+										"key": "rack.session",
+										"value": "<API Key>"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "[\n  {\n    \"id\": 54258469,\n    \"cas\": \"ulla\",\n    \"name\": \"velit cillum\",\n    \"haz_substance\": true,\n    \"prefix\": \"dolore\",\n    \"inchi\": \"ullamco culpa et\",\n    \"smiles\": \"est aliqua proident\",\n    \"pubchem\": \"ullamco exercitati\",\n    \"density\": -65106782.0174088,\n    \"melting_point\": 42465113.218322426,\n    \"boiling_point\": -9701997.257643044,\n    \"storage_temperature_min\": -1817116.768597722,\n    \"storage_temperature_max\": 86402320.34851709,\n    \"sds_url\": \"dolore sunt in adipisicing ullamco\",\n    \"sds\": \"i\",\n    \"dg_class_1_id\": 49799977,\n    \"dg_class_2_id\": 31574279,\n    \"dg_class_3_id\": 57587107,\n    \"schedule_id\": 71255404,\n    \"packing_group_id\": 52912535,\n    \"un_number\": \"Lorem in dolore\",\n    \"un_proper_shipping_name\": \"\",\n    \"haz_class_ids\": [\n      -32993993,\n      61739508\n    ],\n    \"haz_stat_ids\": [\n      65419907,\n      -40563515\n    ],\n    \"prec_stat_ids\": [\n      -59040192,\n      87746707\n    ],\n    \"pictogram_ids\": [\n      -50010631,\n      -13611417\n    ],\n    \"signal_word_id\": 5121673\n  },\n  {\n    \"id\": 6154740,\n    \"cas\": \"cillum aute dolor\",\n    \"name\": \"occaecat aute et e\",\n    \"haz_substance\": true,\n    \"prefix\": \"aliqua\",\n    \"inchi\": \"dolor\",\n    \"smiles\": \"officia\",\n    \"pubchem\": \"proident et reprehenderit occaecat\",\n    \"density\": -6694637.93113257,\n    \"melting_point\": 15177613.091023907,\n    \"boiling_point\": 15595085.957493454,\n    \"storage_temperature_min\": 17415786.81988214,\n    \"storage_temperature_max\": 78416384.67323309,\n    \"sds_url\": \"cupidatat Excepteur ea nostrud\",\n    \"sds\": \"sint ullamco deserunt officia\",\n    \"dg_class_1_id\": 10956705,\n    \"dg_class_2_id\": 57269684,\n    \"dg_class_3_id\": -38489505,\n    \"schedule_id\": -2046953,\n    \"packing_group_id\": 32359489,\n    \"un_number\": \"nisi velit aliquip\",\n    \"un_proper_shipping_name\": \"consequat veniam\",\n    \"haz_class_ids\": [\n      93172922,\n      38102993\n    ],\n    \"haz_stat_ids\": [\n      57120678,\n      -60594031\n    ],\n    \"prec_stat_ids\": [\n      -58152828,\n      95530514\n    ],\n    \"pictogram_ids\": [\n      11951202,\n      -73263044\n    ],\n    \"signal_word_id\": 51097745\n  }\n]",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/chemical",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"chemical"
+									]
+								}
+							},
+							"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"message\": \"aliquip veniam\"\n}"
+						}
+					]
+				}
+			],
+			"id": "7aab9362-48b6-42f5-b58c-9b4a95bce0a4"
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "key",
+				"value": "rack.session",
+				"type": "string"
+			},
+			{
+				"key": "value",
+				"value": "<API Key>",
+				"type": "string"
+			},
+			{
+				"key": "in",
+				"value": "header",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "ab3149f0-0085-47b6-b174-663815bad655",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "0381130d-9beb-415c-abd1-3c5435cb7c02",
+				"type": "text/javascript",
+				"exec": [
+					"pm.environment.set(\"host\", \"localhost:9292/api\");"
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "ec8fea60-a737-4396-a919-bd43646f004e",
+			"key": "baseUrl",
+			"value": "localhost:9292/api",
+			"type": "string"
+		}
+	]
+}
