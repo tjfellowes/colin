@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_15_091744) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_15_110828) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -33,10 +33,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_15_091744) do
     t.bigint "dg_class_3_id"
     t.bigint "schedule_id"
     t.bigint "packing_group_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "storage_temperature_min"
-    t.string "storage_temperature_max"
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
+    t.float "storage_temperature_min"
+    t.float "storage_temperature_max"
     t.string "un_proper_shipping_name"
     t.binary "sds"
     t.bigint "signal_word_id"
@@ -96,8 +96,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_15_091744) do
   end
 
   create_table "container_locations", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.bigint "container_id", null: false
     t.bigint "location_id"
     t.boolean "temp", default: false, null: false
@@ -110,9 +110,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_15_091744) do
     t.string "barcode"
     t.float "container_size_number"
     t.string "container_size_unit"
-    t.datetime "date_purchased", null: false
-    t.datetime "expiry_date"
-    t.datetime "deleted_at"
+    t.datetime "date_purchased", precision: nil, null: false
+    t.datetime "expiry_date", precision: nil
+    t.datetime "deleted_at", precision: nil
     t.bigint "supplier_id"
     t.string "description"
     t.string "product_number"
@@ -131,11 +131,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_15_091744) do
     t.string "un_proper_shipping_name"
     t.bigint "schedule_id"
     t.bigint "signal_word_id"
-    t.string "storage_temperature_min"
-    t.string "storage_temperature_max"
-    t.string "density"
-    t.string "melting_point"
-    t.string "boiling_point"
+    t.float "storage_temperature_min"
+    t.float "storage_temperature_max"
+    t.float "density"
+    t.float "melting_point"
+    t.float "boiling_point"
     t.binary "sds"
     t.index ["deleted_at"], name: "index_containers_on_deleted_at"
     t.index ["dg_class_1_id"], name: "index_containers_on_dg_class_1_id"
@@ -214,7 +214,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_15_091744) do
     t.string "temperature"
     t.boolean "monitored", default: false, null: false
     t.string "ancestry"
-    t.datetime "deleted_at"
+    t.datetime "deleted_at", precision: nil
     t.index ["deleted_at"], name: "index_locations_on_deleted_at"
     t.index ["location_type_id"], name: "index_locations_on_location_type_id"
   end
@@ -251,7 +251,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_15_091744) do
   create_table "suppliers", force: :cascade do |t|
     t.string "name", null: false
     t.string "website"
-    t.datetime "deleted_at"
+    t.datetime "deleted_at", precision: nil
     t.index ["deleted_at"], name: "index_suppliers_on_deleted_at"
   end
 
@@ -261,8 +261,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_15_091744) do
     t.text "email", null: false
     t.text "password_digest", null: false
     t.bigint "supervisor_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.boolean "active", default: true
     t.boolean "hidden", default: false
     t.boolean "can_create_container", default: false
@@ -271,7 +271,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_15_091744) do
     t.boolean "can_edit_location", default: false
     t.boolean "can_create_user", default: false
     t.boolean "can_edit_user", default: false
-    t.datetime "deleted_at"
+    t.datetime "deleted_at", precision: nil
     t.index ["deleted_at"], name: "index_users_on_deleted_at"
     t.index ["supervisor_id"], name: "index_users_on_supervisor_id"
   end
