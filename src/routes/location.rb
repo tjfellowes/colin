@@ -8,17 +8,24 @@ require 'time'
 class Colin::Routes::Location < Colin::BaseWebApp
 
   get '/api/location' do 
-    unless session[:authorized]
-      halt(403, 'Not authorised.')
-    end
     content_type :json
+
+    unless session[:authorized]
+      halt(401, 'Not authorised.')
+    end
+    
     locations = Colin::Models::Location.active
-    Colin::Models::Location.sort_by_ancestry(locations).to_json(methods: :location_path, include: :location_type)
+    Colin::Models::Location.sort_by_ancestry(locations).to_json(
+      methods: :location_path, 
+      include: :location_type
+    )
   end
 
+
+  ###########################################################
   get '/api/location/id/:id' do 
     unless session[:authorized]
-      halt(403, 'Not authorised.')
+      halt(401, 'Not authorised.')
     end
     if params[:id].present?
       content_type :json
@@ -30,7 +37,7 @@ class Colin::Routes::Location < Colin::BaseWebApp
 
   get '/api/location/barcode/:barcode' do
     unless session[:authorized]
-      halt(403, 'Not authorised.')
+      halt(401, 'Not authorised.')
     end
     if params[:barcode].present?
       content_type :json
@@ -42,7 +49,7 @@ class Colin::Routes::Location < Colin::BaseWebApp
 
   get '/api/location/search' do
     unless session[:authorized]
-      halt(403, 'Not authorised.')
+      halt(401, 'Not authorised.')
     end
     if params[:query].present?
       content_type :json
@@ -55,7 +62,7 @@ class Colin::Routes::Location < Colin::BaseWebApp
   # Create a location
   post '/api/location' do
     unless session[:authorized] && current_user.can_create_location?
-      halt(403, 'Not authorised.')
+      halt(401, 'Not authorised.')
     end
 
     content_type :json
@@ -91,7 +98,7 @@ class Colin::Routes::Location < Colin::BaseWebApp
   # Update a location
   put '/api/location/id/:id' do
     unless session[:authorized] && current_user.can_edit_location?
-      halt(403, 'Not authorised.')
+      halt(401, 'Not authorised.')
     end
 
     content_type :json
@@ -118,7 +125,7 @@ class Colin::Routes::Location < Colin::BaseWebApp
   # Delete a location
   delete '/api/location/id/:id' do
     unless session[:authorized] && current_user.can_edit_location?
-      halt(403, 'Not authorised.')
+      halt(401, 'Not authorised.')
     end
     if params[:id].blank?
       halt(422, "You must supply a location ID.")

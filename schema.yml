@@ -339,6 +339,24 @@ paths:
         "401":
           $ref: "#/components/responses/401Error"
 
+  /location:
+    get:
+      description: returns a list of all locations
+      parameters:
+        - $ref: "#/components/parameters/offsetParam"
+        - $ref: "#/components/parameters/limitParam"
+      responses:
+        "200":
+          description: successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Location"
+        "401":
+          $ref: "#/components/responses/401Error"
+
 components:
   securitySchemes:
     sessionAuth:
