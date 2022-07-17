@@ -1,5 +1,4 @@
 class Colin::Models::User < ActiveRecord::Base
-  scope :active, -> {where(active: TRUE).where("date_deleted IS NULL OR date_deleted > ?",Time.now )}
   scope :visible, -> {where(hidden: FALSE)}
 
   validates :username, presence: true, uniqueness: true

@@ -2,99 +2,124 @@ class Colin::Routes::User < Colin::BaseWebApp
 
     get "/api/user" do
         unless session[:authorized]
-            halt(403, 'Not authorised.')
+            halt(401, 'Not authorised.')
         end
 
         content_type :json
 
-        Colin::Models::User.active.visible.limit(params[:limit]).offset(params[:offset]).select(:id, :name, :username).to_json()
+        Colin::Models::User.visible.limit(params[:limit]).offset(params[:offset]).select(:id, :name, :username).to_json()
     end
     
     post "/api/user" do 
 
         unless session[:authorized] && current_user.can_create_user?
-            halt(403, 'Not authorised.')
+            halt(401, 'Not authorised.')
         end
         
         content_type :json
 
-        if params[:username].blank? || params[:email].blank? || params[:password].blank? || params[:name].blank? 
-            halt(422, 'Username, name, email, and password are required.')
-        elsif params[:password] != params[:password_confirmation]
-            halt(422, 'Passwords do not match.')
-        elsif Colin::Models::User.exists?(username: params[:username])
-            halt(422, 'User ' +  params[:username] + ' already exists.')
-        else
-            if params[:supervisor_id].blank?
-                params[:supervisor_id] = 1
+        payload = JSON.parse(request.body.read, symbolize_names: true)
+
+        users = []
+
+        for i in payload
+            if i[:username].blank? || i[:email].blank? || i[:password].blank? || i[:name].blank? 
+                halt(422, 'Username, name, email, and password are required.')
+            elsif i[:password] != i[:password_confirmation]
+                halt(422, 'Passwords do not match.')
+            elsif Colin::Models::User.exists?(username: i[:username])
+                halt(422, 'User ' +  i[:username] + ' already exists.')
+            else
+                if i[:supervisor_id].blank?
+                    i[:supervisor_id] = 1
+                end
+                users.append(Colin::Models::User.new(
+                    username: i[:username], 
+                    name: i[:name], 
+                    email: i[:email], 
+                    password: i[:password], 
+                    password_confirmation: i[:password_confirmation], 
+                    supervisor_id: i[:supervisor_id], 
+                    can_create_container: i[:can_create_container], 
+                    can_edit_container: i[:can_edit_container], 
+                    can_create_location: i[:can_create_location], 
+                    can_edit_location: i[:can_edit_location], 
+                    can_create_user: i[:can_create_user], 
+                    can_edit_user: i[:can_edit_user]
+                ))
             end
-            Colin::Models::User.create(username: params[:username], name: params[:name], email: params[:email], password: params[:password], password_confirmation: params[:password_confirmation], supervisor_id: params[:supervisor_id], can_create_container: params[:can_create_container], can_edit_container: params[:can_edit_container], can_create_location: params[:can_create_location], can_edit_location: params[:can_edit_location], can_create_user: params[:can_create_user], can_edit_user: params[:can_edit_user]).to_json()
+        end
+        
+        if !users.map{|i| i.save}.include?(false)
+        return users.to_json(
+            include: {
+                supervisor: {}
+            }
+        )
+        else
+        halt 500, "Could not save users to the database"
         end
     end 
 
-    put "/api/user/username/:username" do 
-        unless session[:authorized] && ( current_user.can_edit_user? || current_user.username == params[:username] )
-            halt(403, 'Not authorised to edit this user.')
+    put "/api/user/id/:id" do 
+        unless session[:authorized] && ( current_user.can_edit_user? || current_user.id == params[:id] )
+            halt(401, 'Not authorised to edit this user.')
         end
 
         content_type :json
 
-        if params[:username].blank? 
-            halt(422, "Username not supplied.")
-        elsif Colin::Models::User.where(username: params[:username]).exists?
-            user = Colin::Models::User.where(username: params[:username]).take
-            unless params[:password].blank? 
-                if user.authenticate(params[:old_password]) || current_user.can_edit_user
-                    if params[:password] == params[:password_confirmation]
-                        user.update(password: params[:password], password_confirmation: params[:password_confirmation])
-                    else
-                        halt(422, "Passwords do not match.")
-                    end
-                else
-                    halt(422, "Old password incorrect.")
-                end
-            end
-            if !params[:new_username].blank?
-                if (params[:new_username] != user.username) 
-                    if Colin::Models::User.exists?(username: params[:new_username])
-                        halt(422, 'User ' +  params[:new_username] + ' already exists.')
-                    else
-                        user.update(username: params[:new_username])
-                    end
-                end
-            end
-            if !params[:name].blank?
-                user.update(name: params[:name])
-            end
-            if !params[:email].blank?
-                user.update(email: params[:email])
-            end
-            if !params[:supervisor_id].blank?
-                user.update(supervisor_id: params[:supervisor_id])
-            end
+        payload = JSON.parse(request.body.read, symbolize_names: true)
 
-            if current_user.can_edit_user
-                user.update(can_create_container: params[:can_create_container], can_edit_container: params[:can_edit_container], can_create_location: params[:can_create_location], can_edit_location: params[:can_edit_location], can_create_user: params[:can_create_user], can_edit_user: params[:can_edit_user])
-            end
 
-            user.update(date_deleted: nil)
-
-            user.to_json()
+        if user = Colin::Models::User.find_by(id: params[:id])
+            user.update(
+                username: i[:username], 
+                name: i[:name], 
+                email: i[:email], 
+                password: i[:password], 
+                password_confirmation: i[:password_confirmation], 
+                supervisor_id: i[:supervisor_id], 
+                can_create_container: i[:can_create_container], 
+                can_edit_container: i[:can_edit_container], 
+                can_create_location: i[:can_create_location], 
+                can_edit_location: i[:can_edit_location], 
+                can_create_user: i[:can_create_user], 
+                can_edit_user: i[:can_edit_user]
+            )
         else
-            halt(404, "Username with username " + params[:username] + " not found.")
+            halt(404, "User with id " + params[:id] + " not found.")
         end
     end 
-    delete "/api/user/username/:username" do 
+
+      # Update a location by its id - At the moment this can only undelete a location.
+    patch '/api/user/id/:id' do
+        content_type :json
+        unless session[:authorized] && current_user.can_edit_user?
+            halt(401, 'Not authorised.')
+        end
+
+        if (user = Colin::Models::User.with_deleted.find_by(id: params[:id]))
+            user.restore
+            user.to_json(
+                include: :supervisor
+            )
+        else
+            halt 422, "User with given id not found"
+        end
+    end
+
+    delete "/api/user/id/:id" do 
         unless session[:authorized] && current_user.can_edit_user?
             halt(403, 'Not authorised to delete this user.')
         end
 
-        if params[:username].blank? 
-            halt(422, "Username not supplied.")
-        elsif Colin::Models::User.where(username: params[:username]).exists?
-            Colin::Models::User.where(username: params[:username]).take.update(date_deleted: Time.now).to_json()
+        if params[:id].blank? 
+            halt(422, "id not supplied.")
+        elsif user = Colin::Models::User.find_by(id: params[:id])
+            user.delete
+            status 204
         else
-            halt(404, "Username with username " + params[:username] + " not found.")
+            halt(404, "User with id " + params[:id] + " not found.")
         end
     end
 end

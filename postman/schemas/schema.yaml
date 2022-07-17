@@ -476,6 +476,90 @@ paths:
         "422":
           $ref: "#/components/responses/422Error"
 
+  /user:
+    get:
+      description: returns a list of users, only names and usernames for security
+      parameters:
+        - $ref: "#/components/parameters/offsetParam"
+        - $ref: "#/components/parameters/limitParam"
+      responses:
+        "200":
+          description: successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    name:
+                      type: string
+                    username: 
+                      type: string
+        "401":
+          $ref: "#/components/responses/401Error"
+    post:
+      description: creates a new user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items: 
+                type: object
+                required:
+                  - username
+                  - name
+                  - email
+                  - password
+                  - password_confirmation
+                properties:
+                  username:
+                    type: string
+                  name:
+                    type: string
+                  email:
+                    type: string
+                  password:
+                    type: string
+                    format: password
+                  password_confirmation:
+                    type: string
+                    format: password
+                  supervisor_id:
+                    type: integer
+                  can_create_container:
+                    type: boolean
+                  can_edit_container:
+                    type: boolean
+                  can_create_location:
+                    type: boolean
+                  can_edit_location:
+                    type: boolean
+                  can_create_user:
+                    type: boolean
+                  can_edit_user:
+                    type: boolean
+      responses:
+        "200":
+          description: successfully created the users, returns an array of the users which were created
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/User"
+        "401":
+          $ref: "#/components/responses/401Error"
+        "422":
+          $ref: "#/components/responses/422Error"
+        
+                  
+
+
 components:
   securitySchemes:
     sessionAuth:
@@ -741,3 +825,32 @@ components:
           type: integer
         name:
           type: string
+    User:
+      type: object
+      required:
+        - id
+        - name
+        - username
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        username:
+          type: string
+        email:
+          type: string
+        supervisor:
+          $ref: "#/components/schemas/User"
+        can_create_container:
+          type: boolean
+        can_edit_container:
+          type: boolean
+        can_create_location:
+          type: boolean
+        can_edit_location:
+          type: boolean
+        can_create_user:
+          type: boolean
+        can_edit_user:
+          type: boolean
