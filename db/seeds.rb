@@ -3,6 +3,29 @@ require_all 'src'
 
 include Colin::Models
 
+def create_test_data
+  Location.create!(
+    barcode: 0, 
+    name: 'Root Location', 
+    location_type: Colin::Models::LocationType.find_by(name: "Building"), 
+    monitored: false
+  )
+  Chemical.create!(
+    cas: '0', 
+    name: 'first chemical', 
+    haz_substance: false, 
+    dg_class_1: DgClass.find(1), 
+    haz_stat: HazStat.find([1,5,8])
+  )
+  Container.create(
+    barcode: 1, 
+    name: 'first container',
+    container_content: [ContainerContent.create!(chemical: Chemical.find_by(cas: '0'))], 
+    location: [Location.find_by(barcode: 0)], 
+    date_purchased: Time.now
+  )
+end
+
 def create_sublocation(parent_location, name, code, barcode, temperature, location_types_id)
   return Location.create! do |d|
     d.name = name
@@ -12,44 +35,6 @@ def create_sublocation(parent_location, name, code, barcode, temperature, locati
     d.location_types_id = location_types_id
     d.parent_id = parent_location.id
   end
-end
-
-def add_test_data
-  synlab = Location.create!(name: 'Synthetic Lab', code: 'Syn', barcode: '100000', temperature: '25', location_types_id: '2')
-  cupboard = create_sublocation(synlab, 'Cupboard 1', 'C1', '100100', '25', '3')
-  create_sublocation(cupboard, 'Box 1', 'B1', '100101', '25', '8')
-  create_sublocation(cupboard, 'Box 2', 'B2', '100102', '25', '8')
-  cupboard = create_sublocation(synlab, 'Cupboard 2', 'C2', '100200', '25', '3')
-  create_sublocation(cupboard, 'Box 1', 'B1', '100201', '25', '8')
-  create_sublocation(cupboard, 'Box 2', 'B2', '100202', '25', '8')
-  fridge = create_sublocation(synlab, 'Fridge 1', 'F1', '100300', '4', '5')
-  create_sublocation(fridge, 'Box 1', 'B1', '100201', '25', '8')
-
-  Chemical.create!(cas: '1-1-1', name: 'bepis', haz_substance: true, sds_url: 'https://www.nug.com/sds', un_number: '1234', dg_class_1_id: '2', dg_class_2_id: '11', schedule_id: '1', packing_group_id: '1', storage_temperature_min: '69', storage_temperature_max: '420', un_proper_shipping_name: 'conke NOS', sds: File.open('db/seeds/sds.pdf', 'rb'), signal_word_id: '2', inchi: 'InChI=1S/C2H6O/c1-2-3/h3H,2H2,1H3', smiles: 'F/C=C/F', pubchem: '702', density: '1.5', melting_point: '20', boiling_point: '1000', created_at: Time.now.utc.iso8601, updated_at: Time.now.utc.iso8601)
-
-  Chemical.create!(cas: '1-3-1', prefix: 'super', name: 'conke', haz_substance: true, sds_url: 'https://www.nug.com/sds', un_number: '1234', dg_class_id: '2', dg_class_2_id: '11', schedule_id: '1', packing_group_id: '1', storage_temperature_min: '69', storage_temperature_max: '420', un_proper_shipping_name: 'conke NOS', sds: File.open('db/seeds/sds.pdf', 'rb'), signal_word_id: '2', inchi: 'InChI=1S/C2H6O/c1-2-3/h3H,2H2,1H3', smiles: 'F/C=C/F', pubchem: '702', density: '1.5', melting_point: '20', boiling_point: '1000', created_at: Time.now.utc.iso8601, updated_at: Time.now.utc.iso8601)
-
-  ChemicalHazClass.create!(chemical_id: '1', haz_class_id: '9', category: '3')
-  ChemicalPictogram.create!(chemical_id: '1', pictogram_id: '3')
-  ChemicalHazStat.create!(chemical_id: '1', haz_stat_id: '6')
-  ChemicalHazStat.create!(chemical_id: '1', haz_stat_id: '9')
-  ChemicalHazStat.create!(chemical_id: '1', haz_stat_id: '32')
-  ChemicalPrecStat.create!(chemical_id: '1', prec_stat_id: '10')
-  ChemicalPrecStat.create!(chemical_id: '1', prec_stat_id: '6')
-  ChemicalPrecStat.create!(chemical_id: '1', prec_stat_id: '9')
-  ChemicalPrecStat.create!(chemical_id: '1', prec_stat_id: '32')
-  ChemicalPrecStatSupp.create!(chemical_prec_stat_id: '1', position: '1', information: 'Conke')
-
-  Container.create!(barcode: '1101010', container_size: '50', size_unit: 'g', date_purchased: Time.now.utc.iso8601, chemical_id: '1', supplier_id: '1', description: 'stonky', product_number: '1010101010101_50G', lot_number: '900', user_id: '1', owner_id: '1', picture: File.open('db/seeds/bepis.jpg', 'rb'))
-
-  Container.create!(barcode: '69', container_size: '50', size_unit: 'g', date_purchased: Time.now.utc.iso8601, chemical_id: '2', supplier_id: '1', description: 'stonky', product_number: '1010101010101_50G', lot_number: '900', user_id: '1', owner_id: '1', picture: File.open('db/seeds/bepis.jpg', 'rb'))
-
- 
-
-  ContainerLocation.create!(created_at: Time.now.utc.iso8601, updated_at: Time.now.utc.iso8601, container_id: '1', location_id: '3')
-  ContainerLocation.create!(created_at: Time.now.utc.iso8601, updated_at: Time.now.utc.iso8601, container_id: '2', location_id: '6')
-
-  Supplier.create!(name: 'conke factory')
 end
 
 def create_users
@@ -589,3 +574,4 @@ create_haz_stats
 create_haz_classes
 create_pictograms
 create_signal_words
+#create_test_data
