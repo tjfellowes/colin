@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_15_110828) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_16_151646) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -84,11 +84,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_15_110828) do
   end
 
   create_table "container_contents", force: :cascade do |t|
-    t.bigint "container_id"
-    t.bigint "chemical_id"
-    t.float "quantity"
+    t.bigint "container_id", null: false
+    t.bigint "chemical_id", null: false
+    t.float "quantity_number"
     t.string "quantity_unit"
-    t.float "concentration"
+    t.float "concentration_number"
     t.string "concentration_unit"
     t.datetime "deleted_at"
     t.index ["chemical_id"], name: "index_container_contents_on_chemical_id"
@@ -272,6 +272,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_15_110828) do
     t.boolean "can_create_user", default: false
     t.boolean "can_edit_user", default: false
     t.datetime "deleted_at", precision: nil
+    t.boolean "can_view_user", default: false
     t.index ["deleted_at"], name: "index_users_on_deleted_at"
     t.index ["supervisor_id"], name: "index_users_on_supervisor_id"
   end
