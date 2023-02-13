@@ -65,7 +65,6 @@
 
   <button id="create_user" class="btn btn-primary">Create User</button>
   <button class="btn btn-secondary" id="cancel">Cancel</button>
-
 </div>
 
 <!-- Modal -->
@@ -99,7 +98,7 @@ $(document).ready(function () {
     $.ajax({
       type: "POST",
       url: "/api/user",
-      data: {
+      data: JSON.stringify([{
         username: $("[name='username']").val(),
         name: $("[name='name']").val(),
         email: $("[name='email']").val(),
@@ -112,7 +111,7 @@ $(document).ready(function () {
         can_edit_location: $("[name='can_edit_location']").prop("checked"),
         can_create_user: $("[name='can_create_user']").prop("checked"),
         can_edit_user: $("[name='can_edit_user']").prop("checked")
-      },
+      }]),
       dataType: "json",
       success: function () {
         $('#feedbackModalTitle').html('User created');
@@ -126,6 +125,7 @@ $(document).ready(function () {
         $('#feedbackModal').modal();
       }
     });
+    
   });
   $("#cancel").click(function () {window.location.href = "/";});
 });

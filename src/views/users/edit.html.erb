@@ -3,11 +3,11 @@
 <% user = Colin::Models::User.where(username: params[:username]).take %>
 
 <h1>Update User</h1>
-  <input hidden type="text" name="username" id="username" value="<%= params[:username] %>"/>
+  <input hidden type="text" name="id" id="id" value="<%= user.id %>"/>
   <input hidden type="text" name="old_supervisor_id" id="old_supervisor_id" value="<%= user.supervisor_id %>"/>
   <div class="form-group">
-    <label for="new_username">Username</label>
-    <input type="text" name="new_username" id="new_username" placeholder="Username" class="form-control" value="<%= user.username %>"/>
+    <label for="username">Username</label>
+    <input type="text" name="username" id="username" placeholder="Username" class="form-control" value="<%= user.username %>"/>
   </div>
   <div class="form-group">
       <label for="name">Name</label>
@@ -113,9 +113,10 @@ $(document).ready(function () {
   $("#update_user").click(function (e) {
     $.ajax({
       type: "PUT",
-      url: "/api/user/username/" + $("[name='username']").val(),
-      data: {
-        new_username: $("[name='new_username']").val(),
+      url: "/api/user",
+      data: JSON.stringify([{
+        id: $("[name='id']").val(),
+        username: $("[name='username']").val(),
         name: $("[name='name']").val(),
         email: $("[name='email']").val(),
         old_password: $("[name='old_password']").val(),
@@ -128,7 +129,7 @@ $(document).ready(function () {
         can_edit_location: $("[name='can_edit_location']").prop("checked"),
         can_create_user: $("[name='can_create_user']").prop("checked"),
         can_edit_user: $("[name='can_edit_user']").prop("checked")
-      },
+      }]),
       dataType: "json",
       success: function () {
         $('#feedbackModalTitle').html('User updated');
@@ -146,9 +147,10 @@ $(document).ready(function () {
   $("#delete_user").click(function (e) {
     $.ajax({
       type: "DELETE",
-      url: "/api/user/username/" + $("[name='username']").val(),
-      data: {
-      },
+      url: "/api/user",
+      data: JSON.stringify([{
+        id: $("[name='id']").val()
+      }]),
       dataType: "json",
       success: function () {
         $('#feedbackModalTitle').html('User deleted');
@@ -163,6 +165,6 @@ $(document).ready(function () {
       }
     });
   });
-  $("#cancel").click(function () {window.location.href = "/";});
+  $("#cancel").click(function () {history.back()});
 });
 </script>
