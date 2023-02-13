@@ -2,11 +2,12 @@ development:
   adapter: postgresql
   encoding: unicode
   host:     localhost
-  port:     5433
+  port:     5432
   database: colin_development
   username: colin
   password: colin
   pool: 2
+  template: template0
 production:
   adapter: postgresql
   encoding: unicode

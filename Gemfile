@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.7.4'
+ruby '3.2.0'
 
 gem 'pg'#, '1.1.4'
 gem 'rake'#, '12.3.3'
@@ -15,4 +15,5 @@ gem 'ancestry'#, '3.2.1'
 gem 'pagy'
 gem 'racksh'
 gem 'paranoia'
+gem 'webrick'
 # gem 'sqlite3', '1.3.13'

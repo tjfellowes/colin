@@ -82,6 +82,9 @@ module Colin
       set :server_settings, :Verbose => true
 
       use Rack::Flash
+      use Rack::Protection::EncryptedCookie,
+        key: 'rack.session',
+        secret: ENV['SESSION_SECRET']
     end
 
     # Make every request JSON

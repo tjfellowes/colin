@@ -1,5 +1,5 @@
 class Colin::Models::User < ActiveRecord::Base
-  scope :visible, -> {where(hidden: FALSE)}
+  scope :visible, -> {where(hidden: false)}
 
   validates :username, presence: true, uniqueness: true
   validates_presence_of :name
