@@ -189,3 +189,18 @@ toxic = true if (hazards & ['Acute toxicity', 'Germ cell mutagenicity', 'Carcino
 </table>
 </td>
 </table>
+
+<table style="width:27cm;margin-top:5cm;">
+<thead>
+<td><%= name + ' ' + date %></td>
+<td><%= description %></td>
+<td><%= components.map{ |i| [i.chemical.prefix, i.chemical.name].join('')}.join('; ') %></td>
+<td> - </td>
+<td>Plastic</td>
+<td>1</td>
+<td>2.5 L</td>
+<td>Liquid</td>
+<td><%= components.map{ |i| i.chemical.haz_stat.map{ |j| j.code}}.flatten.uniq.compact.join(', ') %></td>
+<td><%= 'HP1 ' if explosive %><%= 'HP2 ' if oxidising %><%= 'HP3 ' if flammable %><%= 'HP4 ' if irritant %><%= 'HP5 ' if harmful %><%= 'HP6 ' if toxic %><%= 'HP7 ' if carcinogenic %><%= 'HP8 ' if corrosive %><%= 'HP9 ' if infectious %><%= 'HP10 ' if reprotoxic %><%= 'HP11 ' if mutagenic %><%= 'HP12 ' if release_gas %><%= 'HP13 ' if sensitising %><%= 'HP14 ' if ecotoxic %><%= 'HP15 ' if other %><%= 'POPS ' if pops %></td>
+</thead>
+</table>
