@@ -11,8 +11,8 @@ body {
  color: black;
 }
 table {
-    width: 14.3cm;
-    max-height: 19.9cm;
+    width: 13cm;
+    max-height: 19cm;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 10pt;
     border-spacing: 0;
@@ -63,7 +63,72 @@ harmful = true if (hazards & ['Acute toxicity', 'Skin corrosion', 'Skin irritati
 mutagenic = true if (hazards & ['Germ cell mutagenicity', 'GHS08', 'H340', 'H341']).any?
 toxic = true if (hazards & ['Acute toxicity', 'Germ cell mutagenicity', 'Carcinogenicity', 'Reproductive toxicity', 'Target organ systemic toxicity: single and repeated exposure', 'Aspiration toxicity', 'GHS06', 'H300', 'H301', 'H310', 'H311', 'H330', 'H331', 'H370', 'H372']).any?
 %>
+<table style="width:27.3cm;">
+<thead>
+<tr>
 
+<td style="width:13.65cm;padding:0.325cm;border:none;">
+<table style="width:13cm;">
+<thead>
+<tr>
+<td><strong>Name: </strong><%= name %></td>
+<td colspan="2"><strong>Date: </strong><%= date %></td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td colspan="3">
+    <p><strong>Description of Waste</strong></p>
+    <%= description %>
+    <p><strong>List all components, including concentrations (if known):</strong></p>
+    <textarea><%= components.map{ |i| [i.chemical.prefix, i.chemical.name].join('')}.join(', ') %></textarea>
+</td>
+</tr>
+<tr>
+<td colspan="3">PLEASE WRITE FULL NAMES e.g., dimethylformamide <em><u>NOT</u></em> DMF</td>
+</tr>
+<tr>
+<td colspan="3"><strong>Hazard Statements/Properties (write all Hazard Statement in the box and tick all relevant Hazard Properties):</strong><br>
+    <textarea style="height:3cm;"><%= components.map{ |i| i.chemical.haz_stat.map{ |j| j.code + ' - ' + j.description}}.flatten.uniq.compact.join(', ') %></textarea>
+</td>
+</tr>
+<tr class="hazards">
+<td>HP1 Explosive <input type="checkbox" <%= 'checked' if explosive %> ></td>
+<td>HP7 Carcinogenic <input type="checkbox" <%= 'checked' if carcinogenic %>></td>
+<td rowspan="2">HP12 Releases acute toxic gas in contact with water or acid <input type="checkbox" <%= 'checked' if release_gas %>></td>
+</tr>
+<tr class="hazards">
+<td>HP2 Oxidizing <input type="checkbox" <%= 'checked' if oxidising %>></td>
+<td>HP8 Corrosive <input type="checkbox" <%= 'checked' if corrosive %>></td>
+</tr>
+<tr class="hazards">
+<td>HP3 Flammable <input type="checkbox" <%= 'checked' if flammable %>></td>
+<td>HP9 Infectious <input type="checkbox" <%= 'checked' if infectious %>></td>
+<td>HP13 Sensitizing <input type="checkbox" <%= 'checked' if sensitising %>></td>
+</tr>
+<tr class="hazards">
+<td>HP4 Irritant <input type="checkbox" <%= 'checked' if irritant %>></td>
+<td>HP10 Toxic for reproduction <input type="checkbox" <%= 'checked' if reprotoxic %>></td>
+<td>HP14 Ecotoxic <input type="checkbox" <%= 'checked' if ecotoxic %>></td>
+</tr>
+<tr class="hazards">
+<td>HP5 Harmful <input type="checkbox" <%= 'checked' if harmful %>></td>
+<td>HP11 Mutagenic <input type="checkbox" <%= 'checked' if mutagenic %>></td>
+<td rowspan="2">HP15 Waste capable other hazards <input type="checkbox" <%= 'checked' if other %>></td>
+</tr>
+<tr class="hazards">
+<td>HP6 Toxic <input type="checkbox" <%= 'checked' if toxic %>></td> 
+<td>POPS <input type="checkbox"<%= 'checked' if pops %>></td>
+
+</tr>
+<tr>
+<td colspan="3" style="text-align: center;"><strong>PLEASE WRITE CLEARLY!</strong></td>
+</tr>
+</tbody>
+</table>
+</td>
+
+<td style="width:13.65cm;padding:0.325cm;border:none;">
 <table>
 <thead>
 <tr>
@@ -121,4 +186,6 @@ toxic = true if (hazards & ['Acute toxicity', 'Germ cell mutagenicity', 'Carcino
 <td colspan="3" style="text-align: center;"><strong>PLEASE WRITE CLEARLY!</strong></td>
 </tr>
 </tbody>
+</table>
+</td>
 </table>
